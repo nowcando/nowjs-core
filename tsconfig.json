@@ -1,0 +1,25 @@
+{
+  "buildOnSave": false,
+  "compileOnSave": true,
+  "compilerOptions": {
+    "noEmitHelpers": false,
+    "noEmit": false,
+    "removeComments": false,
+    "declaration": true,
+    "module": "commonjs",
+    "target": "es2015",
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "removeComments": true,
+    "pretty": true,
+    "sourceMap": true,
+    "outDir": "dist"
+
+  },
+  "exclude": [
+    "dist",
+    "node_modules"
+
+  ]
+}
