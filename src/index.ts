@@ -23,6 +23,6 @@
  */
 import   * as nowcando  from './nowcando';
 
-export function  dummy2():any{return null;}
+
 
 export  {nowcando};
