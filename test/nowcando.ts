@@ -27,6 +27,8 @@ import * as nodeunit from 'nodeunit';
 export ={
     setUp(callback:nodeunit.ICallbackFunction){
         console.log("Start 'nowcando' Test.");
+        
+
         callback();
     },
     tearDown(callback:nodeunit.ICallbackFunction) {

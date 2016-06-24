@@ -24,6 +24,6 @@
  */
 import  * as core  from './core/core';
 
-export function dummy1():any{return null;}
+
 
 export  {core};
