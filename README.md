@@ -1,9 +1,33 @@
-# **nowjs-core** is a lightweight library for handle Line Of Business challenges.
+# **nowjs-core** 
+is a lightweight library for handle Line Of Business challenges.
  
- **Contributions**
-Welcome to all contributions and forks , please read wiki [https://github.com/nowcando/nowjs core/wiki](https:--github.com-nowcando-nowjs-core-wiki)   
+ Master: [![Build Status](https://travis-ci.org/nowcando/nowjs-core.svg?branch=master)](https://travis-ci.org/nowcando/nowjs-core)
  
-  
-Developed with love by [www.NowCanDo.com][www.nowcando.com] .
+ Develop: [![Build Status](https://travis-ci.org/nowcando/nowjs-core.svg?branch=develop)](https://travis-ci.org/nowcando/nowjs-core)
+ 
+ # Features
+ 
+ - Collections
+ - Linq
+ - Exceptions
+ - Security
+ - Globalizations
+ - Utils
+ - Application & Service Context
+ - Validations
+ 
+ 
+### Developed with love by [www.NowCanDo.com][www.nowcando.com] .
+
+
+
+### Notes for contributors
+
+Please see [CONTRIBUTING](./CONTRIBUTING.md).
+
+### Changes
+
+See [CHANGELOG](./CHANGELOG.md)
    
-This project maintains under Apache 2.0 licence. 
+### License   
+This project maintains under Apache 2.0 licence , see [LICENSE](./LICENSE.md) 

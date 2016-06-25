@@ -30,7 +30,7 @@ import  * as globalization  from "./globalization/globalization";
 import * as security from "./security/security";
 import * as services from "./ServiceContext";
 import * as apps from "./AppContext";
-
+import * as validations from "./validations/validations";
 
 
 
@@ -104,5 +104,6 @@ export {globalization}
 export {security}
 export {services}
 export {apps}
+export {validations};
 export {expressions};
 
