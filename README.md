@@ -20,8 +20,7 @@ is a lightweight library for handle Line Of Business challenges.
  - Validations
  
  
-### Developed with love by [www.NowCanDo.com][www.nowcando.com] .
-
+### Developed with love by [NowCanDo](www.nowcando.com)  .
 
 
 ### Notes for contributors
