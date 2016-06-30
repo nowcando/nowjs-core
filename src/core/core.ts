@@ -98,7 +98,7 @@ export class Comparable<T> implements IComparable<T> {
 }
 
 export interface  Func<T, TResult> {
-    (...args: any[]): TResult;
+    (arg:T) : TResult;
 }
 
 export interface  Predicate<T> extends Func<T, boolean> {

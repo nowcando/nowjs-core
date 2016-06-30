@@ -45,11 +45,11 @@ export class ReadOnlyCollection<T> implements core.collections.IReadOnlyCollecti
     [Symbol.iterator]():core.collections.IEnumerator<T> {
         return this._arr[Symbol.iterator]();
     }
-    linq<T>():core.collections.Enumerable{
+    linq<T>():core.collections.IQueryable<T>{
         let itr = this[Symbol.iterator]();
         return new core.collections.Enumerable(<any>itr);
     }
-    plinq<T>():core.collections.ParallelEnumerable{
+    plinq<T>():core.collections.IParallelQueryable<T>{
         let itr = this[Symbol.iterator]();
         return new core.collections.ParallelEnumerable(<any>itr);
     }
