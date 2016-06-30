@@ -23,8 +23,8 @@
  */
 
 import  * as core  from '../core';
-
-
+import {IComparator} from "../core";
+import {Comparable} from "../core";
 
 export enum OrderDirection{
     Asc, Desc
@@ -147,7 +147,7 @@ export interface  IReadOnlyDictionary<K,V> extends IEnumerable<IKeyValuePair<K,V
     toCollection():ICollection<IKeyValuePair<K,V>>;
     toList():IList<IKeyValuePair<K,V>>;
     linq():Enumerable;
-    plinq():ParallelEnumerable
+    plinq():ParallelEnumerable ;
     // new():IReadOnlyDictionary<K,V>;
     //new(enumerable:IEnumerable<IKeyValuePair<K,V>>):IReadOnlyDictionary<K,V>;
     // new(enumerable:Iterable<IKeyValuePair<K,V>>):IReadOnlyDictionary<K,V>;
@@ -295,6 +295,14 @@ export interface  ILinkedList<E> extends IEnumerable<E>,core.IEqualityComparable
      new(enumerable:Iterable<E>):ILinkedList<E>;*/
 }
 
+export interface ILookup<TKey,TValue> {
+    Key:TKey;
+    Values:IQueryable<TValue>;
+}
+
+export interface IGroup<TKey,TValue> extends ILookup<TKey,TValue> {
+
+}
 export class ParallelEnumerable {
     constructor(private enumerable:IEnumerable<any> | Iterable<any>) {
 
@@ -318,8 +326,9 @@ export class ParallelEnumerable {
 
 export interface IQueryable<T> extends IEnumerable<T> {
 
-    all<T>(predicate:core.Predicate<T>):boolean;
-    any<T>(predicate:core.Predicate<T>):boolean;
+    aggregate<T>(func:((seed:T, item:T, index?:number, source?:IEnumerable<T>)=>T), seed?:T):T
+    all<T>(predicate?:core.Predicate<T>):boolean;
+    any<T>(predicate?:core.Predicate<T>):boolean;
     first<T>(predicate?:core.Predicate<T>, defValue?:T):T;
     last<T>(predicate?:core.Predicate<T>, defValue?:T):T;
     single<T>(predicate:core.Predicate<T>, defValue?:any):T;
@@ -329,42 +338,205 @@ export interface IQueryable<T> extends IEnumerable<T> {
     skipWhile<T>(predicate:core.Predicate<T>):IQueryable<T>;
     take<T>(count:number):IQueryable<T>;
     takeWhile<T>(predicate:core.Predicate<T>):IQueryable<T>;
+    distinct<T>():IQueryable<T>;
+    reverse<T>():IQueryable<T>;
+    shuffle<T>():T;
+    shuffles<T>(count:number):IQueryable<T>;
 
     asEnumerable<T>():IEnumerable<T>;
+    select<T,TResult>(selector:((item:T)=>TResult)):IQueryable<TResult>;
+    selectMany<T,TResult>(selector:((item:T)=>IEnumerable<TResult>)):IQueryable<TResult>;
+
+    indexOf(item:any):number;
+    lastIndexOf(item:any):number;
+
+    join<TOuter,TInner,TKey,TResult>(inner:IEnumerable<TInner>,
+                                     outerSelector:((item:TOuter)=>TKey),
+                                     innerSelector:((item:TInner)=>TKey),
+                                     resultSelector:((innerItem:TInner,outerItem:TOuter)=>TResult)
+    ):IQueryable<TResult>;
+
     where<T>(predicate:core.Predicate<T>):IQueryable<T>;
     except<T>(predicate:core.Predicate<T>):IQueryable<T>;
-    orderBy<T>(itemPath:string, direction:OrderDirection):IOrderedQueryable<T>;
+    orderBy<T>(selector:((item:T)=>any), comparator?:((a:any, b:any)=>number)):IOrderedQueryable<T>;
+    orderByDesc<T>(selector:((item:T)=>any), comparator?:((a:any, b:any)=>number)):IOrderedQueryable<T>;
 
+    groupBy<T,TKey>(keySelector:(source:T)=>TKey):IQueryable<IGroup<TKey,T>>;
 
     count<T>():number;
     count<T>(predicate:core.Predicate<T>):number;
     average<T>():number|T;
-    average<T>(itemPath:string, predicate?:core.Predicate<T>):number|T;
+    average<T>(selector:((item:T)=>any), predicate?:core.Predicate<T>):number|T;
     max<T>():number|T;
-    max<T>(itemPath:string, predicate?:core.Predicate<T>):number|T;
+    max<T>(selector:((item:T)=>any), predicate?:core.Predicate<T>):number|T;
     min<T>():number|T;
-    min<T>(itemPath:string, predicate?:core.Predicate<T>):number|T;
+    min<T>(selector:((item:T)=>any), predicate?:core.Predicate<T>):number|T;
     sum<T>():number;
-    sum<T>(itemPath:string, predicate?:core.Predicate<T>):number;
+    sum<T>(selector:((item:T)=>any), predicate?:core.Predicate<T>):number;
 
     forEach<T>(action:(element:T, index:number) => void):void;
     toArray<T>():T[];
     toList<T>():IList<T>;
 
+    intersect<T>(source:IEnumerable<T>,equalityComparator?:((a:any, b:any)=>boolean)):IQueryable<T>;
+    subtract<T>(source:IEnumerable<T>,equalityComparator?:((a:any, b:any)=>boolean)):IQueryable<T>;
+    union<T>(source:IEnumerable<T>,equalityComparator?:((a:any, b:any)=>boolean)):IQueryable<T>;
+
+    zip<TFirst,TSecond,TResult>(second:TSecond, selector:((tfirst:TFirst, tsecond:TSecond)=>TResult)):IQueryable<TResult>;
 }
 
 export interface IOrderedQueryable<T> extends IQueryable<T> {
-    // thenBy(keySelector:(element:any) => any):IOrderedQueryable<T>;
-    // thenByDesc(keySelector:(element:any) => any):IOrderedQueryable<T>;
+    thenBy<T>(selector:((item:T)=>any), comparator?:((a:any, b:any)=>number)):IOrderedQueryable<T>;
+    thenByDesc<T>(selector:((item:T)=>any), comparator?:((a:any, b:any)=>number)):IOrderedQueryable<T>;
 }
 
-export class Enumerable implements IEnumerable<any> {
-    constructor(private enumerable:IEnumerable<any> | Iterable<any>) {
 
+export class Enumerable implements IQueryable<any> {
+
+    protected options:any;
+    protected _array:any[];
+
+    constructor(private enumerable:IEnumerable<any> | Iterable<any>,
+                options?:{}) {
+        if (Array.isArray(enumerable)) {
+            this._array = enumerable;
+        }
+        this.options = options || {};
     }
 
     [Symbol.iterator]():IEnumerator<any> {
         return this.enumerable[Symbol.iterator]();
+    }
+
+    protected  static equalityComparator(a:any,b:any):boolean{
+        return core.Comparable.equalityCompare(a,b);
+    }
+
+    protected static comparator<T>(a:any, b:any):number {
+        return core.Comparable.compare(a, b);
+    }
+
+    protected static selector<T>(t:T):any {
+        return t;
+    }
+
+    static from(enumerable:IEnumerable<any> | Iterable<any>):Enumerable {
+        return new Enumerable(enumerable);
+    }
+
+    static repeat(result:any, count:number):Enumerable {
+        let counter = 0;
+        let itr = <Iterable<any>>{
+            [Symbol.iterator]: ()=> {
+                return {
+                    next: () => {
+                        if (counter < count) {
+                            counter++;
+                            return {value: typeof result === "function" ? result() : result, done: false};
+                        }
+                        else {
+                            return {done: true};
+                        }
+
+                    }
+                }
+
+            }
+        };
+        return new Enumerable(itr);
+    }
+
+    static range(start:number, count:number, step:number = 1):Enumerable {
+        let curr = start;
+        let counter = 0;
+        let itr = <Iterable<any>>{
+            [Symbol.iterator]: ()=> {
+
+                return {
+                    next: () => {
+                        if (counter < count) {
+                            counter++;
+                            curr += step;
+                            return {value: curr, done: false};
+                        }
+                        else {
+                            return {done: true};
+                        }
+
+                    }
+                }
+
+            }
+        };
+        return new Enumerable(itr);
+    }
+
+    private checkArray() {
+        if (!this._array) {
+            this._array = [];
+            for (let item of this) {
+                this._array.push(item);
+            }
+        }
+    }
+
+    aggregate<T>(func:((seed:T, item:T, index?:number, source?:IEnumerable<T>)=>T), seed?:T):T {
+
+        this.checkArray();
+        let arr = this._array.slice(0);
+        if (seed == null) seed = arr.shift();
+
+        for (let i = 0; i < arr.length; i++)
+            seed = func(seed, arr[i], i, this);
+
+        return seed;
+    }
+
+    distinct<T>():IQueryable<T> {
+        let thisme = this;
+        let enb = <any>thisme.enumerable[Symbol.iterator]();
+        let traversed = new Set<T>();
+        let itr = <Iterable<T>>{
+            [Symbol.iterator]: ()=> {
+                return {
+                    next: () => {
+                        while (true) {
+                            let item = enb.next();
+                            if (!traversed.has(item.value)) {
+                                traversed.add(item.value);
+                                return item;
+                            }
+                        }
+
+                    }
+                }
+
+            }
+        };
+        return new Enumerable(itr);
+    }
+
+    reverse<T>():IQueryable<T> {
+        this.checkArray();
+        let revIt = this._array.reverse();
+        return new Enumerable(revIt);
+    }
+
+    shuffle<T>():T {
+        return this.shuffles<T>(1).first<T>();
+    }
+
+    shuffles<T>(count:number):IQueryable<T> {
+        let thisme = this;
+        let arr = this.toArray<T>();
+        let res:T[] = [];
+        let mrands = Enumerable.repeat(()=> {
+            return Math.floor((Math.random() * arr.length))
+        }, count);
+        for (let item of mrands) {
+            res.push(arr[item]);
+        }
+        return new Enumerable(res);
     }
 
     all<T>(predicate:core.Predicate<T>):boolean {
@@ -428,7 +600,7 @@ export class Enumerable implements IEnumerable<any> {
     }
 
     contains<T>(item:T):boolean {
-        for (let x of this.enumerable) {
+        for (let x of this) {
             if (x === item)return true;
         }
         return false;
@@ -524,6 +696,158 @@ export class Enumerable implements IEnumerable<any> {
         return new Enumerable(this.enumerable);
     }
 
+    select<T,TResult>(selector:((item:T)=>TResult)):IQueryable<TResult> {
+        let thisme = this;
+        let enb = <any>thisme.enumerable[Symbol.iterator]();
+        let itr = <Iterable<T>>{
+            [Symbol.iterator]: ()=> {
+                return {
+                    next: () => {
+                        let nx = enb.next();
+                        if (nx.done === false) {
+                            nx.value = selector(nx.value);
+                        }
+                        return nx;
+                    }
+                }
+
+            }
+        };
+        return new Enumerable(itr);
+    }
+
+    selectMany<T,TResult>(selector:((item:T)=>IEnumerable<TResult>)):IQueryable<TResult> {
+        let thisme = this;
+        let enb = <any>thisme.enumerable[Symbol.iterator]();
+        let itr = <Iterable<T>>{
+            [Symbol.iterator]: ()=> {
+                let itr:any;
+                return {
+                    next: () => {
+                        if (itr) {
+                            let nv = itr.next();
+                            if (nv.done === false) {
+                                return nv;
+                            }
+                            else {
+                                itr = null;
+                            }
+                        }
+                        let nx = enb.next();
+                        if (nx.done === false) {
+                            nx.value = selector(nx.value);
+                            if (<any>nx.value[Symbol.iterator]()) {
+                                itr = <any>nx.value[Symbol.iterator]();
+                                if (itr) {
+                                    let nv = itr.next();
+                                    if (nv.done === false) {
+                                        return nv;
+                                    }
+                                    else {
+                                        itr = null;
+                                    }
+                                }
+                            }
+
+                        }
+                        return nx;
+                    }
+                }
+
+            }
+        };
+        return new Enumerable(itr);
+    }
+
+    indexOf(item:any):number {
+        let indx = -1;
+        for (let xx of this) {
+            indx++;
+            if (Enumerable.comparator(xx, item) === 0) return indx;
+        }
+        return -1;
+    }
+
+    lastIndexOf(item:any):number {
+        let indx = -1;
+        let findex = -1;
+        for (let xx of this) {
+            indx++;
+            if (Enumerable.comparator(xx, item) === 0) findex = indx;
+        }
+        return findex;
+
+    }
+
+    join<TOuter,TInner,TKey,TResult>(inner:IEnumerable<TInner>,
+                                     outerSelector:((item:TOuter)=>TKey),
+                                     innerSelector:((item:TInner)=>TKey),
+                                     resultSelector:((innerItem:TInner,outerItem:TOuter)=>TResult)
+    ):IQueryable<TResult>{
+        let itr = <Iterable<TResult>>{
+            [Symbol.iterator]: ()=> {
+                let enbOuter = <any>this[Symbol.iterator]();
+                let enbg:any;
+                let getGroup = (groups:IEnumerable<IGroup<TKey,TInner>>,key:TKey)=>{
+                    if(!enbg){
+                        enbg = <any>groups[Symbol.iterator]();
+                    }
+                    while(true){
+                        let ixg = enbg.next();
+                        if(ixg.done===false && ixg.value &&
+                            Enumerable.equalityComparator(ixg.value.Key,key)){
+                            return ixg.value;
+                        }
+
+                        if(ixg.done===true) return null;
+                    }
+
+
+                }
+                let ig = (<IQueryable<TInner>>inner).groupBy<TInner,TKey>(innerSelector);
+                let oit:any ;
+                let xOuter:any;
+                return {
+                    next: () => {
+                        if(oit){
+                            let g = oit.next();
+                            if(g.done===false){
+                                let xx = {done:false,
+                                    value:resultSelector(g.value,xOuter.value)};
+                                return xx;
+                            }
+                            else{
+                                oit = null;
+                            }
+                        }
+                        xOuter = enbOuter.next();
+                        if((xOuter && xOuter.done==false)){
+                            let og = getGroup(ig,outerSelector(xOuter.value));
+                            if(og){
+                                oit = og.Values[Symbol.iterator]();
+                                if(oit){
+                                    let g = oit.next();
+                                    if(g.done===false){
+                                        let xx = {done:false,
+                                            value:resultSelector(g.value,xOuter.value)};
+                                        return xx;
+                                    }
+                                    else{
+                                        oit = null;
+                                    }
+                                }
+                            }
+
+                        }
+                        //oit = null;
+                        return {done:true};
+                    }
+                }
+            }
+        }
+        return new Enumerable(itr);
+    }
+
     where<T>(predicate:core.Predicate<T>):IQueryable<T> {
         let thisme = this;
         let enb = <any>thisme.enumerable[Symbol.iterator]();
@@ -580,15 +904,51 @@ export class Enumerable implements IEnumerable<any> {
         return new Enumerable(itr);
     }
 
-    orderBy<T>(itemPath:string, direction:OrderDirection):IOrderedQueryable<T> {
-        return null;
+    orderBy<T>(selector:((item:T)=>any), comparator?:((a:any, b:any)=>number)):IOrderedQueryable<T> {
+        this.checkArray();
+
+        comparator = comparator || Enumerable.comparator;
+        let cmp = (a:T, b:T)=> {
+            return comparator(selector(a), selector(b));
+        }
+        this._array = this._array.sort(cmp);
+        return new OrderedEnumerable(this._array);
     }
 
+    orderByDesc<T>(selector:((item:T)=>any), comparator?:((a:any, b:any)=>number)):IOrderedQueryable<T> {
+        comparator = comparator || Enumerable.comparator;
+        return this.orderBy<T>(selector, function (a, b) {
+            return -comparator(a, b);
+        });
+    }
+
+    groupBy<T,TKey>(keySelector:(item:IEnumerable<T>)=>TKey):IQueryable<IGroup<TKey,T>> {
+        let groups = new Map<TKey,T[]>();
+        for (let item of this.enumerable) {
+            let key = keySelector(item);
+            let vv = groups.get(key);
+            if (vv) {
+                vv.push(item)
+            }
+            else {
+                let lst:any[] = [];
+                lst.push(item);
+                groups.set(key, lst);
+            }
+        }
+        let list:any[] = [];
+        groups.forEach((v, k)=> {
+            list.push(<any>{Key: k, Values: v})
+        });
+
+        return new Enumerable(list);
+    }
 
     count<T>():number;
+    count<T>(predicate:core.Predicate<T>):number;
     count<T>(predicate?:core.Predicate<T>):number {
         let i = -1;
-        for (let xx of this.enumerable) {
+        for (let xx of this) {
             if (predicate) {
                 if (predicate(xx)) i++;
             }
@@ -601,51 +961,46 @@ export class Enumerable implements IEnumerable<any> {
     }
 
     average<T>():T;
-    average<T>(itemPath?:string, predicate?:core.Predicate<T>):T {
+    average<T>(selector:((item:T)=>any), predicate?:core.Predicate<T>):T;
+    average<T>(selector?:((item:T)=>any), predicate?:core.Predicate<T>):T {
         let res = 0;
         let count = 0;
         for (let x of this.enumerable) {
-            if (predicate) {
-                if (predicate(x) === true) {
-                   res += x;
+            let xx = selector ? selector(x) : x;
+            if (selector && predicate) {
+                if (predicate(xx) === true) {
+                    res += xx;
                     count++;
                 }
 
             }
             else {
-                res += x;
+                res += xx;
                 count++;
             }
 
 
         }
 
-        return <any>(res/count);
+        return <any>(res / count);
     }
 
     max<T>():T;
-    max<T>(itemPath?:string, predicate?:core.Predicate<T>):T {
-        let res = this.first<T>();
+    max<T>(selector:((item:T)=>any), predicate?:core.Predicate<T>):T;
+    max<T>(selector?:((item:T)=>any), predicate?:core.Predicate<T>):T {
+        let res = selector ? selector(this.first<T>()) : this.first<T>();
 
-        for (let x of this.enumerable) {
-            if (predicate) {
-                if (predicate(x) === true) {
-                    if (x instanceof Object) {
-                        if ((<core.IComparable<T>>x).compareTo(x) === 1)res = x;
-                    }
-                    else {
-                        if (x > res)res = x;
-                    }
+        for (let x of this) {
+            let xx = selector ? selector(x) : x;
+            if (selector && predicate) {
+                if (predicate(xx) === true) {
+
+                    if(Enumerable.comparator(xx,res)===1)res=xx;
                 }
 
             }
             else {
-                if (x instanceof Object) {
-                    if ((<core.IComparable<T>>x).compareTo(x) === 1)res = x;
-                }
-                else {
-                    if (x > res)res = x;
-                }
+                if(Enumerable.comparator(xx,res)===1)res=xx;
             }
 
 
@@ -655,53 +1010,75 @@ export class Enumerable implements IEnumerable<any> {
     }
 
     min<T>():T;
-    min<T>(itemPath?:string, predicate?:core.Predicate<T>):T {
-        let res = this.first<T>();
+    min<T>(selector:((item:T)=>any), predicate?:core.Predicate<T>):T;
+    min<T>(selector?:((item:T)=>any), predicate?:core.Predicate<T>):T {
+        let res = selector ? selector(this.first<T>()) : this.first<T>();
 
-        for (let x of this.enumerable) {
-            if (predicate) {
-                if (predicate(x) === true) {
-                    if (x instanceof Object) {
-                        if ((<core.IComparable<T>>x).compareTo(x) === -1)res = x;
-                    }
-                    else {
-                        if (x < res)res = x;
-                    }
+        for (let x of this) {
+            let xx = selector ? selector(x) : x;
+            if (selector && predicate) {
+                if (predicate(xx) === true) {
+
+                    if(Enumerable.comparator(xx,res)===-1)res=xx;
                 }
 
             }
             else {
-                if (x instanceof Object) {
-                    if ((<core.IComparable<T>>x).compareTo(x) === -1)res = x;
-                }
-                else {
-                    if (x < res)res = x;
-                }
+                if(Enumerable.comparator(xx,res)===-1)res=xx;
             }
+
+
         }
 
         return res;
     }
 
     sum<T>():number;
-    sum<T>(itemPath?:string, predicate?:core.Predicate<T>):number {
+    sum<T>(selector:((item:T)=>any), predicate?:core.Predicate<T>):number;
+    sum<T>(selector?:((item:T)=>any), predicate?:core.Predicate<T>):number {
         let res = 0;
 
-        for (let x of this.enumerable) {
-            if (predicate) {
-                if (predicate(x) === true) res += x;
+        for (let x of this) {
+            let xx = selector ? selector(x) : x;
+            if (selector && predicate) {
+                if (predicate(xx) === true) res += xx;
             }
             else {
-                res += x;
+                res += xx;
             }
 
         }
         return res;
     }
 
+    intersect<T>(source:IEnumerable<T>,equalityComparator?:((a:any, b:any)=>boolean)):IQueryable<T>{
+        equalityComparator = equalityComparator || Enumerable.equalityComparator;
+        let wset = new core.collections.Set<T>();
+        for(let xx of source){if(this.contains(xx)) wset.add(xx);}
+        return new Enumerable(wset);
+
+    }
+
+    subtract<T>(source:IEnumerable<T>,equalityComparator?:((a:any, b:any)=>boolean)):IQueryable<T>{
+        equalityComparator = equalityComparator || Enumerable.equalityComparator;
+        let wset = new core.collections.Set<T>();
+        let inter = this.intersect(source);
+        for(let xx of source){if(!inter.contains(xx)) wset.add(xx);}
+        for(let xx of this){if(!inter.contains(xx)) wset.add(xx);}
+        return new Enumerable(wset);
+    }
+
+    union<T>(source:IEnumerable<T>,equalityComparator?:((a:any, b:any)=>boolean)):IQueryable<T>{
+        equalityComparator = equalityComparator || Enumerable.equalityComparator;
+        let wset = new core.collections.Set<T>();
+        for(let xx of this){wset.add(xx);}
+        for(let xx of source){if(!wset.contains(xx)) wset.add(xx);}
+        return new Enumerable(wset);
+    }
+
     forEach<T>(action:(element:T, index:number) => void):void {
         let i = 0;
-        for (let x of this.enumerable) {
+        for (let x of this) {
             action(x, i++);
         }
     }
@@ -722,7 +1099,117 @@ export class Enumerable implements IEnumerable<any> {
         return xx;
     }
 
+    zip<TFirst,TSecond,TResult>(second:IEnumerable<TSecond>, selector:((tfirst:TFirst, tsecond:TSecond)=>TResult)):IQueryable<TResult> {
+        let thisme = this;
+        let enb1 = <any>thisme.enumerable[Symbol.iterator]();
+        let enb2 = new Enumerable(second)[Symbol.iterator]();
+        let itr = <Iterable<TResult>>{
+            [Symbol.iterator]: ()=> {
+                return {
+                    next: () => {
+                        let item1 = enb1.next();
+                        let item2 = enb2.next();
+                        if (item1.done === false && item2.done === false) {
+                            return {value: selector(item1.value, item2.value), done: false};
+                        }
+                        else {
+                            return {done: true};
+                        }
+
+                    }
+                }
+
+            }
+        };
+        return new Enumerable(itr);
+    }
+
 }
+
+export class OrderedEnumerable extends Enumerable implements IOrderedQueryable<any> {
+
+    // private _array:any[];
+    constructor(enumerable:IEnumerable<any> | Iterable<any>,
+                options?:{}) {
+        super(enumerable, options)
+        if (Array.isArray(enumerable)) {
+            this._array = enumerable;
+        }
+
+    }
+
+    thenBy<T>(selector:((item:T)=>any), comparator?:((a:any, b:any)=>number)):IOrderedQueryable<T> {
+        comparator = comparator || Enumerable.comparator;
+        let cmp = (a:T, b:T)=> {
+            return comparator(selector(a), selector(b));
+        }
+        return this.orderBy<T>(Enumerable.selector, function (a, b) {
+            var res = cmp(a, b);
+            return res === 0 ? comparator(selector(a), selector(b)) : res;
+        });
+
+    }
+
+    thenByDesc<T>(selector:((item:T)=>any), comparator?:((a:any, b:any)=>number)):IOrderedQueryable<T> {
+        comparator = comparator || Enumerable.comparator;
+        let cmp = (a:T, b:T)=> {
+            return comparator(selector(a), selector(b));
+        }
+        return this.orderBy<T>(Enumerable.selector, function (a, b) {
+            var res = cmp(a, b);
+            return res === 0 ? -comparator(selector(a), selector(b)) : res;
+        });
+    }
+}
+
+declare global {
+    export interface Array<T> {
+        contains(obj:T):boolean;
+        linq():Enumerable;
+        plinq():Enumerable;
+    }
+    interface Set<T> {
+        linq():Enumerable;
+        plinq():Enumerable;
+    }
+    interface Map<K,V> {
+        linq():Enumerable;
+        plinq():Enumerable;
+    }
+    interface WeakSet<T> {
+        linq():Enumerable;
+        plinq():Enumerable;
+    }
+    interface WeakMap<K,V> {
+        linq():Enumerable;
+        plinq():Enumerable;
+    }
+}
+
+export function getEunmerable():Enumerable {
+    return new Enumerable(this);
+}
+
+Array.prototype.contains = function (obj:any) {
+    var i = this.length;
+    while (i--) {
+        if (this[i] === obj) {
+            return true;
+        }
+    }
+    return false;
+
+}
+Array.prototype.linq = getEunmerable;
+Array.prototype.plinq = getEunmerable;
+Map.prototype.linq = getEunmerable;
+Map.prototype.plinq = getEunmerable;
+WeakMap.prototype.linq = getEunmerable;
+WeakMap.prototype.plinq = getEunmerable;
+Set.prototype.linq = getEunmerable;
+Set.prototype.plinq = getEunmerable;
+WeakSet.prototype.linq = getEunmerable;
+WeakSet.prototype.plinq = getEunmerable;
 
 
 export *   from './ReadOnlyCollection';

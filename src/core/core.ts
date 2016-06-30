@@ -30,7 +30,7 @@ import  * as globalization  from "./globalization/globalization";
 import * as security from "./security/security";
 import * as services from "./ServiceContext";
 import * as apps from "./AppContext";
-
+import * as validations from "./validations/validations";
 
 
 
@@ -59,28 +59,38 @@ export class Comparable<T> implements IComparable<T> {
     constructor(value: T) {
         this._value = value;
     }
-    compareTo(a: T): IComparator<T> {
 
-        if ( typeof a === "string") {
-            return (<any>this._value).localeCompare(<any>a);
-        }
-        else if (typeof a === "number") {
-
-            if (<any>a > this._value) return 1;
-            else if (<any>a === this._value) return 0;
+    public  static equalityCompare(a:any,b:any):boolean{
+        return a === b || a.valueOf() === b.valueOf();
+    }
+    
+    public static compare(a:any,b:any){
+        if (a === b) return 0;
+        if (a === null) return -1;
+        if (b === null) return 1;
+        if (typeof a == 'string') return a.toString().localeCompare(b.toString());
+        else if(typeof a == 'number') {
+            if (a > b) return 1;
             else return -1;
         }
-        else if (a instanceof Comparable) {
+
+
+        return a.valueOf() - b.valueOf();
+    }
+
+    compareTo(a: T): IComparator<T> {
+
+
+       if (a instanceof Comparable) {
 
             if ((<any>a).Value > this._value) return 1;
             else if ((<any>a).Value === this._value) return 0;
             else return -1;
         }
-        else {
-            if (<any>a >  this) return 1;
-            else if (<any>a === this) return 0;
-            else return -1;
-      }
+        else{
+           return Comparable.compare(this._value,a);
+       }
+
 
     }
     get Value(): T { return this._value; };
@@ -104,5 +114,6 @@ export {globalization}
 export {security}
 export {services}
 export {apps}
+export {validations};
 export {expressions};
 

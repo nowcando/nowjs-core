@@ -23,7 +23,7 @@
  */
 
 
-
+import * as nodeunit from 'nodeunit';
 import {Exception} from "../../src/core/core";
 
 export={

@@ -21,7 +21,7 @@
 /**
  * This File Created by Saeed on 30/04/2016.
  */
-
+import * as nodeunit from 'nodeunit';
 import * as nowcando from '../../../src/nowcando';
 import {Comparable} from "../../../src/core/core";
 
