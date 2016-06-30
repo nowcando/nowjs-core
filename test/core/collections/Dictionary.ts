@@ -20,6 +20,7 @@
 import * as nowcando from '../../../src/nowcando';
 import {Dictionary} from "../../../src/core/collections/Dictionary";
 import {IKeyValuePair} from "../../../src/core/collections/collections";
+import * as nodeunit from 'nodeunit';
 /**
  * This File Created by Saeed on 24/04/2016.
  */

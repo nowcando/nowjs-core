@@ -24,7 +24,7 @@
 
 
 import * as core from "../../../src/core/core";
-
+import * as nodeunit from 'nodeunit';
 export={
 
     setUp: function (callback:nodeunit.ICallbackFunction) {

@@ -23,19 +23,16 @@
  */
 
 import  * as core  from '../core';
-import  * as collections  from './collections';
 
 
-
-
-export class ReadOnlyCollection<T> implements collections.IReadOnlyCollection<T> {
+export class ReadOnlyCollection<T> implements core.collections.IReadOnlyCollection<T> {
     protected _arr:T[] = [];
     private _hashCode:number;
 
     constructor();
-    constructor(enumerable:collections.IEnumerable<T>);
+    constructor(enumerable:core.collections.IEnumerable<T>);
     constructor(enumerable:Iterable<T>);
-    constructor(enumerable?:collections.IEnumerable<T> | Iterable<T>) {
+    constructor(enumerable?:core.collections.IEnumerable<T> | Iterable<T>) {
         this._hashCode = 0;
         if(enumerable){
             for (let x of enumerable) {
@@ -45,18 +42,18 @@ export class ReadOnlyCollection<T> implements collections.IReadOnlyCollection<T>
 
     }
 
-    [Symbol.iterator]():collections.IEnumerator<T> {
+    [Symbol.iterator]():core.collections.IEnumerator<T> {
         return this._arr[Symbol.iterator]();
     }
-    linq<T>():collections.Enumerable{
+    linq<T>():core.collections.Enumerable{
         let itr = this[Symbol.iterator]();
-        return new collections.Enumerable(<any>itr);
+        return new core.collections.Enumerable(<any>itr);
     }
-    plinq<T>():collections.ParallelEnumerable{
+    plinq<T>():core.collections.ParallelEnumerable{
         let itr = this[Symbol.iterator]();
-        return new collections.ParallelEnumerable(<any>itr);
+        return new core.collections.ParallelEnumerable(<any>itr);
     }
-    equalsTo(a:collections.IReadOnlyCollection<T>):boolean {
+    equalsTo(a:core.collections.IReadOnlyCollection<T>):boolean {
         return this.getHashCode()===a.getHashCode();
     }
 
@@ -88,7 +85,7 @@ export class ReadOnlyCollection<T> implements collections.IReadOnlyCollection<T>
         return this._arr.lastIndexOf(item)
     }
 
-    clone():collections.IReadOnlyCollection<T> {
+    clone():core.collections.IReadOnlyCollection<T> {
         return (new ReadOnlyCollection(this));
     }
 
@@ -100,12 +97,12 @@ export class ReadOnlyCollection<T> implements collections.IReadOnlyCollection<T>
         return m;
     }
 
-    toCollection():collections.ICollection<T> {
-        return new collections.Collection(this);
+    toCollection():core.collections.ICollection<T> {
+        return new core.collections.Collection(this);
     }
 
-    toList():collections.IList<T> {
-        return new collections.List(this);
+    toList():core.collections.IList<T> {
+        return new core.collections.List(this);
     }
 
 

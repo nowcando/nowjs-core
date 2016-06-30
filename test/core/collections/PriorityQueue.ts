@@ -19,7 +19,7 @@
  */
 import * as nowcando from '../../../src/nowcando';
 import * as core from "../../../src/core/core";
-
+import * as nodeunit from 'nodeunit';
 /**
  * This File Created by Saeed on 24/04/2016.
  */

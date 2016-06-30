@@ -22,17 +22,17 @@
  * This File Created by Saeed on 24/04/2016.
  */
 import  * as core  from '../core';
-import * as collections from './collections';
 
-export class ReadOnlyDictionary<K,V>  implements collections.IReadOnlyDictionary<K,V> {
 
-    protected _arr:collections.IKeyValuePair<K,V>[] = new Array<collections.IKeyValuePair<K,V>>();
+export class ReadOnlyDictionary<K,V>  implements core.collections.IReadOnlyDictionary<K,V> {
+
+    protected _arr:core.collections.IKeyValuePair<K,V>[] = new Array<core.collections.IKeyValuePair<K,V>>();
     private _hashCode:number;
 
     constructor();
-    constructor(enumerable:collections.IEnumerable<collections.IKeyValuePair<K,V>>);
-    constructor(enumerable:Iterable<collections.IKeyValuePair<K,V>>);
-    constructor(enumerable?:collections.IEnumerable<collections.IKeyValuePair<K,V>> | Iterable<collections.IKeyValuePair<K,V>>) {
+    constructor(enumerable:core.collections.IEnumerable<collections.IKeyValuePair<K,V>>);
+    constructor(enumerable:Iterable<core.collections.IKeyValuePair<K,V>>);
+    constructor(enumerable?:core.collections.IEnumerable<collections.IKeyValuePair<K,V>> | Iterable<collections.IKeyValuePair<K,V>>) {
         this._hashCode = 0;
         if (enumerable) {
             for (let x of enumerable) {
@@ -43,20 +43,20 @@ export class ReadOnlyDictionary<K,V>  implements collections.IReadOnlyDictionary
     }
 
 
-    [Symbol.iterator]():collections.IEnumerator<collections.IKeyValuePair<K,V>> {
+    [Symbol.iterator]():core.collections.IEnumerator<collections.IKeyValuePair<K,V>> {
         return this._arr[Symbol.iterator]();
     }
 
-    linq<T>():collections.Enumerable{
+    linq<T>():core.collections.Enumerable{
         let itr = this[Symbol.iterator]();
-        return new collections.Enumerable(<any>itr);
+        return new core.collections.Enumerable(<any>itr);
     }
-    plinq<T>():collections.ParallelEnumerable{
+    plinq<T>():core.collections.ParallelEnumerable{
         let itr = this[Symbol.iterator]();
-        return new collections.ParallelEnumerable(<any>itr);
+        return new core.collections.ParallelEnumerable(<any>itr);
     }
 
-    equalsTo(a:collections.IReadOnlyDictionary<K,V>):boolean {
+    equalsTo(a:core.collections.IReadOnlyDictionary<K,V>):boolean {
         return this.compareTo(a) === 0;
     }
 
@@ -64,7 +64,7 @@ export class ReadOnlyDictionary<K,V>  implements collections.IReadOnlyDictionary
         return this._hashCode;
     }
 
-    compareTo(a:collections.IReadOnlyDictionary<K,V>):core.IComparator<collections.IReadOnlyDictionary<K,V>> {
+    compareTo(a:core.collections.IReadOnlyDictionary<K,V>):core.IComparator<collections.IReadOnlyDictionary<K,V>> {
         if (<any>a > this) return 1;
         else if (<any>a === this) return 0;
         else return -1;
@@ -91,35 +91,35 @@ export class ReadOnlyDictionary<K,V>  implements collections.IReadOnlyDictionary
         }
     }
 
-    getKeys():collections.IEnumerable<K> {
+    getKeys():core.collections.IEnumerable<K> {
         return this._arr.map((item)=> {
             return item.getKey();
         });
     }
 
-    getValues():collections.IEnumerable<V> {
+    getValues():core.collections.IEnumerable<V> {
         return this._arr.map((item)=> {
             return item.getValue();
         });
     }
 
-    clone():collections.IReadOnlyDictionary<K,V> {
-        return new collections.ReadOnlyDictionary<K,V>(this);
+    clone():core.collections.IReadOnlyDictionary<K,V> {
+        return new core.collections.ReadOnlyDictionary<K,V>(this);
     }
 
-    toArray():collections.IKeyValuePair<K,V>[] {
-        let _array:collections.IKeyValuePair<K,V>[] = [];
+    toArray():core.collections.IKeyValuePair<K,V>[] {
+        let _array:core.collections.IKeyValuePair<K,V>[] = [];
         for (let xx of this._arr) {
             _array.push(xx);
         }
         return _array;
     }
 
-    toCollection():collections.ICollection<collections.IKeyValuePair<K,V>> {
-        return new collections.Collection(this._arr);
+    toCollection():core.collections.ICollection<collections.IKeyValuePair<K,V>> {
+        return new core.collections.Collection(this._arr);
     }
 
-    toList():collections.IList<collections.IKeyValuePair<K,V>> {
-        return new collections.List(this._arr);
+    toList():core.collections.IList<collections.IKeyValuePair<K,V>> {
+        return new core.collections.List(this._arr);
     }
 }
