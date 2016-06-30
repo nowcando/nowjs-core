@@ -17,6 +17,7 @@
  *  * For more information: http://www.nowcando.com
  *
  */
+import * as nodeunit from 'nodeunit';
 import * as nowcando from '../../../src/nowcando';
 /**
  * This File Created by Saeed on 24/04/2016.
