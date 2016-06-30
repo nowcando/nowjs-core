@@ -1,7 +1,7 @@
 {
   "name": "nowjs-core",
   "description": "NowCanDo Javascript Core [nowjs-core] is a  library written by TypeScript code maintains under Apache 2.0 licence",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "private": false,
   "scripts": {
 
@@ -10,7 +10,7 @@
   "typings":  "dist/src/index.d.ts",
   "author": "Saeed Tabrizi at NowCanDo.Com",
   "email": "Saeed at NowCanDo.Com",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "keywords": ["nowjs","nowjscore","nowjs-core","nowcando","Saeed Tabrizi","light weight","library","LOB","line of business"],
   "bugs": {
     "url": "https://github.com/nowcando/nowjs-core/issues"

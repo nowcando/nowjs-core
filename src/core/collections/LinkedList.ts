@@ -87,11 +87,11 @@ export class LinkedList<E>  implements collections.ILinkedList<E> {
         return this._hashCode;
     }
 
-    linq<T>():collections.Enumerable{
+    linq<T>():collections.IQueryable<T>{
         let itr = this[Symbol.iterator]();
-        return new collections.Enumerable(<any>itr);
+        return new collections.Enumerable<T>(<any>itr);
     }
-    plinq<T>():collections.ParallelEnumerable{
+    plinq<T>():collections.IParallelQueryable<T>{
         let itr = this[Symbol.iterator]();
         return new collections.ParallelEnumerable(<any>itr);
     }

@@ -30,9 +30,9 @@ export class ReadOnlyDictionary<K,V>  implements core.collections.IReadOnlyDicti
     private _hashCode:number;
 
     constructor();
-    constructor(enumerable:core.collections.IEnumerable<collections.IKeyValuePair<K,V>>);
+    constructor(enumerable:core.collections.IEnumerable<core.collections.IKeyValuePair<K,V>>);
     constructor(enumerable:Iterable<core.collections.IKeyValuePair<K,V>>);
-    constructor(enumerable?:core.collections.IEnumerable<collections.IKeyValuePair<K,V>> | Iterable<collections.IKeyValuePair<K,V>>) {
+    constructor(enumerable?:core.collections.IEnumerable<core.collections.IKeyValuePair<K,V>> | Iterable<core.collections.IKeyValuePair<K,V>>) {
         this._hashCode = 0;
         if (enumerable) {
             for (let x of enumerable) {
@@ -43,15 +43,15 @@ export class ReadOnlyDictionary<K,V>  implements core.collections.IReadOnlyDicti
     }
 
 
-    [Symbol.iterator]():core.collections.IEnumerator<collections.IKeyValuePair<K,V>> {
+    [Symbol.iterator]():core.collections.IEnumerator<core.collections.IKeyValuePair<K,V>> {
         return this._arr[Symbol.iterator]();
     }
 
-    linq<T>():core.collections.Enumerable{
+    linq<T>():core.collections.IQueryable<T>{
         let itr = this[Symbol.iterator]();
         return new core.collections.Enumerable(<any>itr);
     }
-    plinq<T>():core.collections.ParallelEnumerable{
+    plinq<T>():core.collections.IParallelQueryable<T>{
         let itr = this[Symbol.iterator]();
         return new core.collections.ParallelEnumerable(<any>itr);
     }
@@ -64,7 +64,7 @@ export class ReadOnlyDictionary<K,V>  implements core.collections.IReadOnlyDicti
         return this._hashCode;
     }
 
-    compareTo(a:core.collections.IReadOnlyDictionary<K,V>):core.IComparator<collections.IReadOnlyDictionary<K,V>> {
+    compareTo(a:core.collections.IReadOnlyDictionary<K,V>):core.IComparator<core.collections.IReadOnlyDictionary<K,V>> {
         if (<any>a > this) return 1;
         else if (<any>a === this) return 0;
         else return -1;
@@ -115,11 +115,11 @@ export class ReadOnlyDictionary<K,V>  implements core.collections.IReadOnlyDicti
         return _array;
     }
 
-    toCollection():core.collections.ICollection<collections.IKeyValuePair<K,V>> {
+    toCollection():core.collections.ICollection<core.collections.IKeyValuePair<K,V>> {
         return new core.collections.Collection(this._arr);
     }
 
-    toList():core.collections.IList<collections.IKeyValuePair<K,V>> {
+    toList():core.collections.IList<core.collections.IKeyValuePair<K,V>> {
         return new core.collections.List(this._arr);
     }
 }

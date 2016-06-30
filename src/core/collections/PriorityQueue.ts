@@ -58,11 +58,11 @@ export class PriorityQueue<T>  implements collections.IPriorityQueue<T> {
         return this._arr[Symbol.iterator]();
     }
 
-    linq<T>():collections.Enumerable{
+    linq<T>():collections.IQueryable<T>{
         let itr = this[Symbol.iterator]();
         return new collections.Enumerable(<any>itr);
     }
-    plinq<T>():collections.ParallelEnumerable{
+    plinq<T>():collections.IParallelQueryable<T>{
         let itr = this[Symbol.iterator]();
         return new collections.ParallelEnumerable(<any>itr);
     }
