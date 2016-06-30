@@ -19,7 +19,7 @@
  */
 import * as nowcando from '../../../src/nowcando';
 import * as nodeunit from 'nodeunit';
-import {Enumerable} from "../../../src/core/collections/collections";
+
 /**
  * This File Created by Saeed on 24/04/2016.
  */
@@ -59,21 +59,19 @@ export={
     },
     TC_1_2: function (test:nodeunit.Test) {
         test.equal(alphanums.size(), 4);
-        test.equal(alphanums.linq().any((x)=> {
-            return x == 'F';
-        }), false);
+        test.equal(alphanums.linq().any<string>(x =>  x == 'F'), false);
         test.done();
     },
     TC_1_3: function (test:nodeunit.Test) {
         test.equal(alphanums.size(), 4);
-        test.equal(alphanums.linq().all((x)=> {
+        test.equal(alphanums.linq().all<string>((x)=> {
             return x.length === 1;
         }), true);
         test.done();
     },
     TC_1_4: function (test:nodeunit.Test) {
         test.equal(alphanums.size(), 4);
-        test.equal(alphanums.linq().all((x)=> {
+        test.equal(alphanums.linq().all<string>((x)=> {
             return x.length === 2;
         }), false);
         test.done();
@@ -154,9 +152,7 @@ export={
         alphanums.add('E');
         alphanums.add('F');
         test.equal(alphanums.size(), 6);
-        let xx = alphanums.linq().skip(1).takeWhile((x)=> {
-            return x === 'D';
-        }).last();
+        let xx = alphanums.linq().skip(1).takeWhile<any>(x => x === 'D').last();
         test.equal(xx, 'C');
         test.done();
     }
@@ -167,9 +163,7 @@ export={
         alphanums.add('E');
         alphanums.add('C');
         test.equal(alphanums.size(), 8);
-        let xx = alphanums.linq().where((x)=> {
-            return x === 'C';
-        }).count();
+        let xx = alphanums.linq().where(mm => mm === 'C').count();
         test.equal(xx, 3);
         test.done();
     }
@@ -208,7 +202,9 @@ export={
     },
     TC_1_22: function (test:nodeunit.Test) {
         let res = 0;
-        Enumerable.range(2, 6).forEach<number>((x)=> {
+
+        nowcando.core.collections.Enumerable
+            .range<any>(2, 6).forEach<number>((x)=> {
             res = x;
         });
         test.equal(res, 8);
@@ -216,7 +212,8 @@ export={
     },
     TC_1_23: function (test:nodeunit.Test) {
         let res = "";
-        Enumerable.repeat("Hello", 3).forEach<string>((x)=> {
+        nowcando.core.collections.Enumerable
+            .repeat("Hello", 3).forEach<string>((x)=> {
             res += x;
         });
         test.equal(res, "HelloHelloHello");
@@ -455,6 +452,22 @@ export={
         let data1 = [1, 5, 6, 8, 9, 4, 3];
         let data2 = [15, 25, 6, 3,9];
         test.equal(data1.linq().subtract(data2).count(), 6);
+        test.done();
+    },
+    TC_1_42: function (test:nodeunit.Test) {
+        let data1 = [1, 5, 6, 8, 9, 4, 3];
+        let data2 :{name:string,age:number,family:string}[] = [
+            {name: "Saeed", family: "tabrizi", age: 34},
+            {name: "ali", family: "khaleghi", age: 17},
+            {name: "Saeed", family: "akbari", age: 18},
+            {name: "mahmoud", family: "tabrizi", age: 15},
+            {name: "soolmaz", family: "lenaei", age: 25},
+            {name: "lena", family: "Matooni", age: 22}
+        ];
+        test.equal(data1.linq().where(xx=>xx<9).count(), 6);
+        test.equal(data2.linq().where<any>(
+            xx=> xx.age<18)
+            .count(), 2);
         test.done();
     }
 }

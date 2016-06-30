@@ -49,8 +49,8 @@ export interface  IReadOnlyCollection<T> extends IEnumerable<T>,core.IEqualityCo
     toArray():T[];
     toCollection():ICollection<T>;
     toList():IList<T>;
-    linq():Enumerable;
-    plinq():ParallelEnumerable
+    linq<T>():IQueryable<T>;
+    plinq<T>():IParallelQueryable<T>;
     // new():IReadOnlyCollection<T>;
     // new(enumerable:IEnumerable<T>):IReadOnlyCollection<T>;
     // new(enumerable:Iterable<T>):IReadOnlyCollection<T>;
@@ -146,8 +146,8 @@ export interface  IReadOnlyDictionary<K,V> extends IEnumerable<IKeyValuePair<K,V
     toArray():IKeyValuePair<K,V>[];
     toCollection():ICollection<IKeyValuePair<K,V>>;
     toList():IList<IKeyValuePair<K,V>>;
-    linq():Enumerable;
-    plinq():ParallelEnumerable ;
+    linq<T>():IQueryable<T>;
+    plinq<T>():IParallelQueryable<T>;
     // new():IReadOnlyDictionary<K,V>;
     //new(enumerable:IEnumerable<IKeyValuePair<K,V>>):IReadOnlyDictionary<K,V>;
     // new(enumerable:Iterable<IKeyValuePair<K,V>>):IReadOnlyDictionary<K,V>;
@@ -232,8 +232,8 @@ export interface  IQueue<T> extends IEnumerable<T>,core.IEqualityComparable<IQue
     toArray():T[];
     toCollection():ICollection<T>;
     toList():IList<T>;
-    linq():Enumerable;
-    plinq():ParallelEnumerable;
+    linq<T>():IQueryable<T>;
+    plinq<T>():IParallelQueryable<T>;
     // new():IQueue<T>;
     // new(enumerable:IEnumerable<T>):IQueue<T>;
     // new(enumerable:Iterable<T>):IQueue<T>;
@@ -287,8 +287,8 @@ export interface  ILinkedList<E> extends IEnumerable<E>,core.IEqualityComparable
     toArray():E[];
     toCollection():ICollection<E>;
     toList():IList<E>;
-    linq():Enumerable;
-    plinq():ParallelEnumerable
+    linq<T>():IQueryable<T>;
+    plinq<T>():IParallelQueryable<T>;
 
     /* new():ILinkedList<E>;
      new(enumerable:IEnumerable<E>):ILinkedList<E>;
@@ -303,26 +303,10 @@ export interface ILookup<TKey,TValue> {
 export interface IGroup<TKey,TValue> extends ILookup<TKey,TValue> {
 
 }
-export class ParallelEnumerable {
-    constructor(private enumerable:IEnumerable<any> | Iterable<any>) {
 
-    }
 
-    all<T>(predicate:core.Predicate<T>):boolean {
 
-        for (let xx of this.enumerable) {
-            if (predicate(xx) === true)return true;
-        }
-        return false;
-    }
 
-    any<T>(predicate:core.Predicate<T>):boolean {
-        for (let xx of this.enumerable) {
-            if (predicate(xx) === true)return true;
-        }
-        return false;
-    }
-}
 
 export interface IQueryable<T> extends IEnumerable<T> {
 
@@ -337,7 +321,7 @@ export interface IQueryable<T> extends IEnumerable<T> {
     skip<T>(count:number):IQueryable<T>;
     skipWhile<T>(predicate:core.Predicate<T>):IQueryable<T>;
     take<T>(count:number):IQueryable<T>;
-    takeWhile<T>(predicate:core.Predicate<T>):IQueryable<T>;
+    takeWhile<T>(predicate:((item:T)=>boolean)):IQueryable<T>;
     distinct<T>():IQueryable<T>;
     reverse<T>():IQueryable<T>;
     shuffle<T>():T;
@@ -390,8 +374,11 @@ export interface IOrderedQueryable<T> extends IQueryable<T> {
     thenByDesc<T>(selector:((item:T)=>any), comparator?:((a:any, b:any)=>number)):IOrderedQueryable<T>;
 }
 
+export interface IParallelQueryable<T> extends  IQueryable<T>{
 
-export class Enumerable implements IQueryable<any> {
+}
+
+export class Enumerable<T> implements IQueryable<T> {
 
     protected options:any;
     protected _array:any[];
@@ -420,11 +407,11 @@ export class Enumerable implements IQueryable<any> {
         return t;
     }
 
-    static from(enumerable:IEnumerable<any> | Iterable<any>):Enumerable {
+   public static from<T>(enumerable:IEnumerable<T> | Iterable<any>):IQueryable<T> {
         return new Enumerable(enumerable);
     }
 
-    static repeat(result:any, count:number):Enumerable {
+    public static repeat<T>(result:any, count:number):IQueryable<T> {
         let counter = 0;
         let itr = <Iterable<any>>{
             [Symbol.iterator]: ()=> {
@@ -446,7 +433,7 @@ export class Enumerable implements IQueryable<any> {
         return new Enumerable(itr);
     }
 
-    static range(start:number, count:number, step:number = 1):Enumerable {
+    public static range<T>(start:number, count:number, step:number = 1):IQueryable<T> {
         let curr = start;
         let counter = 0;
         let itr = <Iterable<any>>{
@@ -530,7 +517,7 @@ export class Enumerable implements IQueryable<any> {
         let thisme = this;
         let arr = this.toArray<T>();
         let res:T[] = [];
-        let mrands = Enumerable.repeat(()=> {
+        let mrands = Enumerable.repeat<number>(()=> {
             return Math.floor((Math.random() * arr.length))
         }, count);
         for (let item of mrands) {
@@ -547,7 +534,7 @@ export class Enumerable implements IQueryable<any> {
     }
 
     any<T>(predicate:core.Predicate<T>):boolean {
-        for (let xx of this.enumerable) {
+        for (let xx of this) {
             if (predicate(xx) === true)return true;
         }
         return false;
@@ -850,23 +837,24 @@ export class Enumerable implements IQueryable<any> {
 
     where<T>(predicate:core.Predicate<T>):IQueryable<T> {
         let thisme = this;
-        let enb = <any>thisme.enumerable[Symbol.iterator]();
-        let yy:any;
+        
         let itr = <Iterable<T>>{
             [Symbol.iterator]: ()=> {
-
+                let enb = this[Symbol.iterator]();
+                let yy:any;
                 return {
                     next: () => {
                         let xx:any;
                         do {
                             xx = enb.next();
-                            if (xx && predicate(xx.value) === true) {
+                            if (xx && xx.done === false && predicate(xx.value) === true) {
                                 yy = xx;
                                 break;
                             }
 
                         } while (xx.done === false);
                         if (xx.done === true) {
+                            yy = yy || {};
                             yy.done = true;
                         }
                         return yy;
@@ -875,7 +863,7 @@ export class Enumerable implements IQueryable<any> {
 
             }
         };
-        return new Enumerable(itr);
+        return new Enumerable<T>(itr);
     }
 
     except<T>(predicate:core.Predicate<T>):IQueryable<T> {
@@ -1126,7 +1114,7 @@ export class Enumerable implements IQueryable<any> {
 
 }
 
-export class OrderedEnumerable extends Enumerable implements IOrderedQueryable<any> {
+export class OrderedEnumerable<T> extends Enumerable<T> implements IOrderedQueryable<T> {
 
     // private _array:any[];
     constructor(enumerable:IEnumerable<any> | Iterable<any>,
@@ -1162,32 +1150,41 @@ export class OrderedEnumerable extends Enumerable implements IOrderedQueryable<a
     }
 }
 
+export class ParallelEnumerable<T> extends  Enumerable<T> implements  IParallelQueryable<T>{
+
+}
+
 declare global {
+
+    /*export interface Iterable<T>{
+        linq<T>():IQueryable<T>;
+        plinq<T>():IParallelQueryable<T>;
+    }*/
     export interface Array<T> {
         contains(obj:T):boolean;
-        linq():Enumerable;
-        plinq():Enumerable;
+        linq<T>():IQueryable<T>;
+        plinq<T>():IParallelQueryable<T>;
     }
     interface Set<T> {
-        linq():Enumerable;
-        plinq():Enumerable;
+        linq<T>():IQueryable<T>;
+        plinq<T>():IParallelQueryable<T>;
     }
     interface Map<K,V> {
-        linq():Enumerable;
-        plinq():Enumerable;
+        linq<T>():IQueryable<T>;
+        plinq<T>():IParallelQueryable<T>;
     }
     interface WeakSet<T> {
-        linq():Enumerable;
-        plinq():Enumerable;
+        linq<T>():IQueryable<T>;
+        plinq<T>():IParallelQueryable<T>;
     }
     interface WeakMap<K,V> {
-        linq():Enumerable;
-        plinq():Enumerable;
+        linq<T>():IQueryable<T>;
+        plinq<T>():IParallelQueryable<T>;
     }
 }
 
-export function getEunmerable():Enumerable {
-    return new Enumerable(this);
+export function getEunmerable<T>():Enumerable<T> {
+    return new Enumerable<T>(this);
 }
 
 Array.prototype.contains = function (obj:any) {
@@ -1210,6 +1207,7 @@ Set.prototype.linq = getEunmerable;
 Set.prototype.plinq = getEunmerable;
 WeakSet.prototype.linq = getEunmerable;
 WeakSet.prototype.plinq = getEunmerable;
+
 
 
 export *   from './ReadOnlyCollection';
