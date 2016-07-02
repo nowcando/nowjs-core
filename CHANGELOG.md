@@ -1,5 +1,9 @@
 # Change logs :
 
+# 0.1.9
+
+- some hotfixes and modification in linq methods .
+
 # 0.1.8
 
 - some hotfixes and modification in linq methods .
