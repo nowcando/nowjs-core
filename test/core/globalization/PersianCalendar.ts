@@ -38,59 +38,53 @@ export={
     },
 
     TC_1_1: function (test:nodeunit.Test) {
-        let dt1 = new Date(2016, 6, 12); // 1395-3-22
-
         let gcal = new core.globalization.PersianCalendar();
-
+        let dt1 = new Date(gcal.toTicks(1395,1,3));
         test.equal(gcal.getYear(dt1), 1395);
-        //test.equal(gcal.getMonth(dt1), 3);
-       // test.equal(gcal.getDayOfMonth(dt1), 22);
+        test.equal(gcal.getMonth(dt1), 1);
+        test.equal(gcal.getDayOfMonth(dt1), 3);
         test.done();
     },
-   /* TC_1_2: function (test:nodeunit.Test) {
-        let dt1 = new Date(2000, 11, 14); // month 0-11 , days 0-31
-
+    TC_1_2: function (test:nodeunit.Test) {
         let gcal = new core.globalization.PersianCalendar();
-        let dt2 = gcal.addMonths(dt1, 2);
-        test.equal(gcal.getYear(dt2), 2001);
+        let dt1 = new Date(gcal.toTicks(1395,1,5));
+        let dt2 = gcal.addMonths(dt1, 14);
+        test.equal(gcal.getYear(dt2), 1396);
         test.equal(gcal.getMonth(dt2), 3);
-        test.equal(gcal.getDayOfMonth(dt2), 16);
+        test.equal(gcal.getDayOfMonth(dt2), 6);
         test.done();
     },
     TC_1_3: function (test:nodeunit.Test) {
-        let dt1 = new Date(2000, 11, 14); // month 0-11 , days 0-31
-
         let gcal = new core.globalization.PersianCalendar();
-        let dt2 = gcal.addDays(dt1, 19);
-        test.equal(gcal.getYear(dt2), 2001);
+        let dt1 = new Date(gcal.toTicks(1395,1,5));
+        let dt2 = gcal.addDays(dt1, 365);
+        test.equal(gcal.getYear(dt2), 1396);
         test.equal(gcal.getMonth(dt2), 1);
-        test.equal(gcal.getDayOfMonth(dt2), 1);
+        test.equal(gcal.getDayOfMonth(dt2), 4);
         test.done();
     },
-    TC_1_4: function (test:nodeunit.Test) {
-        let dt1 = new Date(2000, 11, 14); // month 0-11 , days 0-31
-
-        let gcal = new core.globalization.PersianCalendar();
-        let dt2 = gcal.addWeeks(dt1, 20);
-        test.equal(gcal.getYear(dt2), 2001);
-        test.equal(gcal.getMonth(dt2), 5);
-        test.equal(gcal.getDayOfMonth(dt2), 2);
-        test.done();
+       TC_1_4: function (test:nodeunit.Test) {
+           let gcal = new core.globalization.PersianCalendar();
+           let dt1 = new Date(gcal.toTicks(1395,1,5));
+           let dt2 = gcal.addWeeks(dt1, 52);
+           test.equal(gcal.getYear(dt2), 1396);
+           test.equal(gcal.getMonth(dt2), 1);
+           test.equal(gcal.getDayOfMonth(dt2), 3);
+           test.done();
     },
 
     TC_1_5: function (test:nodeunit.Test) {
-        let dt1 = new Date(2000, 11, 14); // month 0-11 , days 0-31
-
         let gcal = new core.globalization.PersianCalendar();
-        let dt2 = gcal.addYears(dt1, 20);
-        test.equal(gcal.getYear(dt2), 2021);
-        test.equal(gcal.getMonth(dt2), 11);
-        test.equal(gcal.getDayOfMonth(dt2), 13);
+        let dt1 = new Date(gcal.toTicks(1395,1,5));
+        let dt2 = gcal.addYears(dt1, 2);
+        test.equal(gcal.getYear(dt2), 1397);
+        test.equal(gcal.getMonth(dt2), 1);
+        test.equal(gcal.getDayOfMonth(dt2), 7);
         test.done();
     },
-
+      /*
     TC_1_6: function (test:nodeunit.Test) {
-        let dt1 = new Date(2000, 11, 14); // month 0-11 , days 0-31
+        let dt1 = new Date('2016-03-22');
 
         let gcal = new core.globalization.PersianCalendar();
 

@@ -52,6 +52,12 @@ export abstract class Calendar{
     protected static  datePartDayOfYear = 1;
     protected static  datePartMonth = 2;
     protected static  datePartDay = 3;
+    protected static  datePartEra= 4;
+    protected static  datePartDayofWeek= 5;
+    protected static  datePartHour= 6;
+    protected static  datePartMinute= 7;
+    protected static  datePartSecond= 8;
+    protected static  datePartFullArray= 9;
     protected static  maxYear = 9999;
     protected static fullCircleOfArc = 360.0; 
     protected static meanTropicalYearInDays = 365.242189;
@@ -67,7 +73,7 @@ export abstract class Calendar{
         else if(dateTime instanceof  Date){
             milis =dateTime.getTime() ;
         }
-        return milis + Calendar.epochTicks +  this.getEpoch() ;
+        return milis ; // + Calendar.epochTicks +  this.getEpoch() ;
     }
    protected  getDays(dateTime:Date|core.DateTime):number{
       return  Math.floor((this.getTicks(dateTime)) / Calendar.ticksPerDay);

@@ -33,7 +33,7 @@ export ={
     },
     tearDown(callback:nodeunit.ICallbackFunction) {
     callback();
-    console.log("End 'nowcando' Test.");
+    console.log("End 'nowcando' Test.\n");
     },
     TC_1_1(test:nodeunit.Test) {
     test.equal(5,5);
