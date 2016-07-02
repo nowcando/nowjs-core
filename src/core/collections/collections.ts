@@ -34,7 +34,8 @@ export interface  IEnumerator<T> extends Iterator<T> {
 }
 export interface  IEnumerable<T> extends Iterable<T> {
     [Symbol.iterator]():IEnumerator<T>;
-
+    linq<T>():IQueryable<T>;
+    plinq<T>():IParallelQueryable<T>;
 }
 
 
@@ -393,6 +394,15 @@ export class Enumerable<T> implements IQueryable<T> {
 
     [Symbol.iterator]():IEnumerator<any> {
         return this.enumerable[Symbol.iterator]();
+    }
+
+    linq<T>():core.collections.IQueryable<T>{
+        let itr = this[Symbol.iterator]();
+        return new core.collections.Enumerable(<any>itr);
+    }
+    plinq<T>():core.collections.IParallelQueryable<T>{
+        let itr = this[Symbol.iterator]();
+        return new core.collections.ParallelEnumerable(<any>itr);
     }
 
     protected  static equalityComparator(a:any,b:any):boolean{
@@ -1156,10 +1166,10 @@ export class ParallelEnumerable<T> extends  Enumerable<T> implements  IParallelQ
 
 declare global {
 
-    /*export interface Iterable<T>{
+    export interface Iterable<T>{
         linq<T>():IQueryable<T>;
         plinq<T>():IParallelQueryable<T>;
-    }*/
+    }
     export interface Array<T> {
         contains(obj:T):boolean;
         linq<T>():IQueryable<T>;
