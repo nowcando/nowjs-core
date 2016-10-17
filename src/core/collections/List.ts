@@ -35,7 +35,7 @@ export class List<T> extends collections.ReadOnlyList<T> implements collections.
     add(item:any):boolean {
         if (item instanceof Array) {
             for (let x of item) {
-                this._arr.push(item);
+                this._arr.push(x);
             }
             return true;
         }

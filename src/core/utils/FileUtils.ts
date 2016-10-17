@@ -18,34 +18,41 @@
  *
  */
 
+
 /**
- * This File Created by Saeed on 31/05/2016.
+ * Created by saeed on 9/9/16.
  */
 
 
-export class StringUtils{
-
+export class FileUtils{
 
 
     /**
-     * @param {String} name
+     *
+     * @param {String} fileName
      * @return {String}
      */
-    public static toUpperCamelCase(name:string) {
-    let result = "";
-    let parts = name.split(/\s+/g);
-    parts.forEach(function(part) {
-        result += StringUtils.firstToUpper(part);
-    });
-    return result;
+    public static getFileExtension(fileName:string) {
+    let extension:any = null;
+    let index = fileName.lastIndexOf(".");
+    if (index > -1) {
+        extension = fileName.substring(index + 1);
+    }
+    return extension;
 };
 
     /**
-     * @param {String} name
-     * @return {String}
+     *
+     * @param {string} fileName
+     * @return {string}
      */
-    public static firstToUpper(name:string) {
-    return (name.substring(0,1).toUpperCase() + name.substring(1));
+    public static removeFileExtension(fileName:string) {
+    let name = fileName;
+    let index = name.lastIndexOf(".");
+    if (index > -1) {
+        name = name.substring(0, index);
+    }
+    return name;
 };
 
 }

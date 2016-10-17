@@ -40,7 +40,7 @@ export class Dictionary<K,V> extends collections.ReadOnlyDictionary<K,V> impleme
     add(item?:any, value?:any):boolean {
         if (item instanceof Array) {
             for (let x of item) {
-                this._arr.push(item);
+                this._arr.push(x);
             }
             return true;
         }

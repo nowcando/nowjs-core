@@ -83,7 +83,9 @@ export class PersianCalendar extends Calendar {
         month:number,day:number,ordinalDay:number,dayofweek:number,hour:number,
         minute:number,second:number} {
         let dt = new Date(ticks);
+        //TODO must be re implement this code
 
+/*
         let dtf = dt.toLocaleString('fa-IR-u-ca-persian', {
             era: "long",
             year: 'numeric', month: 'numeric', day: 'numeric',
@@ -131,7 +133,25 @@ export class PersianCalendar extends Calendar {
 
         let mi = parseInt(dtparts[7]);
 
-        let se = parseInt(dtparts[8]);
+        let se = parseInt(dtparts[8]);*/
+        let wd = 1;
+
+        let e = 0;
+
+        let y = 1;
+
+        let m = 1;
+
+        let d = 1;
+
+        let od = this.dayNumberInYear(m, d);
+
+        let h = 1;
+
+        let mi =1;
+
+        let se = 1;
+
 
         return {
             era: e, dayofweek: wd, year: y, month: m, day: d,
