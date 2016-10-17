@@ -414,7 +414,7 @@ export class GregorianCalendar extends Calendar{
             d = days;
         }
         let ticks = this.getStartOfYearTicks(Math.floor(y)) +
-            (this.dayNumberInYear(m, d) * GregorianCalendar.ticksPerDay);
+            (this.dayNumberInYear(m, d,this.isLeapMonth(y,m)) * GregorianCalendar.ticksPerDay);
 
         return (new core.DateTime(ticks));
     }

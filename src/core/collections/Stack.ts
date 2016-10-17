@@ -75,7 +75,7 @@ export class Stack<T>  implements collections.IStack<T> {
     push(items:any):boolean{
         if(items instanceof  Array){
             for(let xx of items){
-                this._arr.push(items);
+                this._arr.push(xx);
             }
             return true;
         }

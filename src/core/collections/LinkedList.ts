@@ -99,7 +99,7 @@ export class LinkedList<E>  implements collections.ILinkedList<E> {
     [index:number]:E;
     [Symbol.iterator]():collections.IEnumerator<E> {
         var nextNode = this._first;
-        return {
+        return <any>{
             next: function() {
                 if (nextNode) {
                     let res ={ value: nextNode.Value, done: false };

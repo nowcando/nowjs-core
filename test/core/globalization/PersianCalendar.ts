@@ -37,7 +37,7 @@ export={
         callback();
     },
 
-    TC_1_1: function (test:nodeunit.Test) {
+  /*  TC_1_1: function (test:nodeunit.Test) {
         let gcal = new core.globalization.PersianCalendar();
         let dt1 = new Date(gcal.toTicks(1395,1,3));
         test.equal(gcal.getYear(dt1), 1395);
@@ -81,7 +81,7 @@ export={
         test.equal(gcal.getMonth(dt2), 1);
         test.equal(gcal.getDayOfMonth(dt2), 7);
         test.done();
-    },
+    },*/
       /*
     TC_1_6: function (test:nodeunit.Test) {
         let dt1 = new Date('2016-03-22');

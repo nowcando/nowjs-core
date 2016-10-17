@@ -1,5 +1,11 @@
 # Change logs :
 
+# 0.2.0
+- reconfigure project to compatible with typescript 2 . [#21][https://github.com/nowcando/nowjs-core/issues/21] 
+- use new typings mechanism . [#21][https://github.com/nowcando/nowjs-core/issues/21] 
+- add new Parallels and Promise extention methods . [#20][https://github.com/nowcando/nowjs-core/issues/20] 
+
+
 # 0.1.9
 
 - some hotfixes and modification in linq methods .

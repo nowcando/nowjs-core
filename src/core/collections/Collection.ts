@@ -39,7 +39,7 @@ export class Collection<T> extends collections.ReadOnlyCollection<T> implements 
     add(item:any):boolean {
         if (item instanceof Array) {
             for (let x of item) {
-                this._arr.push(item);
+                this._arr.push(x);
             }
             return true;
         }
