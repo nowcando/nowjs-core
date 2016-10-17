@@ -76,7 +76,7 @@ export class PriorityQueue<T>  implements collections.IPriorityQueue<T> {
     enqueue(items:any):boolean{
         if(items instanceof  Array){
             for(let xx of items){
-                this.add(items);
+                this.add(xx);
             }
             return true;
         }

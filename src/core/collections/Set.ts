@@ -37,8 +37,8 @@ export class Set<T> extends collections.ReadOnlySet<T> implements collections.IS
     add(item:any):boolean {
         if (item instanceof Array) {
             for (let x of item) {
-                if(!this.contains(item))
-                     this._arr.push(item);
+                if(!this.contains(x))
+                     this._arr.push(x);
             }
             return true;
         }

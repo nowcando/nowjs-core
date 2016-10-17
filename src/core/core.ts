@@ -21,6 +21,7 @@
 /**
  * This File Created by Saeed on 22/04/2016.
  */
+import * as promises from "./parallels/promises";
 import {expressions} from "./expressions/expressions";
 import {Exception} from "./exceptions/Exception";
 import  * as collections  from "./collections/collections";
@@ -105,15 +106,15 @@ export interface  Predicate<T> extends Func<T, boolean> {
 
 }
 
-
-export {Exception}
-export {DateTime}
-export {TimeSpan}
-export {collections}
-export {globalization}
-export {security}
-export {services}
-export {apps}
+export {promises};
+export {Exception};
+export {DateTime};
+export {TimeSpan};
+export {collections};
+export {globalization};
+export {security};
+export {services};
+export {apps};
 export {validations};
 export {expressions};
 

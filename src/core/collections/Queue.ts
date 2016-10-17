@@ -75,7 +75,7 @@ export class Queue<T>  implements collections.IQueue<T> {
     enqueue(items:any):boolean{
         if(items instanceof  Array){
             for(let xx of items){
-                this._arr.push(items);
+                this._arr.push(xx);
             }
             return true;
         }
