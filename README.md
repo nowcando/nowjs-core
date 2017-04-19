@@ -1,4 +1,6 @@
 # **nowjs-core** 
+
+[![Join the chat at https://gitter.im/nowcando/nowjs-core](https://badges.gitter.im/nowcando/nowjs-core.svg)](https://gitter.im/nowcando/nowjs-core?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 is a lightweight library for handle Line Of Business challenges.
 
 ### Compatible with ES6(ES2015) and later .
