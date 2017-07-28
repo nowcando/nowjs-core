@@ -1,5 +1,9 @@
 # Change logs :
 
+# 1.0.0
+- Restructure project . 
+
+
 # 0.2.0
 - reconfigure project to compatible with typescript 2 . [#21][https://github.com/nowcando/nowjs-core/issues/21] 
 - use new typings mechanism . [#21][https://github.com/nowcando/nowjs-core/issues/21] 

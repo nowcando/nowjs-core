@@ -1,4 +1,5 @@
 .idea/
+.vscode/
 node_modules/
 dist/test/
 src/
@@ -8,7 +9,4 @@ test/
 .npmignore
 nowjs-core.iml
 tsconfig.json
-gulpfile.js
 tslint.json
-typings.json
-typings

@@ -1,0 +1,33 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Libarary TS-JEST Test & Debugging",
+            "type": "node",
+            "request": "launch",
+            "protocol": "inspector",
+            "port": 5858,
+            "address": "localhost",
+            "stopOnEntry": false,
+            "sourceMaps": true,
+            "runtimeExecutable": null,
+            "runtimeArgs": [
+                "--inspect=5858",
+                "--inspect-brk",
+                "--icu-data-dir=./node_modules/full-icu",
+                "${workspaceRoot}/node_modules/.bin/jest",
+                "--runInBand",
+                "--no-cache",
+                "--colors",
+                // "-i",
+                "--env",
+                "jest-environment-node-debug-fixed"
+            ],
+            "cwd": "${workspaceRoot}",
+            "outFiles": ["${workspaceRoot}/test/**/*"],
+            "console": "internalConsole",
+            "timeout": 60000
+        }
+    ],
+    "compounds": []
+}
