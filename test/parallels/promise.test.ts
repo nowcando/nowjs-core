@@ -31,13 +31,13 @@ describe("Promise:: test promise extra futures.", async () => {
   it("checks static delay", async () => {
     expect.assertions(1);
     const start = Date.now();
-    const pr = await Promise.delay(10)
+    const pr = await Promise.delay(15)
       .then(() => {
         return 99;
       });
     const finish = Date.now();
     const duration = finish - start;
-    expect(duration).toBeGreaterThanOrEqual(10);
+    expect(duration).toBeGreaterThanOrEqual(15);
   });
 
   it("checks timeout & wait ", async () => {
