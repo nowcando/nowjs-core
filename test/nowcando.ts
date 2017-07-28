@@ -21,10 +21,11 @@
 /**
  * This File Created by Saeed on 22/04/2016.
  */
-import  {nowcando} from '../src/index';
 import * as nodeunit from 'nodeunit';
+// tslint:disable-next-line:import-spacing
+import  {List} from "../src/index";
 
-export ={
+export = {
     setUp(callback:nodeunit.ICallbackFunction){
         console.log("Start 'nowcando' Test.");
         

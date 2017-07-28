@@ -4,3 +4,6 @@ dist/
 *.log
 *.tgz
 typings
+coverage
+.idea
+nowjs-core.iml
