@@ -21,7 +21,7 @@
                 "--colors",
                 // "-i",
                 "--env",
-                "jest-environment-node-debug-fixed"
+                "jest-environment-node-debug"
             ],
             "cwd": "${workspaceRoot}",
             "outFiles": ["${workspaceRoot}/test/**/*"],

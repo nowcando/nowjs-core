@@ -1,6 +1,7 @@
 .idea/
 .vscode/
 node_modules/
+dist/
 dist/test/
 src/
 test/
@@ -10,3 +11,8 @@ test/
 nowjs-core.iml
 tsconfig.json
 tslint.json
+tsconfig.debug.json
+tsconfig.release.json
+tsconfig.test.json
+.travis.yml
+coverage/

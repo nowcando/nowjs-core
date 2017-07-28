@@ -17,6 +17,7 @@ export * from "./List";
 export * from "./LinkedList";
 export * from "./PriorityQueue";
 export * from "./Queue";
+
 export * from "./Stack";
 export * from "./SortedCollection";
 export * from "./SortedList";

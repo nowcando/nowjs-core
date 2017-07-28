@@ -111,14 +111,14 @@ export function displayOrder(num: number) {
     };
 }
 
-export function definePresentation<T>(mclass: new (...args: any[]) => T, props: PropertyPresentationMap<T>): void {
+/* export function definePresentation<T>(mclass: new (...args: any[]) => T, props: PropertyPresentationMap<T>): void {
     for (const propertyName in props) {
         if (props.hasOwnProperty(propertyName)) {
             // presentableProperties.push(propertyName);
             Reflect.defineMetadata(PROPERTY_PRESENTATION_KEY, props[propertyName], mclass.prototype, propertyName);
         }
     }
-}
+} */
 
 // tslint:disable-next-line:ban-types
 export function sealed(constructor: Function) {
