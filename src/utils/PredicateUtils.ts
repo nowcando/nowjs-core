@@ -1,13 +1,13 @@
 
-type Predicate = (...args: any[]) => boolean;
+import { Predicate } from "../core/Predicate";
 
-export function negate<T extends Predicate>(p: T): T {
+export function negate<U, T extends Predicate<U>>(p: T): T {
     return function(): boolean {
         return !p.apply(this, arguments);
     } as any;
 }
 
-export function union<T extends Predicate>(
+export function union<U, T extends Predicate<U>>(
     p: T,
     ...rest: T[],
 ): T {
