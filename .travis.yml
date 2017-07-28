@@ -6,7 +6,8 @@ sudo: false
 
 install:
   - npm install typescript -g
-  - npm install ts-node -g 
+  - npm install ts-node -g
+  - npm install tslint -g  
   - npm install
 script:
   - npm run lint
