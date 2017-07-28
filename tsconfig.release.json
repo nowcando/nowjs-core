@@ -3,6 +3,14 @@
   "compilerOptions": {
         "removeComments": true,
         "sourceMap": false,
+        "rootDir": "src",
         "outDir": "lib"
-  }
+  },
+  "exclude": [
+    "dist",
+    "lib",
+    "node_modules",
+    "test"
+
+  ]
 }

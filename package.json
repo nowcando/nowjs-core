@@ -13,10 +13,11 @@
     "test": " jest  --no-cache  ",
     "test:watch": "jest --watch",
     "coverage": " jest  --no-cache --coverage  ",
-    "lint": "tslint -t codeFrame 'src/**/*.ts' 'test/**/*.ts'"
+    "lint": "tslint -t codeFrame 'src/**/*.ts' 'test/**/*.ts'" ,
+    "prepare": "npm run lint && npm run test && npm run build:release"
   },
-  "main": "lib/src/index.js",
-  "typings": "lib/src/index.d.ts",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "author": "Saeed Tabrizi at NowCanDo.Com",
   "email": "dev at NowCanDo.Com",
   "license": "Apache-2.0",
@@ -30,7 +31,9 @@
     "light weight",
     "library",
     "LOB",
-    "line of business"
+    "line of business",
+    "linq",
+    "validation"
   ],
   "jest": {
     "globals": {
