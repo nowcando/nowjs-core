@@ -1,10 +1,10 @@
+.idea/
 node_modules/
 dist/
 *.d.ts
 *.log
 *.tgz
-typings
-coverage
-.idea/
+typings/
+coverage/
 lib/
 nowjs-core.iml
