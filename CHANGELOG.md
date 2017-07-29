@@ -16,6 +16,8 @@
 - Implement promise extended feature . [#40](https://github.com/nowcando/nowjs-core/issues/40)
 - Implementing logging basic types , decorators and provider interface .  [#41](https://github.com/nowcando/nowjs-core/issues/41)
 - Implementing a light Security decorators , provider interfaces and basic types .  [#42](https://github.com/nowcando/nowjs-core/issues/42)
+- Implement Messaging providers base interfaces .  [#45](https://github.com/nowcando/nowjs-core/issues/45)
+- Implement Net base interfaces .  [#46](https://github.com/nowcando/nowjs-core/issues/46)
 
 ## Note : this release under development .
 # 0.2.0
