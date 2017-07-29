@@ -16,12 +16,15 @@ import * as utils from "./utils";
 import * as validation from "./validation";
 import * as globalization from "./globalization";
 import * as mapreduce from "./mapreduce";
+import * as messaging from "./messaging";
+import * as net from "./net";
+import * as web from "./web";
 export {
     core, parallels, globalization,
     collections, logging, diagnostics ,
     configration, mapreduce ,
     data, exceptions,
-    security,
+    security, net , web , messaging ,
     utils, validation,
     sanitization ,
 };
