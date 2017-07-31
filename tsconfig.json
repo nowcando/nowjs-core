@@ -37,10 +37,7 @@
       "es2017.sharedmemory",
       "esnext.asynciterable"
       
-    ],
-    "pretty": true,
-
-    "outDir": "dist"
+    ]
 
   },
   "exclude": [

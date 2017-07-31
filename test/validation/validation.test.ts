@@ -4,7 +4,7 @@ import { JsonSchemaDefinition } from "../../src/utils/index";
 import { isEmail, isMobile, isPhone,
   isRequired, isUrl, MaxValidator,
   RequiredValidator, Validation, ValueTypeValidator } from "../../src/validation/index";
-
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
 // jest.resetAllMocks();
 // tslint:disable:object-literal-sort-keys
 

@@ -11,13 +11,9 @@ export interface IWebServerStatus<TServerApp> extends IServiceStatus {
         App: TServerApp;
 }
 
+// tslint:disable-next-line:no-empty-interface
 export interface IWebServerProvider<TServerApp, TWebServerOptions extends
-        IWebServerOptions, TWebServerStatus extends IWebServerStatus<TServerApp>> extends IService<any, any> {
-        // tslint:disable:no-shadowed-variable
-        start<TWebServerOptions, TWebServerStatus>(options?: TWebServerOptions): Promise<TWebServerStatus>;
-        stop<TWebServerOptions, TWebServerStatus>(options?: TWebServerOptions): Promise<TWebServerStatus>;
-        restart<TWebServerOptions, TWebServerStatus>(options?: TWebServerOptions): Promise<TWebServerStatus>;
-        status<TWebServerOptions, TWebServerStatus>(options?: TWebServerOptions): Promise<TWebServerStatus>;
-        pause<TWebServerOptions, TWebServerStatus>(options?: TWebServerOptions): Promise<TWebServerStatus>;
-        resume<TWebServerOptions, TWebServerStatus>(options?: TWebServerOptions): Promise<TWebServerStatus>;
+        // tslint:disable-next-line:max-line-length
+        IWebServerOptions, TWebServerStatus extends IWebServerStatus<TServerApp>> extends IService<TWebServerOptions, TWebServerStatus> {
+
 }

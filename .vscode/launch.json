@@ -16,15 +16,15 @@
                 "--inspect-brk",
                 "--icu-data-dir=./node_modules/full-icu",
                 "${workspaceRoot}/node_modules/.bin/jest",
-                "--runInBand",
                 "--no-cache",
                 "--colors",
-                // "-i",
+                "--config",
+                "./jest.json",
+                "-i",
                 "--env",
                 "jest-environment-node-debug"
             ],
             "cwd": "${workspaceRoot}",
-            "outFiles": ["${workspaceRoot}/test/**/*"],
             "console": "internalConsole",
             "timeout": 60000
         }

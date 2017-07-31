@@ -11,15 +11,21 @@ export class Sanitization {
     }
 
     // tslint:disable-next-line:member-ordering
-    public static remove(sanitizerName: string) {
-        if (Sanitization.sanitizers.has(sanitizerName)) {
-            Sanitization.sanitizers.delete(sanitizerName);
-        }
-
+    public static contains(sanitizerName: string): boolean {
+        return Sanitization.sanitizers.has(sanitizerName);
     }
 
     // tslint:disable-next-line:member-ordering
-    public static async Sanitize(value: string, sanitizerName: string): Promise<string> {
+    public static remove(sanitizerName: string): boolean {
+        if (Sanitization.sanitizers.has(sanitizerName)) {
+            Sanitization.sanitizers.delete(sanitizerName);
+            return true;
+        }
+        return false;
+    }
+
+    // tslint:disable-next-line:member-ordering
+    public static async sanitize(value: string, sanitizerName: string): Promise<string> {
         const sanitizer = Sanitization.sanitizers.get(sanitizerName);
         if (sanitizer) {
             return sanitizer.sanitize(value);

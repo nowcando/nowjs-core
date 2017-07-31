@@ -22,8 +22,6 @@
  * Created by saeed on 10/15/16.
  */
 
-import { proPromise } from "./ProPromise";
-
 function timeout<T>(ms: number, err?: string | Error): Promise<T> {
     const pr = this;
     let err1 = new Error(`Timeout out in ${ms} miliseconds.`);
