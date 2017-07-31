@@ -20,8 +20,3 @@ export interface ILoggingProvider extends IProvider {
     trace( log: string, ...meta: any[]): void;
 
 }
-
-export interface ILoggingOptions {
-      ProviderName?: string;
-      // Transport?: IEmailClientTransportOptions;
-}
