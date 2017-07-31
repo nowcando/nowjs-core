@@ -1,7 +1,7 @@
 
 import { IProvider } from "../core/IProvider";
 
-export interface ILoggingBaseProvider extends IProvider {
+export interface ILoggingProvider extends IProvider {
     error(store: string, log: string, ...meta: any[]): void;
     warn(store: string, log: string, ...meta: any[]): void;
     info(store: string, log: string, ...meta: any[]): void;
