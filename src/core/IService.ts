@@ -15,11 +15,13 @@ export interface IServiceStatus {
     Timestamp: Date;
 }
 
-export interface IService<T extends IServiceOptions, TResult extends IServiceStatus> extends IProvider {
-    start(options?: T): Promise<TResult>;
-    stop(options?: T): Promise<TResult>;
-    restart(options?: T): Promise<TResult>;
-    status(options?: T): Promise<TResult>;
-    pause(options?: T): Promise<TResult>;
-    resume(options?: T): Promise<TResult>;
+export interface IService<TOptions extends IServiceOptions, TResult extends IServiceStatus> extends IProvider {
+    // tslint:disable-next-line:no-misused-new
+    new(options?: TOptions): IService<TOptions, TResult>;
+    start(): Promise<TResult>;
+    stop(): Promise<TResult>;
+    restart(): Promise<TResult>;
+    status(): Promise<TResult>;
+    pause(): Promise<TResult>;
+    resume(): Promise<TResult>;
 }

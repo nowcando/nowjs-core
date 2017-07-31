@@ -55,7 +55,10 @@ export class LinkedList<E> implements ILinkedList<E> {
         };
     }
     public contains(item: E): boolean {
-        throw new Error("Method not implemented.");
+        for (const xx of this) {
+            if (item === xx) { return true; }
+        }
+        return false;
     }
     public get size(): number {
         return this.length;
@@ -134,13 +137,13 @@ export class LinkedList<E> implements ILinkedList<E> {
         return this.removeInternal(item);
     }
     public removeFirst(): boolean {
-        throw new Error("Method not implemented.");
+       return this.removeInternal(this.getFirst(), this.firstNode);
     }
     public removeLast(): boolean {
-        throw new Error("Method not implemented.");
+       return this.removeInternal(this.getLast(), this.lastNode);
     }
     public clone(): ILinkedList<E> {
-        throw new Error("Method not implemented.");
+        return new LinkedList<E>(this);
     }
     public toArray(): E[] {
         const array: E[] = [];
@@ -183,13 +186,23 @@ export class LinkedList<E> implements ILinkedList<E> {
         return null;
     }
 
-    private removeInternal(item: E): boolean {
-        const tmp = this.getInterenalItem(item);
+    private removeInternal(item: E, fitem?: any): boolean {
+        const tmp = fitem ? fitem : this.getInterenalItem(item);
         if (tmp) {
             const tnext = tmp.Next;
             const tprev = tmp.Previous;
-            tprev.Next = tnext;
-            tnext.Previous = tprev;
+            if (tprev) {
+                tprev.Next = tnext;
+            } else {
+             this.firstNode = tnext;
+             this.firstNode.Previous = null;
+            }
+            if (tnext) {
+                tnext.Previous = tprev;
+            } else {
+             this.lastNode = tprev;
+             this.lastNode.Next = null;
+            }
             this.length--;
             return true;
         } else {

@@ -125,7 +125,7 @@ export class PriorityQueue<T> implements IPriorityQueue<T> {
     }
 
     private halfUp(): void {
-        if (this.size > 2) return;
+        if (this.size < 2) return;
         let posCurrent = this.size - 1;
         const half =  Math.floor((posCurrent - 1) / 2);
 

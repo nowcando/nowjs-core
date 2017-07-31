@@ -15,4 +15,5 @@ tsconfig.debug.json
 tsconfig.release.json
 tsconfig.test.json
 .travis.yml
+jest.json
 coverage/

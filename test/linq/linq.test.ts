@@ -2,7 +2,7 @@ import "jest";
 import { List } from "../../src/collections/List";
 
 // jest.resetAllMocks();
-// jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
 
 // tslint:disable:no-empty
 const testList = new List<string>();

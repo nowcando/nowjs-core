@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
         "removeComments": false,
-        "inlineSourceMap": true,
-         "sourceRoot": "."
+        "sourceMap": false,
+        "inlineSourceMap": true
   }
 }

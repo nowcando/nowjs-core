@@ -4,6 +4,7 @@ import { IParallelQueryable } from "../linq/IParallelQueryable";
 import { IQueryable } from "../linq/IQuerable";
 import { ICollection } from "./ICollection";
 import { IList } from "./IList";
+import { Collection, List } from "./index";
 import { IReadonlyCollection } from "./IReadonlyCollection";
 
 export class ReadonlyCollection<T> implements IReadonlyCollection<T> {
@@ -15,38 +16,49 @@ export class ReadonlyCollection<T> implements IReadonlyCollection<T> {
             }
         }
     }
-    public contains(item: T): boolean {
-        throw new Error("Method not implemented.");
+    public clear(): boolean {
+          this.arr.splice(0, this.arr.length);
+          return true;
     }
-    public get size(): number {
-        return this.arr.length;
+    public contains(item: T): boolean {
+        return this.arr.includes(item);
+    }
+    public get size(): number{
+       return this.arr.length;
     }
     public get(index: number): T {
-        throw new Error("Method not implemented.");
+        return this.arr[index];
     }
     public indexOf(item: T): number {
-        throw new Error("Method not implemented.");
+        return this.arr.indexOf(item);
     }
     public lastIndexOf(item: T): number {
-        throw new Error("Method not implemented.");
+        return this.arr.lastIndexOf(item);
+    }
+    public clone(): ICollection<T> {
+        return new Collection(this);
     }
     public toArray(): T[] {
-        throw new Error("Method not implemented.");
+        const arr: T[] = [];
+        for (const item of this) {
+            arr.push(item);
+        }
+        return arr;
     }
     public toCollection(): ICollection<T> {
-        throw new Error("Method not implemented.");
+        return new Collection(this);
     }
     public toList(): IList<T> {
-        throw new Error("Method not implemented.");
+        return new List(this);
     }
     public linq(): IQueryable<T> {
        return new Enumerable<T>(this);
     }
-   public plinq(): IParallelQueryable<T> {
+    public plinq(): IParallelQueryable<T> {
          return new ParallelEnumerable<T>(this);
     }
     public [Symbol.iterator](): Iterator<T> {
-         return this.arr[Symbol.iterator]();
+        return this.arr[Symbol.iterator]();
     }
 
 }

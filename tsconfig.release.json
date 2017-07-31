@@ -4,7 +4,8 @@
         "removeComments": true,
         "sourceMap": false,
         "rootDir": "src",
-        "outDir": "lib"
+        "outDir": "lib",
+        "pretty": true
   },
   "exclude": [
     "dist",

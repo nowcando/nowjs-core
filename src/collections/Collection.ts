@@ -40,7 +40,7 @@ export class Collection<T> implements ICollection<T> {
           return true;
     }
     public contains(item: T): boolean {
-        throw new Error("Method not implemented.");
+        return this.arr.includes(item);
     }
     public get size(): number{
        return this.arr.length;
