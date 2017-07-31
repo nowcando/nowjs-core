@@ -19,6 +19,9 @@
   },
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
+  "typescript": {
+    "definition": "lib/index.d.ts"
+  },
   "author": "Saeed Tabrizi at NowCanDo.Com",
   "email": "dev at NowCanDo.Com",
   "license": "Apache-2.0",
@@ -40,15 +43,11 @@
     "url": "https://github.com/nowcando/nowjs-core/issues"
   },
   "homepage": "https://github.com/nowcando/nowjs-core#readme",
-  "typescript": {
-    "definition": "dist/src/index.d.ts"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/nowcando/nowjs-core.git"
   },
   "dependencies": {
-    "jest-environment-node-debug-fixed": "^1.0.0",
     "reflect-metadata": ">=0.1.10"
   },
   "devDependencies": {
