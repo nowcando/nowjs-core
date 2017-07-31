@@ -70,4 +70,29 @@ describe("Collections Stack tests", async () => {
     expect(list2.size).toEqual(2) ;
   });
 
+  it("checks contains", async () => {
+    expect.assertions(2);
+    const list = new Stack<number>([1, 2, 3, 4]);
+    expect(list.size).toEqual(4);
+    expect(list.contains(3)).toEqual(true);
+  });
+  it("checks toCollection", async () => {
+    expect.assertions(2);
+    const list = new Stack<number>([1, 2, 3, 4]);
+    expect(list.size).toEqual(4);
+    expect(list.toCollection().size).toEqual(list.size);
+  });
+  it("checks toList", async () => {
+    expect.assertions(2);
+    const list = new Stack<number>([1, 2, 3, 4]);
+    expect(list.size).toEqual(4);
+    expect(list.toList().size).toEqual(list.size);
+  });
+  it("checks toArray", async () => {
+    expect.assertions(2);
+    const list = new Stack<number>([1, 2, 3, 4]);
+    expect(list.size).toEqual(4);
+    expect(list.toArray().length).toEqual(list.size);
+  });
+
 });

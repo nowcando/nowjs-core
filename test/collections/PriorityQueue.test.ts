@@ -44,12 +44,19 @@ describe("Collections PriorityQueue tests", async () => {
   });
 
   it("checks peek item", async () => {
-    expect.assertions(2);
+    expect.assertions(4);
     const list = new PriorityQueue<number>(numberComparator);
     list.enqueue(7, 5, 10 , 2);
     const item = list.peek();
     expect(item).toEqual(2) ;
     expect(list.size).toEqual(4) ;
+    list.dequeue();
+    list.dequeue();
+    list.dequeue();
+    list.dequeue();
+    const itemnull = list.peek();
+    expect(itemnull).toEqual(null) ;
+    expect(list.size).toEqual(0) ;
   });
 
   it("checks clear", async () => {
@@ -76,6 +83,31 @@ describe("Collections PriorityQueue tests", async () => {
         list2.enqueue(list.dequeue());
     }
     expect(list2.size).toEqual(4) ;
+  });
+
+  it("checks contains", async () => {
+    expect.assertions(2);
+    const list = new PriorityQueue<number>(numberComparator, [1, 2, 3, 4]);
+    expect(list.size).toEqual(4);
+    expect(list.contains(3)).toEqual(true);
+  });
+  it("checks toCollection", async () => {
+    expect.assertions(2);
+    const list = new PriorityQueue<number>(numberComparator, [1, 2, 3, 4]);
+    expect(list.size).toEqual(4);
+    expect(list.toCollection().size).toEqual(list.size);
+  });
+  it("checks toList", async () => {
+    expect.assertions(2);
+    const list = new PriorityQueue<number>(numberComparator, [1, 2, 3, 4]);
+    expect(list.size).toEqual(4);
+    expect(list.toList().size).toEqual(list.size);
+  });
+  it("checks toArray", async () => {
+    expect.assertions(2);
+    const list = new PriorityQueue<number>(numberComparator, [1, 2, 3, 4]);
+    expect(list.size).toEqual(4);
+    expect(list.toArray().length).toEqual(list.size);
   });
 
 });
