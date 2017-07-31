@@ -1,3 +1,3 @@
-export * from "./ILoggingBaseProvider";
 export * from "./ILoggingProvider";
+export * from "./LoggingProvider";
 export * from "./Decorators" ;
