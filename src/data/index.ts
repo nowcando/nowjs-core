@@ -1,5 +1,6 @@
 
-// export * from "./db";
+export * from "./DbMigration";
+export * from "./DatabaseException";
 
 export enum RowStatus {
     Normal = 1, Temp = 2, Locked = 4, Deleted = 8, Purge = 16,
