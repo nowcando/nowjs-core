@@ -1,5 +1,4 @@
-
-// export * from "./db";
+export * from "./db";
 
 export enum RowStatus {
     Normal = 1, Temp = 2, Locked = 4, Deleted = 8, Purge = 16,
