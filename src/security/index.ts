@@ -2,6 +2,7 @@
 import { IDType } from "../data/index";
 
 export * from "./decorators/";
+export * from "./IMultiTenantProvider";
 export * from "./ISecurityProvider";
 export * from "./ILicencingProvider";
 export * from "./IMembershipProvider";

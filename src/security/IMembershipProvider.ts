@@ -8,6 +8,10 @@ export interface IMembershipBaseProvider extends IProvider {
 
 }
 
+export interface IMembershipProviderOptions {
+        TenantID: string;
+}
+
 export interface IMembershipBasicProvider<TUser, TProfile, TMeta> extends IMembershipBaseProvider {
           createUserAccount(user: TUser, meta?: TMeta): Promise<TUser>;
           isExistUserAccountByID(id: IDType): Promise<boolean>;
@@ -17,7 +21,6 @@ export interface IMembershipBasicProvider<TUser, TProfile, TMeta> extends IMembe
           updateUserAccountByID(user: TUser, meta?: TMeta): Promise<TUser>;
           updateUserProfileByID(id: IDType, profile: TProfile, meta?: TMeta): Promise<TUser>;
           getUsers(options?: IQueryOptions): Promise<IQueryResult<TUser>>;
-
 }
 
 export interface IMembershipUsernameProvider<TUser, TRole,
@@ -97,15 +100,4 @@ export interface IMembershipUsernameProvider<TUser, TRole,
         hasAnyRolesByName(...roles: string[]): Promise<boolean>;
         hasAllRolesByName(...roles: string[]): Promise<boolean>;
 
-}
-
-export interface IMembershipProviderOptions {
-        ProviderName?: string;
-}
-
-export interface IMembershipProvider extends IProvider {
-    register(name: string|symbol, provider: IMembershipBaseProvider, options: IMembershipProviderOptions): void;
-    get<TResult extends IMembershipBaseProvider>(name: string | symbol): TResult;
-    // tslint:disable-next-line:member-ordering
-    Default: IMembershipBaseProvider;
 }
