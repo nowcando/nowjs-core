@@ -8,7 +8,7 @@ import { ParallelEnumerable } from "./ParallelEnumerable";
 // tslint:disable-next-line:no-namespace
 declare global {
     // tslint:disable:interface-name
-    /* export interface Iterable<T>{
+   /*  export interface Iterator<T>{
         linq(): IQueryable<T>;
         plinq(): IParallelQueryable<T>;
     } */

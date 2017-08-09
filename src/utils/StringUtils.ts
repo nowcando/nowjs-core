@@ -46,3 +46,105 @@ export function randomString(length: number,
     return result.join("");
 
 }
+
+export function toPascalCase(str: string): string {
+    return str.toCamelCase().toUpperFirstCase();
+}
+
+export function toCamelCase(str: string): string {
+    return str
+        .replace(/\s(.)/g, ($1) => $1.toLocaleUpperCase())
+        .replace(/\s/g, "")
+        .replace(/^(.)/, ($1) => $1.toLocaleLowerCase());
+}
+
+export function toTitleCase(str: string): string {
+    return str
+        .replace(/^.| ./g,  (m) => {
+    return m.toLocaleUpperCase();
+  });
+}
+
+export function toSentenceCase(str: string): string {
+    return str.toLocaleLowerCase()
+        .replace(/^./g,  (m) => {
+    return m.toLocaleUpperCase();
+  });
+}
+
+export function toUpperFirstCase(str: string): string {
+    return str
+        .replace(/^./g,  (m) => {
+    return m.toLocaleUpperCase();
+  });
+}
+export function toLowerFirstCase(str: string): string {
+    return str
+        .replace(/^./g,  (m) => {
+    return m.toLocaleLowerCase();
+  });
+}
+export function toSnakeCase(str: string): string {
+    return str.toLocaleLowerCase()
+        .replace(/\s/g,  (m) => {
+    return "_";
+  });
+}
+export function toDotCase(str: string): string {
+    return str.toLocaleLowerCase()
+        .replace(/\s/g,  (m) => {
+    return ".";
+  });
+}
+
+// tslint:disable-next-line:no-namespace
+declare global {
+     // tslint:disable-next-line:interface-name
+     interface String {
+        toPascalCase(): string;
+        toCamelCase(): string;
+        toTitleCase(): string;
+        toSentenceCase(): string;
+        toSnakeCase(): string;
+        toUpperFirstCase(): string;
+        toLowerFirstCase(): string;
+        toDotCase(): string;
+     }
+}
+function toPascalCaseWrapper(): string {
+    return toPascalCase(this);
+}
+function toCamelCaseWrapper(): string {
+    return toCamelCase(this);
+}
+function toTitleCaseWrapper(): string {
+    return toTitleCase(this);
+}
+
+function toSentenceCaseWrapper(): string {
+    return toSentenceCase(this);
+}
+
+function toUpperFirstCaseWrapper(): string {
+    return toUpperFirstCase(this);
+}
+
+function toLowerFirstCaseWrapper(): string {
+    return toLowerFirstCase(this);
+}
+
+function toSnakeCaseWrapper(): string {
+    return toSnakeCase(this);
+}
+function toDotCaseWrapper(): string {
+    return toDotCase(this);
+}
+
+String.prototype.toPascalCase = toPascalCaseWrapper;
+String.prototype.toCamelCase = toCamelCaseWrapper;
+String.prototype.toTitleCase = toTitleCaseWrapper;
+String.prototype.toSentenceCase = toSentenceCaseWrapper;
+String.prototype.toUpperFirstCase = toUpperFirstCaseWrapper;
+String.prototype.toLowerFirstCase = toLowerFirstCaseWrapper;
+String.prototype.toSnakeCase = toSnakeCaseWrapper;
+String.prototype.toDotCase = toDotCaseWrapper;

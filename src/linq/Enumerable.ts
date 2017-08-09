@@ -87,6 +87,8 @@ export class Enumerable<T> implements IQueryable<T> {
     protected arr: T[] = [];
     constructor(private enumerable: IEnumerable<any> | Iterable<any>,
                 private options?: {}) {
+        // tslint:disable-next-line:curly
+        if (!enumerable) enumerable = [];
         if (enumerable && enumerable[Symbol.iterator]) {
             for (const item of this) {
                   this.arr.push(item);

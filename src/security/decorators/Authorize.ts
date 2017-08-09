@@ -1,18 +1,16 @@
 
-import { AuthorizationException } from "../index";
-import { SecurityManager } from "../SecurityManager";
+import { AuthorizationException, AuthorizationOptions, AuthorizationProvider } from "../index";
 
 export const SECURITY_AUTHORIZE_METADATA_KEY = Symbol("security.authorize.key");
 
-export function authorize(options?: any): any;
-export function authorize(options?: any): any;
+export function authorize(options?: AuthorizationOptions): any;
 export function authorize(options?: any) {
     // tslint:disable-next-line:ban-types
     return (target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<Function>) => {
         const originalFunc = descriptor.value;
         descriptor.value = async (...args: any[]) => {
             try {
-                const result = await SecurityManager.isAuthorized(options);
+                const result = await AuthorizationProvider.get().checkAccessAsync(options);
                 if (result === true) {
                     return originalFunc.apply(originalFunc, args);
                 }  else {
