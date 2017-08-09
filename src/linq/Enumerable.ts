@@ -18,9 +18,10 @@ export class Enumerable<T> implements IQueryable<T> {
     // tslint:disable-next-line:ban-types
     public static repeat<TSource>(result: TSource | Function,
                                   count: number): IQueryable<TSource> {
-        let counter = 0;
+
         const itr = {
             [Symbol.iterator]: () => {
+                let counter = 0;
                 return {
                     next: () => {
                         if (counter < count) {
@@ -44,12 +45,12 @@ export class Enumerable<T> implements IQueryable<T> {
     }
 
     public static range(start: number, count: number, step: number = 1): IQueryable<number> {
-        let curr = start;
-        let counter = 0;
+
         const itr = {
             [Symbol.iterator]: () => {
-
-                return {
+            let curr = start;
+            let counter = 0;
+            return {
                     next: () => {
                         if (counter < count) {
                             counter++;
@@ -84,35 +85,35 @@ export class Enumerable<T> implements IQueryable<T> {
         return t;
     }
 
-    protected arr: T[] = [];
+   // protected arr: T[] = [];
     constructor(private enumerable: IEnumerable<any> | Iterable<any>,
                 private options?: {}) {
         // tslint:disable-next-line:curly
         if (!enumerable) enumerable = [];
-        if (enumerable && enumerable[Symbol.iterator]) {
+        /* if (enumerable && enumerable[Symbol.iterator]) {
             for (const item of this) {
                   this.arr.push(item);
             }
 
-        }
+        } */
         this.options = options || {};
     }
 
-    private checkArray() {
+    /* private checkArraya() {
         if (!this.arr) {
             this.arr = [];
             for (const item of this) {
                 this.arr.push(item);
             }
         }
-    }
+    } */
 
     // tslint:disable:member-ordering
     public aggregate(action: (seed: T, item: T, index?: number,
         // tslint:disable-next-line:align
         source?: IEnumerable<T>) => T, seed?: T): T {
-        this.checkArray();
-        const arr1 = this.arr.slice(0);
+        // this.checkArray();
+        const arr1 = this.toArray();
         // tslint:disable-next-line:curly
         if (seed == null) seed = arr1.shift();
 
@@ -304,8 +305,7 @@ export class Enumerable<T> implements IQueryable<T> {
         return new Enumerable(itr);
     }
     public reverse(): IQueryable<T> {
-        this.checkArray();
-        const revIt = this.arr.reverse();
+        const revIt = this.toArray().reverse();
         return new Enumerable(revIt);
     }
     public shuffles(count?: number): IQueryable<T> {
@@ -538,14 +538,15 @@ export class Enumerable<T> implements IQueryable<T> {
     }
     public orderBy<TSelected>(selector: Func< TSelected, T>,
                               comparator?: Comparator<T, T>): IOrderedQueryable<T> {
-        this.checkArray();
 
         comparator = comparator || Enumerable.comparator as any;
         const cmp = (a: T, b: T) => {
             return comparator(selector(a) as any, selector(b) as any);
         };
-        this.arr = this.arr.sort(cmp);
-        return new OrderedEnumerable(this.arr);
+        const enb = this[Symbol.iterator]();
+        let arr = this.toArray();
+        arr = arr.sort(cmp);
+        return new OrderedEnumerable(arr);
     }
     public orderByDesc<TSelected>(selector: Func< TSelected, T>,
                                   comparator?: Comparator<T, T>): IOrderedQueryable<T> {
@@ -820,7 +821,13 @@ export class Enumerable<T> implements IQueryable<T> {
     }
 
     public get(index: number): T {
-        return this.arr[index];
+        const enb = this[Symbol.iterator]();
+        for (let i = 0; i <= index; i++) {
+            const next = enb.next();
+            // tslint:disable-next-line:curly
+            if ( i === index) return next.value;
+        }
+        return null;
     }
     public forEach(action: (element: T, index: number) => void): void {
         let i = 0;
