@@ -14,9 +14,9 @@ afterAll(() => { });
 
 afterEach(() => { });
 
-describe("{The test domain descripttion}", async () => {
+describe("Claim Tests", async () => {
 
-  it("{the test case in a test domain descripttion}", async () => {
+  it("checks claims", async () => {
     expect.assertions(1);
     const length = 6;
     expect(length).toEqual(6) ;

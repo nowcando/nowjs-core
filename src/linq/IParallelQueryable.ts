@@ -61,7 +61,7 @@ export interface IParallelQueryable<T> extends IAsyncEnumerable<T> {
     percentile(percentile: number , selector?: Func< number, T>, predicate?: Predicate<T>): Promise<number>;
     percentileInclusive(percentile: number , selector?: Func< number, T>, predicate?: Predicate<T>): Promise<number>;
     percentileExclusive(percentile: number , selector?: Func< number, T>, predicate?: Predicate<T>): Promise<number>;
-    percentRank(selector?: Func< number, T>, predicate?: Predicate<T>): Promise<number>;
+    percentRank(value: number, selector?: Func< number, T>, predicate?: Predicate<T>): Promise<number>;
     mean(selector?: Func< number, T>, predicate?: Predicate<T>): Promise<number>;
     median(selector?: Func< number, T>, predicate?: Predicate<T>): Promise<number>;
     mode(selector?: Func< number, T>, predicate?: Predicate<T>): Promise<number>;

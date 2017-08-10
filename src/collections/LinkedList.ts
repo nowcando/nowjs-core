@@ -106,11 +106,24 @@ export class LinkedList<E> implements ILinkedList<E> {
         if (xx) xx.Current = item;
     }
     public getFirst(): E {
-        return this.firstNode.Current;
+        return this.firstNode ? this.firstNode.Current : null;
     }
     public getLast(): E {
-        return this.lastNode.Current;
+        return this.lastNode ? this.lastNode.Current : null;
     }
+    public shift(): E {
+        const item = this.getFirst();
+        this.removeFirst();
+        return item;
+    }
+    public get first(): E {
+        return this.getFirst();
+    }
+
+    public get last(): E {
+        return this.getLast();
+    }
+
     public indexOf(item: E): number {
         let ix = -1;
         for (const xx of this.nodeIterator(this)) {
@@ -195,13 +208,18 @@ export class LinkedList<E> implements ILinkedList<E> {
                 tprev.Next = tnext;
             } else {
              this.firstNode = tnext;
-             this.firstNode.Previous = null;
+             // tslint:disable-next-line:curly
+             if (this.firstNode && this.firstNode.Previous) {
+                 this.firstNode.Previous = null;
+                }
             }
             if (tnext) {
                 tnext.Previous = tprev;
             } else {
              this.lastNode = tprev;
-             this.lastNode.Next = null;
+             if (this.lastNode && this.lastNode.Next) {
+                 this.lastNode.Next = null;
+                }
             }
             this.length--;
             return true;

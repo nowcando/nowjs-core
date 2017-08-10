@@ -48,16 +48,16 @@ export class Enumerable<T> implements IQueryable<T> {
 
         const itr = {
             [Symbol.iterator]: () => {
-            let curr = start;
+            let curr = start - 1;
             let counter = 0;
             return {
                     next: () => {
-                        if (counter < count) {
+                        if (counter >= count) {
+                           return { done: true };
+                        } else {
                             counter++;
                             curr += step;
                             return { value: curr, done: false };
-                        } else {
-                            return { done: true };
                         }
 
                     },
@@ -540,6 +540,7 @@ export class Enumerable<T> implements IQueryable<T> {
                               comparator?: Comparator<T, T>): IOrderedQueryable<T> {
 
         comparator = comparator || Enumerable.comparator as any;
+        selector = selector || ((xx: any) => xx);
         const cmp = (a: T, b: T) => {
             return comparator(selector(a) as any, selector(b) as any);
         };
@@ -767,53 +768,76 @@ export class Enumerable<T> implements IQueryable<T> {
          const keyAtNextIndex = source.get(integerComponentOfIndex);
          return keyAtIndex + (keyAtNextIndex - keyAtIndex) * decimalComponentOfIndex;
     }
-    public percentRank(selector?: Func< number, T>, predicate?: Predicate<T>): number {
-        let res = 0;
+    public percentRank(value: number, selector?: Func< number, T>, predicate?: Predicate<T>): number {
+        selector = selector || ((xx: any) => xx);
+        const source = this.where(predicate).orderBy(selector);
+        const array: any[] = source.toArray();
+        let L = 0;
+        let S = 0;
+        const N = array.length;
 
-        for (const x of this) {
-            const xx: any = selector ? selector(x) : x;
-            if (selector && predicate) {
-                if (predicate(xx as any) === true) {
-                    res += xx;
-                }
-            } else {
-                res += xx;
+        // tslint:disable-next-line:prefer-for-of
+        for (let i = 0; i < array.length; i++) {
+            if (array[i] < value) {
+                L += 1;
+            } else if (array[i] === value) {
+                S += 1;
             }
-
         }
-        return res;
+
+        const pct = (L + (0.5 * S)) / N;
+
+        return pct;
     }
     public mean(selector?: Func< number, T>, predicate?: Predicate<T>): number {
+        selector = selector || ((xx: any) => xx);
         return this.average(selector, predicate);
     }
     public median(selector?: Func< number, T>, predicate?: Predicate<T>): number {
+        selector = selector || ((xx: any) => xx);
         const source = this.where(predicate).orderBy(selector);
         const count = source.count();
         // tslint:disable-next-line:curly
-        const mindex = count / 2;
+        const mindex = Math.floor(count / 2);
         if (count % 2 === 0) {
-             return (selector ? selector(source.get(mindex)) : source.get(mindex) as any +
-                selector ? selector(source.get(mindex - 1)) : source.get(mindex) as any) / 2;
+             return ((selector ? selector(source.get(mindex)) : source.get(mindex) as any) +
+                (selector ? selector(source.get(mindex - 1)) : source.get(mindex - 1) as any)) / 2;
             }
         return selector ? selector(source.get(mindex)) : source.get(mindex) as any;
     }
     public mode(selector?: Func< number, T>, predicate?: Predicate<T>): number {
-        let res = 0;
+        selector = selector || ((xx: any) => xx);
+        const source = this.where(predicate).select(selector);
+        const array = source.toArray();
+        let hasDuplicate = false;
+        // tslint:disable-next-line:curly
+        if (array.length < 2) return Number.NaN;
 
-        for (const x of this) {
-            const xx: any = selector ? selector(x) : x;
-            if (selector && predicate) {
-                if (predicate(xx as any) === true) {
-                    res += xx;
-                }
-            } else {
-                res += xx;
+        // tslint:disable-next-line:one-variable-per-declaration
+        let maxValue = Number.MIN_VALUE, maxCount = 0;
+
+        // tslint:disable-next-line:prefer-for-of
+        for (let i = 0; i < array.length; ++i) {
+           let count = 0;
+           if (!hasDuplicate && array.lastIndexOf(array[i]) !== i) {
+                hasDuplicate = true;
+           }
+           // tslint:disable-next-line:prefer-for-of
+           for (let j = 0; j < array.length; ++j) {
+                // tslint:disable-next-line:curly
+                if (array[j] === array[i]) ++count;
             }
-
+           if (count > maxCount) {
+                maxCount = count;
+                maxValue = array[i];
+            }
         }
-        return res;
+        // tslint:disable-next-line:curly
+        if (!hasDuplicate) return Number.NaN;
+        return maxValue === Number.MIN_VALUE ? Number.NaN : maxValue;
     }
     public range(selector?: Func< number, T>, predicate?: Predicate<T>): number {
+        selector = selector || ((xx: any) => xx);
         const source = this.where(predicate).select(selector);
         const ret = source.max() - source.min();
 

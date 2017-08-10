@@ -6,3 +6,4 @@ export * from "./PromiseUtils";
 export * from "./StringUtils";
 export * from "./TypeUtils";
 export * from "./UuidUtils";
+export * from "./SortUtils";

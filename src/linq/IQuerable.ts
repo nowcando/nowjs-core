@@ -63,7 +63,7 @@ export interface IQueryable<T> extends IEnumerable<T> {
     percentile(percentile: number , selector?: Func< number, T>, predicate?: Predicate<T>): number;
     percentileInclusive(percentile: number , selector?: Func< number, T>, predicate?: Predicate<T>): number;
     percentileExclusive(percentile: number , selector?: Func< number, T>, predicate?: Predicate<T>): number;
-    percentRank(selector?: Func< number, T>, predicate?: Predicate<T>): number;
+    percentRank(value: number, selector?: Func< number, T>, predicate?: Predicate<T>): number;
     mean(selector?: Func< number, T>, predicate?: Predicate<T>): number ;
     median(selector?: Func< number, T>, predicate?: Predicate<T>): number ;
     mode(selector?: Func< number, T>, predicate?: Predicate<T>): number ;

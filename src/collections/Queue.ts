@@ -73,5 +73,7 @@ export class Queue<T> implements IQueue<T> {
     public [Symbol.iterator](): Iterator<T> {
         return this.arr[Symbol.iterator]();
     }
-
+    public clone(): IQueue<T> {
+        return new Queue(this);
+    }
 }
