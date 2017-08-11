@@ -17,7 +17,7 @@ export interface IServiceStatus {
 
 export interface IService<TOptions extends IServiceOptions, TResult extends IServiceStatus> extends IProvider {
     // tslint:disable-next-line:no-misused-new
-    new(options?: TOptions): IService<TOptions, TResult>;
+    constructor(options?: TOptions): IService<TOptions, TResult>;
     start(): Promise<TResult>;
     stop(): Promise<TResult>;
     restart(): Promise<TResult>;
