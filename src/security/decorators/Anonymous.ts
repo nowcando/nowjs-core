@@ -1,16 +1,16 @@
 
 import { AuthorizationException } from "../AuthorizationException";
-import { SecurityManager } from "../index";
+import { AuthorizationProvider } from "../index";
 
 export const SECURITY_ANONYMOUS_METADATA_KEY = Symbol("security.anonymous.key");
 
-export function anonymous() {
+export function isAnonymous() {
     // tslint:disable-next-line:ban-types
     return (target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<Function>) => {
         const originalFunc = descriptor.value;
         descriptor.value = async (...args: any[]) => {
             try {
-                const result = await SecurityManager.isAnonymous();
+                const result = await AuthorizationProvider.get().checkIsAnonymousAsync();
                 if (result === true) {
                     return originalFunc.apply(originalFunc, args);
                 } else {

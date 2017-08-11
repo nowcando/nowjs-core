@@ -3,7 +3,7 @@
 import { getObjectLastKeyOfPath, getObjetctNestedPath, getReflectdDisplayName } from "../utils/index";
 import { VALIDATION_PROPERTYPATH_SEPRATOR } from "./index";
 
-export class ValidationContext<T, TValue>{
+export class ValidationContext<T, TValue> {
     private _value: any;
     private _displayName: string;
     constructor(private target: T, private propertyName: string) {

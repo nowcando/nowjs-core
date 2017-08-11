@@ -92,6 +92,9 @@ export class PriorityQueue<T> implements IPriorityQueue<T> {
         }
         return this.arr[Symbol.iterator]();
     }
+    public clone(): IPriorityQueue<T> {
+        return new PriorityQueue(this.comparator, this);
+    }
     private add(item: T): boolean {
         this.arr.push(item);
         this.isSorted = false;

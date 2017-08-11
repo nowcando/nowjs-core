@@ -5,6 +5,7 @@ import * as collections from "./collections";
 import * as configration from "./configuration";
 
 import * as data from "./data";
+import * as linq from "./linq";
 import * as exceptions from "./exceptions";
 import * as logging from "./logging";
 import * as diagnostics from "./diagnostics";
@@ -19,7 +20,7 @@ import * as globalization from "./globalization";
 export {
     core, parallels, globalization,
     collections, logging, diagnostics ,
-    configration ,
+    configration , linq,
     data, exceptions,
     security ,
     utils, validation,

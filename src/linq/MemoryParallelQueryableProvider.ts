@@ -127,7 +127,7 @@ export class MemoryParallelQueryableProvider<T> implements
    public async percentileExclusive(percentile: number, selector?: (arg: T) => number, predicate?: (arg: T) => boolean): Promise<number> {
         throw new Error("Method not implemented.");
     }
-   public async percentRank(selector?: (arg: T) => number, predicate?: (arg: T) => boolean): Promise<number> {
+   public async percentRank(value: number, selector?: (arg: T) => number, predicate?: (arg: T) => boolean): Promise<number> {
         throw new Error("Method not implemented.");
     }
    public async mean(selector?: (arg: T) => number, predicate?: (arg: T) => boolean): Promise<number> {
