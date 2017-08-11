@@ -1,5 +1,5 @@
 
-export abstract class SanitizerBase<TOptions>{
+export abstract class SanitizerBase<TOptions> {
 
     constructor(private name: string) {
 

@@ -208,6 +208,7 @@ export function bucketSort(input: number[]): number[] {
       const buckets: number[][] = [];
       let currentBucket;
       let current: any;
+      // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < array.length; i += 1) {
         current = array[i];
         currentBucket = Math.floor(current);
@@ -229,6 +230,7 @@ export function bucketSort(input: number[]): number[] {
     const unionBuckets = (buckets: number[][]) => {
       let result: any = [];
       let currentBucket;
+      // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < buckets.length; i += 1) {
         currentBucket = buckets[i];
         if (currentBucket !== undefined) {
@@ -257,6 +259,7 @@ export function countingSort(input: number[]): number[] {
     const getCount = (array: number[]) => {
       const count: any[] = [];
       let current: number;
+      // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < array.length; i += 1) {
         current = array[i];
         count[current] = (count[current] || 0) + 1;
@@ -278,6 +281,7 @@ export function countingSort(input: number[]): number[] {
       const currentPositions: number[] = [];
       let current;
       let position;
+      // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < array.length; i += 1) {
         current = array[i];
         position = less[current];

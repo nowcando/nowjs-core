@@ -1,7 +1,7 @@
 
 import { IProvider } from "../core/IProvider";
 
-export class ConfigSection<T>{
+export class ConfigSection<T> {
 
     private name: string = "";
     constructor(private path: string, private data: T) {
