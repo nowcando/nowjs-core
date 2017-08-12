@@ -19,6 +19,7 @@ deploy:
   email: dev@nowcando.com
   api_key: $NPM_TOKEN
   on:
+    tags: true
     branch: master
-before_deploy:
+after_deploy:
   - npm run clean:release
