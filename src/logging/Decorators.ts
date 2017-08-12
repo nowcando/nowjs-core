@@ -2,7 +2,7 @@
 import { PerformanceCounter } from "../diagnostics/index";
 import { ILoggingProvider, LoggingProvider } from "./index";
 
-export function log(message?: string, level?: string , store?: string) {
+export function log(message?: string, level?: string , ...args: any[]) {
 
     return (target: any, propertyName: string, descriptor: TypedPropertyDescriptor<any>) => {
 
@@ -11,7 +11,7 @@ export function log(message?: string, level?: string , store?: string) {
         descriptor.value = () => {
             const logger = LoggingProvider.get();
             const traceName = target.constructor.name + "." + name;
-            logger.info(store, message);
+            logger.info(message);
             let pcounter = PerformanceCounter.start(traceName);
             try {
                 const result = original.apply(target, arguments);
@@ -19,10 +19,10 @@ export function log(message?: string, level?: string , store?: string) {
                 return result;
             } catch (error) {
                 pcounter = PerformanceCounter.finish(traceName);
-                logger.error(store, message, pcounter);
+                logger.error(message, pcounter);
                 throw error;
             } finally {
-                logger.info(store, message, pcounter);
+                logger.info(message, pcounter);
             }
         };
         return descriptor;
@@ -121,7 +121,7 @@ export  function trace(store: string, level?: string) {
             const logger = LoggingProvider.get();
             const traceName = target.constructor.name + "." + propertyName;
             let pcounter = PerformanceCounter.start(traceName);
-            logger.info(store, `The ${traceName} method has been started.`, pcounter);
+            logger.info(`The ${traceName} method has been started.`, pcounter);
             try {
                 // tslint:disable-next-line:ban-types
                 const result =  (original as Function).apply(this, arguments);
@@ -129,23 +129,23 @@ export  function trace(store: string, level?: string) {
                     return (result as Promise<any>)
                     .then((res) => {
                          pcounter = PerformanceCounter.finish(traceName);
-                         logger.info(store, `The ${traceName} async method has been finished.`, pcounter);
+                         logger.info(`The ${traceName} async method has been finished.`, pcounter);
                          return this;
                     })
                     .catch((errorc) => {
                          pcounter = PerformanceCounter.finish(traceName);
-                         logger.error(store, `The ${traceName} async method has an error .` , pcounter, errorc);
+                         logger.error(`The ${traceName} async method has an error .` , pcounter, errorc);
                          return Promise.reject(errorc);
                     });
                 } else {
                       pcounter = PerformanceCounter.finish(traceName);
-                      logger.info(store, `The ${traceName} method has been finished.`, pcounter);
+                      logger.info(`The ${traceName} method has been finished.`, pcounter);
                 }
 
                 return result;
             } catch (error) {
                 pcounter = PerformanceCounter.finish(traceName);
-                logger.error(store, `The ${traceName} method has an error .` , pcounter, error);
+                logger.error(`The ${traceName} method has an error .` , pcounter, error);
                 throw error;
             // tslint:disable-next-line:no-empty
             } finally {
