@@ -22,7 +22,7 @@
     "release:patch":"npm version patch -m \"Upgrade to %s for patch and some bug fixes.\"",
     "release:minor":"npm version minor -m \"Upgrade to %s for minor enhancments & and bug fixes.\"",
     "release:major":"npm version major -m \"Upgrade to %s for major features and bug fixes.\"",
-    "changelog:update" :"github-changes -o nowcando -r nowjs-data-orientdb --no-merges && git commit -m 'updated CHANGELOG.md'"
+    "changelog:update" :"github-changes -o nowcando -r nowjs-core --no-merges && git commit -m 'updated CHANGELOG.md'"
   },
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
