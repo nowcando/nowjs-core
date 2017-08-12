@@ -8,8 +8,10 @@ export function authorize(options?: any) {
     // tslint:disable-next-line:ban-types
     return (target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<Function>) => {
         const originalFunc = descriptor.value;
+        const that: any = this;
         descriptor.value = async (...args: any[]) => {
             try {
+                const principal = that.User;
                 const result = await AuthorizationProvider.get().checkAccessAsync(options);
                 if (result === true) {
                     return originalFunc.apply(originalFunc, args);

@@ -1,6 +1,7 @@
 .idea/
 .vscode/
 node_modules/
+docs/
 dist/
 dist/test/
 src/

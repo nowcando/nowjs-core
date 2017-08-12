@@ -17,13 +17,12 @@ export interface AuthorizationOptions extends AuthorizationBaseOptions {
 
 export interface IAuthorizationProvider extends IProvider {
     // tslint:disable-next-line:member-ordering
-    User: IPrincipal;
     setPolicy(policyName: string, ...predicates: Array<Predicate<IPrincipal>>): void;
     removePolicy(policyName: string): boolean;
     getPolicies(): string[];
     hasPolicy(policyName: string): boolean;
-    checkIsAnonymous(principal?: IPrincipal): boolean;
-    checkAccess(principal?: IPrincipal, options?: AuthorizationOptions): boolean;
-    checkIsAnonymousAsync(principal?: IPrincipal): Promise<boolean>;
-    checkAccessAsync(principal?: IPrincipal, options?: AuthorizationOptions): Promise<boolean>;
+    checkIsAnonymous(principal: IPrincipal): boolean;
+    checkAccess(principal: IPrincipal, options?: AuthorizationOptions): boolean;
+    checkIsAnonymousAsync(principal: IPrincipal): Promise<boolean>;
+    checkAccessAsync(principal: IPrincipal, options?: AuthorizationOptions): Promise<boolean>;
 }
