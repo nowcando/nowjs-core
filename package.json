@@ -1,21 +1,24 @@
 {
   "name": "nowjs-core",
   "description": "NowCanDo Javascript Core [nowjs-core] is a  library written by TypeScript code maintains under Apache 2.0 licence",
-  "version": "0.9.8",
+  "version": "0.9.12",
   "private": false,
   "scripts": {
     "debug": "npm run-script build:debug ",
     "build:test": "npm run-script clean:dist && tsc --p ./tsconfig.test.json",
     "build:debug": "npm run-script clean:dist && tsc --p ./tsconfig.debug.json",
-    "build:release": "npm run-script clean:build && tsc --p ./tsconfig.release.json",
+    "build:release": "npm run-script clean:release && tsc --p ./tsconfig.release.json",
     "clean": "npm run clean:dist",
     "clean:dist": "rm -rf ./dist/*",
-    "clean:build": "rm -rf ./lib/*",
+    "clean:release": "rm -rf ./lib/*",
     "test": "jest  --no-cache --config ./jest.json",
     "test:watch": "jest --watch --config ./jest.json",
     "coverage": " jest  --no-cache --coverage  --config ./jest.json ",
     "lint": "tslint -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
-    "prepare": "npm run lint && npm run test && npm run build:release"
+    "prepare": "npm run lint && npm run test && npm run build:release",
+    "preversion": "npm test",
+    "version": "npm run build:release",
+    "postversion": "git push && git push --tags && npm clean:release"
   },
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
