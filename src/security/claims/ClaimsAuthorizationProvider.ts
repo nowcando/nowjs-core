@@ -10,16 +10,13 @@ export class ClaimsAuthorizationProvider implements IAuthorizationProvider {
 
     private policies: Map<string, Array<Predicate<ClaimsPrincipal>>> = new Map();
 
-    constructor(private principalFactory: () => ClaimsPrincipal) {
+    // tslint:disable-next-line:no-empty
+    constructor() {
 
     }
 
     public get Name(): string {
         return "ClaimsAuthorizationProvider";
-    }
-
-    public get User(): ClaimsPrincipal {
-        return this.principalFactory();
     }
 
     public setPolicy(policyName: string,
@@ -40,9 +37,9 @@ export class ClaimsAuthorizationProvider implements IAuthorizationProvider {
         return this.policies.has(policyName);
     }
     // tslint:disable-next-line:member-ordering
-    public  checkPolicy(principal?: ClaimsPrincipal, ...policyNames: string[]): boolean {
+    public  checkPolicy(principal: ClaimsPrincipal, ...policyNames: string[]): boolean {
         let result = true;
-        principal = principal || this.User;
+        principal = principal;
         for (const pName of policyNames) {
             const policy = this.policies.get(pName);
             if (policy && typeof policy === "function") {
@@ -55,12 +52,12 @@ export class ClaimsAuthorizationProvider implements IAuthorizationProvider {
     }
     // tslint:disable-next-line:member-ordering
     public  checkIsAnonymous(principal?: ClaimsPrincipal): boolean {
-        principal = principal || this.User;
+        principal = principal ;
         return !principal.Identity.IsAuthenticated;
     }
     // tslint:disable-next-line:member-ordering
-    public  checkAccess(principal?: ClaimsPrincipal, options?: AuthorizationOptions): boolean {
-        principal = principal || this.User;
+    public  checkAccess(principal: ClaimsPrincipal, options?: AuthorizationOptions): boolean {
+        principal = principal ;
         let result = principal.Identity.IsAuthenticated;
         if (options) {
             if (options.Role) {
@@ -94,12 +91,12 @@ export class ClaimsAuthorizationProvider implements IAuthorizationProvider {
         return result;
     }
 
-    public async checkIsAnonymousAsync(principal?: ClaimsPrincipal): Promise<boolean> {
-        principal = principal || this.User;
+    public async checkIsAnonymousAsync(principal: ClaimsPrincipal): Promise<boolean> {
+        principal = principal ;
         return Promise.resolve(this.checkIsAnonymous(principal));
     }
-    public async  checkAccessAsync(principal?: ClaimsPrincipal, options?: AuthorizationOptions): Promise<boolean> {
-        principal = principal || this.User;
+    public async  checkAccessAsync(principal: ClaimsPrincipal, options?: AuthorizationOptions): Promise<boolean> {
+        principal = principal;
         return Promise.resolve(this.checkAccessAsync(principal, options));
     }
 }
