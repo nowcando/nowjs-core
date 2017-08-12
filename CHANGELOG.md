@@ -1,6 +1,6 @@
 ## Change Log
 
-### upcoming (2017/08/12 17:47 +00:00)
+### v0.9.15 (2017/08/12 17:47 +00:00)
 - [741cbba](https://github.com/nowcando/nowjs-core/commit/741cbba98e006a9938dd4cc797d4d5c2d41d4467) update travic  ci to skip  clean up befor the deploy (@saeedtabrizi)
 - [6fa844e](https://github.com/nowcando/nowjs-core/commit/6fa844e122cfbcc5d5aca0b409bf34f5f186ab82) update travis to for npm deploy (@saeedtabrizi)
 - [7a54bc6](https://github.com/nowcando/nowjs-core/commit/7a54bc6dc8431feb6840ab7e0fbdf87a9ea774a6) update travis to release to npm (@saeedtabrizi)
