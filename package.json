@@ -1,7 +1,7 @@
 {
   "name": "nowjs-core",
   "description": "NowCanDo Javascript Core [nowjs-core] is a  library written by TypeScript code maintains under Apache 2.0 licence",
-  "version": "0.9.16",
+  "version": "0.9.18",
   "private": false,
   "scripts": {
     "debug": "npm run-script build:debug ",
@@ -18,11 +18,11 @@
     "prepare": "npm run lint && npm run test && npm run build:release",
     "preversion": "npm test && npm run changelog:update",
     "version": "npm run build:release ",
-    "postversion": "git push && git push --tags && npm run clean:release",
-    "release:patch": "npm version patch -m \"Upgrade to %s for patch and some bug fixes.\"",
-    "release:minor": "npm version minor -m \"Upgrade to %s for minor enhancments & and bug fixes.\"",
-    "release:major": "npm version major -m \"Upgrade to %s for major features and bug fixes.\"",
-    "changelog:update": "github-changes -o nowcando -r nowjs-core --no-merges && git commit -a -m 'updated CHANGELOG.md'"
+    "postversion": "git push && git push --tags && npm run changelog:update && git push && npm run clean:release",
+    "release:patch": "npm version patch -m \"upgrade: Upgrade to %s for patch and some bug fixes.\"",
+    "release:minor": "npm version minor -m \"upgrade: Upgrade to %s for minor enhancments & and bug fixes.\"",
+    "release:major": "npm version major -m \"upgrade: Upgrade to %s for major features and bug fixes.\"",
+    "changelog:update": "github-changes -o nowcando -r nowjs-core --no-merges -b develop && git commit -a -m 'update: The CHANGELOG.md updated.'"
   },
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",

@@ -1,12 +1,30 @@
 ## Change Log
 
-### v0.9.15 (2017/08/12 17:47 +00:00)
+### v0.9.18 (2017/08/12 18:37 +00:00)
+- [c4915c4](https://github.com/nowcando/nowjs-core/commit/c4915c4514999565685c8519df7456cdd17ed99a) upgrade: Upgrade to 0.9.18 for patch and some bug fixes. (@saeedtabrizi)
+- [5891def](https://github.com/nowcando/nowjs-core/commit/5891def4ad3e96167b2373e2f8ac938386ce2ab1) update: The CHANGELOG.md updated. (@saeedtabrizi)
+- [c7e4086](https://github.com/nowcando/nowjs-core/commit/c7e4086e73fbaf760c2bf00d857d8f553a3a8c14) update package messages (@saeedtabrizi)
+- [8daf421](https://github.com/nowcando/nowjs-core/commit/8daf421ced55f18640b431599ca7f25e69c840cd) update changelog output branch (@saeedtabrizi)
+- [e6c42b7](https://github.com/nowcando/nowjs-core/commit/e6c42b7807fa638c4b178b0d39acc9bc894c0ad0) updated CHANGELOG.md (@saeedtabrizi)
+
+### v0.9.17 (2017/08/12 18:21 +00:00)
+- [3850f6b](https://github.com/nowcando/nowjs-core/commit/3850f6bc36bdfe7c25a8d5db3b4718df75aa4983) Upgrade to 0.9.17 for patch and some bug fixes. (@saeedtabrizi)
+- [6d79ac9](https://github.com/nowcando/nowjs-core/commit/6d79ac9198fd99ed9b3863159b331fc1a1076f6a) update package changelog after version increment (@saeedtabrizi)
+
+### v0.9.16 (2017/08/12 17:51 +00:00)
+- [7a20e54](https://github.com/nowcando/nowjs-core/commit/7a20e54944d3f0320e87e5bec8179a857135630c) Upgrade to 0.9.16 for patch and some bug fixes. (@saeedtabrizi)
+- [8f6dbde](https://github.com/nowcando/nowjs-core/commit/8f6dbdef8fb791ae7cb97ea1dadd7cd45435f218) updated CHANGELOG.md (@saeedtabrizi)
+- [69a5390](https://github.com/nowcando/nowjs-core/commit/69a5390f480ad3938e8dbfcaf278c3a567edd4aa) fix: npm run clean:release (@saeedtabrizi)
+- [b34cc61](https://github.com/nowcando/nowjs-core/commit/b34cc61c29d5f1faf3198baa485ed6749b628040) Upgrade to 0.9.15 for patch and some bug fixes. (@saeedtabrizi)
+- [5951430](https://github.com/nowcando/nowjs-core/commit/5951430453d0d4a02011a686c1aac0dbac55f7bf) updated CHANGELOG.md (@saeedtabrizi)
+- [f5e4faa](https://github.com/nowcando/nowjs-core/commit/f5e4faae018e1adb2b83bc038a78c14c4a08b6d0) fix: git commit -a (@saeedtabrizi)
+- [bc63bf8](https://github.com/nowcando/nowjs-core/commit/bc63bf83c11113e65d7d22bafd67f7ed0dd8f0f5) updated CHANGELOG.md (@saeedtabrizi)
+- [9989bc3](https://github.com/nowcando/nowjs-core/commit/9989bc32031c64a0f1835fae9e478d486f92209d) update changelog update (@saeedtabrizi)
+- [c617632](https://github.com/nowcando/nowjs-core/commit/c6176329e8802d31eebd4da2407fb1b4e8f80b18) update  changelog generation (@saeedtabrizi)
 - [741cbba](https://github.com/nowcando/nowjs-core/commit/741cbba98e006a9938dd4cc797d4d5c2d41d4467) update travic  ci to skip  clean up befor the deploy (@saeedtabrizi)
 - [6fa844e](https://github.com/nowcando/nowjs-core/commit/6fa844e122cfbcc5d5aca0b409bf34f5f186ab82) update travis to for npm deploy (@saeedtabrizi)
 - [7a54bc6](https://github.com/nowcando/nowjs-core/commit/7a54bc6dc8431feb6840ab7e0fbdf87a9ea774a6) update travis to release to npm (@saeedtabrizi)
 - [c18deb3](https://github.com/nowcando/nowjs-core/commit/c18deb39a753e4c5d1a5334b52b8941e5e443485) fix: travis after_deply (@saeedtabrizi)
-
-### v0.9.14 (2017/08/12 14:01 +00:00)
 - [8ab8070](https://github.com/nowcando/nowjs-core/commit/8ab807077b1b2dd481ba4d9718f7c3612e3e8199) 0.9.14 (@saeedtabrizi)
 - [3e737de](https://github.com/nowcando/nowjs-core/commit/3e737def5c4c8b216702324495af875507bf68d9) 0.9.13 (@saeedtabrizi)
 - [3b2cbc0](https://github.com/nowcando/nowjs-core/commit/3b2cbc08a9d6391453f10e3f398cf02b2c494374) update travis (@saeedtabrizi)
