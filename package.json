@@ -1,7 +1,7 @@
 {
   "name": "nowjs-core",
   "description": "NowCanDo Javascript Core [nowjs-core] is a  library written by TypeScript code maintains under Apache 2.0 licence",
-  "version": "0.9.20",
+  "version": "0.9.21",
   "private": false,
   "scripts": {
     "debug": "npm run-script build:debug ",
@@ -22,7 +22,10 @@
     "release:patch": "npm version patch -m \"upgrade: Upgrade to %s for patch and some bug fixes.\"",
     "release:minor": "npm version minor -m \"upgrade: Upgrade to %s for minor enhancments & and bug fixes.\"",
     "release:major": "npm version major -m \"upgrade: Upgrade to %s for major features and bug fixes.\"",
-    "changelog:update": "github-changes -o nowcando -r nowjs-core -b develop && git commit -a -m 'update: The CHANGELOG.md updated.'"
+    "changelog:update": "github-changes -o nowcando -r nowjs-core -b develop && git commit -a -m 'update: The CHANGELOG.md updated.'",
+    "docs:update": "typedoc --out ./docs/documentation/ ./src/  && git commit -a -m 'update: The documentation updated.'",
+    "docs:clean": "rm -rf ./docs/documentation/*",
+    "docs:publish": "{{PUBLISH TO DOC_SITE_URL}}"
   },
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
