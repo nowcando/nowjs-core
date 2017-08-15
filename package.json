@@ -23,8 +23,8 @@
     "release:minor": "npm version minor -m \"upgrade: Upgrade to %s for minor enhancments & and bug fixes.\"",
     "release:major": "npm version major -m \"upgrade: Upgrade to %s for major features and bug fixes.\"",
     "changelog:update": "github-changes -o nowcando -r nowjs-core -b develop && git commit -a -m 'update: The CHANGELOG.md updated.'",
-    "docs:update": "typedoc --out ./docs/ ./src/  && git commit -a -m 'update: The documentation updated.'",
-    "docs:clean": "rm -rf ./docs/*",
+    "docs:update": "typedoc --out ./docs/documentation/ ./src/  && git commit -a -m 'update: The documentation updated.'",
+    "docs:clean": "rm -rf ./docs/documentation/*",
     "docs:publish": "{{PUBLISH TO DOC_SITE_URL}}"
   },
   "main": "lib/index.js",

@@ -7,5 +7,5 @@ dist/
 typings/
 coverage/
 lib/
-docs/
+docs/documentation/
 nowjs-core.iml
