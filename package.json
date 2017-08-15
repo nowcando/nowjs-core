@@ -16,7 +16,7 @@
     "coverage": " jest  --no-cache --coverage  --config ./jest.json ",
     "lint": "tslint -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
     "prepare": "npm run lint && npm run test && npm run build:release",
-    "preversion": "npm test && npm run docs:update && npm run changelog:update",
+    "preversion": "npm test && npm run changelog:update",
     "version": "npm run build:release ",
     "postversion": "git push && git push --tags && npm run changelog:update && git push && npm run clean:release",
     "release:patch": "npm version patch -m \"upgrade: Upgrade to %s for patch and some bug fixes.\"",
