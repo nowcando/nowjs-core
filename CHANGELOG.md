@@ -1,5 +1,11 @@
 ## Change Log
 
+### v0.9.22 (2017/08/15 21:13 +00:00)
+- [a6cea65](https://github.com/nowcando/nowjs-core/commit/a6cea653399eb2c2d1cdc53bc78fa6dc7be21881) upgrade: Upgrade to 0.9.22 for patch and some bug fixes. (@saeedtabrizi)
+- [7180cc2](https://github.com/nowcando/nowjs-core/commit/7180cc20a9af212555c69a257044c7f6fd49b55d) update: The CHANGELOG.md updated. (@saeedtabrizi)
+- [42d10e2](https://github.com/nowcando/nowjs-core/commit/42d10e2d2551856a1e9a3419e93b7208103c9fa2) fix: add IApplicationModule to core index file (@saeedtabrizi)
+- [f2bdd66](https://github.com/nowcando/nowjs-core/commit/f2bdd669a80193df66925fcd73dd5fb04b0b13a2) update: The CHANGELOG.md updated. (@saeedtabrizi)
+
 ### v0.9.21 (2017/08/15 20:52 +00:00)
 - [2e30bd5](https://github.com/nowcando/nowjs-core/commit/2e30bd512d7939883f471630f7ad4e11c410ebc6) upgrade: Upgrade to 0.9.21 for patch and some bug fixes. (@saeedtabrizi)
 - [27b968e](https://github.com/nowcando/nowjs-core/commit/27b968ea2ab2b2152936ec5f10de8aeec8138115) update: The CHANGELOG.md updated. (@saeedtabrizi)
