@@ -1,5 +1,6 @@
 
 export * from "./IService";
+export * from "./IApplicationModule";
 export * from "./IApplicationService";
 export * from "./IProvider";
 export * from "./IRepository";
