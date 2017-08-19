@@ -1,6 +1,9 @@
 ## Change Log
 
-### upcoming (2017/08/19 04:51 +00:00)
+### v0.9.24 (2017/08/19 04:51 +00:00)
+- [725d22f](https://github.com/nowcando/nowjs-core/commit/725d22fc211618326411c83d8a33e4d8ea1c4c57) upgrade: Upgrade to 0.9.24 for patch and some bug fixes. (@saeedtabrizi)
+- [e38a3ca](https://github.com/nowcando/nowjs-core/commit/e38a3ca02f3b736740161d6e4c91159c94894939) update: The CHANGELOG.md updated. (@saeedtabrizi)
+- [b4eed6d](https://github.com/nowcando/nowjs-core/commit/b4eed6dad74ab8ddc925026a3e23d2b788da1a60) fix: add computation module to index (@saeedtabrizi)
 - [b723c5b](https://github.com/nowcando/nowjs-core/commit/b723c5b0dd3eb17322d3484d673f1393f14be276) update: The CHANGELOG.md updated. (@saeedtabrizi)
 
 ### v0.9.23 (2017/08/19 02:21 +00:00)
@@ -159,9 +162,9 @@
 - [#8](https://github.com/nowcando/nowjs-core/pull/8) Merge pull request #8 from nowcando/0.1.7 (@nowcando)
 - [c0ac4f7](https://github.com/nowcando/nowjs-core/commit/c0ac4f7d75bafd58c9e1aec87a7a73c85e177e47) add some linq methods (@saeedtabrizi)
 - [dc68cf2](https://github.com/nowcando/nowjs-core/commit/dc68cf2861eecbbeddc856e8b7ee93023cfaa0c3) add some linq methods (@saeedtabrizi)
+- [1c59e80](https://github.com/nowcando/nowjs-core/commit/1c59e80e55082894f0501568dae9241677960e1b) modify README (@saeedtabrizi)
 - [fd198cd](https://github.com/nowcando/nowjs-core/commit/fd198cd9649c9364665c7a24e228c60d5cdb4790) travis-ci test process added . (@saeedtabrizi)
 - [14c5b30](https://github.com/nowcando/nowjs-core/commit/14c5b307e1c74416299351f0a81506b91f8a0f3e) validation added . (@saeedtabrizi)
-- [1c59e80](https://github.com/nowcando/nowjs-core/commit/1c59e80e55082894f0501568dae9241677960e1b) modify README (@saeedtabrizi)
 - [#7](https://github.com/nowcando/nowjs-core/pull/7) Merge pull request #7 from nowcando/0.1.62 (@nowcando)
 - [210c225](https://github.com/nowcando/nowjs-core/commit/210c225a9669c50091e8d810dcd7cc6033963052) modify README (@saeedtabrizi)
 - [#6](https://github.com/nowcando/nowjs-core/pull/6) Merge pull request #6 from nowcando/0.1.61 (@nowcando)
