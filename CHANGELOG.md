@@ -1,6 +1,11 @@
 ## Change Log
 
-### upcoming (2017/08/19 02:20 +00:00)
+### v0.9.23 (2017/08/19 02:21 +00:00)
+- [9386859](https://github.com/nowcando/nowjs-core/commit/938685987fd22d0206ff297c16c11e2544f3651e) upgrade: Upgrade to 0.9.23 for patch and some bug fixes. (@saeedtabrizi)
+- [95dd724](https://github.com/nowcando/nowjs-core/commit/95dd724357747f54c752e0ee245c825e17aa4880) update: The CHANGELOG.md updated. (@saeedtabrizi)
+- [9f80076](https://github.com/nowcando/nowjs-core/commit/9f80076255b2bda21bbc40d1aac01053c3f1ddff) feat: add BigNumber class to enable bignumber computation . init version . [more tests needed] . (@saeedtabrizi)
+- [8e8d713](https://github.com/nowcando/nowjs-core/commit/8e8d71386461e18be31a8b8943c2048107c640bf) feat: first matrix computation feature . (@saeedtabrizi)
+- [f3fab1f](https://github.com/nowcando/nowjs-core/commit/f3fab1ff132dabee5080ba234a288a8bc4ca2ba4) feat: add fatal level to logging (@saeedtabrizi)
 - [bf1f28b](https://github.com/nowcando/nowjs-core/commit/bf1f28b57685b25395118517b574c56525f4e0ff) update: The CHANGELOG.md updated. (@saeedtabrizi)
 
 ### v0.9.22 (2017/08/15 21:13 +00:00)
