@@ -3,7 +3,7 @@ import * as core from "./core";
 // tslint:disable:ordered-imports
 import * as collections from "./collections";
 import * as configration from "./configuration";
-
+import * as computation from "./computation";
 import * as data from "./data";
 import * as linq from "./linq";
 import * as exceptions from "./exceptions";
@@ -20,7 +20,7 @@ import * as globalization from "./globalization";
 export {
     core, parallels, globalization,
     collections, logging, diagnostics ,
-    configration , linq,
+    configration , linq, computation,
     data, exceptions,
     security ,
     utils, validation,
