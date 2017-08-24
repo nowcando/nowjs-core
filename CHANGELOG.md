@@ -1,6 +1,9 @@
 ## Change Log
 
-### upcoming (2017/08/24 09:29 +00:00)
+### v0.9.25 (2017/08/24 09:30 +00:00)
+- [7e3d565](https://github.com/nowcando/nowjs-core/commit/7e3d5655d5bb7e3152e7b2b349c3bf962da2c9f2) upgrade: Upgrade to 0.9.25 for patch and some bug fixes. (@saeedtabrizi)
+- [dd98d21](https://github.com/nowcando/nowjs-core/commit/dd98d2102c441553566e2923898c16f5d3012539) update: The CHANGELOG.md updated. (@saeedtabrizi)
+- [4617acf](https://github.com/nowcando/nowjs-core/commit/4617acfcb212b70e8dd6d1e3daf22d3b73c03191) feat: using a default console logger . (@saeedtabrizi)
 - [d4e4630](https://github.com/nowcando/nowjs-core/commit/d4e46308a64c59e37f88a8f742521065fa7a7938) update: The CHANGELOG.md updated. (@saeedtabrizi)
 
 ### v0.9.24 (2017/08/19 04:51 +00:00)
