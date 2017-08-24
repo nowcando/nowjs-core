@@ -1,4 +1,5 @@
 export * from "./BigNumber";
+export * from "./ComplexNumber";
 export * from "./Matrix";
 export * from "./NumericMatrix";
 export * from "./NumericSquareMatrix";
