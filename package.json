@@ -47,7 +47,10 @@
     "LOB",
     "line of business",
     "linq",
-    "validation"
+    "validation",
+    "calculation",
+    "math",
+    "BigNumber"
   ],
   "bugs": {
     "url": "https://github.com/nowcando/nowjs-core/issues"
