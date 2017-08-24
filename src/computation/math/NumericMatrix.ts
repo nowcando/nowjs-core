@@ -137,6 +137,7 @@ export class NumericMatrix extends Matrix<number> {
 
         return new NumericMatrix(this.RowSize, other.ColSize, ...arr2);
     }
+
     protected checkSchemaEqual(other: NumericMatrix): void {
         if (this.RowSize !== other.RowSize || this.ColSize !== other.ColSize) {
             throw new Exception("The matrixes schema is not equals");

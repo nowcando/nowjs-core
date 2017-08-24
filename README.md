@@ -15,7 +15,7 @@ Nowjs-Core is a lightweight library for handle Line Of Business challenges.
 
  - Parallels (Promise extention methods , delay , wait , cancelable , spread).
  - Collections (List , Colllection , LinkedList, Queue , Stack , SortedList , PriorityQueue , ...).
- - Computation (BigNumber , Matrix , Vector , Point , ...).
+ - Computation (BigNumber , ComplexNumber , Simplex , Matrix , Vector , Point , ...).
  - Linq.
  - Data.
  - Exceptions.
