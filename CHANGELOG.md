@@ -1,5 +1,17 @@
 ## Change Log
 
+### v0.9.26 (2017/08/24 09:45 +00:00)
+- [1f31e94](https://github.com/nowcando/nowjs-core/commit/1f31e94a1220ce221fb0edd4192457f24871501d) upgrade: Upgrade to 0.9.26 for patch and some bug fixes. (@saeedtabrizi)
+- [69ffd91](https://github.com/nowcando/nowjs-core/commit/69ffd91de8094e6af5197e440d612728a8d7e200) update: The CHANGELOG.md updated. (@saeedtabrizi)
+- [4d3cff6](https://github.com/nowcando/nowjs-core/commit/4d3cff6a3820e83aafe0900a13cd2ffe070c33a0) fix: update package info and readme file and constructor for exceptions . (@saeedtabrizi)
+- [6b12966](https://github.com/nowcando/nowjs-core/commit/6b129668ed3b10ce2a239be5f8d2ea7580bc2dad) update: The CHANGELOG.md updated. (@saeedtabrizi)
+
+### v0.9.25 (2017/08/24 09:30 +00:00)
+- [7e3d565](https://github.com/nowcando/nowjs-core/commit/7e3d5655d5bb7e3152e7b2b349c3bf962da2c9f2) upgrade: Upgrade to 0.9.25 for patch and some bug fixes. (@saeedtabrizi)
+- [dd98d21](https://github.com/nowcando/nowjs-core/commit/dd98d2102c441553566e2923898c16f5d3012539) update: The CHANGELOG.md updated. (@saeedtabrizi)
+- [4617acf](https://github.com/nowcando/nowjs-core/commit/4617acfcb212b70e8dd6d1e3daf22d3b73c03191) feat: using a default console logger . (@saeedtabrizi)
+- [d4e4630](https://github.com/nowcando/nowjs-core/commit/d4e46308a64c59e37f88a8f742521065fa7a7938) update: The CHANGELOG.md updated. (@saeedtabrizi)
+
 ### v0.9.24 (2017/08/19 04:51 +00:00)
 - [725d22f](https://github.com/nowcando/nowjs-core/commit/725d22fc211618326411c83d8a33e4d8ea1c4c57) upgrade: Upgrade to 0.9.24 for patch and some bug fixes. (@saeedtabrizi)
 - [e38a3ca](https://github.com/nowcando/nowjs-core/commit/e38a3ca02f3b736740161d6e4c91159c94894939) update: The CHANGELOG.md updated. (@saeedtabrizi)
