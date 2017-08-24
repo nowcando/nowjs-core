@@ -1,6 +1,11 @@
 ## Change Log
 
-### upcoming (2017/08/24 23:51 +00:00)
+### v0.9.27 (2017/08/24 23:51 +00:00)
+- [f5f8de2](https://github.com/nowcando/nowjs-core/commit/f5f8de27c4f0cc477c8c2eff891eeb7f079776af) upgrade: Upgrade to 0.9.27 for patch and some bug fixes. (@saeedtabrizi)
+- [90b7335](https://github.com/nowcando/nowjs-core/commit/90b73353209654787de1fa3b441dcf0fb38aa4fe) update: The CHANGELOG.md updated. (@saeedtabrizi)
+- [1cd932a](https://github.com/nowcando/nowjs-core/commit/1cd932ab1cba390a936bb5c3bec2309ad42e07ae) feat: add simplex solving and ComplexNumber to handle #24 issue. (@saeedtabrizi)
+- [a32d958](https://github.com/nowcando/nowjs-core/commit/a32d958923779618d71520945f6cb7bd3ee936a0) fix: power in complexnumber (@saeedtabrizi)
+- [d5c1967](https://github.com/nowcando/nowjs-core/commit/d5c1967a8e067b4233b552de508657c6d5ac05da) feat : add complexnumber type to math (@saeedtabrizi)
 - [b471cee](https://github.com/nowcando/nowjs-core/commit/b471cee4bc7d6bfb4cd40355f65f1bbf69b19b72) update: The CHANGELOG.md updated. (@saeedtabrizi)
 
 ### v0.9.26 (2017/08/24 09:45 +00:00)
