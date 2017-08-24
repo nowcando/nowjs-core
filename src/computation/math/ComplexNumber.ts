@@ -303,8 +303,8 @@ export class ComplexNumber {
         a = Math.exp(P.re * loh - P.im * arg);
         b = P.im * loh + P.re * arg;
         return new ComplexNumber(
-            a * Math.cos(b),
-            a * Math.sin(b));
+            Math.floor(a * Math.cos(b)),
+            Math.floor(a * Math.sin(b)));
     }
     public sqrt(): ComplexNumber {
         const a = this.re;

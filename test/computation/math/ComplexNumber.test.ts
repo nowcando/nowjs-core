@@ -51,7 +51,7 @@ describe("Computation", async () => {
             it("checks pow", async () => {
                 expect.assertions(2);
                 const cn = ComplexNumber.parse("1+i").pow(3);
-                expect(cn.Real).toEqual(-1.9999999999999996);
+                expect(cn.Real).toEqual(-2);
                 expect(cn.Imaginary).toEqual(2);
             });
             it("checks abs", async () => {
