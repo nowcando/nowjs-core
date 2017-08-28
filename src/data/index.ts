@@ -6,6 +6,8 @@ export enum RowStatus {
 
 export type IDType = number | string;
 
+export interface NameVariationType {[name: string]: string; }
+
 export interface IRowMeta {
     CreatedAt?: Date;
     UpdatedAt?: Date;
