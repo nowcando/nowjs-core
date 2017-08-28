@@ -1,6 +1,11 @@
 ## Change Log
 
-### upcoming (2017/08/28 09:57 +00:00)
+### v0.9.28 (2017/08/28 09:58 +00:00)
+- [d36249c](https://github.com/nowcando/nowjs-core/commit/d36249c4ed5d855ea697043a683da6c48db68d32) upgrade: Upgrade to 0.9.28 for patch and some bug fixes. (@saeedtabrizi)
+- [4dd24c0](https://github.com/nowcando/nowjs-core/commit/4dd24c05a9a98f4a2b2f07da5d2bb2dc738b339e) update: The CHANGELOG.md updated. (@saeedtabrizi)
+- [c1b9dc8](https://github.com/nowcando/nowjs-core/commit/c1b9dc8d734f15f2c486e549bca92d76593735a1) feat: NameVariationType added . (@saeedtabrizi)
+- [36914a7](https://github.com/nowcando/nowjs-core/commit/36914a7745fd9be9729cb20cc8c15d033d5d58b6) fix: add author name to simplex . (@saeedtabrizi)
+- [eec1a5b](https://github.com/nowcando/nowjs-core/commit/eec1a5b27875ce525ddef1328540edb857e8c3b5) fix: add comment to define simplex base project (@saeedtabrizi)
 - [f8ebc1d](https://github.com/nowcando/nowjs-core/commit/f8ebc1d046fa361b1c499f75b87371d219d845d3) update: The CHANGELOG.md updated. (@saeedtabrizi)
 
 ### v0.9.27 (2017/08/24 23:51 +00:00)
@@ -185,9 +190,9 @@
 - [#8](https://github.com/nowcando/nowjs-core/pull/8) Merge pull request #8 from nowcando/0.1.7 (@nowcando)
 - [c0ac4f7](https://github.com/nowcando/nowjs-core/commit/c0ac4f7d75bafd58c9e1aec87a7a73c85e177e47) add some linq methods (@saeedtabrizi)
 - [dc68cf2](https://github.com/nowcando/nowjs-core/commit/dc68cf2861eecbbeddc856e8b7ee93023cfaa0c3) add some linq methods (@saeedtabrizi)
-- [1c59e80](https://github.com/nowcando/nowjs-core/commit/1c59e80e55082894f0501568dae9241677960e1b) modify README (@saeedtabrizi)
 - [fd198cd](https://github.com/nowcando/nowjs-core/commit/fd198cd9649c9364665c7a24e228c60d5cdb4790) travis-ci test process added . (@saeedtabrizi)
 - [14c5b30](https://github.com/nowcando/nowjs-core/commit/14c5b307e1c74416299351f0a81506b91f8a0f3e) validation added . (@saeedtabrizi)
+- [1c59e80](https://github.com/nowcando/nowjs-core/commit/1c59e80e55082894f0501568dae9241677960e1b) modify README (@saeedtabrizi)
 - [#7](https://github.com/nowcando/nowjs-core/pull/7) Merge pull request #7 from nowcando/0.1.62 (@nowcando)
 - [210c225](https://github.com/nowcando/nowjs-core/commit/210c225a9669c50091e8d810dcd7cc6033963052) modify README (@saeedtabrizi)
 - [#6](https://github.com/nowcando/nowjs-core/pull/6) Merge pull request #6 from nowcando/0.1.61 (@nowcando)
