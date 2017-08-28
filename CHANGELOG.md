@@ -1,6 +1,9 @@
 ## Change Log
 
-### upcoming (2017/08/28 10:04 +00:00)
+### v0.9.29 (2017/08/28 10:04 +00:00)
+- [0c80708](https://github.com/nowcando/nowjs-core/commit/0c80708187cef1f9f4be9b1aaa01dde3dfe99d8d) upgrade: Upgrade to 0.9.29 for patch and some bug fixes. (@saeedtabrizi)
+- [5c38d8f](https://github.com/nowcando/nowjs-core/commit/5c38d8f6b6a683e1664f743790fd33b3160b8253) update: The CHANGELOG.md updated. (@saeedtabrizi)
+- [e993865](https://github.com/nowcando/nowjs-core/commit/e993865e96da7886de923f77a7d5a0ea96daca29) fix: interface linting for NameVariationType (@saeedtabrizi)
 - [2c9878e](https://github.com/nowcando/nowjs-core/commit/2c9878eb9c5257565072401aa2232ff93014ec80) update: The CHANGELOG.md updated. (@saeedtabrizi)
 
 ### v0.9.28 (2017/08/28 09:58 +00:00)
