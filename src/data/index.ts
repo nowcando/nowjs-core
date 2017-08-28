@@ -6,6 +6,9 @@ export enum RowStatus {
 
 export type IDType = number | string;
 
+// tslint:disable-next-line:interface-name
+export interface NameVariationType {[name: string]: string; }
+
 export interface IRowMeta {
     CreatedAt?: Date;
     UpdatedAt?: Date;

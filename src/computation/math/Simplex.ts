@@ -1,4 +1,5 @@
-
+// Based on https://github.com/LarryBattle/YASMIJ.js project under MIT licence .
+// Thanks to https://github.com/LarryBattle
 import { NumericMatrix } from "./index";
 
 function getUniqueArray(arr: string[]) {
