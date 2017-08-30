@@ -20,7 +20,7 @@ export interface JsonSchemaDefinitionDisplay {
 }
 
 export interface JsonSchemaDefinitionItem {
-    Display?: JsonSchemaDefinitionDisplay ;
+    Display?: JsonSchemaDefinitionDisplay;
     Validators?: IJsonSchemaDefinitionValidator;
 }
 
@@ -37,11 +37,11 @@ function deprecated(message: StringFormatType = 'The {type} "{name}" is deprecat
         if (typeof message === "string") {
             localMessage = message.replace("{type}", (typeof target).toUpperCase());
             localMessage = message.replace("{name}", propertyName);
-        }  else if (typeof message === "function") {
+        } else if (typeof message === "function") {
             localMessage = message("DeprecatedMessage", target, propertyName, original);
         }
 
-        descriptor.value =  () => {
+        descriptor.value = () => {
             // tslint:disable-next-line:no-console
             console.warn(localMessage);
 
@@ -63,9 +63,9 @@ export function displayName(name: StringFormatType) {
         let localName = ""; // message.replace('{type}', (typeof target).toUpperCase());
         if (typeof name === "string") {
             localName = name;
-        }  else if (typeof name === "function") {
+        } else if (typeof name === "function") {
             localName = name(propertyName, target, propertyName, original);
-        }  else {
+        } else {
             localName = "";
         }
 
@@ -126,7 +126,7 @@ export function sealed(constructor: Function) {
     Object.seal(constructor.prototype);
 }
 
-export function classDecorator<T extends { new (...args: any[]): {} }>(constructor: T) {
+export function classDecorator<T extends { new(...args: any[]): {} }>(constructor: T) {
     return class extends constructor {
         // tslint:disable-next-line:member-access
         newProperty = "new property";
@@ -136,20 +136,20 @@ export function classDecorator<T extends { new (...args: any[]): {} }>(construct
 }
 
 export function enumerable(value: boolean) {
-    return  (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
+    return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
         descriptor.enumerable = value;
     };
 }
 
 export function configurable(value: boolean) {
-    return  (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
+    return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
         descriptor.configurable = value;
     };
 }
 
 export function propertySet<T>(target: any, propertyKey: string, descriptor: TypedPropertyDescriptor<T>) {
     const set = descriptor.set;
-    descriptor.set =  (value: T) => {
+    descriptor.set = (value: T) => {
         const type = Reflect.getMetadata("design:type", target, propertyKey);
         if (!(value instanceof type)) {
             throw new TypeError("Invalid type.");
@@ -159,8 +159,8 @@ export function propertySet<T>(target: any, propertyKey: string, descriptor: Typ
 }
 
 // tslint:disable-next-line:ban-types
-function readonly<TFunction extends Function>(Target: TFunction): TFunction {
-    const newConstructor =  () => {
+export function readonlyObject<TFunction extends Function>(Target: TFunction): TFunction {
+    const newConstructor = () => {
         Target.apply(this);
         Object.freeze(this);
     };
@@ -171,7 +171,7 @@ function readonly<TFunction extends Function>(Target: TFunction): TFunction {
     return newConstructor as any;
 }
 
-function property(target: object, propertyKey: string) {
+export function defineProperty(target: object, propertyKey: string) {
     const columns: string[] = Reflect.getMetadata(PROPERTY_METADATA_KEY, target.constructor) || [];
     columns.push(propertyKey);
     Reflect.defineMetadata(PROPERTY_METADATA_KEY, columns, target.constructor);
@@ -223,7 +223,7 @@ export function getObjetctNestedPath(theObject: any, path: string, separator: st
             reduce((obj, mproperty) => {
                 return obj[mproperty];
             }, theObject,
-            );
+        );
 
     } catch (err) {
         return undefined;
@@ -260,3 +260,141 @@ export function getObjectLastKeyOfPath(theObject: any, path: string, separator: 
         return undefined;
     }
 }
+
+/**
+ * Check is object any value
+ *
+ * @export
+ * @param {*} item value to check
+ * @returns {boolean}
+ */
+export function isObjectType(item: any): boolean {
+    return (item && typeof item === "object" && !Array.isArray(item));
+}
+
+/**
+ * Deep shallow object merging properties .
+ *
+ * @export
+ * @template T
+ * @template U
+ * @param {T} target
+ * @param {U} source1
+ * @returns {(T & U)}
+ */
+export function deepAssign<T, U>(target: T, source1: U): T & U;
+/**
+ * Deep shallow object merging properties .
+ *
+ * @export
+ * @template T
+ * @template U
+ * @template V
+ * @param {T} target
+ * @param {U} source1
+ * @param {V} source2
+ * @returns {(T & U & V)}
+ */
+export function deepAssign<T, U, V>(target: T, source1: U, source2: V): T & U & V;
+export function deepAssign<T, U, V, W>(target: T, source1: U, source2: V, source3: W): T & U & V & W;
+export function deepAssign<T, U, V, W, X>(target: T, source1: U,
+                                          source2: V, source3: W, source4: X): T & U & V & W & X;
+export function deepAssign<T, U, V, W, X, Y>(target: T, source1: U,
+                                             source2: V, source3: W,
+                                             source4: X, source5: Y):
+                                             T & U & V & W & X & Y;
+export function deepAssign<T, U, V, W, X, Y , Z>(target: T, source1: U,
+                                                 source2: V, source3: W,
+                                                 source4: X, source5: Y, source6: Z):
+                                             T & U & V & W & X & Y & Z;
+export function deepAssign<T>(target: T, ...sources: any[]): T & any;
+/**
+ * Deep shallow object merging properties .
+ *
+ * @export
+ * @template T
+ * @param {T} target
+ * @param {...any[]} sources
+ * @returns {T}
+ */
+export function deepAssign<T>(target: T, ...sources: any[]): T & any {
+    // tslint:disable-next-line:curly
+    /* if (!sources.length) return target;
+    const source = sources.shift();
+
+    if (isObject(target) && isObject(source)) {
+        for (const key in source) {
+            if (isObject(source[key])) {
+                // tslint:disable-next-line:curly
+                if (!(target as any)[key]) Object.assign(target, { [key]: {} });
+                deepAssign((target as any)[key], (source as any)[key]);
+            } else {
+                Object.assign(target, { [key]: source[key] });
+            }
+        }
+    }
+
+    return deepAssign(target, ...sources); */
+    sources.forEach((source) => {
+        // tslint:disable-next-line:no-shadowed-variable
+        const descriptors = Object.keys(source).reduce((descriptors: any, key) => {
+          descriptors[key] = Object.getOwnPropertyDescriptor(source, key);
+          return descriptors;
+        }, {});
+        // by default, Object.assign copies enumerable Symbols too
+        Object.getOwnPropertySymbols(source).forEach((sym) => {
+          const descriptor = Object.getOwnPropertyDescriptor(source, sym);
+          if (descriptor.enumerable) {
+            descriptors[sym] = descriptor;
+          }
+        });
+        Object.defineProperties(target, descriptors);
+      });
+    return target;
+}
+
+/**
+ * Shallow copy or clone an object
+ *
+ * @export
+ * @template T
+ * @param {T} obj
+ * @returns {T}
+ */
+export function cloneObject<T>(obj: T): T {
+    return deepAssign({}, obj);
+}
+
+declare global {
+    // tslint:disable-next-line:interface-name
+    interface Object {
+        isObjectType(target: any): boolean;
+        cloneObject<T>(): T;
+        deepAssign<T, U>(target: T, source1: U): T & U;
+        deepAssign<T, U, V>(target: T, source1: U, source2: V): T & U & V;
+        deepAssign<T, U, V, W>(target: T, source1: U, source2: V, source3: W): T & U & V & W;
+        deepAssign<T, U, V, W, X>(target: T, source1: U,
+                                  source2: V, source3: W, source4: X): T & U & V & W & X;
+        deepAssign<T, U, V, W, X, Y>(target: T, source1: U,
+                                     source2: V, source3: W,
+                                     source4: X, source5: Y):
+                                                     T & U & V & W & X & Y;
+        deepAssign<T, U, V, W, X, Y , Z>(target: T, source1: U,
+                                         source2: V, source3: W,
+                                         source4: X, source5: Y, source6: Z):
+                                                     T & U & V & W & X & Y & Z;
+        deepAssign<T>(target: T, ...sources: any[]): T & any;
+    }
+}
+
+function toCloneObject<T>(): T {
+    return cloneObject(this);
+}
+
+function toDeepAssign<T>(target: T, ...sources: any[]): T {
+    return deepAssign(target, ...sources);
+}
+
+Object.prototype.isObjectType = isObjectType;
+Object.prototype.cloneObject = toCloneObject;
+Object.prototype.deepAssign = toDeepAssign;
