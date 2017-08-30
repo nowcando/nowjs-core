@@ -1,6 +1,16 @@
 ## Change Log
 
-### upcoming (2017/08/30 19:00 +00:00)
+### v0.9.32 (2017/08/30 19:01 +00:00)
+- [f53f640](https://github.com/nowcando/nowjs-core/commit/f53f6401a238bae285b91d1b8f11854a14d00fd3) upgrade: Upgrade to 0.9.32 for patch and some bug fixes. (@saeedtabrizi)
+- [5244d96](https://github.com/nowcando/nowjs-core/commit/5244d9663df333be7aa64cdf1785cb2203886f40) update: The CHANGELOG.md updated. (@saeedtabrizi)
+- [5ca27bf](https://github.com/nowcando/nowjs-core/commit/5ca27bf212ee1e47def78c3b446832633239395c) chore: update dependencies . (@saeedtabrizi)
+- [5689d77](https://github.com/nowcando/nowjs-core/commit/5689d77d7a392f7bbe040b73ab2d800b83e2252c) update: The CHANGELOG.md updated. (@saeedtabrizi)
+- [f48aa96](https://github.com/nowcando/nowjs-core/commit/f48aa962b8234eb77c1bd157c926551f0d6e9ab6) feat: add toComplexNumber method to prototype of Number . (@saeedtabrizi)
+- [d278018](https://github.com/nowcando/nowjs-core/commit/d27801801b417aad76cc88df1b23f6650f08dc22) feat: aad bignumber to Number prototype . (@saeedtabrizi)
+- [0d52040](https://github.com/nowcando/nowjs-core/commit/0d5204003064cc1a0eb098ac5388986e51befe98) fix: some fixture and renaming in the ObjectUtils  functions. (@saeedtabrizi)
+- [9be55f0](https://github.com/nowcando/nowjs-core/commit/9be55f082319230efa4107480ec31f139f71b94b) feat: add cloneObject to ObjectUtils. fix promise test . (@saeedtabrizi)
+- [325f165](https://github.com/nowcando/nowjs-core/commit/325f1654ee12ba4c256c81dbc19ac990ef9fe8d4) fix: add test for ObjectUtils and fix some deepAssign declaration. (@saeedtabrizi)
+- [2733fc6](https://github.com/nowcando/nowjs-core/commit/2733fc6e82421175b82469a20a643c4451a39e91) feat: add isObject and deepAssign to ObjectUtils. (@saeedtabrizi)
 - [051534d](https://github.com/nowcando/nowjs-core/commit/051534d78b7025dbfd2aa2d9e79cac52abf3f197) update: The CHANGELOG.md updated. (@saeedtabrizi)
 
 ### v0.9.30 (2017/08/28 10:12 +00:00)
