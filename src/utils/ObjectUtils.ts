@@ -369,7 +369,7 @@ declare global {
     // tslint:disable-next-line:interface-name
     interface Object {
         isObjectType(target: any): boolean;
-        clone<T>(): T;
+        cloneObject<T>(): T;
         deepAssign<T, U>(target: T, source1: U): T & U;
         deepAssign<T, U, V>(target: T, source1: U, source2: V): T & U & V;
         deepAssign<T, U, V, W>(target: T, source1: U, source2: V, source3: W): T & U & V & W;
@@ -396,5 +396,5 @@ function toDeepAssign<T>(target: T, ...sources: any[]): T {
 }
 
 Object.prototype.isObjectType = isObjectType;
-Object.prototype.clone = toCloneObject;
+Object.prototype.cloneObject = toCloneObject;
 Object.prototype.deepAssign = toDeepAssign;
