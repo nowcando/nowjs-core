@@ -260,3 +260,43 @@ export function getObjectLastKeyOfPath(theObject: any, path: string, separator: 
         return undefined;
     }
 }
+
+/**
+ * Check is object any value
+ *
+ * @export
+ * @param {*} item value to check
+ * @returns {boolean}
+ */
+export function isObject(item: any): boolean {
+    return (item && typeof item === "object" && !Array.isArray(item));
+  }
+
+  /**
+   * Deep shallow object merging properties .
+   *
+   * @export
+   * @template T
+   * @param {T} target
+   * @param {...any[]} sources
+   * @returns {T}
+   */
+export function deepAssign<T>(target: T, ...sources: any[]): T {
+    // tslint:disable-next-line:curly
+    if (!sources.length) return target;
+    const source = sources.shift();
+
+    if (isObject(target) && isObject(source)) {
+      for (const key in source) {
+        if (isObject(source[key])) {
+          // tslint:disable-next-line:curly
+          if (!(target as any)[key]) Object.assign(target, { [key]: {} });
+          deepAssign((target as any)[key], (source as any)[key]);
+        } else {
+          Object.assign(target, { [key]: source[key] });
+        }
+      }
+    }
+
+    return deepAssign(target, ...sources);
+  }
