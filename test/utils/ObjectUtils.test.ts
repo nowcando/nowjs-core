@@ -1,5 +1,5 @@
 import "jest";
-import { deepAssign, isObject } from "../../src/utils/index";
+import { cloneObject, deepAssign, isObject } from "../../src/utils/index";
 
 // jest.resetAllMocks();
 // jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
@@ -38,6 +38,14 @@ describe("ObjectUtils", async () => {
         expect(actual.c).toEqual(9);
         expect(actual.h.b.c).toEqual(4);
         expect(actual.h.d.e).toEqual(1);
+    });
+    it("checks cloneObject", async () => {
+        expect.assertions(3);
+        const tobj = { a: 1 , h: { k: 5} , c: 9};
+        const actual = cloneObject(tobj);
+        expect(actual.a).toEqual(1);
+        expect(actual.c).toEqual(9);
+        expect(actual.h.k).toEqual(5);
     });
 
 });

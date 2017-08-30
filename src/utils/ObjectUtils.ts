@@ -285,6 +285,7 @@ export function deepAssign<T, U, V, W, X, Y , Z>(target: T, source1: U,
                                                  source2: V, source3: W,
                                                  source4: X, source5: Y, source6: Z):
                                              T & U & V & W & X & Y & Z;
+export function deepAssign<T>(target: T, ...sources: any[]): T & any;
 /**
  * Deep shallow object merging properties .
  *
@@ -294,9 +295,9 @@ export function deepAssign<T, U, V, W, X, Y , Z>(target: T, source1: U,
  * @param {...any[]} sources
  * @returns {T}
  */
-export function deepAssign<T>(target: T, ...sources: any[]): T {
+export function deepAssign<T>(target: T, ...sources: any[]): T & any {
     // tslint:disable-next-line:curly
-    if (!sources.length) return target;
+    /* if (!sources.length) return target;
     const source = sources.shift();
 
     if (isObject(target) && isObject(source)) {
@@ -311,5 +312,33 @@ export function deepAssign<T>(target: T, ...sources: any[]): T {
         }
     }
 
-    return deepAssign(target, ...sources);
+    return deepAssign(target, ...sources); */
+    sources.forEach((source) => {
+        // tslint:disable-next-line:no-shadowed-variable
+        const descriptors = Object.keys(source).reduce((descriptors: any, key) => {
+          descriptors[key] = Object.getOwnPropertyDescriptor(source, key);
+          return descriptors;
+        }, {});
+        // by default, Object.assign copies enumerable Symbols too
+        Object.getOwnPropertySymbols(source).forEach((sym) => {
+          const descriptor = Object.getOwnPropertyDescriptor(source, sym);
+          if (descriptor.enumerable) {
+            descriptors[sym] = descriptor;
+          }
+        });
+        Object.defineProperties(target, descriptors);
+      });
+    return target;
+}
+
+/**
+ * Shallow copy or clone an object
+ *
+ * @export
+ * @template T
+ * @param {T} obj
+ * @returns {T}
+ */
+export function cloneObject<T>(obj: T): T {
+    return deepAssign({}, obj);
 }
