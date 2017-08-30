@@ -1,5 +1,5 @@
 import "jest";
-import { cloneObject, deepAssign, isObject } from "../../src/utils/index";
+import { cloneObject, deepAssign, isObjectType } from "../../src/utils/index";
 
 // jest.resetAllMocks();
 // jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
@@ -23,10 +23,10 @@ describe("ObjectUtils", async () => {
         const fn = () => 1;
         const str = "1";
         const num = 1;
-        expect(isObject(obj)).toEqual(true);
-        expect(isObject(fn)).toEqual(false);
-        expect(isObject(str)).toEqual(false);
-        expect(isObject(num)).toEqual(false);
+        expect(isObjectType(obj)).toEqual(true);
+        expect(isObjectType(fn)).toEqual(false);
+        expect(isObjectType(str)).toEqual(false);
+        expect(isObjectType(num)).toEqual(false);
     });
     it("checks deepAssign", async () => {
         expect.assertions(4);

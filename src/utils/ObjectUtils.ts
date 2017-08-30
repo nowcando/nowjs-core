@@ -159,7 +159,7 @@ export function propertySet<T>(target: any, propertyKey: string, descriptor: Typ
 }
 
 // tslint:disable-next-line:ban-types
-function readonly<TFunction extends Function>(Target: TFunction): TFunction {
+export function readonlyObject<TFunction extends Function>(Target: TFunction): TFunction {
     const newConstructor = () => {
         Target.apply(this);
         Object.freeze(this);
@@ -171,7 +171,7 @@ function readonly<TFunction extends Function>(Target: TFunction): TFunction {
     return newConstructor as any;
 }
 
-function property(target: object, propertyKey: string) {
+export function defineProperty(target: object, propertyKey: string) {
     const columns: string[] = Reflect.getMetadata(PROPERTY_METADATA_KEY, target.constructor) || [];
     columns.push(propertyKey);
     Reflect.defineMetadata(PROPERTY_METADATA_KEY, columns, target.constructor);
@@ -268,11 +268,33 @@ export function getObjectLastKeyOfPath(theObject: any, path: string, separator: 
  * @param {*} item value to check
  * @returns {boolean}
  */
-export function isObject(item: any): boolean {
+export function isObjectType(item: any): boolean {
     return (item && typeof item === "object" && !Array.isArray(item));
 }
 
+/**
+ * Deep shallow object merging properties .
+ *
+ * @export
+ * @template T
+ * @template U
+ * @param {T} target
+ * @param {U} source1
+ * @returns {(T & U)}
+ */
 export function deepAssign<T, U>(target: T, source1: U): T & U;
+/**
+ * Deep shallow object merging properties .
+ *
+ * @export
+ * @template T
+ * @template U
+ * @template V
+ * @param {T} target
+ * @param {U} source1
+ * @param {V} source2
+ * @returns {(T & U & V)}
+ */
 export function deepAssign<T, U, V>(target: T, source1: U, source2: V): T & U & V;
 export function deepAssign<T, U, V, W>(target: T, source1: U, source2: V, source3: W): T & U & V & W;
 export function deepAssign<T, U, V, W, X>(target: T, source1: U,
@@ -342,3 +364,37 @@ export function deepAssign<T>(target: T, ...sources: any[]): T & any {
 export function cloneObject<T>(obj: T): T {
     return deepAssign({}, obj);
 }
+
+declare global {
+    // tslint:disable-next-line:interface-name
+    interface Object {
+        isObjectType(target: any): boolean;
+        clone<T>(): T;
+        deepAssign<T, U>(target: T, source1: U): T & U;
+        deepAssign<T, U, V>(target: T, source1: U, source2: V): T & U & V;
+        deepAssign<T, U, V, W>(target: T, source1: U, source2: V, source3: W): T & U & V & W;
+        deepAssign<T, U, V, W, X>(target: T, source1: U,
+                                  source2: V, source3: W, source4: X): T & U & V & W & X;
+        deepAssign<T, U, V, W, X, Y>(target: T, source1: U,
+                                     source2: V, source3: W,
+                                     source4: X, source5: Y):
+                                                     T & U & V & W & X & Y;
+        deepAssign<T, U, V, W, X, Y , Z>(target: T, source1: U,
+                                         source2: V, source3: W,
+                                         source4: X, source5: Y, source6: Z):
+                                                     T & U & V & W & X & Y & Z;
+        deepAssign<T>(target: T, ...sources: any[]): T & any;
+    }
+}
+
+function toCloneObject<T>(): T {
+    return cloneObject(this);
+}
+
+function toDeepAssign<T>(target: T, ...sources: any[]): T {
+    return deepAssign(target, ...sources);
+}
+
+Object.prototype.isObjectType = isObjectType;
+Object.prototype.clone = toCloneObject;
+Object.prototype.deepAssign = toDeepAssign;
