@@ -1,6 +1,6 @@
 ## Change Log
 
-### upcoming (2017/08/30 17:47 +00:00)
+### upcoming (2017/08/30 19:00 +00:00)
 - [051534d](https://github.com/nowcando/nowjs-core/commit/051534d78b7025dbfd2aa2d9e79cac52abf3f197) update: The CHANGELOG.md updated. (@saeedtabrizi)
 
 ### v0.9.30 (2017/08/28 10:12 +00:00)
