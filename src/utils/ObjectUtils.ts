@@ -20,7 +20,7 @@ export interface JsonSchemaDefinitionDisplay {
 }
 
 export interface JsonSchemaDefinitionItem {
-    Display?: JsonSchemaDefinitionDisplay ;
+    Display?: JsonSchemaDefinitionDisplay;
     Validators?: IJsonSchemaDefinitionValidator;
 }
 
@@ -37,11 +37,11 @@ function deprecated(message: StringFormatType = 'The {type} "{name}" is deprecat
         if (typeof message === "string") {
             localMessage = message.replace("{type}", (typeof target).toUpperCase());
             localMessage = message.replace("{name}", propertyName);
-        }  else if (typeof message === "function") {
+        } else if (typeof message === "function") {
             localMessage = message("DeprecatedMessage", target, propertyName, original);
         }
 
-        descriptor.value =  () => {
+        descriptor.value = () => {
             // tslint:disable-next-line:no-console
             console.warn(localMessage);
 
@@ -63,9 +63,9 @@ export function displayName(name: StringFormatType) {
         let localName = ""; // message.replace('{type}', (typeof target).toUpperCase());
         if (typeof name === "string") {
             localName = name;
-        }  else if (typeof name === "function") {
+        } else if (typeof name === "function") {
             localName = name(propertyName, target, propertyName, original);
-        }  else {
+        } else {
             localName = "";
         }
 
@@ -126,7 +126,7 @@ export function sealed(constructor: Function) {
     Object.seal(constructor.prototype);
 }
 
-export function classDecorator<T extends { new (...args: any[]): {} }>(constructor: T) {
+export function classDecorator<T extends { new(...args: any[]): {} }>(constructor: T) {
     return class extends constructor {
         // tslint:disable-next-line:member-access
         newProperty = "new property";
@@ -136,20 +136,20 @@ export function classDecorator<T extends { new (...args: any[]): {} }>(construct
 }
 
 export function enumerable(value: boolean) {
-    return  (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
+    return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
         descriptor.enumerable = value;
     };
 }
 
 export function configurable(value: boolean) {
-    return  (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
+    return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
         descriptor.configurable = value;
     };
 }
 
 export function propertySet<T>(target: any, propertyKey: string, descriptor: TypedPropertyDescriptor<T>) {
     const set = descriptor.set;
-    descriptor.set =  (value: T) => {
+    descriptor.set = (value: T) => {
         const type = Reflect.getMetadata("design:type", target, propertyKey);
         if (!(value instanceof type)) {
             throw new TypeError("Invalid type.");
@@ -160,7 +160,7 @@ export function propertySet<T>(target: any, propertyKey: string, descriptor: Typ
 
 // tslint:disable-next-line:ban-types
 function readonly<TFunction extends Function>(Target: TFunction): TFunction {
-    const newConstructor =  () => {
+    const newConstructor = () => {
         Target.apply(this);
         Object.freeze(this);
     };
@@ -223,7 +223,7 @@ export function getObjetctNestedPath(theObject: any, path: string, separator: st
             reduce((obj, mproperty) => {
                 return obj[mproperty];
             }, theObject,
-            );
+        );
 
     } catch (err) {
         return undefined;
@@ -270,33 +270,46 @@ export function getObjectLastKeyOfPath(theObject: any, path: string, separator: 
  */
 export function isObject(item: any): boolean {
     return (item && typeof item === "object" && !Array.isArray(item));
-  }
+}
 
-  /**
-   * Deep shallow object merging properties .
-   *
-   * @export
-   * @template T
-   * @param {T} target
-   * @param {...any[]} sources
-   * @returns {T}
-   */
+export function deepAssign<T, U>(target: T, source1: U): T & U;
+export function deepAssign<T, U, V>(target: T, source1: U, source2: V): T & U & V;
+export function deepAssign<T, U, V, W>(target: T, source1: U, source2: V, source3: W): T & U & V & W;
+export function deepAssign<T, U, V, W, X>(target: T, source1: U,
+                                          source2: V, source3: W, source4: X): T & U & V & W & X;
+export function deepAssign<T, U, V, W, X, Y>(target: T, source1: U,
+                                             source2: V, source3: W,
+                                             source4: X, source5: Y):
+                                             T & U & V & W & X & Y;
+export function deepAssign<T, U, V, W, X, Y , Z>(target: T, source1: U,
+                                                 source2: V, source3: W,
+                                                 source4: X, source5: Y, source6: Z):
+                                             T & U & V & W & X & Y & Z;
+/**
+ * Deep shallow object merging properties .
+ *
+ * @export
+ * @template T
+ * @param {T} target
+ * @param {...any[]} sources
+ * @returns {T}
+ */
 export function deepAssign<T>(target: T, ...sources: any[]): T {
     // tslint:disable-next-line:curly
     if (!sources.length) return target;
     const source = sources.shift();
 
     if (isObject(target) && isObject(source)) {
-      for (const key in source) {
-        if (isObject(source[key])) {
-          // tslint:disable-next-line:curly
-          if (!(target as any)[key]) Object.assign(target, { [key]: {} });
-          deepAssign((target as any)[key], (source as any)[key]);
-        } else {
-          Object.assign(target, { [key]: source[key] });
+        for (const key in source) {
+            if (isObject(source[key])) {
+                // tslint:disable-next-line:curly
+                if (!(target as any)[key]) Object.assign(target, { [key]: {} });
+                deepAssign((target as any)[key], (source as any)[key]);
+            } else {
+                Object.assign(target, { [key]: source[key] });
+            }
         }
-      }
     }
 
     return deepAssign(target, ...sources);
-  }
+}
