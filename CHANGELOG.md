@@ -1,5 +1,11 @@
 ## Change Log
 
+### v0.9.34 (2017/08/31 16:28 +00:00)
+- [307c3d5](https://github.com/nowcando/nowjs-core/commit/307c3d52c66cd34e8dc171aac27e55b77e459423) upgrade: Upgrade to 0.9.34 for patch and some bug fixes. (@saeedtabrizi)
+- [0d3715a](https://github.com/nowcando/nowjs-core/commit/0d3715a7fc21e3816811a101486942b2afcdfe41) update: The CHANGELOG.md updated. (@saeedtabrizi)
+- [b88ee07](https://github.com/nowcando/nowjs-core/commit/b88ee074a21b078d757363bd60897ef8e2ed5072) fix: fix prepare package to solve duplicate test running (@saeedtabrizi)
+- [b96216f](https://github.com/nowcando/nowjs-core/commit/b96216fbe7d984bfe8f860f30f6e7d97b30cad8b) update: The CHANGELOG.md updated. (@saeedtabrizi)
+
 ### v0.9.33 (2017/08/31 14:57 +00:00)
 - [013a903](https://github.com/nowcando/nowjs-core/commit/013a903f015319f294f1e0c5c1884970c0a00462) upgrade: Upgrade to 0.9.33 for patch and some bug fixes. (@saeedtabrizi)
 - [c007581](https://github.com/nowcando/nowjs-core/commit/c0075815bd391429be4c0e1ad19367bdc8ce1bd4) update: The CHANGELOG.md updated. (@saeedtabrizi)
