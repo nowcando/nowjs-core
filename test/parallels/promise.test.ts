@@ -14,8 +14,8 @@ afterAll(() => { });
 
 afterEach(() => { });
 
-describe("Promise:: test promise extra futures.", async () => {
-
+describe("Promise", async () => {
+  describe("Promise extra futures.", async () => {
   it("checks static wait", async () => {
     expect.assertions(1);
     const start = Date.now();
@@ -109,5 +109,5 @@ describe("Promise:: test promise extra futures.", async () => {
     const actual = await pr;
     expect(actual).toEqual("hello saeed");
   });
-
+  });
 });
