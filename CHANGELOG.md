@@ -1,6 +1,9 @@
 ## Change Log
 
-### upcoming (2017/08/31 14:57 +00:00)
+### v0.9.33 (2017/08/31 14:57 +00:00)
+- [013a903](https://github.com/nowcando/nowjs-core/commit/013a903f015319f294f1e0c5c1884970c0a00462) upgrade: Upgrade to 0.9.33 for patch and some bug fixes. (@saeedtabrizi)
+- [c007581](https://github.com/nowcando/nowjs-core/commit/c0075815bd391429be4c0e1ad19367bdc8ce1bd4) update: The CHANGELOG.md updated. (@saeedtabrizi)
+- [cc378ae](https://github.com/nowcando/nowjs-core/commit/cc378ae35cdcf10232d7dd38f426c45495cfc9ce) fix: deepAssign not merging completely fixture. (@saeedtabrizi)
 - [47a482e](https://github.com/nowcando/nowjs-core/commit/47a482efe2145a4cd157a72108b34904b8267d80) update: The CHANGELOG.md updated. (@saeedtabrizi)
 
 ### v0.9.32 (2017/08/30 19:01 +00:00)
@@ -216,9 +219,9 @@
 - [#8](https://github.com/nowcando/nowjs-core/pull/8) Merge pull request #8 from nowcando/0.1.7 (@nowcando)
 - [c0ac4f7](https://github.com/nowcando/nowjs-core/commit/c0ac4f7d75bafd58c9e1aec87a7a73c85e177e47) add some linq methods (@saeedtabrizi)
 - [dc68cf2](https://github.com/nowcando/nowjs-core/commit/dc68cf2861eecbbeddc856e8b7ee93023cfaa0c3) add some linq methods (@saeedtabrizi)
-- [fd198cd](https://github.com/nowcando/nowjs-core/commit/fd198cd9649c9364665c7a24e228c60d5cdb4790) travis-ci test process added . (@saeedtabrizi)
 - [14c5b30](https://github.com/nowcando/nowjs-core/commit/14c5b307e1c74416299351f0a81506b91f8a0f3e) validation added . (@saeedtabrizi)
 - [1c59e80](https://github.com/nowcando/nowjs-core/commit/1c59e80e55082894f0501568dae9241677960e1b) modify README (@saeedtabrizi)
+- [fd198cd](https://github.com/nowcando/nowjs-core/commit/fd198cd9649c9364665c7a24e228c60d5cdb4790) travis-ci test process added . (@saeedtabrizi)
 - [#7](https://github.com/nowcando/nowjs-core/pull/7) Merge pull request #7 from nowcando/0.1.62 (@nowcando)
 - [210c225](https://github.com/nowcando/nowjs-core/commit/210c225a9669c50091e8d810dcd7cc6033963052) modify README (@saeedtabrizi)
 - [#6](https://github.com/nowcando/nowjs-core/pull/6) Merge pull request #6 from nowcando/0.1.61 (@nowcando)
