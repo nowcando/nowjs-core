@@ -1,6 +1,9 @@
 ## Change Log
 
-### upcoming (2017/08/31 17:46 +00:00)
+### v0.9.36 (2017/08/31 17:46 +00:00)
+- [1afaacb](https://github.com/nowcando/nowjs-core/commit/1afaacb6c867ed0d2116e546c874da93895bfbdb) upgrade: Upgrade to 0.9.36 for patch and some bug fixes. (@saeedtabrizi)
+- [df0ceda](https://github.com/nowcando/nowjs-core/commit/df0ceda72bb81083ad5f763b0d81088d01156b65) update: The CHANGELOG.md updated. (@saeedtabrizi)
+- [295f427](https://github.com/nowcando/nowjs-core/commit/295f427229570dfce95339a464a7001538c05007) fix: Object prototype cloneObject fixed. (@saeedtabrizi)
 - [057965f](https://github.com/nowcando/nowjs-core/commit/057965fdc7df0fe8bdda02540ebddca2bdb7aa17) update: The CHANGELOG.md updated. (@saeedtabrizi)
 
 ### v0.9.35 (2017/08/31 16:48 +00:00)
