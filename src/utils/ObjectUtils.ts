@@ -319,12 +319,14 @@ export function deepAssign<T>(target: T, ...sources: any[]): T & any;
  */
 export function deepAssign<T>(target: T, ...sources: any[]): T & any {
     // tslint:disable-next-line:curly
-    /* if (!sources.length) return target;
+    if (!sources.length) return target;
     const source = sources.shift();
 
-    if (isObject(target) && isObject(source)) {
+    if (isObjectType(target) && isObjectType(source)) {
         for (const key in source) {
-            if (isObject(source[key])) {
+            // tslint:disable-next-line:curly
+            if (!source.hasOwnProperty(key)) continue;
+            if (isObjectType(source[key])) {
                 // tslint:disable-next-line:curly
                 if (!(target as any)[key]) Object.assign(target, { [key]: {} });
                 deepAssign((target as any)[key], (source as any)[key]);
@@ -334,8 +336,8 @@ export function deepAssign<T>(target: T, ...sources: any[]): T & any {
         }
     }
 
-    return deepAssign(target, ...sources); */
-    sources.forEach((source) => {
+    return deepAssign(target, ...sources);
+    /* sources.forEach((source) => {
         // tslint:disable-next-line:no-shadowed-variable
         const descriptors = Object.keys(source).reduce((descriptors: any, key) => {
           descriptors[key] = Object.getOwnPropertyDescriptor(source, key);
@@ -350,7 +352,7 @@ export function deepAssign<T>(target: T, ...sources: any[]): T & any {
         });
         Object.defineProperties(target, descriptors);
       });
-    return target;
+    return target; */
 }
 
 /**
@@ -366,10 +368,9 @@ export function cloneObject<T>(obj: T): T {
 }
 
 declare global {
-    // tslint:disable-next-line:interface-name
-    interface Object {
+    // tslint:disable:interface-name
+    interface ObjectConstructor {
         isObjectType(target: any): boolean;
-        cloneObject<T>(): T;
         deepAssign<T, U>(target: T, source1: U): T & U;
         deepAssign<T, U, V>(target: T, source1: U, source2: V): T & U & V;
         deepAssign<T, U, V, W>(target: T, source1: U, source2: V, source3: W): T & U & V & W;
@@ -385,6 +386,9 @@ declare global {
                                                      T & U & V & W & X & Y & Z;
         deepAssign<T>(target: T, ...sources: any[]): T & any;
     }
+    interface Object {
+        cloneObject<T>(): T;
+    }
 }
 
 function toCloneObject<T>(): T {
@@ -395,6 +399,6 @@ function toDeepAssign<T>(target: T, ...sources: any[]): T {
     return deepAssign(target, ...sources);
 }
 
-Object.prototype.isObjectType = isObjectType;
+Object.deepAssign = toDeepAssign;
+Object.isObjectType = isObjectType;
 Object.prototype.cloneObject = toCloneObject;
-Object.prototype.deepAssign = toDeepAssign;
