@@ -385,14 +385,13 @@ declare global {
                                          source4: X, source5: Y, source6: Z):
                                                      T & U & V & W & X & Y & Z;
         deepAssign<T>(target: T, ...sources: any[]): T & any;
+        cloneObject<T>(target: T): T;
     }
-    interface Object {
-        cloneObject<T>(): T;
-    }
+
 }
 
-function toCloneObject<T>(): T {
-    return cloneObject(this);
+function toCloneObject<T>(target: T): T {
+    return cloneObject(target);
 }
 
 function toDeepAssign<T>(target: T, ...sources: any[]): T {
@@ -401,4 +400,4 @@ function toDeepAssign<T>(target: T, ...sources: any[]): T {
 
 Object.deepAssign = toDeepAssign;
 Object.isObjectType = isObjectType;
-Object.prototype.cloneObject = toCloneObject;
+Object.cloneObject = toCloneObject;
