@@ -3,11 +3,13 @@ import { IDType } from "../data/index";
 
 export * from "./decorators/";
 export * from "./multitenant";
+export * from "./login";
 export * from "./license";
 export * from "./membership";
 export * from "./role";
 export * from "./resource";
 export * from "./claims";
+export * from "./oauth";
 export * from "./AuthorizationException";
 export * from "./IAuthenticationProvider";
 export * from "./AuthorizationProvider";
