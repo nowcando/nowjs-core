@@ -24,7 +24,7 @@ export interface ILicense {
     Meta?: any;
 }
 
-export interface ILicensingProvider<TLicense extends ILicense> extends IProvider {
+export interface ILicenseProvider<TLicense extends ILicense> extends IProvider {
 
     encryptLicense(tenantID: IDType, app: string, licence: TLicense): Promise<string>;
     decryptLicense(tenantID: IDType, app: string, encryptedLicense: string): Promise<TLicense>;
