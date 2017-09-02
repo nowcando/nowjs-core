@@ -1,5 +1,11 @@
 ## Change Log
 
+### v0.9.38 (2017/09/02 09:16 +00:00)
+- [040024c](https://github.com/nowcando/nowjs-core/commit/040024c6dafe7a644014d357506d2a49ab58652d) upgrade: Upgrade to 0.9.38 for patch and some bug fixes. (@saeedtabrizi)
+- [eaaa8d3](https://github.com/nowcando/nowjs-core/commit/eaaa8d391de1f432014214e512035a59fa0640e6) update: The CHANGELOG.md updated. (@saeedtabrizi)
+- [c2f3a48](https://github.com/nowcando/nowjs-core/commit/c2f3a4891583ad61e1f103c4881c8f7c00ba09b9) fix: missing import MembershipProvider file. (@saeedtabrizi)
+- [e94addd](https://github.com/nowcando/nowjs-core/commit/e94adddd7085e0bc15c8cfc1775fef27d9030d6a) update: The CHANGELOG.md updated. (@saeedtabrizi)
+
 ### v0.9.37 (2017/09/02 08:36 +00:00)
 - [b3ebe1e](https://github.com/nowcando/nowjs-core/commit/b3ebe1e0e67685109af50af9b3052ce67631480e) upgrade: Upgrade to 0.9.37 for patch and some bug fixes. (@saeedtabrizi)
 - [967f11a](https://github.com/nowcando/nowjs-core/commit/967f11aae12aa125ed9eda245f436cc421ee58a7) update: The CHANGELOG.md updated. (@saeedtabrizi)
