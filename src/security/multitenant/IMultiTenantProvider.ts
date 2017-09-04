@@ -20,18 +20,18 @@ export interface ITenant {
 }
 
 export interface IMultiTenantProvider<TTenant extends ITenant & IRowMeta> extends IProvider {
-        create(tenant: TTenant): Promise<TTenant>;
-        updateName(tenantID: IDType, tenantName: string): Promise<TTenant>;
-        updateOwnerUserID(tenantID: IDType, app: string, owneruserid: IDType): Promise<TTenant>;
-        getByID(tenantID: IDType, app: string): Promise<TTenant>;
-        getByToken(token: string): Promise<TTenant>;
-        getByCode(code: string): Promise<TTenant>;
-        getByOwnerUserID(userID: IDType): Promise<TTenant[]>;
-        updateToken(tenantID: IDType, app: string, token: string): Promise<TTenant>;
-        activate(tenantID: IDType, app: string, notes?: string): Promise<TTenant>;
-        suspend(tenantID: IDType, app: string, notes?: string): Promise<TTenant>;
-        expire(tenantID: IDType, app: string, notes?: string): Promise<TTenant>;
-        delete(tenantID: IDType, app: string): Promise<boolean>;
+        createTenant(tenant: TTenant): Promise<TTenant>;
+        updateTenantName(tenantID: IDType, tenantName: string): Promise<TTenant>;
+        updateTenantOwnerUserID(tenantID: IDType, app: string, owneruserid: IDType): Promise<TTenant>;
+        getTenantByID(tenantID: IDType, app: string): Promise<TTenant>;
+        getTenantByToken(token: string): Promise<TTenant>;
+        getTenantByCode(code: string): Promise<TTenant>;
+        getTenantByOwnerUserID(userID: IDType): Promise<TTenant[]>;
+        updateTenantToken(tenantID: IDType, app: string, token: string): Promise<TTenant>;
+        activateTenant(tenantID: IDType, app: string, notes?: string): Promise<TTenant>;
+        suspendTenant(tenantID: IDType, app: string, causeID: number , notes?: string): Promise<TTenant>;
+        expireTenant(tenantID: IDType, app: string, notes?: string): Promise<TTenant>;
+        deleteTenant(tenantID: IDType, app: string): Promise<boolean>;
         getTanants(options?: IQueryOptions): Promise<IQueryResult<TTenant>>;
-        isValidToken(tokenID: string): boolean;
+        isTenantValidToken(tokenID: string): boolean;
 }

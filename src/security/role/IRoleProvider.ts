@@ -6,9 +6,10 @@ import {  IRole } from "../index";
 export interface IRoleProvider<TRole extends IRole> extends IProvider {
 
         isExistsRole(tenantID: IDType, app: string, ...roles: string[]): Promise<boolean>;
-        addRole(tenantID: IDType, app: string , parentRole: string , ...roles: TRole[]): Promise<TRole[]>;
-        updateRole(tenantID: IDType, app: string, parentRole: string , ...roles: TRole[]): Promise<TRole[]>;
-        removeRole(tenantID: IDType, app: string, ...roles: string[]): Promise<boolean>;
+        createRole(tenantID: IDType, app: string , parentRole: string , role: TRole): Promise<TRole>;
+        updateRole(tenantID: IDType, app: string, parentRole: string , role: TRole): Promise<TRole>;
+        deleteRole(tenantID: IDType, app: string, role: string): Promise<boolean>;
+        getRoleByName(tenantID: IDType, app: string , roleName: string): Promise<TRole>;
         getRolesByName(tenantID: IDType, app: string , ...roleNames: string[]): Promise<TRole[]>;
 
         hasUserAnyRoles(tenantID: IDType, app: string, userid: IDType, ...roles: string[]): Promise<boolean>;
