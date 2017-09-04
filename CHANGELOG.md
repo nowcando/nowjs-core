@@ -1,6 +1,9 @@
 ## Change Log
 
-### upcoming (2017/09/04 23:30 +00:00)
+### v0.9.43 (2017/09/04 23:31 +00:00)
+- [3124675](https://github.com/nowcando/nowjs-core/commit/31246754bef7090e89836bf95177cfee41093c71) upgrade: Upgrade to 0.9.43 for patch and some bug fixes. (@saeedtabrizi)
+- [cd0031a](https://github.com/nowcando/nowjs-core/commit/cd0031a74dfb0bf869462510df76b7f99d5b15d5) update: The CHANGELOG.md updated. (@saeedtabrizi)
+- [c7967f5](https://github.com/nowcando/nowjs-core/commit/c7967f51e0bf5d75a30a9b5d818acbb3eeee439b) fix: update and rename method names . (@saeedtabrizi)
 - [768d58e](https://github.com/nowcando/nowjs-core/commit/768d58e1074c43c12640c122eb7b919acfc2494d) update: The CHANGELOG.md updated. (@saeedtabrizi)
 
 ### v0.9.42 (2017/09/04 20:00 +00:00)

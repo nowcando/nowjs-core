@@ -6,13 +6,13 @@ import { IQueryOptions, IQueryResult, IDType } from "../../data/index";
 export interface IResourceProvider<TResource> extends IProvider {
         isExistResources(tenantID: IDType, app: string, ...resources: string[]): Promise<boolean>;
         createResource(tenantID: IDType, app: string ,
-                       parentResourceID: IDType , resources: TResource): Promise<TResource>;
+                       parentResourceID: IDType , resource: TResource): Promise<TResource>;
         updateResource(tenantID: IDType, app: string,
-                       parentResourceID: IDType , resources: TResource): Promise<TResource>;
-        deleteResource(tenantID: IDType, app: string, resourceid: IDType[]): Promise<boolean>;
+                       parentResourceID: IDType , resource: TResource): Promise<TResource>;
+        deleteResource(tenantID: IDType, app: string, resourceid: IDType): Promise<boolean>;
         getResourcesByName(tenantID: IDType, app: string , ...resourceName: string[]): Promise<TResource[]>;
         getResourcesByID(tenantID: IDType, app: string , ...resourceID: IDType[]): Promise<TResource[]>;
-
+        getResources(options?: IQueryOptions): Promise<IQueryResult<TResource>>;
         hasGrantedAnyResources(tenantID: IDType, app: string, roleids: IDType[] ,
                                userids: IDType[], ...resources: string[]): Promise<boolean>;
         hasGrantedAllResources(tenantID: IDType, app: string, roleids: IDType[] ,
