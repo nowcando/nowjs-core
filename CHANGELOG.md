@@ -1,6 +1,9 @@
 ## Change Log
 
-### upcoming (2017/09/04 20:00 +00:00)
+### v0.9.42 (2017/09/04 20:00 +00:00)
+- [b11c654](https://github.com/nowcando/nowjs-core/commit/b11c654df7b46758eac9fb7e208f5d4705a46c2a) upgrade: Upgrade to 0.9.42 for patch and some bug fixes. (@saeedtabrizi)
+- [8b862d0](https://github.com/nowcando/nowjs-core/commit/8b862d02f3c4cf7b8cf1643cdfc38d2e2a80ac33) update: The CHANGELOG.md updated. (@saeedtabrizi)
+- [d730f9c](https://github.com/nowcando/nowjs-core/commit/d730f9c3863c82bde2a2ebc2ef8bb7441ee99897) fix: some changes in membership, role and claim providers . (@saeedtabrizi)
 - [70061f4](https://github.com/nowcando/nowjs-core/commit/70061f4757b52a8e129523e081834b15a3ac1180) update: The CHANGELOG.md updated. (@saeedtabrizi)
 
 ### v0.9.41 (2017/09/04 00:41 +00:00)
