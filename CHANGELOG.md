@@ -1,5 +1,16 @@
 ## Change Log
 
+### v0.9.41 (2017/09/04 00:41 +00:00)
+- [fd43f50](https://github.com/nowcando/nowjs-core/commit/fd43f504a01e73836bc7ad12c324c4260b579437) upgrade: Upgrade to 0.9.41 for patch and some bug fixes. (@saeedtabrizi)
+- [09861e0](https://github.com/nowcando/nowjs-core/commit/09861e0d640f3fbd9fa682ef927c1291805755be) update: The CHANGELOG.md updated. (@saeedtabrizi)
+
+### v0.9.40 (2017/09/04 00:39 +00:00)
+- [8d74519](https://github.com/nowcando/nowjs-core/commit/8d74519add310103d6500fb0974186d539fd7f8e) upgrade: Upgrade to 0.9.40 for patch and some bug fixes. (@saeedtabrizi)
+- [b1b0018](https://github.com/nowcando/nowjs-core/commit/b1b00188f4c29205bc8face204408d9a794bcac2) update: The CHANGELOG.md updated. (@saeedtabrizi)
+- [18614b4](https://github.com/nowcando/nowjs-core/commit/18614b4a4c102582af661746968c8199cc7a7ce3) fix: add some filtering operator. (@saeedtabrizi)
+- [63307de](https://github.com/nowcando/nowjs-core/commit/63307de73c98460f47d2d452546061fdf28824d9) fix: some type enhancments in IQueryOptions . (@saeedtabrizi)
+- [352bd05](https://github.com/nowcando/nowjs-core/commit/352bd055c744fe35148a8c51dfed5e48ac5c81b7) update: The CHANGELOG.md updated. (@saeedtabrizi)
+
 ### v0.9.39 (2017/09/03 14:59 +00:00)
 - [7d635f1](https://github.com/nowcando/nowjs-core/commit/7d635f16f97c081e700098debb8fcfae79eb2b63) upgrade: Upgrade to 0.9.39 for patch and some bug fixes. (@saeedtabrizi)
 - [2281653](https://github.com/nowcando/nowjs-core/commit/228165309fc70c42425872c12d19cf275742d849) update: The CHANGELOG.md updated. (@saeedtabrizi)
