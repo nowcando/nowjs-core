@@ -25,6 +25,7 @@ export interface IGeoCoordinate {
 
 export interface IDataField {
     Field: string; Title: string; Alias?: string;
+    Type?: string;
     Order?: number; Dir?: "asc" | "desc" | "";
     Default?: any; Validators?: string[];
     Formatters?: string[];
@@ -42,10 +43,10 @@ export interface IQueryOptions {
     Grouping?: Array<{ Field: string }>;
     Filtering?: Array<{
         Op: "and" | "or" | "", Conditions: Array<{
-            Field: string, Op: "equals"|
-            "notequals"|"great"|"greatorequal"|"less"|"lessorequal"|
-            "startswith"|"endswith"|"containsany"|"containsall"|"fuzzycontains"|
-            "notcontainsany"|"notcontainsall"|"haspattern"|"hasnotpattern"
+            Field: string, Op: "equals"| "is"| "type" |
+            "notequals"|"great"|"greatorequal"|"less"|"lessorequal"| "null"| "notnull"|
+            "startswith"|"endswith"|"containsany"|"containsall"|"containsfuzzy"|
+            "notcontainsany"|"notcontainsall"|"haspattern"|"hasnotpattern"|"between"
             Value: any, Default?: any,
         }>,
     }>;
