@@ -1,5 +1,8 @@
 ## Change Log
 
+### upcoming (2017/09/04 00:39 +00:00)
+- [352bd05](https://github.com/nowcando/nowjs-core/commit/352bd055c744fe35148a8c51dfed5e48ac5c81b7) update: The CHANGELOG.md updated. (@saeedtabrizi)
+
 ### v0.9.39 (2017/09/03 14:59 +00:00)
 - [7d635f1](https://github.com/nowcando/nowjs-core/commit/7d635f16f97c081e700098debb8fcfae79eb2b63) upgrade: Upgrade to 0.9.39 for patch and some bug fixes. (@saeedtabrizi)
 - [2281653](https://github.com/nowcando/nowjs-core/commit/228165309fc70c42425872c12d19cf275742d849) update: The CHANGELOG.md updated. (@saeedtabrizi)
