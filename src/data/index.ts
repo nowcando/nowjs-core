@@ -25,27 +25,31 @@ export interface IGeoCoordinate {
 
 export interface IDataField {
     Field: string; Title: string; Alias?: string;
-    Order?: number; Dir?: "ASC" | "DESC";
+    Order?: number; Dir?: "asc" | "desc" | "";
     Default?: any; Validators?: string[];
     Formatters?: string[];
 }
 
 export interface IQueryOptions {
+    AllowFields?: boolean;
     AllowPaging?: boolean;
     AllowGroupig?: boolean;
     AllowFiltering?: boolean;
     AllowOrdering?: boolean;
     AllowExtras?: boolean;
-
+    Fields?: IDataField[];
     Paging?: { Index?: number, Size?: number };
     Grouping?: Array<{ Field: string }>;
     Filtering?: Array<{
-        Op: "AND" | "OR" | "", Conds: Array<{
-            Field: string, Op: string,
+        Op: "and" | "or" | "", Conditions: Array<{
+            Field: string, Op: "equals"|
+            "notequals"|"great"|"greatorequal"|"less"|"lessorequal"|
+            "startswith"|"endswith"|"containsany"|"containsall"|"fuzzycontains"|
+            "notcontainsany"|"notcontainsall"|"haspattern"|"hasnotpattern"
             Value: any, Default?: any,
         }>,
     }>;
-    Ordering?: Array<{ Field: string, Dir: "ASC" | "DESC" }>;
+    Ordering?: Array<{ Field: string, Dir: "asc" | "desc" }>;
     Extras?: {
         Parallel?: boolean,
         Timeout?: number,
@@ -57,7 +61,7 @@ export interface IQueryResult<T> {
     Fields?: IDataField[];
     QueryOptions?: IQueryOptions;
     TotalCount?: number;
-    Duraion?: number;
+    Duration?: number;
     StartedAt?: Date;
     FinishedAt?: Date;
     Data: T | T[];
