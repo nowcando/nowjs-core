@@ -1,5 +1,5 @@
 
-export class ScopeClaim {
+export class ClaimScopeItem {
     constructor(private name: string, private alwaysInclude: boolean) {
 
     }

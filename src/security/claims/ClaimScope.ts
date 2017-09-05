@@ -1,13 +1,13 @@
 
-import { ScopeClaim } from "./ScopeClaim";
+import { ClaimScopeItem } from "./ClaimScopeItem";
 export const CLAIM_SCOPE_TYPE_IDENTITY = "identity";
 export const CLAIM_SCOPE_TYPE_RESOURCE = "resource";
 
-export class Scope {
+export class ClaimScope {
     constructor(private name: string,
                 private type: string = CLAIM_SCOPE_TYPE_RESOURCE,
                 private enabled: boolean = true,
-                private claims: ScopeClaim[] = [] ,
+                private claims: ClaimScopeItem[] = [] ,
                 private required: boolean = false) {
 
     }
@@ -23,7 +23,7 @@ export class Scope {
     public get Required(): boolean{
         return this.required;
     }
-    public get Claims(): ScopeClaim[]{
+    public get Claims(): ClaimScopeItem[]{
         return this.claims;
     }
 }

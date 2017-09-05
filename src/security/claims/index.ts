@@ -1,5 +1,5 @@
-export * from "./Scope" ;
-export * from "./ScopeClaim" ;
+export * from "./ClaimScope" ;
+export * from "./ClaimScopeItem" ;
 export * from "./Claim" ;
 export * from "./ClaimsPrincipal" ;
 export * from "./ClaimsIdentity" ;
