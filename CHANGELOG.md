@@ -1,5 +1,10 @@
 ## Change Log
 
+### v0.9.45 (2017/09/05 22:40 +00:00)
+- [565343b](https://github.com/nowcando/nowjs-core/commit/565343ba548183e429d00de3e83941b9994e92a3) upgrade: Upgrade to 0.9.45 for patch and some bug fixes. (@saeedtabrizi)
+- [7e6fc4f](https://github.com/nowcando/nowjs-core/commit/7e6fc4ffccede07cee1888ca2c5f33e2f871a72a) update: The CHANGELOG.md updated. (@saeedtabrizi)
+- [81eca9a](https://github.com/nowcando/nowjs-core/commit/81eca9ae27e695c6ec98f7cb8a155cde10bde769) fix: rename claimscope and add some variation of claim providers . (@saeedtabrizi)
+
 ### v0.9.44 (2017/09/04 23:37 +00:00)
 - [9bb8613](https://github.com/nowcando/nowjs-core/commit/9bb8613be03cc61fda9faaa9260cf6d585b5b8c7) upgrade: Upgrade to 0.9.44 for patch and some bug fixes. (@saeedtabrizi)
 - [606a5f2](https://github.com/nowcando/nowjs-core/commit/606a5f22273b592723f4102d02b3103877093102) update: The CHANGELOG.md updated. (@saeedtabrizi)
