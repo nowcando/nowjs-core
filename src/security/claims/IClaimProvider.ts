@@ -36,7 +36,7 @@ export interface IRoleClaimProvider<TClaim extends Claim,
                         ...claims: TClaim[]): Promise<boolean>;
 }
 
-export interface IRoleClaimProvider<TClaim extends Claim,
+export interface ITenantClaimProvider<TClaim extends Claim,
 TScope extends ClaimScope> extends IClaimProvider<TClaim, TScope> {
         getTenantClaims(tenantID: IDType, app: string, scopes: string[],
                         ...types: string[]): Promise<Array<ClaimScopePair<TClaim>>>;
