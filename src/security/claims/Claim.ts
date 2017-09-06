@@ -141,4 +141,24 @@ export class Claim {
     public get ValueType(): string {
         return (typeof this.value);
     }
+
+    public toJSON(): string {
+        const obj: any = {};
+        obj.Value = this.value;
+        obj.Type = this.type;
+        obj.ValueType = this.ValueType;
+        if (this.issuer) {
+            obj.Issuer = this.issuer;
+        }
+        if (this.properties) {
+            obj.Properties = this.properties;
+        }
+        if (this.originalIssuer) {
+            obj.OriginalIssuer = this.originalIssuer;
+        }
+        if (this.subject) {
+            obj.Subject = this.subject;
+        }
+        return JSON.stringify(obj);
+    }
 }

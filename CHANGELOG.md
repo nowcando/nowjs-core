@@ -1,5 +1,16 @@
 ## Change Log
 
+### v0.9.47 (2017/09/06 14:13 +00:00)
+- [af8d062](https://github.com/nowcando/nowjs-core/commit/af8d062a43ea85bdd05f24fff81098edfed98827) upgrade: Upgrade to 0.9.47 for patch and some bug fixes. (@saeedtabrizi)
+- [8f0ede8](https://github.com/nowcando/nowjs-core/commit/8f0ede81feea4a5316dc4205f746d2969a496004) update: The CHANGELOG.md updated. (@saeedtabrizi)
+- [eb715ac](https://github.com/nowcando/nowjs-core/commit/eb715ace0fcabe4be2111f88c7e9bda20991072c) feat: add ClaimToken . (@saeedtabrizi)
+- [ddce0c9](https://github.com/nowcando/nowjs-core/commit/ddce0c989f31eed2e05168d1ecd7c1bac235e577) feat: add ScopeClaim . fix IClaimProvider methods . (@saeedtabrizi)
+
+### v0.9.46 (2017/09/05 23:01 +00:00)
+- [e1fa5fd](https://github.com/nowcando/nowjs-core/commit/e1fa5fdb11ce81134eeeae415f94f82056cdfbe9) upgrade: Upgrade to 0.9.46 for patch and some bug fixes. (@saeedtabrizi)
+- [fe75e32](https://github.com/nowcando/nowjs-core/commit/fe75e32709e9501159a142a6f5ee5a827b0cc925) update: The CHANGELOG.md updated. (@saeedtabrizi)
+- [23d0b84](https://github.com/nowcando/nowjs-core/commit/23d0b84db0da8fb740e700d69836c828904ee023) fix: ITenantClaimProvider fixed . (@saeedtabrizi)
+
 ### v0.9.45 (2017/09/05 22:40 +00:00)
 - [565343b](https://github.com/nowcando/nowjs-core/commit/565343ba548183e429d00de3e83941b9994e92a3) upgrade: Upgrade to 0.9.45 for patch and some bug fixes. (@saeedtabrizi)
 - [7e6fc4f](https://github.com/nowcando/nowjs-core/commit/7e6fc4ffccede07cee1888ca2c5f33e2f871a72a) update: The CHANGELOG.md updated. (@saeedtabrizi)
@@ -288,8 +299,8 @@
 - [#8](https://github.com/nowcando/nowjs-core/pull/8) Merge pull request #8 from nowcando/0.1.7 (@nowcando)
 - [c0ac4f7](https://github.com/nowcando/nowjs-core/commit/c0ac4f7d75bafd58c9e1aec87a7a73c85e177e47) add some linq methods (@saeedtabrizi)
 - [dc68cf2](https://github.com/nowcando/nowjs-core/commit/dc68cf2861eecbbeddc856e8b7ee93023cfaa0c3) add some linq methods (@saeedtabrizi)
-- [fd198cd](https://github.com/nowcando/nowjs-core/commit/fd198cd9649c9364665c7a24e228c60d5cdb4790) travis-ci test process added . (@saeedtabrizi)
 - [1c59e80](https://github.com/nowcando/nowjs-core/commit/1c59e80e55082894f0501568dae9241677960e1b) modify README (@saeedtabrizi)
+- [fd198cd](https://github.com/nowcando/nowjs-core/commit/fd198cd9649c9364665c7a24e228c60d5cdb4790) travis-ci test process added . (@saeedtabrizi)
 - [14c5b30](https://github.com/nowcando/nowjs-core/commit/14c5b307e1c74416299351f0a81506b91f8a0f3e) validation added . (@saeedtabrizi)
 - [#7](https://github.com/nowcando/nowjs-core/pull/7) Merge pull request #7 from nowcando/0.1.62 (@nowcando)
 - [210c225](https://github.com/nowcando/nowjs-core/commit/210c225a9669c50091e8d810dcd7cc6033963052) modify README (@saeedtabrizi)
