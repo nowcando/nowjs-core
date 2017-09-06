@@ -8,3 +8,4 @@ export * from "./ClaimProvider" ;
 export * from "./ClaimsAuthorizationProvider" ;
 export * from "./IClaimsPrincipal" ;
 export * from "./IClaimsIdentity" ;
+export * from "./ScopeClaim" ;
