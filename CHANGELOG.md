@@ -1,5 +1,10 @@
 ## Change Log
 
+### v0.9.48 (2017/09/06 14:39 +00:00)
+- [98fdce2](https://github.com/nowcando/nowjs-core/commit/98fdce25b9a52a8b9d0e74e1338f4a1280a2af01) upgrade: Upgrade to 0.9.48 for patch and some bug fixes. (@saeedtabrizi)
+- [b467566](https://github.com/nowcando/nowjs-core/commit/b467566149665f4230541c9eb2905bf2422272bc) update: The CHANGELOG.md updated. (@saeedtabrizi)
+- [db5ffd8](https://github.com/nowcando/nowjs-core/commit/db5ffd878c2c1f3471c4cfe36626ed39d2c7942e) fix : add ClaimToken (@saeedtabrizi)
+
 ### v0.9.47 (2017/09/06 14:13 +00:00)
 - [af8d062](https://github.com/nowcando/nowjs-core/commit/af8d062a43ea85bdd05f24fff81098edfed98827) upgrade: Upgrade to 0.9.47 for patch and some bug fixes. (@saeedtabrizi)
 - [8f0ede8](https://github.com/nowcando/nowjs-core/commit/8f0ede81feea4a5316dc4205f746d2969a496004) update: The CHANGELOG.md updated. (@saeedtabrizi)
