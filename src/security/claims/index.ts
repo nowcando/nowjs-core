@@ -1,5 +1,7 @@
 export * from "./ClaimScope" ;
 export * from "./ClaimScopeItem" ;
+export * from "./ScopeClaim" ;
+export * from "./ClaimToken" ;
 export * from "./Claim" ;
 export * from "./ClaimsPrincipal" ;
 export * from "./ClaimsIdentity" ;
@@ -8,4 +10,3 @@ export * from "./ClaimProvider" ;
 export * from "./ClaimsAuthorizationProvider" ;
 export * from "./IClaimsPrincipal" ;
 export * from "./IClaimsIdentity" ;
-export * from "./ScopeClaim" ;
