@@ -1,5 +1,10 @@
 ## Change Log
 
+### v0.9.49 (2017/09/06 15:32 +00:00)
+- [18ca650](https://github.com/nowcando/nowjs-core/commit/18ca650a528c8baffd4c3e6b5a2391216ad401cb) upgrade: Upgrade to 0.9.49 for patch and some bug fixes. (@saeedtabrizi)
+- [1551384](https://github.com/nowcando/nowjs-core/commit/1551384db9ee5dfab3c5631f93e117ae00a69e0f) update: The CHANGELOG.md updated. (@saeedtabrizi)
+- [1569de1](https://github.com/nowcando/nowjs-core/commit/1569de154c95710b67ae95328bec361146e3ec43) fix: IClaimProvider fixed . (@saeedtabrizi)
+
 ### v0.9.48 (2017/09/06 14:39 +00:00)
 - [98fdce2](https://github.com/nowcando/nowjs-core/commit/98fdce25b9a52a8b9d0e74e1338f4a1280a2af01) upgrade: Upgrade to 0.9.48 for patch and some bug fixes. (@saeedtabrizi)
 - [b467566](https://github.com/nowcando/nowjs-core/commit/b467566149665f4230541c9eb2905bf2422272bc) update: The CHANGELOG.md updated. (@saeedtabrizi)
