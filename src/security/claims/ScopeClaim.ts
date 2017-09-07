@@ -10,7 +10,7 @@ export class ScopeClaim<TClaim extends Claim> {
         return this.claims;
     }
     public setClaim(...claims: TClaim[]): this {
-        for (const claim of claims){
+        for (const claim of claims) {
             const ix = this.findClaimIndex(claim);
             if (ix >= 0) {
                 this.claims[ix] = claim;
@@ -30,17 +30,22 @@ export class ScopeClaim<TClaim extends Claim> {
     }
 
     public findClaimIndex(claim: TClaim): number {
-        return this.claims.findIndex((item) => { return item.Type === claim.Type &&
-            item.Value === claim.Value &&
-            item.Issuer === claim.Issuer &&
-            item.OriginalIssuer === claim.OriginalIssuer &&
-            item.Properties === claim.Properties &&
-            item.ValueType === claim.ValueType &&
-            item.Subject === claim.Subject ; });
+        return this.claims.findIndex((item) => {
+            return item.Type === claim.Type &&
+                item.Value === claim.Value &&
+                item.Issuer === claim.Issuer &&
+                item.OriginalIssuer === claim.OriginalIssuer &&
+                item.Properties === claim.Properties &&
+                item.ValueType === claim.ValueType &&
+                item.Subject === claim.Subject;
+        });
     }
     public toJSON(): object {
-        const obj: any = { };
-        obj[this.name] = this.claims || [];
+        const obj: any = {};
+        obj[this.name] = [];
+        for (const claim of this.claims) {
+            obj[this.name].push(claim.toJSON());
+        }
         return obj;
     }
 }
