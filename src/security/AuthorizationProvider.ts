@@ -12,10 +12,16 @@ export class AuthorizationProvider {
     ProviderManager.clear(TYPE_AUTHORIZATION_PROVIDER);
   }
   // tslint:disable-next-line:member-ordering
-  public static get(name?: string): IAuthorizationProvider {
-    return ProviderManager.get<IAuthorizationProvider>(TYPE_AUTHORIZATION_PROVIDER, name);
+  public static get<T extends IAuthorizationProvider>(name?: string): T {
+    return ProviderManager.get<T>(TYPE_AUTHORIZATION_PROVIDER, name);
+  }
+  public static count(): number {
+    return ProviderManager.countByType(TYPE_AUTHORIZATION_PROVIDER);
   }
 
+  public static getNames(): string[] {
+    return ProviderManager.getNamesByType(TYPE_AUTHORIZATION_PROVIDER);
+  }
   public static remove(name: string): boolean {
     return ProviderManager.remove(TYPE_AUTHORIZATION_PROVIDER, name);
   }

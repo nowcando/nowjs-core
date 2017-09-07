@@ -142,7 +142,7 @@ export class Claim {
         return (typeof this.value);
     }
 
-    public toJSON(): string {
+    public toJSON(): object {
         const obj: any = {};
         obj.Value = this.value;
         obj.Type = this.type;
@@ -159,6 +159,6 @@ export class Claim {
         if (this.subject) {
             obj.Subject = this.subject;
         }
-        return JSON.stringify(obj);
+        return obj;
     }
 }

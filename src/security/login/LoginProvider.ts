@@ -12,8 +12,16 @@ export class LoginProvider {
     ProviderManager.clear(TYPE_LOGIN_PROVIDER);
   }
   // tslint:disable-next-line:member-ordering
-  public static get(name?: string): ILoginProvider<any> {
-    return ProviderManager.get<ILoginProvider<any>>(TYPE_LOGIN_PROVIDER, name);
+  public static get<T extends ILoginProvider<any>>(name?: string): T {
+    return ProviderManager.get<T>(TYPE_LOGIN_PROVIDER, name);
+  }
+
+  public static count(): number {
+    return ProviderManager.countByType(TYPE_LOGIN_PROVIDER);
+  }
+
+  public static getNames(): string[] {
+    return ProviderManager.getNamesByType(TYPE_LOGIN_PROVIDER);
   }
 
   public static remove(name: string): boolean {

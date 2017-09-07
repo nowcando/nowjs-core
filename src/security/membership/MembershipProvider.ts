@@ -12,9 +12,16 @@ export class MembershipProvider {
   public static clear(): void {
     ProviderManager.clear(TYPE_MEMBERSHIP_PROVIDER);
   }
+  public static count(): number {
+    return ProviderManager.countByType(TYPE_MEMBERSHIP_PROVIDER);
+  }
+
+  public static getNames(): string[] {
+    return ProviderManager.getNamesByType(TYPE_MEMBERSHIP_PROVIDER);
+  }
   // tslint:disable-next-line:member-ordering
-  public static get(name?: string): IMembershipProvider<any, any, any> {
-    return ProviderManager.get<IMembershipProvider<any, any, any>>(TYPE_MEMBERSHIP_PROVIDER, name);
+  public static get<T extends IMembershipProvider<any, any, any>>(name?: string): T  {
+    return ProviderManager.get<T>(TYPE_MEMBERSHIP_PROVIDER, name);
   }
 
   public static remove(name: string): boolean {
