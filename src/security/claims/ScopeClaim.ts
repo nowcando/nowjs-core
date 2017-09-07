@@ -9,12 +9,14 @@ export class ScopeClaim<TClaim extends Claim> {
     public get Claims(): TClaim[] {
         return this.claims;
     }
-    public setClaim(claim: TClaim): this {
-        const ix = this.findClaimIndex(claim);
-        if (ix >= 0) {
-            this.claims[ix] = claim;
-        } else {
-            this.claims.push(claim);
+    public setClaim(...claims: TClaim[]): this {
+        for (const claim of claims){
+            const ix = this.findClaimIndex(claim);
+            if (ix >= 0) {
+                this.claims[ix] = claim;
+            } else {
+                this.claims.push(claim);
+            }
         }
         return this;
     }
@@ -35,5 +37,10 @@ export class ScopeClaim<TClaim extends Claim> {
             item.Properties === claim.Properties &&
             item.ValueType === claim.ValueType &&
             item.Subject === claim.Subject ; });
+    }
+    public toJSON(): object {
+        const obj: any = { };
+        obj[this.name] = this.claims || [];
+        return obj;
     }
 }
