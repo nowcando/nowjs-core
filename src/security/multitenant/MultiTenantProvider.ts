@@ -11,9 +11,16 @@ export class MultiTenantProvider {
   public static clear(): void {
     ProviderManager.clear(TYPE_MULTITENANT_PROVIDER);
   }
+  public static count(): number {
+    return ProviderManager.countByType(TYPE_MULTITENANT_PROVIDER);
+  }
+
+  public static getNames(): string[] {
+    return ProviderManager.getNamesByType(TYPE_MULTITENANT_PROVIDER);
+  }
   // tslint:disable-next-line:member-ordering
-  public static get(name?: string): IMultiTenantProvider<any> {
-    return ProviderManager.get<IMultiTenantProvider<any>>(TYPE_MULTITENANT_PROVIDER, name);
+  public static get<T extends IMultiTenantProvider<any>>(name?: string): T {
+    return ProviderManager.get<T>(TYPE_MULTITENANT_PROVIDER, name);
   }
 
   public static remove(name: string): boolean {

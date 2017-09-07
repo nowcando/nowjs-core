@@ -12,8 +12,16 @@ export class ClaimProvider {
     ProviderManager.clear(TYPE_CLAIM_PROVIDER);
   }
   // tslint:disable-next-line:member-ordering
-  public static get(name?: string): IClaimProvider<any, any> {
-    return ProviderManager.get<IClaimProvider<any, any>>(TYPE_CLAIM_PROVIDER, name);
+  public static get<T extends IClaimProvider<any, any>>(name?: string): T {
+    return ProviderManager.get<T>(TYPE_CLAIM_PROVIDER, name);
+  }
+
+  public static count(): number {
+    return ProviderManager.countByType(TYPE_CLAIM_PROVIDER);
+  }
+
+  public static getNames(): string[] {
+    return ProviderManager.getNamesByType(TYPE_CLAIM_PROVIDER);
   }
 
   public static remove(name: string): boolean {

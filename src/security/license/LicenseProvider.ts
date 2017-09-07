@@ -11,9 +11,17 @@ export class LicenseProvider {
   public static clear(): void {
     ProviderManager.clear(TYPE_LICENSE_PROVIDER);
   }
+
+  public static count(): number {
+    return ProviderManager.countByType(TYPE_LICENSE_PROVIDER);
+  }
+
+  public static getNames(): string[] {
+    return ProviderManager.getNamesByType(TYPE_LICENSE_PROVIDER);
+  }
   // tslint:disable-next-line:member-ordering
-  public static get(name?: string): ILicenseProvider<any> {
-    return ProviderManager.get<ILicenseProvider<any>>(TYPE_LICENSE_PROVIDER, name);
+  public static get<T extends ILicenseProvider<any>>(name?: string): T {
+    return ProviderManager.get<T>(TYPE_LICENSE_PROVIDER, name);
   }
 
   public static remove(name: string): boolean {
