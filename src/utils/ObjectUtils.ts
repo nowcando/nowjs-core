@@ -326,9 +326,11 @@ export function deepAssign<T>(target: T, ...sources: any[]): T & any {
         for (const key in source) {
             // tslint:disable-next-line:curly
             if (!source.hasOwnProperty(key)) continue;
-            if (isObjectType(source[key])) {
+            if (isObjectType(source[key]) && Object.keys(source[key]).length > 0) {
                 // tslint:disable-next-line:curly
-                if (!(target as any)[key]) Object.assign(target, { [key]: {} });
+                if (!(target as any)[key]) {
+                    Object.assign(target, { [key]: {} }) ;
+                }
                 deepAssign((target as any)[key], (source as any)[key]);
             } else {
                 Object.assign(target, { [key]: source[key] });

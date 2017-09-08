@@ -1,5 +1,14 @@
 ## Change Log
 
+### v0.9.51 (2017/09/07 23:27 +00:00)
+- [24b7e68](https://github.com/nowcando/nowjs-core/commit/24b7e685b7c49086d9d39bc77f701140f105204d) upgrade: Upgrade to 0.9.51 for patch and some bug fixes. (@saeedtabrizi)
+- [28e542e](https://github.com/nowcando/nowjs-core/commit/28e542ee8d6911e13c89b8319d282cd7099c3b95) update: The CHANGELOG.md updated. (@saeedtabrizi)
+- [f467a9d](https://github.com/nowcando/nowjs-core/commit/f467a9dd7982a67cada013885104cce93227da92) fix: remove scope from parameters and add get ScopClaims Methods . (@saeedtabrizi)
+- [1003f32](https://github.com/nowcando/nowjs-core/commit/1003f32d47a325b9d0b931813470f00c76e5d436) test: add some test for ClaimScope (@saeedtabrizi)
+- [43ec289](https://github.com/nowcando/nowjs-core/commit/43ec28911acd93600ce3a92e38b5e411a3446352) fix: toJSON method added for true json serialization. (@saeedtabrizi)
+- [e9a05d2](https://github.com/nowcando/nowjs-core/commit/e9a05d2158961990f6c6dbcce5cd658e206883cb) test: add more test for claims . toJSON and stringify test added. (@saeedtabrizi)
+- [b21b08d](https://github.com/nowcando/nowjs-core/commit/b21b08d52cd2ea08daf0f8c2eb28d714a3a5fd1d) feat: add provider getNames and count methods . (@saeedtabrizi)
+
 ### v0.9.50 (2017/09/06 15:55 +00:00)
 - [fd82ec9](https://github.com/nowcando/nowjs-core/commit/fd82ec9526784399df71305643b2892687250cd0) upgrade: Upgrade to 0.9.50 for patch and some bug fixes. (@saeedtabrizi)
 - [85131bf](https://github.com/nowcando/nowjs-core/commit/85131bfc90c8fb171e07fd18df20c1efbfb52761) update: The CHANGELOG.md updated. (@saeedtabrizi)

@@ -5,10 +5,11 @@ export const CLAIM_SCOPE_TYPE_RESOURCE = "resource";
 
 export class ClaimScope {
     constructor(private name: string,
+                private claims: ClaimScopeItem[] = [] ,
                 private type: string = CLAIM_SCOPE_TYPE_RESOURCE,
                 private enabled: boolean = true,
-                private claims: ClaimScopeItem[] = [] ,
-                private required: boolean = false) {
+                private required: boolean = false,
+                ) {
 
     }
     public get Type(): string{
@@ -25,5 +26,15 @@ export class ClaimScope {
     }
     public get Claims(): ClaimScopeItem[]{
         return this.claims;
+    }
+
+    public toJSON(): object {
+        return {Name: this.Name,
+                // tslint:disable-next-line:object-literal-sort-keys
+                Claims: this.claims,
+                Type: this.Type,
+                Required: this.Required,
+                Enabled: this.Enabled,
+            };
     }
 }
