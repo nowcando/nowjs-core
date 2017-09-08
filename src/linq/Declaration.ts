@@ -12,7 +12,7 @@ declare global {
         linq(): IQueryable<T>;
         plinq(): IParallelQueryable<T>;
     } */
-    export interface Array<T> {
+    interface Array<T> {
         contains(obj: T): boolean;
         linq(): IQueryable<T>;
         plinq(): IParallelQueryable<T>;
