@@ -13,10 +13,10 @@ export class ClaimScope {
 
     }
     public get Type(): string{
-        return this.name;
+        return this.type;
     }
     public get Name(): string{
-        return this.type;
+        return this.name;
     }
     public get Enabled(): boolean{
         return this.enabled;
