@@ -1,5 +1,14 @@
 ## Change Log
 
+### v0.9.52 (2017/09/08 15:58 +00:00)
+- [fdded3e](https://github.com/nowcando/nowjs-core/commit/fdded3ec92a825c4e0ed7b8e54fdad2eb66726b6) upgrade: Upgrade to 0.9.52 for patch and some bug fixes. (@saeedtabrizi)
+- [befcbaf](https://github.com/nowcando/nowjs-core/commit/befcbaf51ab2ffd0a9bc8d152a7eeaa4f7311d4e) update: The CHANGELOG.md updated. (@saeedtabrizi)
+- [b06c96d](https://github.com/nowcando/nowjs-core/commit/b06c96de11d96bda58471a5d8f853e94cfab2168) fix: some fix in declaration . (@saeedtabrizi)
+- [a9002d9](https://github.com/nowcando/nowjs-core/commit/a9002d9999750749e9f98654548a0cc2a7e5f714) feat: add toJSON to ClaimScope and ClaimScopeItem. (@saeedtabrizi)
+- [4295379](https://github.com/nowcando/nowjs-core/commit/4295379d54cf514dd05f002b65dd77afdde1ef47) test: add some test to deepAssign . (@saeedtabrizi)
+- [626589b](https://github.com/nowcando/nowjs-core/commit/626589b62944f74bef515e4be2b545f864e9c041) fix: deleartion for linq in Array . (@saeedtabrizi)
+- [33781c4](https://github.com/nowcando/nowjs-core/commit/33781c44278f6ef48a8425add02a689045342d06) fix: deepAssign for date and non keys objects . (@saeedtabrizi)
+
 ### v0.9.51 (2017/09/07 23:27 +00:00)
 - [24b7e68](https://github.com/nowcando/nowjs-core/commit/24b7e685b7c49086d9d39bc77f701140f105204d) upgrade: Upgrade to 0.9.51 for patch and some bug fixes. (@saeedtabrizi)
 - [28e542e](https://github.com/nowcando/nowjs-core/commit/28e542ee8d6911e13c89b8319d282cd7099c3b95) update: The CHANGELOG.md updated. (@saeedtabrizi)
@@ -323,8 +332,8 @@
 - [c0ac4f7](https://github.com/nowcando/nowjs-core/commit/c0ac4f7d75bafd58c9e1aec87a7a73c85e177e47) add some linq methods (@saeedtabrizi)
 - [dc68cf2](https://github.com/nowcando/nowjs-core/commit/dc68cf2861eecbbeddc856e8b7ee93023cfaa0c3) add some linq methods (@saeedtabrizi)
 - [1c59e80](https://github.com/nowcando/nowjs-core/commit/1c59e80e55082894f0501568dae9241677960e1b) modify README (@saeedtabrizi)
-- [fd198cd](https://github.com/nowcando/nowjs-core/commit/fd198cd9649c9364665c7a24e228c60d5cdb4790) travis-ci test process added . (@saeedtabrizi)
 - [14c5b30](https://github.com/nowcando/nowjs-core/commit/14c5b307e1c74416299351f0a81506b91f8a0f3e) validation added . (@saeedtabrizi)
+- [fd198cd](https://github.com/nowcando/nowjs-core/commit/fd198cd9649c9364665c7a24e228c60d5cdb4790) travis-ci test process added . (@saeedtabrizi)
 - [#7](https://github.com/nowcando/nowjs-core/pull/7) Merge pull request #7 from nowcando/0.1.62 (@nowcando)
 - [210c225](https://github.com/nowcando/nowjs-core/commit/210c225a9669c50091e8d810dcd7cc6033963052) modify README (@saeedtabrizi)
 - [#6](https://github.com/nowcando/nowjs-core/pull/6) Merge pull request #6 from nowcando/0.1.61 (@nowcando)
