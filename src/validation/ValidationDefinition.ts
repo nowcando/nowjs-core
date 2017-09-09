@@ -6,17 +6,18 @@ import {
     EmailValidator, EqualToValidator, FunctionValidator,
     GreaterToValidator, GreatOrEqualToValidator, InLengthValidator,
     InRangeValidator, InValidator, IPValidator,
-    IPValidatorOptions, JsonValidator,
-    LesserToValidator, LessOrEqualToValidator,
-    MaxValidator, MinValidator,
-    MobileValidator, NegativeValidator, NotContainsValidator,
-    NotEqualToValidator, NotInValidator, NSIDValidator,
-    NumberValidator, NumericValidator, NumericValidatorStyle,
-    ObjectValidator, PatternValidator, PhoneValidator,
-    PositiveValidator, PostalCodeValidator, RequiredValidator,
-    StrictValidator, StringValidator,
-    UrlValidator, UrlValidatorOptions, Validation,
-    VALIDATION_DEFINIIONITEM_KEY, ValidatorBase, ValueTypeValidator,
+    IPValidatorOptions, JsonSchemaValidator,
+    JsonValidator, LesserToValidator,
+    LessOrEqualToValidator, MaxValidator,
+    MinValidator, MobileValidator, NegativeValidator,
+    NotContainsValidator, NotEqualToValidator, NotInValidator,
+    NSIDValidator, NumberValidator, NumericValidator,
+    NumericValidatorStyle, ObjectValidator, PatternValidator,
+    PhoneValidator, PositiveValidator, PostalCodeValidator,
+    RequiredValidator, StrictValidator,
+    StringValidator, UrlValidator, UrlValidatorOptions,
+    Validation, VALIDATION_DEFINIIONITEM_KEY,
+    ValidatorBase, ValueTypeValidator,
 } from "./index";
 // tslint:disable:one-variable-per-declaration
 // tslint:disable:no-empty
@@ -68,6 +69,22 @@ export class ValidationDefinition {
             message = arg0;
         }
         this.definitions.get(this.currentName).push(new RequiredValidator(message));
+        return this;
+    }
+
+    public isJsonSchema(json: any): ValidationDefinition;
+    public isJsonSchema(schema: object|string, errorMessage?: StringFormatType): ValidationDefinition;
+    public isJsonSchema(arg0: any, errorMessage?: StringFormatType): ValidationDefinition {
+        let schema, message;
+
+        if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
+            message = arg0.Message;
+            schema = arg0.Schema;
+        } else {
+            message = errorMessage;
+            schema = arg0;
+        }
+        this.definitions.get(this.currentName).push(new JsonSchemaValidator(schema, message));
         return this;
     }
 
