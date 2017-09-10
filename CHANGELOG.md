@@ -1,5 +1,21 @@
 ## Change Log
 
+### upcoming (2017/09/10 00:49 +00:00)
+- [ba61b6d](https://github.com/nowcando/nowjs-core/commit/ba61b6db8a725e431e3b5fe3f8d936507b3b189d) fix: array test . (@saeedtabrizi)
+- [fc8007f](https://github.com/nowcando/nowjs-core/commit/fc8007fc49f3c7b1bc7f7538ca82c73b2ef700a5) feat: add some methods in array prototype and JsonSchemaValidator . (@saeedtabrizi)
+- [371b31d](https://github.com/nowcando/nowjs-core/commit/371b31d4afd48e42729f037f7ef01c3cd52ecc62) update: The CHANGELOG.md updated. (@saeedtabrizi)
+- [d19a15a](https://github.com/nowcando/nowjs-core/commit/d19a15ab61be1832eca1196b7afb7cf2619b0ea1) feat: JsonSchemaValidator added . Just init version not fully implemented . (@saeedtabrizi)
+- [2652bd1](https://github.com/nowcando/nowjs-core/commit/2652bd1184bd8c7c815bd450a9530bdc7010f318) fix: ClaimScope type and name replacment . (@saeedtabrizi)
+
+### v0.9.52 (2017/09/08 15:58 +00:00)
+- [fdded3e](https://github.com/nowcando/nowjs-core/commit/fdded3ec92a825c4e0ed7b8e54fdad2eb66726b6) upgrade: Upgrade to 0.9.52 for patch and some bug fixes. (@saeedtabrizi)
+- [befcbaf](https://github.com/nowcando/nowjs-core/commit/befcbaf51ab2ffd0a9bc8d152a7eeaa4f7311d4e) update: The CHANGELOG.md updated. (@saeedtabrizi)
+- [b06c96d](https://github.com/nowcando/nowjs-core/commit/b06c96de11d96bda58471a5d8f853e94cfab2168) fix: some fix in declaration . (@saeedtabrizi)
+- [a9002d9](https://github.com/nowcando/nowjs-core/commit/a9002d9999750749e9f98654548a0cc2a7e5f714) feat: add toJSON to ClaimScope and ClaimScopeItem. (@saeedtabrizi)
+- [4295379](https://github.com/nowcando/nowjs-core/commit/4295379d54cf514dd05f002b65dd77afdde1ef47) test: add some test to deepAssign . (@saeedtabrizi)
+- [626589b](https://github.com/nowcando/nowjs-core/commit/626589b62944f74bef515e4be2b545f864e9c041) fix: deleartion for linq in Array . (@saeedtabrizi)
+- [33781c4](https://github.com/nowcando/nowjs-core/commit/33781c44278f6ef48a8425add02a689045342d06) fix: deepAssign for date and non keys objects . (@saeedtabrizi)
+
 ### v0.9.51 (2017/09/07 23:27 +00:00)
 - [24b7e68](https://github.com/nowcando/nowjs-core/commit/24b7e685b7c49086d9d39bc77f701140f105204d) upgrade: Upgrade to 0.9.51 for patch and some bug fixes. (@saeedtabrizi)
 - [28e542e](https://github.com/nowcando/nowjs-core/commit/28e542ee8d6911e13c89b8319d282cd7099c3b95) update: The CHANGELOG.md updated. (@saeedtabrizi)

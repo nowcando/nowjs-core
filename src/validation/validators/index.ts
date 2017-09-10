@@ -38,6 +38,7 @@ export * from "./NumberValidator";
 export * from "./DateValidator";
 export * from "./ArrayValidator";
 export * from "./JsonValidator";
+export * from "./JsonSchemaValidator";
 export * from "./EnumValidator";
 
 export * from "./PostalCodeValidator";

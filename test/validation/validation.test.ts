@@ -3,8 +3,9 @@ import "jest";
 import { JsonSchemaDefinition } from "../../src/utils/index";
 import {
   isEmail, isMobile, isPhone,
-  isRequired, isUrl, MaxValidator,
-  RequiredValidator, Validation, ValueTypeValidator,
+  isRequired, isUrl, JsonSchemaValidator,
+  MaxValidator, RequiredValidator,
+  Validation, ValueTypeValidator,
 } from "../../src/validation/index";
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
 // jest.resetAllMocks();
@@ -366,6 +367,40 @@ describe("Validation", async () => {
 
   });
 
+  describe("JsonSchemaValidator.", async () => {
+
+    it("checks null value should be true.", async () => {
+      const obj1 = {
+        Firstname: "Jack", Lastname: "Wick",
+        Age: 15, Tags: ["Clever", "Brave"],
+        Children: [{ Firstname: "Sara", Age: 12 },
+        { Firstname: "Jill", Age: 5 }],
+      };
+      const expected = true;
+      const schema = {
+        type: "object",
+        required: ["Age"],
+        properties: {
+          Firstname: { type: "string" },
+          Lastname: { type: "string", pattern: "" },
+          Age: { type: "number" , maximum: 20 , minimum: 10},
+          Tags: { type: "array", items: { type: "string" } },
+          Children: {
+            type: "array", items: { type: "any" },
+            maxItems: 2, minItems: 1 ,
+          },
+        },
+      };
+      try {
+        const actual = await Validation.validate(obj1, new JsonSchemaValidator(schema));
+        expect(actual).toBe(expected);
+      } catch (error) {
+        expect(error).not.toBeNull();
+      }
+
+    });
+
+  });
   describe("ValueTypeValidator.", async () => {
 
     it("checks null value should be true.", async () => {
