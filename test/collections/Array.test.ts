@@ -1,4 +1,5 @@
 import "jest";
+import "../../src/";
 
 // jest.resetAllMocks();
 // jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
