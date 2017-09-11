@@ -1,6 +1,8 @@
 ## Change Log
 
-### upcoming (2017/09/10 00:49 +00:00)
+### v0.9.54 (2017/09/10 00:49 +00:00)
+- [138e878](https://github.com/nowcando/nowjs-core/commit/138e878902279fbc362ea37e1e8a9571326d0e6c) upgrade: Upgrade to 0.9.54 for patch and some bug fixes. (@saeedtabrizi)
+- [05276ea](https://github.com/nowcando/nowjs-core/commit/05276ea8511027de7b4e269f2a8c9c82eea0e1bd) update: The CHANGELOG.md updated. (@saeedtabrizi)
 - [ba61b6d](https://github.com/nowcando/nowjs-core/commit/ba61b6db8a725e431e3b5fe3f8d936507b3b189d) fix: array test . (@saeedtabrizi)
 - [fc8007f](https://github.com/nowcando/nowjs-core/commit/fc8007fc49f3c7b1bc7f7538ca82c73b2ef700a5) feat: add some methods in array prototype and JsonSchemaValidator . (@saeedtabrizi)
 - [371b31d](https://github.com/nowcando/nowjs-core/commit/371b31d4afd48e42729f037f7ef01c3cd52ecc62) update: The CHANGELOG.md updated. (@saeedtabrizi)
