@@ -1,5 +1,10 @@
 ## Change Log
 
+### v0.9.55 (2017/09/11 01:32 +00:00)
+- [0656f0a](https://github.com/nowcando/nowjs-core/commit/0656f0a077a35fdd8d77bb2c840f3797547ac00e) upgrade: Upgrade to 0.9.55 for patch and some bug fixes. (@saeedtabrizi)
+- [20ed7d0](https://github.com/nowcando/nowjs-core/commit/20ed7d0ae21de5771352e3ff7a42b7584a622fad) update: The CHANGELOG.md updated. (@saeedtabrizi)
+- [9d4fd03](https://github.com/nowcando/nowjs-core/commit/9d4fd035ae5cd0c80d7c65629f11044243b14056) feat: isEquals method added . (@saeedtabrizi)
+
 ### v0.9.54 (2017/09/10 00:49 +00:00)
 - [138e878](https://github.com/nowcando/nowjs-core/commit/138e878902279fbc362ea37e1e8a9571326d0e6c) upgrade: Upgrade to 0.9.54 for patch and some bug fixes. (@saeedtabrizi)
 - [05276ea](https://github.com/nowcando/nowjs-core/commit/05276ea8511027de7b4e269f2a8c9c82eea0e1bd) update: The CHANGELOG.md updated. (@saeedtabrizi)

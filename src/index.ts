@@ -9,7 +9,7 @@ import * as linq from "./linq";
 import * as exceptions from "./exceptions";
 import * as logging from "./logging";
 import * as diagnostics from "./diagnostics";
-
+import * as patterns from "./patterns";
 import * as parallels from "./parallels";
 import * as sanitization from "./sanitization";
 import * as security from "./security";
@@ -22,7 +22,7 @@ export {
     collections, logging, diagnostics ,
     configration , linq, computation,
     data, exceptions,
-    security ,
+    security , patterns,
     utils, validation,
     sanitization ,
 };
