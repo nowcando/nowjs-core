@@ -76,6 +76,16 @@ export interface IRole {
     Name: string;
 }
 
+export interface ITimelineEntry {
+    Timestamp: number;
+    ActorType?: IDType;
+    ActorID?: IDType; // Actor ID
+    PID?: number; // Process ID
+    SPID?: number; // Sub Process ID
+    ACID?: number; // Activity ID
+    Properties?: any;
+}
+
 export interface IResource {
     ID?: IDType;
     Name: string;
