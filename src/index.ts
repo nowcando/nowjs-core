@@ -13,6 +13,7 @@ import * as patterns from "./patterns";
 import * as parallels from "./parallels";
 import * as sanitization from "./sanitization";
 import * as security from "./security";
+import * as social from "./social";
 import * as utils from "./utils";
 import * as validation from "./validation";
 import * as globalization from "./globalization";
@@ -21,7 +22,7 @@ export {
     core, parallels, globalization,
     collections, logging, diagnostics ,
     configration , linq, computation,
-    data, exceptions,
+    data, exceptions, social,
     security , patterns,
     utils, validation,
     sanitization ,

@@ -34,4 +34,10 @@ export interface IMultiTenantProvider<TTenant extends ITenant & IRowMeta> extend
         deleteTenant(tenantID: IDType, app: string): Promise<boolean>;
         getTanants(options?: IQueryOptions): Promise<IQueryResult<TTenant>>;
         isTenantValidToken(tokenID: string): boolean;
+
+        getStatisticsNames(tenantID: IDType, app: string): Promise<string[]>;
+        getStatistics(tenantID: IDType, app: string, ...name: string[]): Promise<any[]>;
+        setStatistics(tenantID: IDType, app: string, name: string, value: any): Promise<boolean>;
+        removeStatistics(tenantID: IDType, app: string, ...name: string[]): Promise<boolean>;
+        resetStatistics(tenantID: IDType, app: string): Promise<boolean>;
 }
