@@ -1,5 +1,10 @@
 ## Change Log
 
+### v0.10.0 (2017/09/12 08:44 +00:00)
+- [5cc431f](https://github.com/nowcando/nowjs-core/commit/5cc431f6416f1c8137dfe047666491e9741aeb50) upgrade: Upgrade to 0.10.0 for minor enhancments & and bug fixes. (@saeedtabrizi)
+- [8a25762](https://github.com/nowcando/nowjs-core/commit/8a257628f2bfa8cc959d22944e41010a83f16118) update: The CHANGELOG.md updated. (@saeedtabrizi)
+- [5fbbbf0](https://github.com/nowcando/nowjs-core/commit/5fbbbf0a00c6aa52b3e0321636439d58fb519a0c) feat: add a state container feature  for handle #99 issue . (@saeedtabrizi)
+
 ### v0.9.55 (2017/09/11 01:32 +00:00)
 - [0656f0a](https://github.com/nowcando/nowjs-core/commit/0656f0a077a35fdd8d77bb2c840f3797547ac00e) upgrade: Upgrade to 0.9.55 for patch and some bug fixes. (@saeedtabrizi)
 - [20ed7d0](https://github.com/nowcando/nowjs-core/commit/20ed7d0ae21de5771352e3ff7a42b7584a622fad) update: The CHANGELOG.md updated. (@saeedtabrizi)
@@ -345,9 +350,9 @@
 - [#8](https://github.com/nowcando/nowjs-core/pull/8) Merge pull request #8 from nowcando/0.1.7 (@nowcando)
 - [c0ac4f7](https://github.com/nowcando/nowjs-core/commit/c0ac4f7d75bafd58c9e1aec87a7a73c85e177e47) add some linq methods (@saeedtabrizi)
 - [dc68cf2](https://github.com/nowcando/nowjs-core/commit/dc68cf2861eecbbeddc856e8b7ee93023cfaa0c3) add some linq methods (@saeedtabrizi)
+- [14c5b30](https://github.com/nowcando/nowjs-core/commit/14c5b307e1c74416299351f0a81506b91f8a0f3e) validation added . (@saeedtabrizi)
 - [1c59e80](https://github.com/nowcando/nowjs-core/commit/1c59e80e55082894f0501568dae9241677960e1b) modify README (@saeedtabrizi)
 - [fd198cd](https://github.com/nowcando/nowjs-core/commit/fd198cd9649c9364665c7a24e228c60d5cdb4790) travis-ci test process added . (@saeedtabrizi)
-- [14c5b30](https://github.com/nowcando/nowjs-core/commit/14c5b307e1c74416299351f0a81506b91f8a0f3e) validation added . (@saeedtabrizi)
 - [#7](https://github.com/nowcando/nowjs-core/pull/7) Merge pull request #7 from nowcando/0.1.62 (@nowcando)
 - [210c225](https://github.com/nowcando/nowjs-core/commit/210c225a9669c50091e8d810dcd7cc6033963052) modify README (@saeedtabrizi)
 - [#6](https://github.com/nowcando/nowjs-core/pull/6) Merge pull request #6 from nowcando/0.1.61 (@nowcando)
