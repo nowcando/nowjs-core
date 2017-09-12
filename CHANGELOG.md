@@ -1,5 +1,10 @@
 ## Change Log
 
+### v0.11.0 (2017/09/12 13:06 +00:00)
+- [db499b0](https://github.com/nowcando/nowjs-core/commit/db499b08ec42f670d490798699907b20508acd48) upgrade: Upgrade to 0.11.0 for minor enhancments & and bug fixes. (@saeedtabrizi)
+- [1f28c36](https://github.com/nowcando/nowjs-core/commit/1f28c3680709370c8de9b5ad164689f391b76cba) update: The CHANGELOG.md updated. (@saeedtabrizi)
+- [fcc2863](https://github.com/nowcando/nowjs-core/commit/fcc286326d4e0017fb8698681e08ab9f12d5fe68) feat: add Timeline Provider interface and base types to security providers. #107 (@saeedtabrizi)
+
 ### v0.10.0 (2017/09/12 08:44 +00:00)
 - [5cc431f](https://github.com/nowcando/nowjs-core/commit/5cc431f6416f1c8137dfe047666491e9741aeb50) upgrade: Upgrade to 0.10.0 for minor enhancments & and bug fixes. (@saeedtabrizi)
 - [8a25762](https://github.com/nowcando/nowjs-core/commit/8a257628f2bfa8cc959d22944e41010a83f16118) update: The CHANGELOG.md updated. (@saeedtabrizi)
