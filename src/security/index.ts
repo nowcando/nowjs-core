@@ -25,6 +25,10 @@ export interface IPermissionResult {
 
 }
 
+export enum VerificationStatus {
+    Verified = 1 , NotVerfied = 2 , Both = Verified | NotVerfied ,
+}
+
 // tslint:disable-next-line:no-empty-interface
 export interface IPermission {
     Resource: string;
@@ -65,6 +69,30 @@ export interface IUserProfile {
 
 export interface IUser {
     ID?: IDType;
+}
+
+export interface IUserPhone {
+    UserID?: IDType;
+    Phone: string;
+    IsVerified: boolean;
+    RegisteredAt?: Date;
+    DeletedAt?: Date;
+    VerifiedAt?: Date;
+    TFACode?:string;
+    SentAt?: Date;
+    TryCount?: number;
+    LastTryAt?: Date;
+}
+
+export interface IUserDevice{
+    ID?: IDType;
+    Code?:string;
+    UserID?: IDType;
+    IsVerified: boolean;
+    RegisteredAt?: Date;
+    DeletedAt?: Date;
+    VerifiedAt?: Date;
+    Properties?:any;
 }
 
 export interface ISession {
