@@ -26,6 +26,7 @@ export interface IPermissionResult {
 }
 
 export enum VerificationStatus {
+    // tslint:disable-next-line:no-bitwise
     Verified = 1 , NotVerfied = 2 , Both = Verified | NotVerfied ,
 }
 
@@ -78,21 +79,21 @@ export interface IUserPhone {
     RegisteredAt?: Date;
     DeletedAt?: Date;
     VerifiedAt?: Date;
-    TFACode?:string;
+    TFACode?: string;
     SentAt?: Date;
     TryCount?: number;
     LastTryAt?: Date;
 }
 
-export interface IUserDevice{
+export interface IUserDevice {
     ID?: IDType;
-    Code?:string;
+    Code?: string;
     UserID?: IDType;
     IsVerified: boolean;
     RegisteredAt?: Date;
     DeletedAt?: Date;
     VerifiedAt?: Date;
-    Properties?:any;
+    Properties?: any;
 }
 
 export interface ISession {
