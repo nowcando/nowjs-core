@@ -1,6 +1,7 @@
 
 import { IProvider } from "../../core/IProvider";
 import { IDType, IQueryOptions, IQueryResult } from "../../data";
+import { IUserPhone, IUserDevice, VerificationStatus } from "../index";
 
 export interface IMembershipProvider<TUser, TProfile, TMeta> extends IProvider {
         createUser(tenantID: IDType, app: string, user: TUser, meta?: TMeta): Promise<TUser>;
@@ -23,22 +24,32 @@ export interface IMembershipProvider<TUser, TProfile, TMeta> extends IProvider {
 }
 
 export interface IPhoneMembershipProvider<TUser, TProfile, TMeta> extends IMembershipProvider<TUser, TProfile, TMeta> {
-        isUserExistsByPhone(tenantID: IDType, app: string, mobile: string): Promise<boolean>;
-        getUserByPhone(tenantID: IDType, app: string, mobile: string): Promise<TUser>;
-        getUsersByPhones(tenantID: IDType, app: string, ...mobile: string[]): Promise<TUser[]>;
-        validateUserByPhone(tenantID: IDType, app: string, mobile: string,
-                            tryCount: boolean, meta?: TMeta): Promise<TUser>;
+        getUserPhoneByPhone(tenantID: IDType, app: string, phone: string , verificationType:VerificationStatus): Promise<IUserPhone>;
+        getUserPhonesByUserID(tenantID: IDType, app: string, userID: IDType, verificationType:VerificationStatus): Promise<IUserPhone[]>;
+        getUserPhonesByDeviceID(tenantID: IDType, app: string, userID: IDType, verificationType:VerificationStatus): Promise<IUserPhone[]>;
+        getUserDeviceByDeviceID(tenantID: IDType, app: string, deviceID: IDType, verificationType:VerificationStatus): Promise<IUserDevice>;
+        getUserDeviceByCode(tenantID: IDType, app: string, code: string, verificationType:VerificationStatus): Promise<IUserDevice>;
+        getUserDevicesByUserID(tenantID: IDType, app: string, userID: IDType, verificationType:VerificationStatus): Promise<IUserDevice[]>;
+        
+        isUserExistsByPhone(tenantID: IDType, app: string, phone: string): Promise<boolean>;
+        getUserByPhone(tenantID: IDType, app: string, phone: string): Promise<TUser>;
+        getUsersByPhones(tenantID: IDType, app: string, ...phone: string[]): Promise<TUser[]>;
+        validateUserByPhone(tenantID: IDType, app: string, phone: string,
+                            tryCount: boolean, meta?: TMeta): Promise<TUser|string>;
         validateUserPhoneTwoFactorCode(tenantID: IDType, app: string, tempToken: string,
                                        tfaCode: string, tryCount: boolean, meta?: TMeta): Promise<TUser>;
         generatePhoneTwoFactorCode(tenantID: IDType, app: string): string;
         sendPhoneTwoFactorCode(tenantID: IDType, app: string,
-                               mobile: string, tfaCode: string, expiresAt?: Date, meta?: TMeta): Promise<TUser>;
+                               phone: string, tfaCode: string, expiresAt?: Date, meta?: TMeta): Promise<TUser>;
         enablePhoneTwoFactor(tenantID: IDType, app: string, userID: IDType): Promise<TUser>;
         disablePhoneTwoFactor(tenantID: IDType, app: string, userID: IDType): Promise<TUser>;
         updateUserDefaultPhone(tenantID: IDType, app: string,
-                               userID: IDType, mobile: string, meta?: TMeta): Promise<TUser>;
-        addUserPhone(tenantID: IDType, app: string, userid: IDType, mobile: string, meta?: TMeta): Promise<TUser>;
-        removeUserPhone(tenantID: IDType, app: string, userid: IDType, mobile: string, meta?: TMeta): Promise<TUser>;
+                               userID: IDType, phone: string, meta?: TMeta): Promise<TUser>;
+        addUserPhone(tenantID: IDType, app: string, userid: IDType, phone: string, meta?: TMeta): Promise<TUser>;
+        removeUserPhone(tenantID: IDType, app: string, userid: IDType, phone: string, meta?: TMeta): Promise<TUser>;
+        
+        addUserDevice(tenantID: IDType, app: string, userid: IDType, device: IUserDevice, meta?: TMeta): Promise<IUserDevice>;
+        removeUserDevice(tenantID: IDType, app: string, userid: IDType, device: IUserDevice, meta?: TMeta): Promise<IUserDevice>;
 }
 
 export interface IUsernameMembershipProvider<TUser, TProfile, TMeta> extends

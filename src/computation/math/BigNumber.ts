@@ -3746,7 +3746,7 @@ export class BigNumber {
 
         // Compare exponents.
         // tslint:disable-next-line:no-bitwise
-        if (x.e !== y.e) return (x.e > y.e) as any ^ (xs < 0) as any ? 1 : -1;
+        if (x.e !== y.e) return ((x.e > y.e) as any) ^ ((xs < 0) as any) ? 1 : -1;
 
         xdL = xd.length;
         ydL = yd.length;
