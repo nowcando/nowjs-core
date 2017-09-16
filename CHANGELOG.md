@@ -1,3 +1,9 @@
+#### 0.12.3 (2017-09-16)
+
+##### Bug Fixes
+
+* update for lint problems. ([1fbdae1a](https://github.com/nowcando/nowjs-core/commit/1fbdae1a85409147447834ee6400154f54072519))
+
 #### 0.12.2 (2017-09-16)
 
 #### 0.12.1 (2017-09-16)
