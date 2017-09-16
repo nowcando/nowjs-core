@@ -1,3 +1,9 @@
+#### 0.12.1 (2017-09-16)
+
+##### Bug Fixes
+
+* Membership provider and Bignumber fixes . ([1daf99a1](https://github.com/nowcando/nowjs-core/commit/1daf99a1e0e7daa4ddfe683f4a6f6b542317e102))
+
 ### 0.13.0 (2017-09-16)
 
 ##### Bug Fixes
