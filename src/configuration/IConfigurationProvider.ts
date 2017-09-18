@@ -30,6 +30,7 @@ export class ConfigSection<T> {
 export interface IConfigurationProvider extends IProvider {
 
 }
+
 export interface ILocalConfigurationProvider extends IConfigurationProvider {
     load(): Promise<void>;
     save(): Promise<void>;
@@ -38,6 +39,7 @@ export interface ILocalConfigurationProvider extends IConfigurationProvider {
     set<T>(path: string, value: T): boolean;
     setSection<T>(section: ConfigSection<T>): boolean;
 }
+
 export interface ITenantConfigurationProvider extends IConfigurationProvider {
     get<T>(tenantID: IDType, app: string, path: string, defaultValue?: T): Promise<T>;
     getSection<T>(tenantID: IDType, app: string, path: string, defaultValue?: T): Promise<ConfigSection<T>>;
