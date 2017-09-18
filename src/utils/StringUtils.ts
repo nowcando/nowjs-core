@@ -97,20 +97,6 @@ export function toDotCase(str: string): string {
   });
 }
 
-// tslint:disable-next-line:no-namespace
-declare global {
-     // tslint:disable-next-line:interface-name
-     interface String {
-        toPascalCase(): string;
-        toCamelCase(): string;
-        toTitleCase(): string;
-        toSentenceCase(): string;
-        toSnakeCase(): string;
-        toUpperFirstCase(): string;
-        toLowerFirstCase(): string;
-        toDotCase(): string;
-     }
-}
 function toPascalCaseWrapper(): string {
     return toPascalCase(this);
 }

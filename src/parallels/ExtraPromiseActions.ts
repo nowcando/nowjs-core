@@ -138,30 +138,6 @@ export function extendedPromise<T>(promise: Promise<T> ,
     return prs;
 }
 
-// tslint:disable-next-line:no-namespace
-declare global {
-    // tslint:disable-next-line:interface-name
-    export interface PromiseConstructor {
-        delay<T>(ms: number, defaulValue?: T): Promise<T>;
-        wait<T>(ms: number): Promise<T>;
-        extendedPromise<T>(promise: Promise<T> ,
-                           options?: ExtendedPromiseOptions): ExtendedPromise<T>;
-    }
-    // tslint:disable-next-line:interface-name
-    export interface Promise<T> {
-        delay(ms: number, defaulValue?: T): Promise<T>;
-        timeout(ms: number, err?: string | Error): Promise<T>;
-        wait(ms: number): Promise<T>;
-        spread(fn: (...args: T[]) => void): Promise<T>;
-    }
-
-    // tslint:disable-next-line:interface-name
-    export interface ExtendedPromise<T> extends Promise<T> {
-         cancel(): void;
-         progress(data: any): void;
-     }
-}
-
 // Promise.constructor.prototype.timeout = timeout;
 Promise.constructor.prototype.delay = delay;
 Promise.constructor.prototype.wait = wait;
