@@ -1,3 +1,9 @@
+#### 0.12.4 (2017-09-18)
+
+##### Bug Fixes
+
+* IUserPhone and IUserdevice correction ([1026edb6](https://github.com/nowcando/nowjs-core/commit/1026edb6756e754f09afba910bcd21609bd14d2c))
+
 #### 0.12.3 (2017-09-16)
 
 ##### Bug Fixes

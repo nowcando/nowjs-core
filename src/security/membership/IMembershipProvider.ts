@@ -40,10 +40,10 @@ export interface IPhoneMembershipProvider<TUser, TProfile, TMeta> extends IMembe
         isUserExistsByPhone(tenantID: IDType, app: string, phone: string): Promise<boolean>;
         getUserByPhone(tenantID: IDType, app: string, phone: string): Promise<TUser>;
         getUsersByPhones(tenantID: IDType, app: string, ...phone: string[]): Promise<TUser[]>;
-        validateUserByPhone(tenantID: IDType, app: string, phone: string,
-                            tryCount: boolean, meta?: TMeta): Promise<TUser | string>;
-        validateUserPhoneTwoFactorCode(tenantID: IDType, app: string, tempToken: string,
-                                       tfaCode: string, tryCount: boolean, meta?: TMeta): Promise<TUser>;
+        validateUserByPhone(tenantID: IDType, app: string, phone: string, meta?: TMeta): Promise<string>;
+        validateUserPhoneTwoFactorCode(tenantID: IDType, app: string, verifyToken: string,
+                                       tfaCode: string, deviceInfo: any,
+                                       tryCount: boolean, meta?: TMeta): Promise<TUser>;
         generatePhoneTwoFactorCode(tenantID: IDType, app: string): string;
         sendPhoneTwoFactorCode(tenantID: IDType, app: string,
                                phone: string, tfaCode: string, expiresAt?: Date, meta?: TMeta): Promise<TUser>;
