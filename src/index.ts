@@ -17,6 +17,7 @@ import * as social from "./social";
 import * as utils from "./utils";
 import * as validation from "./validation";
 import * as globalization from "./globalization";
+import "./globalDecleartions";
 
 export {
     core, parallels, globalization,

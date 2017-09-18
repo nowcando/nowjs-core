@@ -369,29 +369,6 @@ export function cloneObject<T>(obj: T): T {
     return deepAssign({}, obj);
 }
 
-declare global {
-    // tslint:disable:interface-name
-    interface ObjectConstructor {
-        isObjectType(target: any): boolean;
-        deepAssign<T, U>(target: T, source1: U): T & U;
-        deepAssign<T, U, V>(target: T, source1: U, source2: V): T & U & V;
-        deepAssign<T, U, V, W>(target: T, source1: U, source2: V, source3: W): T & U & V & W;
-        deepAssign<T, U, V, W, X>(target: T, source1: U,
-                                  source2: V, source3: W, source4: X): T & U & V & W & X;
-        deepAssign<T, U, V, W, X, Y>(target: T, source1: U,
-                                     source2: V, source3: W,
-                                     source4: X, source5: Y):
-                                                     T & U & V & W & X & Y;
-        deepAssign<T, U, V, W, X, Y , Z>(target: T, source1: U,
-                                         source2: V, source3: W,
-                                         source4: X, source5: Y, source6: Z):
-                                                     T & U & V & W & X & Y & Z;
-        deepAssign<T>(target: T, ...sources: any[]): T & any;
-        cloneObject<T>(target: T): T;
-    }
-
-}
-
 function toCloneObject<T>(target: T): T {
     return cloneObject(target);
 }

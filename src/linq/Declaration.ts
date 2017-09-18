@@ -5,40 +5,6 @@ import { Enumerable } from "./Enumerable";
 import { IParallelQueryable, IQueryable } from "./index";
 import { ParallelEnumerable } from "./ParallelEnumerable";
 
-// tslint:disable-next-line:no-namespace
-declare global {
-    // tslint:disable:interface-name
-    /* interface IterableIterator<T> {
-        linq(): IQueryable<T>;
-        plinq(): IParallelQueryable<T>;
-    } */
-    interface Array<T> {
-        contains(obj: T): boolean;
-        findDuplicates(): T[];
-        itemCount(): Array<{ item: T, count: number }>;
-        toUnique(): T[];
-        hasDuplicate(): boolean;
-        linq(): IQueryable<T>;
-        plinq(): IParallelQueryable<T>;
-    }
-    interface Set<T> {
-        linq(): IQueryable<T>;
-        plinq(): IParallelQueryable<T>;
-    }
-    interface Map<K, V> {
-        linq(): IQueryable<[K, V]>;
-        plinq(): IParallelQueryable<[K, V]>;
-    }
-    interface WeakSet<T> {
-        linq(): IQueryable<T>;
-        plinq(): IParallelQueryable<T>;
-    }
-    interface WeakMap<K extends object, V> {
-        linq(): IQueryable<[K, V]>;
-        plinq(): IParallelQueryable<[K, V]>;
-    }
-}
-
 function getEunmerable(): Enumerable<any> {
     return new Enumerable<any>(this);
 }
