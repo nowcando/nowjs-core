@@ -1,3 +1,9 @@
+#### 0.12.5 (2017-09-18)
+
+##### Bug Fixes
+
+* add ITenantConfigurationProvider , some   change in IPhoneMembershipProvider methods. ([819f6d87](https://github.com/nowcando/nowjs-core/commit/819f6d87d1889b0ae2d946ad3734e0ba0264cad5))
+
 #### 0.12.4 (2017-09-18)
 
 ##### Bug Fixes

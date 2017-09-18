@@ -32,8 +32,8 @@ export interface IPhoneMembershipProvider<TUser, TProfile, TMeta> extends IMembe
                                 verificationType: VerificationStatus): Promise<IUserPhone[]>;
         getUserDeviceByDeviceID(tenantID: IDType, app: string, deviceID: IDType,
                                 verificationType: VerificationStatus): Promise<IUserDevice>;
-        getUserDeviceByCode(tenantID: IDType, app: string, code: string,
-                            verificationType: VerificationStatus): Promise<IUserDevice>;
+        getUserDeviceByToken(tenantID: IDType, app: string, token: string,
+                             verificationType: VerificationStatus): Promise<IUserDevice>;
         getUserDevicesByUserID(tenantID: IDType, app: string, userID: IDType,
                                verificationType: VerificationStatus): Promise<IUserDevice[]>;
 
@@ -42,11 +42,10 @@ export interface IPhoneMembershipProvider<TUser, TProfile, TMeta> extends IMembe
         getUsersByPhones(tenantID: IDType, app: string, ...phone: string[]): Promise<TUser[]>;
         validateUserByPhone(tenantID: IDType, app: string, phone: string, meta?: TMeta): Promise<string>;
         validateUserPhoneTwoFactorCode(tenantID: IDType, app: string, verifyToken: string,
-                                       tfaCode: string, deviceInfo: any,
-                                       tryCount: boolean, meta?: TMeta): Promise<TUser>;
+                                       tfaCode: string, deviceInfo: any, meta?: TMeta): Promise<string>;
         generatePhoneTwoFactorCode(tenantID: IDType, app: string): string;
         sendPhoneTwoFactorCode(tenantID: IDType, app: string,
-                               phone: string, tfaCode: string, expiresAt?: Date, meta?: TMeta): Promise<TUser>;
+                               phone: string, tfaCode: string, meta?: TMeta): Promise<void>;
         enablePhoneTwoFactor(tenantID: IDType, app: string, userID: IDType): Promise<TUser>;
         disablePhoneTwoFactor(tenantID: IDType, app: string, userID: IDType): Promise<TUser>;
         updateUserDefaultPhone(tenantID: IDType, app: string,
@@ -56,6 +55,8 @@ export interface IPhoneMembershipProvider<TUser, TProfile, TMeta> extends IMembe
 
         addUserDevice(tenantID: IDType, app: string, userid: IDType,
                       device: IUserDevice, meta?: TMeta): Promise<IUserDevice>;
+        renewUserDeviceToken(tenantID: IDType, app: string, userid: IDType,
+                             deviceID: IDType, meta?: TMeta): Promise<string>;
         removeUserDevice(tenantID: IDType, app: string, userid: IDType,
                          device: IUserDevice, meta?: TMeta): Promise<IUserDevice>;
 }

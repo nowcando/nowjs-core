@@ -93,8 +93,11 @@ export interface IUserDevice {
     IsVerified: boolean;
     RegisteredAt?: Date;
     DeletedAt?: Date;
+    IsTokenExpires?: boolean;
     Token?: Date;
     TokenUpdatedAt?: Date;
+    TokenExpiresAt?: Date;
+    TokenExpiredAt?: Date;
     VerifiedAt?: Date;
     Properties?: any;
 }
