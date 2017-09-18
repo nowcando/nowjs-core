@@ -1,3 +1,13 @@
+#### 0.12.6 (2017-09-18)
+
+##### Chores
+
+* move all global declaration to a unique file . ([7741a276](https://github.com/nowcando/nowjs-core/commit/7741a276bb4aa07d7e96395a1fcd2200e49e9215))
+
+##### Bug Fixes
+
+* add ILocalConfigurationProvider. ([ee4043b6](https://github.com/nowcando/nowjs-core/commit/ee4043b6ab03a155250c7ce8c9eaff3da870bb86))
+
 #### 0.12.5 (2017-09-18)
 
 ##### Bug Fixes
