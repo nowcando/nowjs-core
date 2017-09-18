@@ -80,6 +80,7 @@ export interface IUserPhone {
     DeletedAt?: Date;
     VerifiedAt?: Date;
     TFACode?: string;
+    VerifyToken?: string;
     SentAt?: Date;
     TryCount?: number;
     LastTryAt?: Date;
@@ -92,6 +93,8 @@ export interface IUserDevice {
     IsVerified: boolean;
     RegisteredAt?: Date;
     DeletedAt?: Date;
+    Token?: Date;
+    TokenUpdatedAt?: Date;
     VerifiedAt?: Date;
     Properties?: any;
 }
