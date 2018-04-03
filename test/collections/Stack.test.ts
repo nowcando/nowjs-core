@@ -64,7 +64,7 @@ describe("Collections Stack tests", async () => {
     const list = new Stack<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;
     const list2 = new Stack<number>();
-    for (const item of list){
+    for (const item of list) {
         list2.push(list.pop());
     }
     expect(list2.size).toEqual(2) ;

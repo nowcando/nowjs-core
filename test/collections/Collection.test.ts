@@ -99,7 +99,7 @@ describe("Collections Collection tests", async () => {
     const list = new Collection<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;
     const list2 = new Collection<number>();
-    for (const item of list){
+    for (const item of list) {
         list2.add(item);
     }
     expect(list2.size).toEqual(list.size) ;
