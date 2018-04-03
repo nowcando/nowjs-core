@@ -41,8 +41,8 @@ export class ClaimsAuthorizationProvider implements IAuthorizationProvider {
         let result = true;
         principal = principal;
         for (const pName of policyNames) {
-            const policy = this.policies.get(pName);
-            if (policy && typeof policy === "function") {
+            const policy: any = this.policies.get(pName);
+            if (policy && (typeof policy === "function")) {
                result = result && policy(principal);
                // tslint:disable-next-line:curly
                if (result === false) break;

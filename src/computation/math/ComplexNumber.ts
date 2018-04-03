@@ -91,10 +91,10 @@ export class ComplexNumber {
                 if (a.re && a.im) {
                     result.re = a.re;
                     result.im = a.im;
-                } else if ("abs" in a && "arg" in a) {
+                } else if (a.abs !== undefined &&  a.arg !== undefined) {
                     result.re = a.abss * Math.cos(a.arg);
                     result.im = a.abss * Math.sin(a.arg);
-                } else if ("r" in a && "phi" in a) {
+                } else if (a.r !== undefined &&  a.phi !== undefined) {
                     result.re = a.r * Math.cos(a.phi);
                     result.im = a.r * Math.sin(a.phi);
                 } else if (Array.isArray(a) && a.length === 2) { // Quick array check

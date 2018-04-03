@@ -24,7 +24,7 @@ const thunkFactory = <E>(extraArgument?: E): ThunkMiddleware<E> => {
   const thunk = ((store) => (next) => (reducer) => {
     // tslint:disable-next-line:curly
     if (typeof reducer !== "function") throw new Error("Thunk reducer must return a function");
-    const result = reducer(store.getState());
+    const result: any = reducer(store.getState());
     // tslint:disable-next-line:curly
     if (typeof result === "function") return result(store.dispatch, store.getState, extraArgument);
     // tslint:disable-next-line:curly
