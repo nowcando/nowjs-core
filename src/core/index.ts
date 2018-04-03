@@ -1,4 +1,4 @@
-
+export * from "./BaseTypes";
 export * from "./IService";
 export * from "./IApplicationModule";
 export * from "./IApplicationService";

@@ -5,7 +5,6 @@
             "skipBabel": true
         }
     },
-    "mapCoverage": true,
     "collectCoverageFrom": [
         "src/**/*.{ts,tsx}",
         "!**/node_modules/**"

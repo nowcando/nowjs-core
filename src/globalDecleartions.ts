@@ -1,3 +1,5 @@
+import { IList } from "./collections";
+import { IObjectDictionary } from "./core";
 import { IParallelQueryable, IQueryable } from "./linq/index";
 import { ExtendedPromiseOptions } from "./parallels/index";
 
@@ -43,20 +45,43 @@ declare global {
         hasDuplicate(): boolean;
         linq(): IQueryable<T>;
         plinq(): IParallelQueryable<T>;
+
+        toArray(): T[];
+        toList(): IList<T>;
     }
     interface Set<T> {
+        toArray(): T[];
+        toList(): IList<T>;
         linq(): IQueryable<T>;
         plinq(): IParallelQueryable<T>;
     }
     interface Map<K, V> {
+
+        toArray(): Array<[K, V]>;
+        toList(): IList<[K, V]>;
+        toObject(): IObjectDictionary<V>;
+        toValueList(): IList<V>;
+        toKeyList(): IList<K>;
+        containsKey(key: string|symbol): boolean;
+        containsValue(value: any): boolean;
         linq(): IQueryable<[K, V]>;
         plinq(): IParallelQueryable<[K, V]>;
     }
     interface WeakSet<T> {
+        toArray(): T[];
+        toList(): IList<T>;
         linq(): IQueryable<T>;
         plinq(): IParallelQueryable<T>;
     }
     interface WeakMap<K extends object, V> {
+
+        toArray(): Array<[K, V]>;
+        toList(): IList<[K, V]>;
+        toObject(): IObjectDictionary<V>;
+        toValueList(): IList<V>;
+        toKeyList(): IList<K>;
+        containsKey(key: string|symbol): boolean;
+        containsValue(value: any): boolean;
         linq(): IQueryable<[K, V]>;
         plinq(): IParallelQueryable<[K, V]>;
     }

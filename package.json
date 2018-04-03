@@ -61,17 +61,17 @@
     "url": "https://github.com/nowcando/nowjs-core.git"
   },
   "dependencies": {
-    "reflect-metadata": ">=0.1.10"
+    "reflect-metadata": ">=0.1.12"
   },
   "devDependencies": {
-    "@types/jest": "^20.0.8",
-    "@types/node": "^8.0.26",
-    "full-icu": "^1.2.0",
-    "jest": ">=20.0.4",
+    "@types/jest": "^22.2.2",
+    "@types/node": "^9.6.1",
+    "full-icu": "^1.2.1",
+    "jest": ">=22.4.3",
     "jest-environment-node-debug": ">=2.0.0",
-    "ts-jest": "^20.0.13",
-    "ts-node": "^3.3.0",
-    "tslint": "^5.7.0",
-    "typescript": ">=2.4.2"
+    "ts-jest": "^22.4.2",
+    "ts-node": "^5.0.1",
+    "tslint": "^5.9.1",
+    "typescript": ">=2.8.1"
   }
 }
