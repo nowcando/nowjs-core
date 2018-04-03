@@ -79,7 +79,7 @@ describe("Collections PriorityQueue tests", async () => {
     const list = new PriorityQueue<number>(numberComparator , [7, 5, 10 , 2, 4 , 10 , 2]);
     expect(list.size).toEqual(7) ;
     const list2 = new PriorityQueue<number>(numberComparator);
-    for (const item of list){
+    for (const item of list) {
         list2.enqueue(list.dequeue());
     }
     expect(list2.size).toEqual(4) ;

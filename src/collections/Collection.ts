@@ -42,7 +42,7 @@ export class Collection<T> implements ICollection<T> {
     public contains(item: T): boolean {
         return this.arr.includes(item);
     }
-    public get size(): number{
+    public get size(): number {
        return this.arr.length;
     }
     public get(index: number): T {

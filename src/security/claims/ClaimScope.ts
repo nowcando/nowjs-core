@@ -12,19 +12,19 @@ export class ClaimScope {
                 ) {
 
     }
-    public get Type(): string{
+    public get Type(): string {
         return this.type;
     }
-    public get Name(): string{
+    public get Name(): string {
         return this.name;
     }
-    public get Enabled(): boolean{
+    public get Enabled(): boolean {
         return this.enabled;
     }
-    public get Required(): boolean{
+    public get Required(): boolean {
         return this.required;
     }
-    public get Claims(): ClaimScopeItem[]{
+    public get Claims(): ClaimScopeItem[] {
         return this.claims;
     }
 

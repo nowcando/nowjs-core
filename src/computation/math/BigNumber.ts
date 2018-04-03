@@ -96,7 +96,7 @@ export class BigNumber {
         if (value instanceof BigNumber) {
             that.s = value.s;
             that.e = value.e;
-            that.d = (value = value.d) ? (value as any).slice() : value;
+            that.d = (value === value.d) ? (value as any).slice() : value;
             return;
         }
         that.t = typeof value;

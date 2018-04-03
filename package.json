@@ -15,6 +15,7 @@
     "test:watch": "jest --watch --config ./jest.json",
     "coverage": " jest  --no-cache --coverage  --config ./jest.json ",
     "lint": "tslint -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
+    "lint-fix": "tslint --fix 'src/**/*.ts' 'test/**/*.ts' -t verbose",
     "prepublishOnly": "npm run lint && npm run test && npm run build:release",
     "preversion": "npm test",
     "version": "npm run build:release ",

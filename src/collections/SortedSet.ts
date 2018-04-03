@@ -53,7 +53,7 @@ export class SortedSet<T> implements ISortedSet<T> {
    public has(value: T): boolean {
         return this.arr.includes(value);
     }
-   public get size(): number{
+   public get size(): number {
        return this.arr.length;
    }
    public linq(): IQueryable<T> {

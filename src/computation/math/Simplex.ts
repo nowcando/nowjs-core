@@ -1249,7 +1249,7 @@ export class SimplexOutput {
     public toString() {
         return JSON.stringify({Result: this.result});
     }
-    public get Result(): any{
+    public get Result(): any {
         return this.result;
     }
 }

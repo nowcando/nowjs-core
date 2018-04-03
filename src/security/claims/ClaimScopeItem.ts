@@ -3,10 +3,10 @@ export class ClaimScopeItem {
     constructor(private name: string, private alwaysInclude: boolean = false) {
 
     }
-    public get Name(): string{
+    public get Name(): string {
         return this.name;
     }
-    public get AlwaysInclude(): boolean{
+    public get AlwaysInclude(): boolean {
         return this.alwaysInclude;
     }
 
