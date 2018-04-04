@@ -136,6 +136,200 @@ function mapEntriesToObjectDictionary<T>(): IObjectDictionary<T> {
     return arr;
 }
 
+function  setFilter<T>(callbackfn: (value: T, index: number, set: any) => boolean, thisArg?: any): Set<T> {
+    const res = new Set<T>();
+    let counter = 0;
+    for (const item of this) {
+        if (callbackfn(item, counter, thisArg || this)) {
+            res.add(item);
+        }
+        counter++;
+    }
+    return res;
+}
+function  setWeakFilter<T extends object>(callbackfn: (value: T, index: number, set: any) => boolean,
+                                          thisArg?: any): WeakSet<T> {
+    const res = new WeakSet<T>();
+    let counter = 0;
+    for (const item of this) {
+        if (callbackfn(item, counter, thisArg || this)) {
+            res.add(item);
+        }
+        counter++;
+    }
+    return res;
+}
+function  setFind<T>(callbackfn: (value: T, index: number, set: any) => boolean, thisArg?: any): T {
+    let counter = 0;
+    for (const item of this) {
+        if (callbackfn(item, counter, thisArg || this)) {
+            return item;
+        }
+        counter++;
+    }
+    return null;
+}
+
+function  setEvery<T>(callbackfn: (value: T, index: number, set: any) => boolean, thisArg?: any): boolean {
+    let res = true;
+    let counter = 0;
+    for (const item of this) {
+        if (!callbackfn(item, counter, thisArg || this)) {
+            return false;
+        }
+        counter++;
+    }
+    return res;
+}
+
+function  setSome<T>(callbackfn: (value: T, index: number, set: any) => boolean, thisArg?: any): boolean {
+    let res = false;
+    let counter = 0;
+    for (const item of this) {
+        if (callbackfn(item, counter, thisArg || this)) {
+            return true;
+        }
+        counter++;
+    }
+    return res;
+}
+
+function  setMap<T, U extends object>(callbackfn: (value: T, index: number, set: any) => U, thisArg?: any): Set<U> {
+    const res = new Set<U>();
+    let counter = 0;
+    for (const item of this) {
+
+            res.add(callbackfn(item, counter, thisArg || this));
+
+            counter++;
+    }
+    return res;
+}
+
+function  setWeakMap<T, U extends object>(callbackfn: (value: T, index: number,
+                                                       set: any) => U,
+                                          thisArg?: any): WeakSet<U> {
+            const res = new WeakSet<U>();
+            let counter = 0;
+            for (const item of this) {
+
+                res.add(callbackfn(item, counter,  thisArg || this));
+
+                counter++;
+                }
+            return res;
+}
+
+function setUnion<T, P>(other: Set<P>): Set<T|P> {
+    let result = new Set<T|P>(this);
+    for (const item of other) {
+        if (!result.has(item)) {
+            result.add(item);
+        }
+    }
+    return result;
+}
+function setIntersect<T, P>(other: Set<P>): Set<T|P> {
+    let result = new Set<T|P>();
+    for (const item of other) {
+        if (this.has(item)) {
+            result.add(item);
+        }
+    }
+    return result;
+}
+
+function setExcept<T, P>(other: Set<P>): Set<T|P> {
+    let result = new Set<T|P>(this);
+    for (const item of other) {
+        if (result.has(item)) {
+            result.delete(item);
+        }
+    }
+    return result;
+}
+
+function setXor<T, P>(other: Set<P>): Set<T|P> {
+    const unioned = this.union(other);
+    const intersected = this.intersect(other);
+    return unioned.except(intersected);
+}
+
+function setIsSuperSetOf<T, P>(other: Set<P>): boolean {
+    let result = true;
+    for (const item of other) {
+        if (!this.has(item)) {
+            return false;
+        }
+    }
+    return result;
+}
+function setIsSubSetOf<T, P>(other: Set<P>): boolean {
+    let result = true;
+    for (const item of this) {
+        if (!other.has(item)) {
+            return false;
+        }
+    }
+    return result;
+}
+
+function setIsEmpty(): boolean {
+    return this.size === 0;
+}
+
+function setJoin(seperator?: string): string {
+    let res = "";
+    let that: Set<any> = this;
+    seperator = seperator !== undefined ? seperator : " , ";
+    if (that.size === 0 ) {
+           return "";
+        } else if (that.size === 1) {
+            return (that.values().next().value as any).toString();
+        } else {
+         const itr = that.values();
+         res = (itr.next().value as any).toString();
+         for (let item of itr) {
+             res = res + seperator + (item as any).toString();
+         }
+       }
+    return res;
+}
+
+function mathClamp(x: number, min: number, max: number): number {
+    return Math.min(max, Math.max(min, x));
+}
+function mathFscale(x: number, inLow: number, inHigh: number, outLow: number, outHigh: number): number {
+    return Math.fround(Math.scale(x, inLow, inHigh, outLow, outHigh));
+}
+function mathScale(x: number, inLow: number, inHigh: number, outLow: number, outHigh: number): number {
+    if (
+        arguments.length === 0
+          || x !== x
+          || inLow !== inLow
+          || inHigh !== inHigh
+          || outLow !== outLow
+          || outHigh !== outHigh
+      ) return NaN;
+    if (x === Infinity || x === -Infinity) return x;
+    return (x - inLow) * (outHigh - outLow) / (inHigh - inLow) + outLow;
+}
+function mathRadians(degrees: number): number {
+    return degrees * Math.DEG_PER_RAD;
+}
+function mathDegrees(radians: number): number {
+    return radians * Math.RAD_PER_DEG;
+}
+
+Math.DEG_PER_RAD = Math.PI / 180;
+Math.RAD_PER_DEG = 180 / Math.PI;
+
+Math.clamp = mathClamp;
+Math.fscale = mathFscale;
+Math.scale = mathScale;
+Math.radians = mathRadians;
+Math.degrees = mathDegrees;
+
 Array.prototype.toUnique = toUnique;
 Array.prototype.itemCount = itemCount;
 Array.prototype.findDuplicates = findDuplicates;
@@ -170,8 +364,34 @@ Set.prototype.linq = getEunmerable;
 Set.prototype.plinq = getParallelEunmerable;
 Set.prototype.toArray = toArray;
 Set.prototype.toList = toList;
+Set.prototype.intersect = setIntersect;
+Set.prototype.union = setUnion;
+Set.prototype.except = setExcept;
+Set.prototype.xor = setXor;
+Set.prototype.isEmpty = setIsEmpty;
+Set.prototype.isSubSetOf = setIsSubSetOf;
+Set.prototype.isSuperSetOf = setIsSuperSetOf;
+Set.prototype.join = setJoin;
+Set.prototype.filter = setFilter;
+Set.prototype.find = setFind;
+Set.prototype.every = setEvery;
+Set.prototype.some = setSome;
+Set.prototype.map = setMap;
 
 WeakSet.prototype.linq = getEunmerable;
 WeakSet.prototype.plinq = getParallelEunmerable;
 WeakSet.prototype.toArray = toArray;
 WeakSet.prototype.toList = toList;
+WeakSet.prototype.intersect = setIntersect;
+WeakSet.prototype.union = setUnion;
+WeakSet.prototype.except = setExcept;
+WeakSet.prototype.xor = setXor;
+WeakSet.prototype.isEmpty = setIsEmpty;
+WeakSet.prototype.isSubSetOf = setIsSubSetOf;
+WeakSet.prototype.isSuperSetOf = setIsSuperSetOf;
+WeakSet.prototype.join = setJoin;
+WeakSet.prototype.filter = setWeakFilter;
+WeakSet.prototype.find = setFind;
+WeakSet.prototype.every = setEvery;
+WeakSet.prototype.some = setSome;
+WeakSet.prototype.map = setWeakMap;

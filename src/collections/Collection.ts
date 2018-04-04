@@ -57,6 +57,23 @@ export class Collection<T> implements ICollection<T> {
     public clone(): ICollection<T> {
         return new Collection(this);
     }
+    public join(seperator?: string) {
+        let res = "";
+        const that = this;
+        seperator = seperator !== undefined ? seperator : " , ";
+        if (that.size === 0 ) {
+               return "";
+            } else if (that.size === 1) {
+                return (that[Symbol.iterator]().next().value as any).toString();
+            } else {
+             const itr: any = that[Symbol.iterator]();
+             res = (itr.next().value as any).toString();
+             for (const item of itr) {
+                 res = res + seperator + (item as any).toString();
+             }
+           }
+        return res;
+    }
     public toArray(): T[] {
         const arr: T[] = [];
         for (const item of this) {
