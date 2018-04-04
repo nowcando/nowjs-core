@@ -73,5 +73,24 @@ describe("Map", async () => {
         expect(3).toEqual(mp.size);
         expect(actual).toEqual(true);
     });
-
+    it("toKeyList", async () => {
+        expect.assertions(2);
+        const mp = new Map();
+        mp.set("name", "saeed");
+        mp.set("family", "tabrizi");
+        mp.set("gender", "male");
+        const actual = mp.toKeyList().toArray();
+        expect(3).toEqual(mp.size);
+        expect(actual).toEqual(["name", "family", "gender"]);
+    });
+    it("toValueList", async () => {
+        expect.assertions(2);
+        const mp = new Map();
+        mp.set("name", "saeed");
+        mp.set("family", "tabrizi");
+        mp.set("gender", "male");
+        const actual = mp.toValueList().toArray();
+        expect(3).toEqual(mp.size);
+        expect(actual).toEqual(["saeed", "tabrizi", "male"]);
+    });
 });

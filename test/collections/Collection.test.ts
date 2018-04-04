@@ -94,6 +94,13 @@ describe("Collections Collection tests", async () => {
     expect(list.size).toEqual(4) ;
     expect(list.toArray().length).toEqual(list.size) ;
   });
+  it("checks join", async () => {
+    expect.assertions(3);
+    const list = new Collection<number>([1 , 2 , 3 , 4]);
+    expect(list.size).toEqual(4) ;
+    expect(list.join()).toEqual("1 , 2 , 3 , 4") ;
+    expect(list.join(" | ")).toEqual("1 | 2 | 3 | 4") ;
+  });
   it("checks itreation", async () => {
     expect.assertions(2);
     const list = new Collection<number>([1 , 2 , 3 , 4]);
