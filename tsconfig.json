@@ -35,7 +35,14 @@
       "es2017",
       "es2017.object",
       "es2017.sharedmemory",
-      "esnext.asynciterable"
+      "es2017.typedarrays",
+      "es2017.string",
+      "es2018",
+      "es2018.promise",
+      "es2018.regexp",
+      "esnext.array",
+      "esnext.asynciterable",
+      
       
     ]
 
