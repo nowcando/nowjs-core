@@ -89,6 +89,9 @@ declare global {
     }
     interface Map<K, V> {
 
+        put(key: K, value: V): this;
+        putAll(...entries: Array<[K, V]>): this;
+        isEmpty(): boolean;
         toArray(): Array<[K, V]>;
         toList(): IList<[K, V]>;
         toObject(): IObjectDictionary<V>;
@@ -98,6 +101,10 @@ declare global {
         containsValue(value: any): boolean;
         linq(): IQueryable<[K, V]>;
         plinq(): IParallelQueryable<[K, V]>;
+
+        // tslint:disable-next-line:max-line-length
+        map<T, U extends object>(callbackfn: (value: [K, V], index: number, map: Map<K, V>) => [T, U], thisArg?: any): Map<T, U>;
+
     }
     interface WeakSet<T> {
 
@@ -123,7 +130,9 @@ declare global {
         plinq(): IParallelQueryable<T>;
     }
     interface WeakMap<K extends object, V> {
-
+        put(key: K, value: V): this;
+        putAll(...entries: Array<[K, V]>): this;
+        isEmpty(): boolean;
         toArray(): Array<[K, V]>;
         toList(): IList<[K, V]>;
         toObject(): IObjectDictionary<V>;
@@ -133,6 +142,10 @@ declare global {
         containsValue(value: any): boolean;
         linq(): IQueryable<[K, V]>;
         plinq(): IParallelQueryable<[K, V]>;
+
+         // tslint:disable-next-line:max-line-length
+        map<T extends object, U extends object>(callbackfn: (value: [K, V], index: number, map: Map<K, V>) => [T, U], thisArg?: any): WeakMap<T, U>;
+
     }
 
     export interface PromiseConstructor {

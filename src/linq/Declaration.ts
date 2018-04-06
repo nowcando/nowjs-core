@@ -128,6 +128,46 @@ function mapValueToList<T>(): IList<T> {
     return arr;
 }
 
+function mapIsEmpty(): boolean {
+    return this.size === 0;
+}
+
+function mapPut<K, V>(key: K, value: V): any {
+    this.set(key, value);
+    return this;
+}
+
+function mapPutAll<K, V>(...entries: Array<[K, V]>): any {
+    for (const [key, value] of entries) {
+        this.set(key, value);
+    }
+    return this;
+}
+
+// tslint:disable-next-line:max-line-length
+function  mapMap<T, U extends object>(callbackfn: (value: [any, any], index: number, map: Map<any, any>) => [T, U], thisArg?: any): Map<T, U> {
+    const res = new Map<T, U>();
+    let counter = 0;
+    for (const [key, value] of this) {
+            const fc = callbackfn([key, value], counter, thisArg || this);
+            res.set(fc[0], fc[1]);
+            counter++;
+    }
+    return res;
+}
+
+// tslint:disable-next-line:max-line-length
+function  mapWeakMap<T extends object, U extends object>(callbackfn: (value: [any, any], index: number, map: Map<any, any>) => [T, U], thisArg?: any): WeakMap<T, U> {
+    const res = new WeakMap<T, U>();
+    let counter = 0;
+    for (const [key, value] of this) {
+            const fc = callbackfn([key, value], counter, thisArg || this);
+            res.set(fc[0], fc[1]);
+            counter++;
+    }
+    return res;
+}
+
 function mapEntriesToObjectDictionary<T>(): IObjectDictionary<T> {
     const arr: any =  {};
     for (const [key, value] of this[Symbol.iterator]()) {
@@ -349,7 +389,15 @@ Map.prototype.containsKey = mapContainsKey;
 Map.prototype.containsValue = mapContainsValue;
 Map.prototype.linq = getEunmerable;
 Map.prototype.plinq = getParallelEunmerable;
+Map.prototype.isEmpty = mapIsEmpty;
+Map.prototype.putAll = mapPutAll;
+Map.prototype.put = mapPut;
+Map.prototype.map = mapMap;
 
+WeakMap.prototype.map = mapWeakMap;
+WeakMap.prototype.putAll = mapPutAll;
+WeakMap.prototype.put = mapPut;
+WeakMap.prototype.isEmpty = mapIsEmpty;
 WeakMap.prototype.toArray = toArray;
 WeakMap.prototype.toList = toList;
 WeakMap.prototype.toKeyList = mapKeyToList;
