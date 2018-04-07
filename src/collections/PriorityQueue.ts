@@ -19,6 +19,10 @@ export class PriorityQueue<T> implements IPriorityQueue<T> {
             }
         }
     }
+
+    public isEmpty(): boolean {
+        return this.size === 0;
+    }
     public contains(item: T): boolean {
         return this.arr.findIndex((xx) => {
             return xx === item;

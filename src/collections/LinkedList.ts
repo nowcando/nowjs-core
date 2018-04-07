@@ -54,6 +54,11 @@ export class LinkedList<E> implements ILinkedList<E> {
             yield currentNode;
         };
     }
+
+    public isEmpty(): boolean {
+        return this.size === 0;
+    }
+
     public contains(item: E): boolean {
         for (const xx of this) {
             if (item === xx) { return true; }

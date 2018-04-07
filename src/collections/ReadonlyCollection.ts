@@ -56,6 +56,10 @@ export class ReadonlyCollection<T> implements IReadonlyCollection<T> {
            }
         return res;
     }
+
+    public isEmpty(): boolean {
+        return this.size === 0;
+    }
     public toArray(): T[] {
         const arr: T[] = [];
         for (const item of this) {

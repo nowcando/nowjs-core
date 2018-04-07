@@ -20,4 +20,5 @@ export interface ISortedSet<T> extends IEnumerable<T> {
     size: number;
     linq(): IQueryable<T>;
     plinq(): IParallelQueryable<T>;
+    isEmpty(): boolean;
 }

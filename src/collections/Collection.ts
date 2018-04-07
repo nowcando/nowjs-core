@@ -18,6 +18,10 @@ export class Collection<T> implements ICollection<T> {
         }
     }
 
+    public isEmpty(): boolean {
+        return this.size === 0;
+    }
+
     public add(item: T): void;
     public add(...items: T[]): void;
     public add(...items: any[]) {

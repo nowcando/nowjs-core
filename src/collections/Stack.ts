@@ -77,4 +77,8 @@ export class Stack<T> implements IStack<T> {
         return new Stack(this);
     }
 
+    public isEmpty(): boolean {
+        return this.size === 0;
+    }
+
 }

@@ -33,5 +33,5 @@ export interface  ILinkedList<E> extends IEnumerable<E> {
     toList(): IList<E>;
     linq(): IQueryable<E>;
     plinq(): IParallelQueryable<E>;
-
+    isEmpty(): boolean;
 }
