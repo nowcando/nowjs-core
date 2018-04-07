@@ -77,6 +77,10 @@ export class Stack<T> implements IStack<T> {
         return new Stack(this);
     }
 
+    public toSet(): Set<T> {
+        return new Set(this);
+    }
+
     public isEmpty(): boolean {
         return this.size === 0;
     }

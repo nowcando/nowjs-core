@@ -176,6 +176,10 @@ export class LinkedList<E> implements ILinkedList<E> {
     public toList(): IList<E> {
         return new List(this);
     }
+
+    public toSet(): Set<E> {
+        return new Set(this);
+    }
     public linq(): IQueryable<E> {
         return new Enumerable<E>(this);
     }

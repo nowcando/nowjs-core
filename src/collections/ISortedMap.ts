@@ -19,4 +19,5 @@ export interface ISortedMap<K, V> extends IEnumerable<[K, V]> {
     size: number;
 
     isEmpty(): boolean;
+
 }

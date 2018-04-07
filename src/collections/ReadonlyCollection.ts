@@ -73,6 +73,10 @@ export class ReadonlyCollection<T> implements IReadonlyCollection<T> {
     public toList(): IList<T> {
         return new List(this);
     }
+
+    public toSet(): Set<T> {
+        return new Set(this);
+    }
     public linq(): IQueryable<T> {
        return new Enumerable<T>(this);
     }

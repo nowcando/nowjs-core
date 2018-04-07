@@ -100,6 +100,10 @@ export class SortedCollection<T> implements ISortedCollection<T> {
         return new SortedCollection(this.comparator, this);
     }
 
+    public toSet(): Set<T> {
+        return new Set(this);
+    }
+
     public isEmpty(): boolean {
         return this.size === 0;
     }
