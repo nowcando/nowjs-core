@@ -31,7 +31,9 @@ export interface  ILinkedList<E> extends IEnumerable<E> {
     toArray(): E[];
     toCollection(): ICollection<E>;
     toList(): IList<E>;
+
+    toSet(): Set<E>;
     linq(): IQueryable<E>;
     plinq(): IParallelQueryable<E>;
-
+    isEmpty(): boolean;
 }

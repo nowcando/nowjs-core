@@ -16,8 +16,11 @@ export interface ISortedSet<T> extends IEnumerable<T> {
     toArray(): T[];
     toCollection(): ICollection<T>;
     toList(): IList<T>;
+
+    toSet(): Set<T>;
     // tslint:disable-next-line:member-ordering
     size: number;
     linq(): IQueryable<T>;
     plinq(): IParallelQueryable<T>;
+    isEmpty(): boolean;
 }

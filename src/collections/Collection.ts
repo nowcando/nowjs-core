@@ -18,6 +18,10 @@ export class Collection<T> implements ICollection<T> {
         }
     }
 
+    public isEmpty(): boolean {
+        return this.size === 0;
+    }
+
     public add(item: T): void;
     public add(...items: T[]): void;
     public add(...items: any[]) {
@@ -86,6 +90,10 @@ export class Collection<T> implements ICollection<T> {
     }
     public toList(): IList<T> {
         return new List(this);
+    }
+
+    public toSet(): Set<T> {
+        return new Set(this);
     }
     public linq(): IQueryable<T> {
        return new Enumerable<T>(this);
