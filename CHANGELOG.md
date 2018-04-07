@@ -1,3 +1,9 @@
+### 0.19.0 (2018-04-07)
+
+##### New Features
+
+*  add some decorators to core . ([c6ee7926](https://github.com/nowcando/nowjs-core/commit/c6ee7926e74a4baff6a0e435856a951fd94bbb55))
+
 ### 0.18.0 (2018-04-07)
 
 ### 0.17.0 (2018-04-06)
