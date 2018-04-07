@@ -1,3 +1,4 @@
+export * from "./Decorators";
 export * from "./BaseTypes";
 export * from "./IService";
 export * from "./IApplicationModule";
