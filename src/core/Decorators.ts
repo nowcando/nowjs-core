@@ -112,3 +112,11 @@ export function format(formatString: string) {
 export function getFormat(target: any, propertyKey: string) {
     return Reflect.getMetadata(formatMetadataKey, target, propertyKey);
 }
+
+export function override(instance: any, name: string, descriptor: any) {
+    const baseType = Object.getPrototypeOf(instance);
+    if (typeof baseType[name] !== "function") {
+        // tslint:disable-next-line:max-line-length
+        throw new Error("Method " + name + " of " + instance.constructor.name + " does not override any base class method.");
+    }
+}
