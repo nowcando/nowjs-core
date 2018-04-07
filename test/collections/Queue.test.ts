@@ -17,14 +17,14 @@ afterEach(() => { });
 
 describe("Collections Queue tests", async () => {
 
-  it("checks enqueu items", async () => {
+  it("enqueu items", async () => {
     expect.assertions(1);
     const list = new Queue<number>();
     list.enqueue(1, 2, 3);
     list.enqueue(4);
     expect(list.size).toEqual(4);
   });
-  it("checks dequeu items", async () => {
+  it("dequeu items", async () => {
     expect.assertions(5);
     const list = new Queue<number>();
     list.enqueue(1, 2, 3);
@@ -38,7 +38,7 @@ describe("Collections Queue tests", async () => {
     expect(item4).toEqual(undefined);
     expect(list.size).toEqual(0);
   });
-  it("checks peek item", async () => {
+  it("peek item", async () => {
     expect.assertions(2);
     const list = new Queue<number>();
     list.enqueue(1, 2, 3);
@@ -46,20 +46,20 @@ describe("Collections Queue tests", async () => {
     expect(item).toEqual(1);
     expect(list.size).toEqual(3);
   });
-  it("checks clear", async () => {
+  it("clear", async () => {
     expect.assertions(2);
     const list = new Queue<number>([1, 2, 3, 4]);
     expect(list.size).toEqual(4);
     list.clear();
     expect(list.size).toEqual(0);
   });
-  it("checks linq", async () => {
+  it("linq", async () => {
     expect.assertions(2);
     const list = new Queue<number>([1, 2, 3, 4]);
     expect(list.size).toEqual(4);
     expect(list.linq().count()).toEqual(4);
   });
-  it("checks itreation", async () => {
+  it("itreation", async () => {
     expect.assertions(2);
     const list = new Queue<number>([1, 2, 3, 4]);
     expect(list.size).toEqual(4);
@@ -70,29 +70,43 @@ describe("Collections Queue tests", async () => {
     expect(list2.size).toEqual(2);
   });
 
-  it("checks contains", async () => {
+  it("contains", async () => {
     expect.assertions(2);
     const list = new Queue<number>([1, 2, 3, 4]);
     expect(list.size).toEqual(4);
     expect(list.contains(3)).toEqual(true);
   });
-  it("checks toCollection", async () => {
+  it("toCollection", async () => {
     expect.assertions(2);
     const list = new Queue<number>([1, 2, 3, 4]);
     expect(list.size).toEqual(4);
     expect(list.toCollection().size).toEqual(list.size);
   });
-  it("checks toList", async () => {
+  it("toList", async () => {
     expect.assertions(2);
     const list = new Queue<number>([1, 2, 3, 4]);
     expect(list.size).toEqual(4);
     expect(list.toList().size).toEqual(list.size);
   });
-  it("checks toArray", async () => {
+  it("toArray", async () => {
     expect.assertions(2);
     const list = new Queue<number>([1, 2, 3, 4]);
     expect(list.size).toEqual(4);
     expect(list.toArray().length).toEqual(list.size);
+  });
+  it("toSet", async () => {
+    expect.assertions(2);
+    const list = new Queue<number>([1 , 2 , 3 , 4]);
+    expect(list.size).toEqual(4) ;
+    expect(list.toSet().size).toEqual(list.size) ;
+  });
+  it("isEmpty", async () => {
+    expect.assertions(3);
+    const list = new Queue<number>([1 , 2 , 3 , 4]);
+    expect(list.size).toEqual(4) ;
+    expect(list.isEmpty()).toEqual(false) ;
+    list.clear();
+    expect(list.isEmpty()).toEqual(true) ;
   });
 
 });
