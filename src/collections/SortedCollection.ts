@@ -56,6 +56,24 @@ export class SortedCollection<T> implements ISortedCollection<T> {
     public lastIndexOf(item: T): number {
         return this.arr.lastIndexOf(item);
     }
+
+    public join(seperator?: string) {
+        let res = "";
+        const that = this;
+        seperator = seperator !== undefined ? seperator : " , ";
+        if (that.size === 0 ) {
+               return "";
+            } else if (that.size === 1) {
+                return (that[Symbol.iterator]().next().value as any).toString();
+            } else {
+             const itr: any = that[Symbol.iterator]();
+             res = (itr.next().value as any).toString();
+             for (const item of itr) {
+                 res = res + seperator + (item as any).toString();
+             }
+           }
+        return res;
+    }
     public toArray(): T[] {
         const array: T[] = [];
         for (const xx of this.arr) {
@@ -80,5 +98,13 @@ export class SortedCollection<T> implements ISortedCollection<T> {
     }
     public clone(): ISortedCollection<T> {
         return new SortedCollection(this.comparator, this);
+    }
+
+    public toSet(): Set<T> {
+        return new Set(this);
+    }
+
+    public isEmpty(): boolean {
+        return this.size === 0;
     }
 }

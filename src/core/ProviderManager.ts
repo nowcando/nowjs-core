@@ -2,8 +2,8 @@
 import { IProvider } from "./index";
 
 export type ProviderFactory = IProvider | ((...args: any[]) => IProvider);
-
-// tslint:disable-next-line:interface-name
+// tslint:disable:member-ordering
+// tslint:disable:interface-name
 export interface ProviderManagerItem {
     Provider: ProviderFactory;
     IsDefault: boolean;
@@ -32,8 +32,50 @@ export class ProviderManager {
     public static clear(type: string): void {
         const typeMap = ProviderManager.providers.get(type);
         // tslint:disable-next-line:curly
-        if (!typeMap) return ;
+        if (!typeMap) return;
         typeMap.clear();
+    }
+
+    public static hasAnyProvider(type: string): boolean {
+        return ProviderManager.countByType(type) > 0;
+    }
+
+    public static count(): number {
+        let ic = 0;
+        for (const [key, value] of ProviderManager.providers) {
+            ic += value.size;
+        }
+        return ic;
+    }
+
+    public static countByType(type: string): number {
+        const typeMap = ProviderManager.providers.get(type);
+        // tslint:disable-next-line:curly
+        if (!typeMap) return 0;
+        return typeMap.size;
+    }
+
+    public static getNames(): string[] {
+        const names: string[] = [];
+        for (const [segName, seg] of ProviderManager.providers) {
+            for (const name of seg.keys()) {
+                names.push(name);
+            }
+        }
+        // tslint:disable-next-line:curly
+        return names;
+    }
+
+    public static getNamesByType(type: string): string[] {
+        const names: string[] = [];
+        const typeMap = ProviderManager.providers.get(type);
+        // tslint:disable-next-line:curly
+        if (!typeMap) return names;
+        for (const name of typeMap.keys()) {
+            names.push(name);
+        }
+        // tslint:disable-next-line:curly
+        return names;
     }
 
     // tslint:disable-next-line:member-ordering
@@ -43,15 +85,15 @@ export class ProviderManager {
         if (!typeMap) return false;
         let defaultName = "";
         if (typeMap && typeMap.has(name)) {
-               for (const [key, value] of typeMap) {
-                    if (value.IsDefault === true) { defaultName = key; break; }
-                }
-        }   else {
+            for (const [key, value] of typeMap) {
+                if (value.IsDefault === true) { defaultName = key; break; }
+            }
+        } else {
             return false;
         }
 
         // tslint:disable-next-line:curly
-        if (defaultName === name) return  false;
+        if (defaultName === name) return false;
         return typeMap.delete(name);
     }
     // tslint:disable-next-line:member-ordering

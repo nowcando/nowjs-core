@@ -16,6 +16,10 @@ export class Queue<T> implements IQueue<T> {
             }
         }
     }
+
+    public isEmpty(): boolean {
+        return this.size === 0;
+    }
     public contains(item: T): boolean {
        return this.arr.findIndex((xx) => {
            return xx === item ;
@@ -63,6 +67,10 @@ export class Queue<T> implements IQueue<T> {
     }
     public toList(): IList<T> {
         return new List(this);
+    }
+
+    public toSet(): Set<T> {
+        return new Set(this);
     }
     public linq(): IQueryable<T> {
         return new Enumerable<T>(this);

@@ -23,6 +23,14 @@ export class SortedSet<T> implements ISortedSet<T> {
         return this.arr[Symbol.iterator]();
     }
 
+    public isEmpty(): boolean {
+        return this.size === 0;
+    }
+
+    public toSet(): Set<T> {
+        return new Set(this);
+    }
+
    public add(value: T): ISortedSet<T> {
         if (this.size < 1) {
             this.arr.push(value);
@@ -53,7 +61,7 @@ export class SortedSet<T> implements ISortedSet<T> {
    public has(value: T): boolean {
         return this.arr.includes(value);
     }
-   public get size(): number{
+   public get size(): number {
        return this.arr.length;
    }
    public linq(): IQueryable<T> {

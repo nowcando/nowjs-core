@@ -54,6 +54,11 @@ export class LinkedList<E> implements ILinkedList<E> {
             yield currentNode;
         };
     }
+
+    public isEmpty(): boolean {
+        return this.size === 0;
+    }
+
     public contains(item: E): boolean {
         for (const xx of this) {
             if (item === xx) { return true; }
@@ -170,6 +175,10 @@ export class LinkedList<E> implements ILinkedList<E> {
     }
     public toList(): IList<E> {
         return new List(this);
+    }
+
+    public toSet(): Set<E> {
+        return new Set(this);
     }
     public linq(): IQueryable<E> {
         return new Enumerable<E>(this);

@@ -23,7 +23,7 @@ export class ReadonlyCollection<T> implements IReadonlyCollection<T> {
     public contains(item: T): boolean {
         return this.arr.includes(item);
     }
-    public get size(): number{
+    public get size(): number {
        return this.arr.length;
     }
     public get(index: number): T {
@@ -38,6 +38,28 @@ export class ReadonlyCollection<T> implements IReadonlyCollection<T> {
     public clone(): ICollection<T> {
         return new Collection(this);
     }
+
+    public join(seperator?: string) {
+        let res = "";
+        const that = this;
+        seperator = seperator !== undefined ? seperator : " , ";
+        if (that.size === 0 ) {
+               return "";
+            } else if (that.size === 1) {
+                return (that[Symbol.iterator]().next().value as any).toString();
+            } else {
+             const itr: any = that[Symbol.iterator]();
+             res = (itr.next().value as any).toString();
+             for (const item of itr) {
+                 res = res + seperator + (item as any).toString();
+             }
+           }
+        return res;
+    }
+
+    public isEmpty(): boolean {
+        return this.size === 0;
+    }
     public toArray(): T[] {
         const arr: T[] = [];
         for (const item of this) {
@@ -50,6 +72,10 @@ export class ReadonlyCollection<T> implements IReadonlyCollection<T> {
     }
     public toList(): IList<T> {
         return new List(this);
+    }
+
+    public toSet(): Set<T> {
+        return new Set(this);
     }
     public linq(): IQueryable<T> {
        return new Enumerable<T>(this);

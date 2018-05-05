@@ -15,7 +15,9 @@ export interface  IQueue<T> extends IEnumerable<T> {
     toArray(): T[];
     toCollection(): ICollection<T>;
     toList(): IList<T>;
+
+    toSet(): Set<T>;
     linq(): IQueryable<T>;
     plinq(): IParallelQueryable<T>;
-
+    isEmpty(): boolean;
 }

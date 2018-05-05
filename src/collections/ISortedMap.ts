@@ -17,4 +17,7 @@ export interface ISortedMap<K, V> extends IEnumerable<[K, V]> {
     plinq(): IParallelQueryable<[K, V]>;
     // tslint:disable-next-line:member-ordering
     size: number;
+
+    isEmpty(): boolean;
+
 }

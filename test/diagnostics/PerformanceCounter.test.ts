@@ -2,7 +2,7 @@ import "jest";
 import { PerformanceCounter } from "../../src/diagnostics/index";
 
 // jest.resetAllMocks();
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
+// jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
 
 // tslint:disable:no-empty
 beforeAll(() => { });

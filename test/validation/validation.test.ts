@@ -1,9 +1,12 @@
 import "jest";
 
 import { JsonSchemaDefinition } from "../../src/utils/index";
-import { isEmail, isMobile, isPhone,
-  isRequired, isUrl, MaxValidator,
-  RequiredValidator, Validation, ValueTypeValidator } from "../../src/validation/index";
+import {
+  isEmail, isMobile, isPhone,
+  isRequired, isUrl, JsonSchemaValidator,
+  MaxValidator, RequiredValidator,
+  Validation, ValueTypeValidator,
+} from "../../src/validation/index";
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
 // jest.resetAllMocks();
 // tslint:disable:object-literal-sort-keys
@@ -131,7 +134,7 @@ class SampleProfile {
 
   public static getSample1() {
     return new SampleProfile("Alijah", "Sina",
-     "+989121142565", "jj.abrams@gmail.com", "0218890304", "02155998877", "http://jj.com");
+      "+989121142565", "jj.abrams@gmail.com", "0218890304", "02155998877", "http://jj.com");
   }
 
   public static getSample2() {
@@ -168,238 +171,272 @@ afterAll(() => { });
 
 afterEach(() => { });
 
-describe("Lib::Validation:Define.", async () => {
-
-  it("checks defined schema for validation.", async () => {
-    expect.assertions(1);
-    const obj1 = SampleUser.getSample1();
-    Validation.define("SampleUser1", {
-      "Username": {
-        Validators: {
-          isRequired: { Message: "Username Field is Required." },
-          isInRange: { Max: 10, Min: 1 },
-          // "isAlphabet": {  }
+describe("Validation", async () => {
+  describe("Define", async () => {
+    it("checks defined schema for validation.", async () => {
+      expect.assertions(1);
+      const obj1 = SampleUser.getSample1();
+      Validation.define("SampleUser1", {
+        "Username": {
+          Validators: {
+            isRequired: { Message: "Username Field is Required." },
+            isInRange: { Max: 10, Min: 1 },
+            // "isAlphabet": {  }
+          },
         },
-      },
-      "Profile.Firstname": {
-        Validators: {
-          isRequired: { Message: "Username Field is Required." },
-          isInRange: { Max: 10, Min: 1 },
-          // "isAlphabet": {  }
+        "Profile.Firstname": {
+          Validators: {
+            isRequired: { Message: "Username Field is Required." },
+            isInRange: { Max: 10, Min: 1 },
+            // "isAlphabet": {  }
+          },
         },
-      },
+      });
+      const expected = true;
+      try {
+        const actual = await Validation.validate(obj1, "SampleUser1");
+        expect(actual).toEqual(expected);
+      } catch (error) {
+        expect(error).not.toBeNull();
+      }
     });
-    const expected = true;
-    try {
-      const actual = await Validation.validate(obj1, "SampleUser1");
-      expect(actual).toEqual(expected);
-    } catch (error) {
-      expect(error).not.toBeNull();
-    }
-  });
 
-  it("checks defined schema for validation should reject error.", async () => {
-    expect.assertions(1);
-    const obj1 = SampleUser.getSample1();
-    Validation.define("SampleUser2", {
-      "Username": {
-        Validators: {
-          isRequired: { Message: "Username Field is Required." },
-          isInRange: { Max: 10, Min: 1 },
-          // "isAlphabet": {  }
+    it("checks defined schema for validation should reject error.", async () => {
+      expect.assertions(1);
+      const obj1 = SampleUser.getSample1();
+      Validation.define("SampleUser2", {
+        "Username": {
+          Validators: {
+            isRequired: { Message: "Username Field is Required." },
+            isInRange: { Max: 10, Min: 1 },
+            // "isAlphabet": {  }
+          },
         },
-      },
-      "Profile.Firstname": {
-        Validators: {
-          isRequired: { Message: "Firstname Field is Required." },
-          isInRange: { Max: 3, Min: 1, Message: "Firstname is not in true range." },
-          // "isAlphabet": {  }
+        "Profile.Firstname": {
+          Validators: {
+            isRequired: { Message: "Firstname Field is Required." },
+            isInRange: { Max: 3, Min: 1, Message: "Firstname is not in true range." },
+            // "isAlphabet": {  }
+          },
         },
-      },
+      });
+      const expected = true;
+      try {
+        const actual = await Validation.validate(obj1, "SampleUser2");
+        expect(actual).toEqual(expected);
+      } catch (error) {
+        expect(error).not.toBeNull();
+      }
     });
-    const expected = true;
-    try {
-      const actual = await Validation.validate(obj1, "SampleUser2");
-      expect(actual).toEqual(expected);
-    } catch (error) {
-      expect(error).not.toBeNull();
-    }
-  });
-
-});
-
-describe("Lib::Validation:RequiredValidator.", async () => {
-
-  it("checks null value should be reject error.", async () => {
-    const obj1: any = null;
-    const expected = false;
-    try {
-      const actual = await Validation.validate(obj1, new RequiredValidator());
-      expect(actual).toBe(expected);
-    } catch (error) {
-      expect(error).not.toBeNull();
-    }
 
   });
 
-  it("checks a non null value should be true.", async () => {
-    const obj1 = 5;
-    const expected = true;
-    try {
-      const actual = await Validation.validate(obj1, new RequiredValidator());
-      expect(actual).toBe(expected);
-    } catch (error) {
-      expect(error).not.toBeNull();
-    }
+  describe("RequiredValidator.", async () => {
+
+    it("checks null value should be reject error.", async () => {
+      const obj1: any = null;
+      const expected = false;
+      try {
+        const actual = await Validation.validate(obj1, new RequiredValidator());
+        expect(actual).toBe(expected);
+      } catch (error) {
+        expect(error).not.toBeNull();
+      }
+
+    });
+
+    it("checks a non null value should be true.", async () => {
+      const obj1 = 5;
+      const expected = true;
+      try {
+        const actual = await Validation.validate(obj1, new RequiredValidator());
+        expect(actual).toBe(expected);
+      } catch (error) {
+        expect(error).not.toBeNull();
+      }
+
+    });
+
+    it("checks fluent definition Age is null required value should be reject error.", async () => {
+      const obj1: any = { Age: null };
+      const expected = true;
+      try {
+        const dfn = Validation.define()
+          .on("Age")
+          .isMax(50);
+        const actual = await Validation.validate(obj1, dfn);
+        expect(expected).toBe(actual);
+      } catch (error) {
+        expect(error).not.toBeNull();
+      }
+    });
+
+    it("checks fluent definition Age is non null required value should be true.", async () => {
+      const obj1 = { Age: 52 };
+      const expected = true;
+      try {
+        const dfn = Validation.define()
+          .on("Age")
+          .isMax(50);
+        const actual = await Validation.validate(obj1, dfn);
+        expect(expected).toBe(actual);
+      } catch (error) {
+        expect(error).not.toBeNull();
+      }
+    });
 
   });
 
-  it("checks fluent definition Age is null required value should be reject error.", async () => {
-    const obj1: any = { Age: null };
-    const expected = true;
-    try {
-      const dfn = Validation.define()
-        .on("Age")
-        .isMax(50);
-      const actual = await Validation.validate(obj1, dfn);
-      expect(expected).toBe(actual);
-    } catch (error) {
-      expect(error).not.toBeNull();
-    }
-  });
+  describe("MaxValidator.", async () => {
 
-  it("checks fluent definition Age is non null required value should be true.", async () => {
-    const obj1 = { Age: 52 };
-    const expected = true;
-    try {
-      const dfn = Validation.define()
-        .on("Age")
-        .isMax(50);
-      const actual = await Validation.validate(obj1, dfn);
-      expect(expected).toBe(actual);
-    } catch (error) {
-      expect(error).not.toBeNull();
-    }
-  });
+    it("checks null value should be true.", async () => {
+      const obj1: any = null;
+      const expected = true;
+      try {
+        const actual = await Validation.validate(obj1, new MaxValidator(100));
+        expect(actual).toBe(expected);
+      } catch (error) {
+        expect(error).not.toBeNull();
+      }
 
-});
+    });
 
-describe("Lib::Validation:MaxValidator.", async () => {
+    it("checks max value is lower than max and should be true.", async () => {
+      const obj1 = 5;
+      const expected = true;
+      try {
+        const actual = await Validation.validate(obj1, new MaxValidator(100));
+        expect(actual).toBe(expected);
+      } catch (error) {
+        expect(error).not.toBeNull();
+      }
 
-  it("checks null value should be true.", async () => {
-    const obj1: any = null;
-    const expected = true;
-    try {
-      const actual = await Validation.validate(obj1, new MaxValidator(100));
-      expect(actual).toBe(expected);
-    } catch (error) {
-      expect(error).not.toBeNull();
-    }
+    });
 
-  });
+    it("checks max value is lower than max and should be true.", async () => {
+      const obj1 = -150;
+      const expected = true;
+      try {
+        const actual = await Validation.validate(obj1, new MaxValidator(100));
+        expect(actual).toBe(expected);
+      } catch (error) {
+        expect(error).not.toBeNull();
+      }
 
-  it("checks max value is lower than max and should be true.", async () => {
-    const obj1 = 5;
-    const expected = true;
-    try {
-      const actual = await Validation.validate(obj1, new MaxValidator(100));
-      expect(actual).toBe(expected);
-    } catch (error) {
-      expect(error).not.toBeNull();
-    }
+    });
 
-  });
+    it("checks greater than max value should be reject error.", async () => {
+      const obj1 = 150;
+      const expected = false;
+      try {
+        const actual = await Validation.validate(obj1, new MaxValidator(100));
+        expect(actual).toBe(expected);
+      } catch (error) {
+        expect(error).not.toBeNull();
+      }
 
-  it("checks max value is lower than max and should be true.", async () => {
-    const obj1 = -150;
-    const expected = true;
-    try {
-      const actual = await Validation.validate(obj1, new MaxValidator(100));
-      expect(actual).toBe(expected);
-    } catch (error) {
-      expect(error).not.toBeNull();
-    }
+    });
 
-  });
+    it("checks fluent definition object lower Age should be true.", async () => {
+      const obj1 = { Age: 42 };
+      const expected = true;
+      try {
+        const dfn = Validation.define()
+          .on("Age")
+          .isMax(50);
+        const actual = await Validation.validate(obj1, dfn);
+        expect(expected).toBe(actual);
+      } catch (error) {
+        expect(error).not.toBeNull();
+      }
+    });
 
-  it("checks greater than max value should be reject error.", async () => {
-    const obj1 = 150;
-    const expected = false;
-    try {
-      const actual = await Validation.validate(obj1, new MaxValidator(100));
-      expect(actual).toBe(expected);
-    } catch (error) {
-      expect(error).not.toBeNull();
-    }
-
-  });
-
-  it("checks fluent definition object lower Age should be true.", async () => {
-    const obj1 = { Age: 42 };
-    const expected = true;
-    try {
-      const dfn = Validation.define()
-        .on("Age")
-        .isMax(50);
-      const actual = await Validation.validate(obj1, dfn);
-      expect(expected).toBe(actual);
-    } catch (error) {
-      expect(error).not.toBeNull();
-    }
-  });
-
-  it("checks fluent definition object upper Age should reject error.", async () => {
-    const obj1 = { Age: 52 };
-    const expected = false;
-    try {
-      const dfn = Validation.define()
-        .on("Age")
-        .isMax(50);
-      const actual = await Validation.validate(obj1, dfn);
-      expect(expected).toBe(actual);
-    } catch (error) {
-      expect(error).not.toBeNull();
-    }
-  });
-
-});
-
-describe("Lib::Validation:ValueTypeValidator.", async () => {
-
-  it("checks null value should be true.", async () => {
-    const obj1: any = null;
-    const expected = true;
-    try {
-      const actual = await Validation.validate(obj1, new ValueTypeValidator("null"));
-      expect(actual).toBe(expected);
-    } catch (error) {
-      expect(error).not.toBeNull();
-    }
+    it("checks fluent definition object upper Age should reject error.", async () => {
+      const obj1 = { Age: 52 };
+      const expected = false;
+      try {
+        const dfn = Validation.define()
+          .on("Age")
+          .isMax(50);
+        const actual = await Validation.validate(obj1, dfn);
+        expect(expected).toBe(actual);
+      } catch (error) {
+        expect(error).not.toBeNull();
+      }
+    });
 
   });
 
-  it("checks value type  should be number.", async () => {
-    const obj1 = 150;
-    const expected = false;
-    try {
-      const actual = await Validation.validate(obj1, new ValueTypeValidator("number"));
-      expect(actual).toBe(expected);
-    } catch (error) {
-      expect(error).not.toBeNull();
-    }
+  describe("JsonSchemaValidator.", async () => {
+
+    it("checks null value should be true.", async () => {
+      const obj1 = {
+        Firstname: "Jack", Lastname: "Wick",
+        Age: 15, Tags: ["Clever", "Brave"],
+        Children: [{ Firstname: "Sara", Age: 12 },
+        { Firstname: "Jill", Age: 5 }],
+      };
+      const expected = true;
+      const schema = {
+        type: "object",
+        required: ["Age"],
+        properties: {
+          Firstname: { type: "string" },
+          Lastname: { type: "string", pattern: "" },
+          Age: { type: "number" , maximum: 20 , minimum: 10},
+          Tags: { type: "array", items: { type: "string" } },
+          Children: {
+            type: "array", items: { type: "any" },
+            maxItems: 2, minItems: 1 ,
+          },
+        },
+      };
+      try {
+        const actual = await Validation.validate(obj1, new JsonSchemaValidator(schema));
+        expect(actual).toBe(expected);
+      } catch (error) {
+        expect(error).not.toBeNull();
+      }
+
+    });
 
   });
+  describe("ValueTypeValidator.", async () => {
 
-  it("checks value type of number should be error.", async () => {
-    const obj1 = 150;
-    const expected = false;
-    try {
-      const actual = await Validation.validate(obj1, new ValueTypeValidator("string"));
-      expect(actual).toBe(expected);
-    } catch (error) {
-      expect(error).not.toBeNull();
-    }
+    it("checks null value should be true.", async () => {
+      const obj1: any = null;
+      const expected = true;
+      try {
+        const actual = await Validation.validate(obj1, new ValueTypeValidator("null"));
+        expect(actual).toBe(expected);
+      } catch (error) {
+        expect(error).not.toBeNull();
+      }
 
+    });
+
+    it("checks value type  should be number.", async () => {
+      const obj1 = 150;
+      const expected = false;
+      try {
+        const actual = await Validation.validate(obj1, new ValueTypeValidator("number"));
+        expect(actual).toBe(expected);
+      } catch (error) {
+        expect(error).not.toBeNull();
+      }
+
+    });
+
+    it("checks value type of number should be error.", async () => {
+      const obj1 = 150;
+      const expected = false;
+      try {
+        const actual = await Validation.validate(obj1, new ValueTypeValidator("string"));
+        expect(actual).toBe(expected);
+      } catch (error) {
+        expect(error).not.toBeNull();
+      }
+
+    });
   });
-
 });

@@ -111,7 +111,7 @@ describe("Collections LinkedList tests", async () => {
     const list = new LinkedList<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;
     const list2 = new LinkedList<number>();
-    for (const item of list){
+    for (const item of list) {
         list2.add(item);
     }
     expect(list2.size).toEqual(list.size) ;
@@ -161,6 +161,20 @@ describe("Collections LinkedList tests", async () => {
     const list = new LinkedList<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;
     expect(list.toArray().length).toEqual(list.size) ;
+  });
+  it("toSet", async () => {
+    expect.assertions(2);
+    const list = new LinkedList<number>([1 , 2 , 3 , 4]);
+    expect(list.size).toEqual(4) ;
+    expect(list.toSet().size).toEqual(list.size) ;
+  });
+  it("isEmpty", async () => {
+    expect.assertions(3);
+    const list = new LinkedList<number>([1 , 2 , 3 , 4]);
+    expect(list.size).toEqual(4) ;
+    expect(list.isEmpty()).toEqual(false) ;
+    list.clear();
+    expect(list.isEmpty()).toEqual(true) ;
   });
 
 });

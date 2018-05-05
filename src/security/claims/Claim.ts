@@ -123,22 +123,42 @@ export class Claim {
     public get Issuer(): string {
         return this.issuer;
     }
-    public get OriginalIssuer(): string{
+    public get OriginalIssuer(): string {
         return this.originalIssuer;
     }
-    public get Properties(): any{
+    public get Properties(): any {
         return this.properties;
     }
-    public get Subject(): ClaimsIdentity{
+    public get Subject(): ClaimsIdentity {
         return this.subject;
     }
-    public get Type(): string{
+    public get Type(): string {
         return this.type;
     }
-    public get Value(): any{
+    public get Value(): any {
         return this.value;
     }
     public get ValueType(): string {
         return (typeof this.value);
+    }
+
+    public toJSON(): object {
+        const obj: any = {};
+        obj.Value = this.value;
+        obj.Type = this.type;
+        obj.ValueType = this.ValueType;
+        if (this.issuer) {
+            obj.Issuer = this.issuer;
+        }
+        if (this.properties) {
+            obj.Properties = this.properties;
+        }
+        if (this.originalIssuer) {
+            obj.OriginalIssuer = this.originalIssuer;
+        }
+        if (this.subject) {
+            obj.Subject = this.subject;
+        }
+        return obj;
     }
 }

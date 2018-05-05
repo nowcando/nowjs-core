@@ -55,6 +55,10 @@ export class SortedMap<K, V> implements ISortedMap<K, V> {
 
         return itr;
     }
+
+    public isEmpty(): boolean {
+        return this.size === 0;
+    }
     public clear(): void {
         this.arr.splice(0, this.arr.length);
     }

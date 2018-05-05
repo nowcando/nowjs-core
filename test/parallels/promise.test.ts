@@ -14,8 +14,8 @@ afterAll(() => { });
 
 afterEach(() => { });
 
-describe("Promise:: test promise extra futures.", async () => {
-
+describe("Promise", async () => {
+  describe("Promise extra futures.", async () => {
   it("checks static wait", async () => {
     expect.assertions(1);
     const start = Date.now();
@@ -25,7 +25,7 @@ describe("Promise:: test promise extra futures.", async () => {
       });
     const finish = Date.now();
     const duration = finish - start;
-    expect(duration).toBeGreaterThanOrEqual(15);
+    expect(duration).toBeGreaterThanOrEqual(14);
   });
 
   it("checks static delay", async () => {
@@ -37,7 +37,7 @@ describe("Promise:: test promise extra futures.", async () => {
       });
     const finish = Date.now();
     const duration = finish - start;
-    expect(duration).toBeGreaterThanOrEqual(15);
+    expect(duration).toBeGreaterThanOrEqual(14);
   });
 
   it("checks timeout & wait ", async () => {
@@ -56,7 +56,7 @@ describe("Promise:: test promise extra futures.", async () => {
       ;
     const finish = Date.now();
     const duration = finish - start;
-    expect(duration).toBeGreaterThanOrEqual(40);
+    expect(duration).toBeGreaterThanOrEqual(39);
   });
 
   it("checks timeout & delay ", async () => {
@@ -75,7 +75,7 @@ describe("Promise:: test promise extra futures.", async () => {
       ;
     const finish = Date.now();
     const duration = finish - start;
-    expect(duration).toBeGreaterThanOrEqual(40);
+    expect(duration).toBeGreaterThanOrEqual(39);
   });
 
   it("checks spread for all", async () => {
@@ -109,5 +109,5 @@ describe("Promise:: test promise extra futures.", async () => {
     const actual = await pr;
     expect(actual).toEqual("hello saeed");
   });
-
+  });
 });

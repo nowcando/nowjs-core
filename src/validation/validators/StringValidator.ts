@@ -1,7 +1,7 @@
 
 // tslint:disable-next-line:ordered-imports
-import { ValidatorBase, ValidationContext, ValidatorException, VALIDATOR_METADATA_KEY } from "../index";
 import { StringFormatType } from "../../utils/index";
+import { ValidationContext, VALIDATOR_METADATA_KEY, ValidatorBase, ValidatorException } from "../index";
 import { ValueTypeValidatorBase } from "./index";
 
 export const VALIDATOR_STRING_METADATA_KEY = Symbol("validation:validator:isString");

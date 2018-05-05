@@ -1,2 +1,2 @@
-export *  from "./ILicensingProvider";
-export * from "./LicensingProvider";
+export *  from "./ILicenseProvider";
+export * from "./LicenseProvider";

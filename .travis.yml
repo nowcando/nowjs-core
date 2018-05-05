@@ -1,21 +1,24 @@
 language: node_js
 node_js:
-  - "8"
-
+- '10'
 sudo: false
-
 install:
-  - npm install typescript -g
-  - npm install ts-node -g
-  - npm install tslint -g  
-  - npm install
+- npm install typescript -g
+- npm install ts-node -g
+- npm install tslint -g
+- npm install
 script:
-  - npm run lint
-  - npm run test
-
+- npm run lint
+- npm run test
+before_deploy:
+- npm run build:release
 deploy:
   provider: npm
+  skip_cleanup: true
   email: dev@nowcando.com
-  api_key: $NPM_TOKEN
+  api_key:
+    secure: tLEaY5dqABDdsxU+rQSnjcPe7AkWWWpJ2ICsXRgDVlTEHIYVmSnvHSqofCFK8QZ5NLMSJ6lIprmVkuG38WYX3h4Y44wpAkm1B5soyXCWDwVvHrpCf70QAtFiRugACLLTcT9eOgSCwIE4er+sh6k57pyXcXjIB/9sSPCb4+26TpvDJDxTh0KBiLbj8TMHfi1eN15BbpW6UFq08krcpXs3SDKjrazfH6Ap6lFu17uy2w24hyywAktePyH1U92sXolOaImWpLARm9+3y81fDFJo4AdFL2DClT0ogwzydGgZAiTEMstvBTSi28aUQSr4rCG2c/1t3UmNlJN/Fw7e4VylkXPY7gxV3q+ocFuYnEpJvlbQL9XK9YQyS+oN4W/Q1bO1ZYLP+8q76IRT6w4J+iRfIxiUkEi1J6M+1ecQeUDzknsRZFirkc1RrqoLwpJKwWaXQ4cP9MX7J9071Y6l5Yjt1Urx3iLKl9FEZ5zZBj3Hmz+wI6qDIIz3l6/9nU86RUH1DbsjsqJchhOCLWaTUlLpIgbyqQ7FxwDmNB/MYMJD9u2Gf2HSfYM53qgNyoGo5kRzNTh8ZOmGv7AJe0xZnayxKovO407PS3/OfMUZ7K4YKIEVNlYjJQTFvywoWXM9JWFDe612UWgw8dRohMlBCH2SsV2SeVPJq2B+GJkTQv09IQ8=
   on:
     branch: master
+after_deploy:
+- npm run clean:release

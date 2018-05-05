@@ -14,9 +14,15 @@ export interface IReadonlyCollection<T> extends IEnumerable<T> {
     get(index: number): T;
     indexOf(item: T): number;
     lastIndexOf(item: T): number;
+
+    join(separator?: string): string;
     toArray(): T[];
     toCollection(): ICollection<T>;
     toList(): IList<T>;
+    toSet(): Set<T>;
+
     linq(): IQueryable<T>;
     plinq(): IParallelQueryable<T>;
+
+    isEmpty(): boolean;
 }

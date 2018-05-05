@@ -1,10 +1,10 @@
 # **nowjs-core**
- 
+
 Nowjs-Core is a lightweight library for handle Line Of Business challenges.
 
 ### Compatible with ES7(ES2016) and later .
 
-## Compiled and tested with Typescript 2.4.2 and Jest 20 .
+## Compiled and tested with Typescript 2.8.3 and Jest 22 .
  
  [![npm version](https://badge.fury.io/js/nowjs-core.svg)](https://www.npmjs.com/package/nowjs-core)
  [![Downloads](https://img.shields.io/npm/dm/nowjs-core.svg)](https://www.npmjs.com/package/nowjs-core)
@@ -13,20 +13,21 @@ Nowjs-Core is a lightweight library for handle Line Of Business challenges.
 
  # Features
 
- - Parallels (Promise extention methods)
- - Collections
- - Linq
- - Data
- - Exceptions
- - Security
- - Globalizations
- - Utils
- - Providers & Services basic types .
+ - Parallels (Promise extention methods , delay , wait , cancelable , spread).
+ - Collections (List , Colllection , LinkedList, Queue , Stack , SortedList , PriorityQueue , ...).
+ - Computation (BigNumber , ComplexNumber , Simplex , Matrix , Vector , Point , ...).
+ - Linq.
+ - Data.
+ - Exceptions.
+ - Decorators.
+ - Security.
+ - Globalizations.
+ - Utils (String , Object , Sort , Type , Promise , Color, Number utilities).
  - Validations
- - Sanitization
- - Logging
- - Configuration
- 
+ - Sanitization (HtmlSanitizer).
+ - Logging.
+ - Configuration.
+ - Providers and Services basic types .
 
 ### Developed with love by [NowCanDo](http://www.nowcando.com)  .
 

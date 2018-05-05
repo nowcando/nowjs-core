@@ -3,11 +3,13 @@ import { IDType } from "../data/index";
 
 export * from "./decorators/";
 export * from "./multitenant";
+export * from "./login";
 export * from "./license";
 export * from "./membership";
 export * from "./role";
 export * from "./resource";
 export * from "./claims";
+export * from "./oauth";
 export * from "./AuthorizationException";
 export * from "./IAuthenticationProvider";
 export * from "./AuthorizationProvider";
@@ -21,6 +23,11 @@ export interface IIdentity {
 // tslint:disable-next-line:no-empty-interface
 export interface IPermissionResult {
 
+}
+
+export enum VerificationStatus {
+    // tslint:disable-next-line:no-bitwise
+    Verified = 1 , NotVerfied = 2 , Both = Verified | NotVerfied ,
 }
 
 // tslint:disable-next-line:no-empty-interface
@@ -65,6 +72,36 @@ export interface IUser {
     ID?: IDType;
 }
 
+export interface IUserPhone {
+    UserID?: IDType;
+    Phone: string;
+    IsVerified: boolean;
+    RegisteredAt?: Date;
+    DeletedAt?: Date;
+    VerifiedAt?: Date;
+    TFACode?: string;
+    VerifyToken?: string;
+    SentAt?: Date;
+    TryCount?: number;
+    LastTryAt?: Date;
+}
+
+export interface IUserDevice {
+    ID?: IDType;
+    Code?: string;
+    UserID?: IDType;
+    IsVerified: boolean;
+    RegisteredAt?: Date;
+    DeletedAt?: Date;
+    IsTokenExpires?: boolean;
+    Token?: Date;
+    TokenUpdatedAt?: Date;
+    TokenExpiresAt?: Date;
+    TokenExpiredAt?: Date;
+    VerifiedAt?: Date;
+    Properties?: any;
+}
+
 export interface ISession {
     ID?: IDType;
 }
@@ -72,6 +109,16 @@ export interface ISession {
 export interface IRole {
     ID?: IDType;
     Name: string;
+}
+
+export interface ITimelineEntry {
+    Timestamp: number;
+    ActorType?: IDType;
+    ActorID?: IDType; // Actor ID
+    PID?: number; // Process ID
+    SPID?: number; // Sub Process ID
+    ACID?: number; // Activity ID
+    Properties?: any;
 }
 
 export interface IResource {

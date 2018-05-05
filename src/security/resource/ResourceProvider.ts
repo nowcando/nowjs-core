@@ -11,9 +11,17 @@ export class ResourceProvider {
   public static clear(): void {
     ProviderManager.clear(TYPE_RESOURCE_PROVIDER);
   }
+
+  public static count(): number {
+    return ProviderManager.countByType(TYPE_RESOURCE_PROVIDER);
+  }
+
+  public static getNames(): string[] {
+    return ProviderManager.getNamesByType(TYPE_RESOURCE_PROVIDER);
+  }
   // tslint:disable-next-line:member-ordering
-  public static get(name?: string): IResourceProvider<any> {
-    return ProviderManager.get<IResourceProvider<any>>(TYPE_RESOURCE_PROVIDER, name);
+  public static get<T extends IResourceProvider<any>>(name?: string): T {
+    return ProviderManager.get<T>(TYPE_RESOURCE_PROVIDER, name);
   }
 
   public static remove(name: string): boolean {
