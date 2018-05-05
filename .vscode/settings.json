@@ -1,5 +1,4 @@
 {
     "vsicons.presets.angular": false,
-    "jest.pathToConfig": "./jest.json",
-    "typescript.tsdk": "node_modules/typescript/lib",
+    "jest.pathToConfig": "./jest.json",    
 }

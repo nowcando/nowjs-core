@@ -9,3 +9,4 @@ coverage/
 lib/
 docs/documentation/
 nowjs-core.iml
+package-lock.json

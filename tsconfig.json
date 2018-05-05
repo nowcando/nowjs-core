@@ -2,7 +2,9 @@
   "buildOnSave": false,
   "compileOnSave": true,
   "compilerOptions": {
-    "declaration": true,
+    "sourceMap": false,
+    "outDir": "dist",
+    "declaration": false,
     "noImplicitAny": true,
     "noEmitOnError": true,
     "removeComments": false,
