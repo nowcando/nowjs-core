@@ -172,6 +172,41 @@ afterAll(() => { });
 afterEach(() => { });
 
 describe("Validation", async () => {
+
+  describe("JsonSchemaValidator", async () => {
+    it("checks json schema validator schema for validation.", async () => {
+      expect.assertions(1);
+      const jvs = {
+        type: "object",
+        required: ["firstname", "age"],
+        properties: {
+          firstname: { type: "string" },
+          age: { type: "number" },
+          lessons: {
+            type: "object",
+            properties: {
+              math: { type: "number" },
+              science: { type: "number" },
+            },
+          },
+        },
+      };
+      const sampleData = {
+        firstname: "Saeed",
+        age: 51,
+        lessons: {
+          math: 16,
+          science: 18,
+        },
+      };
+      try {
+        const isValid = await Validation.validate(sampleData, new JsonSchemaValidator(jvs));
+        expect(isValid).toBe(true);
+      } catch (error) {
+        expect(error).toBeNull();
+      }
+    });
+  });
   describe("Define", async () => {
     it("checks defined schema for validation.", async () => {
       expect.assertions(1);
@@ -383,11 +418,11 @@ describe("Validation", async () => {
         properties: {
           Firstname: { type: "string" },
           Lastname: { type: "string", pattern: "" },
-          Age: { type: "number" , maximum: 20 , minimum: 10},
+          Age: { type: "number", maximum: 20, minimum: 10 },
           Tags: { type: "array", items: { type: "string" } },
           Children: {
             type: "array", items: { type: "any" },
-            maxItems: 2, minItems: 1 ,
+            maxItems: 2, minItems: 1,
           },
         },
       };

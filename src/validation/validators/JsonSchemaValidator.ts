@@ -136,7 +136,7 @@ export class JsonSchemaValidator extends ValidatorBase {
             const definitions: any = schema.definitions || {};
             const properties = schema.properties || {};
             const requiredProperties: string[] = schema.required || [];
-            const targetKeys = Object.keys(target);
+            const targetKeys = Object.keys(actualValue );
             const propertyNames = schema.propertyNames || Object.keys(schema.properties);
 
             const maxProperties = schema.maxProperties;
@@ -188,15 +188,20 @@ export class JsonSchemaValidator extends ValidatorBase {
         if ((context.Value === undefined || context.Value === null)) {
             return Promise.resolve(true);
         }
-
-        if (!this.isMatch(context.Value)) {
-
+        try {
+            this.traverseProperties(this.schema, context.Value, "");
+            return Promise.resolve(true);
+        } catch (error) {
+            // tslint:disable-next-line:no-console
+            console.log(error.message);
             return Promise.reject(new ValidatorException(this.Name,
                 context.Target,
                 context.PropertyName,
-                this.formatErrorMessage(context)));
-
+                error.message )); // ? this.formatErrorMessage(context)
         }
-        return Promise.resolve(true);
+        // if (!this.isMatch(context.Value)) {
+
+        // }
+        // return Promise.resolve(true);
     }
 }

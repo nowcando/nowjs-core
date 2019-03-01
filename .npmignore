@@ -18,3 +18,4 @@ tsconfig.test.json
 .travis.yml
 jest.json
 coverage/
+package-lock.json
