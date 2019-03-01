@@ -1,3 +1,9 @@
+### 0.24.0 (2019-03-01)
+
+##### Bug Fixes
+
+*  update dependencies and fix lint problems . ([cc63b9d8](https://github.com/nowcando/nowjs-core/commit/cc63b9d8abbcef6e693965e8257f95357df17693))
+
 ### 0.23.0 (2019-03-01)
 
 ##### Bug Fixes
