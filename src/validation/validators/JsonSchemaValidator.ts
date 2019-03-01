@@ -202,6 +202,6 @@ export class JsonSchemaValidator extends ValidatorBase {
         // if (!this.isMatch(context.Value)) {
 
         // }
-        return Promise.resolve(true);
+        // return Promise.resolve(true);
     }
 }
