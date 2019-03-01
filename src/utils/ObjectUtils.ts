@@ -126,7 +126,7 @@ export function sealed(constructor: Function) {
     Object.seal(constructor.prototype);
 }
 
-export function classDecorator<T extends { new(...args: any[]): {} }>(constructor: T) {
+export function classDecorator<T extends new(...args: any[]) => {}>(constructor: T) {
     return class extends constructor {
         // tslint:disable-next-line:member-access
         newProperty = "new property";
