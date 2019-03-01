@@ -1,3 +1,9 @@
+### 0.23.0 (2019-03-01)
+
+##### Bug Fixes
+
+*  ignore package-lock.json in npm ([d7d97c9f](https://github.com/nowcando/nowjs-core/commit/d7d97c9f9326dda0dc1667491ee9e071e3376aa6))
+
 ### 0.22.0 (2019-03-01)
 
 ##### Bug Fixes
