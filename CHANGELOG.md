@@ -1,3 +1,9 @@
+### 0.21.0 (2019-03-01)
+
+##### Bug Fixes
+
+*  some json schema validatio  bugs . ([a9924db0](https://github.com/nowcando/nowjs-core/commit/a9924db0f58f06af69baf4a526ad699045f2755c))
+
 ### 0.20.0 (2018-05-05)
 
 ### 0.19.0 (2018-04-07)
