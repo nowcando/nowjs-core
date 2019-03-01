@@ -14,7 +14,7 @@
     "emitDecoratorMetadata": true,
     "noUnusedLocals": false,
     "module": "commonjs",
-    "target": "es2017",
+    "target": "es2018",
     "moduleResolution": "node",
     "lib": [
       "es6",

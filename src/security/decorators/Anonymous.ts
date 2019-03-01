@@ -17,7 +17,7 @@ export function isAnonymous() {
                     return originalFunc.apply(originalFunc, args);
                 } else {
                     throw new AuthorizationException(-914,
-                         `Only anonymous identity has permited to "${propertyKey}" .`);
+                         `Only anonymous identity has permited to "${String(propertyKey)}" .`);
                 }
             } catch (error) {
                return Promise.reject(error);

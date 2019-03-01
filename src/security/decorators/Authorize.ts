@@ -16,7 +16,7 @@ export function authorize(options?: any) {
                 if (result === true) {
                     return originalFunc.apply(originalFunc, args);
                 }  else {
-                    throw new AuthorizationException(-915, `Access to "${propertyKey}" is not authorized.`);
+                    throw new AuthorizationException(-915, `Access to "${String(propertyKey)}" is not authorized.`);
                 }
             } catch (error) {
                 throw error;
