@@ -1,7 +1,19 @@
 // tslint:disable:no-bitwise
 // tslint:disable:variable-name
-import * as crypto from "crypto";
-
+// import * as crypto from "crypto";
+let crypto = { randomBytes: (length: number) => {
+  const r: number[] = [];
+  for (let ix = 0; ix < length; ix++) {
+    r.push(Math.floor(Math.random() * 255));
+  }
+  return r;
+} };
+if (window.crypto || (window as any).msCrypto) {
+  crypto = window.crypto || (window as any).msCrypto;
+} else {
+  // tslint:disable-next-line:no-var-requires
+  crypto =  require("crypto");
+}
 function f(s: any, x: any, y: any, z: any) {
   switch (s) {
     case 0: return (x & y) ^ (~x & z);
