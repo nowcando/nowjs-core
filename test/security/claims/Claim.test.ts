@@ -15,20 +15,20 @@ afterAll(() => { });
 
 afterEach(() => { });
 
-describe("Claim", async () => {
+describe("Claim",  () => {
 
-  it("checks construct claims", async () => {
+  it("checks construct claims",  () => {
     expect.assertions(2);
     const claim = new Claim("role", "admin");
     expect(claim.Type).toEqual("role") ;
     expect(claim.Value).toEqual("admin") ;
   });
-  it("checks toJSON claims", async () => {
+  it("checks toJSON claims",  () => {
     expect.assertions(1);
     const claim = new Claim("role", "admin");
     expect(claim.toJSON()).toEqual({Value: "admin", Type: "role", ValueType: "string"}) ;
   });
-  it("checks JSON.stringify() claims", async () => {
+  it("checks JSON.stringify() claims",  () => {
     expect.assertions(1);
     const claim = new Claim("role", "admin");
     expect(JSON.stringify(claim)).toEqual(`{"Value":"admin","Type":"role","ValueType":"string"}`) ;

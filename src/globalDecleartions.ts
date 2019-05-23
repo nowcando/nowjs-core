@@ -1,5 +1,6 @@
 import { IList } from "./collections";
 import { IObjectDictionary } from "./core";
+import "./linq/Declaration";
 import { IParallelQueryable, IQueryable } from "./linq/index";
 import { ExtendedPromiseOptions } from "./parallels/index";
 
