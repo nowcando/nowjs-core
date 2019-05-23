@@ -26,7 +26,7 @@ export class ConsoleLoggingProvider implements ILoggingProvider {
     public trace(message: string, ...meta: any[]): void {
         this.log("trace", message, ...meta);
     }
-    public get Name(): string {
+    public get name(): string {
         return "ConsoleLoggingProvider";
     }
 

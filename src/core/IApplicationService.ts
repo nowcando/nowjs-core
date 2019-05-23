@@ -6,8 +6,8 @@ export interface IApplicationServiceOptions extends IServiceOptions {
 }
 
 export interface IApplicationServiceStatus extends IServiceStatus  {
-    Status: ServiceStatus;
-    Timestamp: Date;
+    status: ServiceStatus;
+    timestamp: Date;
 }
 
 // tslint:disable-next-line:no-empty-interface

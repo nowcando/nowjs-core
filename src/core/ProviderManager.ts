@@ -5,9 +5,9 @@ export type ProviderFactory = IProvider | ((...args: any[]) => IProvider);
 // tslint:disable:member-ordering
 // tslint:disable:interface-name
 export interface ProviderManagerItem {
-    Provider: ProviderFactory;
-    IsDefault: boolean;
-    Arguments?: any[];
+    provider: ProviderFactory;
+    isDefault: boolean;
+    arguments?: any[];
 }
 
 export class ProviderManager {
@@ -21,10 +21,10 @@ export class ProviderManager {
         const typeMap = ProviderManager.providers.get(type);
         if (isDefault === true) {
             for (const [key, value] of typeMap) {
-                value.IsDefault = false;
+                value.isDefault = false;
             }
         }
-        typeMap.set(name, { IsDefault: typeMap.size === 0 ? true : isDefault, Provider: provider, Arguments: args });
+        typeMap.set(name, { isDefault: typeMap.size === 0 ? true : isDefault, provider, arguments: args });
         return ProviderManager;
     }
 
@@ -86,7 +86,7 @@ export class ProviderManager {
         let defaultName = "";
         if (typeMap && typeMap.has(name)) {
             for (const [key, value] of typeMap) {
-                if (value.IsDefault === true) { defaultName = key; break; }
+                if (value.isDefault === true) { defaultName = key; break; }
             }
         } else {
             return false;
@@ -104,17 +104,17 @@ export class ProviderManager {
             if (!typeMap) return null;
             if (!name) {
                 for (const [key, value] of typeMap) {
-                    if (value.IsDefault === true) { name = key; break; }
+                    if (value.isDefault === true) { name = key; break; }
                 }
             }
             // tslint:disable-next-line:curly
             if (!name) return null;
             const itemMap = typeMap.get(name);
-            if (itemMap && itemMap.Provider) {
+            if (itemMap && itemMap.provider) {
                 // tslint:disable-next-line:curly
-                if (typeof itemMap.Provider === "function") return itemMap.Provider.apply(null, itemMap.Arguments);
+                if (typeof itemMap.provider === "function") return itemMap.provider.apply(null, itemMap.arguments);
                 // tslint:disable-next-line:curly
-                else return itemMap.Provider as any;
+                else return itemMap.provider as any;
             } else {
                 return null;
             }

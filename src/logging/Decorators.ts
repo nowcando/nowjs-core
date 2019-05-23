@@ -8,6 +8,7 @@ export function log(message?: string, level?: string , ...args: any[]) {
 
         const original = descriptor.value;
 
+        // tslint:disable-next-line:no-shadowed-variable
         descriptor.value = (...args: any[]) => {
             const logger = LoggingProvider.get();
             const traceName = target.constructor.name + "." + name;
