@@ -15,16 +15,16 @@ afterAll(() => { });
 
 afterEach(() => { });
 
-describe("Collections Collection tests", async () => {
+describe("Collections Collection tests",  () => {
 
-  it("add items", async () => {
+  it("add items",  () => {
     expect.assertions(1);
     const list = new Collection<number>();
     list.add(1, 2, 3);
     list.add(4);
     expect(list.size).toEqual(4) ;
   });
-  it("remove items", async () => {
+  it("remove items",  () => {
     expect.assertions(1);
     const list = new Collection<number>();
     list.add(1, 2, 3);
@@ -32,75 +32,75 @@ describe("Collections Collection tests", async () => {
     list.remove(2);
     expect(list.size).toEqual(2) ;
   });
-  it("get item", async () => {
+  it("get item",  () => {
     expect.assertions(1);
     const list = new Collection<number>();
     list.add(1, 2, 3);
     expect(list.get(2)).toEqual(3) ;
   });
-  it("clone", async () => {
+  it("clone",  () => {
     expect.assertions(2);
     const list = new Collection<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;
     const listclone =  list.clone();
     expect(listclone.size).toEqual(list.size) ;
   });
-  it("clear", async () => {
+  it("clear",  () => {
     expect.assertions(2);
     const list = new Collection<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;
     list.clear();
     expect(list.size).toEqual(0) ;
   });
-  it("linq", async () => {
+  it("linq",  () => {
     expect.assertions(2);
     const list = new Collection<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;
     expect(list.linq().count()).toEqual(4) ;
   });
-  it("lastIndexOf", async () => {
+  it("lastIndexOf",  () => {
     expect.assertions(2);
     const list = new Collection<number>([1 , 2 , 3 , 4, 3 , 4, 2]);
     expect(list.size).toEqual(7) ;
     expect(list.lastIndexOf(3)).toEqual(4) ;
   });
-  it("indexOf", async () => {
+  it("indexOf",  () => {
     expect.assertions(2);
     const list = new Collection<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;
     expect(list.indexOf(3)).toEqual(2) ;
   });
-  it("contains", async () => {
+  it("contains", () => {
     expect.assertions(2);
     const list = new Collection<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;
     expect(list.contains(3)).toEqual(true) ;
   });
-  it("toCollection", async () => {
+  it("toCollection",  () => {
     expect.assertions(2);
     const list = new Collection<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;
     expect(list.toCollection().size).toEqual(list.size) ;
   });
-  it("toList", async () => {
+  it("toList",  () => {
     expect.assertions(2);
     const list = new Collection<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;
     expect(list.toList().size).toEqual(list.size) ;
   });
-  it("toArray", async () => {
+  it("toArray",  () => {
     expect.assertions(2);
     const list = new Collection<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;
     expect(list.toArray().length).toEqual(list.size) ;
   });
-  it("toSet", async () => {
+  it("toSet",  () => {
     expect.assertions(2);
     const list = new Collection<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;
     expect(list.toSet().size).toEqual(list.size) ;
   });
-  it("isEmpty", async () => {
+  it("isEmpty",  () => {
     expect.assertions(3);
     const list = new Collection<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;
@@ -108,14 +108,14 @@ describe("Collections Collection tests", async () => {
     list.clear();
     expect(list.isEmpty()).toEqual(true) ;
   });
-  it("join", async () => {
+  it("join",  () => {
     expect.assertions(3);
     const list = new Collection<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;
     expect(list.join()).toEqual("1 , 2 , 3 , 4") ;
     expect(list.join(" | ")).toEqual("1 | 2 | 3 | 4") ;
   });
-  it("itreation", async () => {
+  it("itreation",  () => {
     expect.assertions(2);
     const list = new Collection<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;

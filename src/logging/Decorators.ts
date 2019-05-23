@@ -8,13 +8,13 @@ export function log(message?: string, level?: string , ...args: any[]) {
 
         const original = descriptor.value;
 
-        descriptor.value = () => {
+        descriptor.value = (...args: any[]) => {
             const logger = LoggingProvider.get();
             const traceName = target.constructor.name + "." + name;
             logger.info(message);
             let pcounter = PerformanceCounter.start(traceName);
             try {
-                const result = original.apply(target, arguments);
+                const result = original.apply(target, args);
                 pcounter = PerformanceCounter.finish(traceName);
                 return result;
             } catch (error) {
@@ -36,10 +36,10 @@ export function error(store?: string, level?: string) {
 
         const original = descriptor.value;
 
-        descriptor.value = () => {
+        descriptor.value = (...args: any[]) => {
             const traceName = target.constructor.name + "." + name;
 
-            const result = original.apply(target, arguments);
+            const result = original.apply(target, args);
 
             return result;
         };
@@ -57,10 +57,10 @@ export function warn(store?: string, level?: string) {
 
         const original = descriptor.value;
 
-        descriptor.value = () => {
+        descriptor.value = (...args: any[]) => {
             const traceName = target.constructor.name + "." + name;
 
-            const result = original.apply(target, arguments);
+            const result = original.apply(target, args);
 
             return result;
         };
@@ -78,10 +78,10 @@ export function debug(store?: string, level?: string) {
 
         const original = descriptor.value;
 
-        descriptor.value = () => {
+        descriptor.value = (...args: any[]) => {
             const traceName = target.constructor.name + "." + name;
 
-            const result = original.apply(target, arguments);
+            const result = original.apply(target, args);
 
             return result;
         };
@@ -99,10 +99,10 @@ export function info(store?: string, level?: string) {
 
         const original = descriptor.value;
 
-        descriptor.value = () => {
+        descriptor.value = (...args: any[]) => {
             const traceName = target.constructor.name + "." + name;
 
-            const result = original.apply(target, arguments);
+            const result = original.apply(target, args);
 
             return result;
         };
@@ -117,14 +117,14 @@ export  function trace(store: string, level?: string) {
   return  (target: any, propertyName: string, descriptor: TypedPropertyDescriptor<any>) => {
 
         const original = descriptor.value;
-        descriptor.value = function() {
+        descriptor.value = function(...args: any[]) {
             const logger = LoggingProvider.get();
             const traceName = target.constructor.name + "." + propertyName;
             let pcounter = PerformanceCounter.start(traceName);
             logger.info(`The ${traceName} method has been started.`, pcounter);
             try {
                 // tslint:disable-next-line:ban-types
-                const result =  (original as Function).apply(this, arguments);
+                const result =  (original as Function).apply(this, args);
                 if (result.constructor.name === "Promise") {
                     return (result as Promise<any>)
                     .then((res) => {

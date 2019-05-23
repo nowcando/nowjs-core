@@ -15,10 +15,10 @@ afterAll(() => { });
 
 afterEach(() => { });
 
-describe("Computation", async () => {
-    describe("Math", async () => {
-        describe("NumericMatrix", async () => {
-            it("checks addition matrix", async () => {
+describe("Computation",  () => {
+    describe("Math",  () => {
+        describe("NumericMatrix",  () => {
+            it("checks addition matrix",  () => {
                 expect.assertions(6);
                 const matrix1 = new NumericMatrix(2, 3, [1, 2, 3], [4, 5, 6]);
                 const matrix2 = new NumericMatrix(2, 3, [1, 2, 3], [4, 5, 6]);
@@ -30,7 +30,7 @@ describe("Computation", async () => {
                 expect(matrix3.get(1, 1)).toEqual(10);
                 expect(matrix3.get(1, 2)).toEqual(12);
             });
-            it("checks subtract matrix", async () => {
+            it("checks subtract matrix",  () => {
                 expect.assertions(6);
                 const matrix1 = new NumericMatrix(2, 3, [1, 2, 3], [4, 5, 6]);
                 const matrix2 = new NumericMatrix(2, 3, [1, 2, 3], [4, 5, 6]);
@@ -42,7 +42,7 @@ describe("Computation", async () => {
                 expect(matrix3.get(1, 1)).toEqual(0);
                 expect(matrix3.get(1, 2)).toEqual(0);
             });
-            it("checks multiply matrix", async () => {
+            it("checks multiply matrix",  () => {
                 expect.assertions(6);
                 const matrix1 = new NumericMatrix(2, 3, [1, 2, 3], [4, 5, 6]);
                 const matrix2 = new NumericMatrix(2, 3, [1, 2, 3], [4, 5, 6]);
@@ -54,7 +54,7 @@ describe("Computation", async () => {
                 expect(matrix3.get(1, 1)).toEqual(25);
                 expect(matrix3.get(1, 2)).toEqual(36);
             });
-            it("checks division matrix", async () => {
+            it("checks division matrix",  () => {
                 expect.assertions(6);
                 const matrix1 = new NumericMatrix(2, 3, [1, 2, 3], [4, 5, 6]);
                 const matrix2 = new NumericMatrix(2, 3, [1, 2, 3], [4, 5, 6]);
@@ -66,7 +66,7 @@ describe("Computation", async () => {
                 expect(matrix3.get(1, 1)).toEqual(1);
                 expect(matrix3.get(1, 2)).toEqual(1);
             });
-            it("checks dotProduct matrix", async () => {
+            it("checks dotProduct matrix",  () => {
                 expect.assertions(4);
                 const matrix1 = new NumericMatrix(2, 3, [1, 2, 3], [4, 5, 6]);
                 const matrix2 = new NumericMatrix(3, 2, [7, 8], [9 , 10], [11, 12]);
@@ -76,7 +76,7 @@ describe("Computation", async () => {
                 expect(matrix3.get(1, 0)).toEqual(139);
                 expect(matrix3.get(1, 1)).toEqual(154);
             });
-            it("checks negative matrix", async () => {
+            it("checks negative matrix",  () => {
                 expect.assertions(6);
                 const matrix1 = new NumericMatrix(2, 3, [1, 2, 3], [-4, 5, 6]);
                 const matrix3 = matrix1.negative();

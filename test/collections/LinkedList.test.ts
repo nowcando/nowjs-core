@@ -15,28 +15,28 @@ afterAll(() => { });
 
 afterEach(() => { });
 
-describe("Collections LinkedList tests", async () => {
+describe("Collections LinkedList tests", () => {
 
-  it("checks add items", async () => {
+  it("checks add items", () => {
     expect.assertions(1);
     const list = new LinkedList<number>();
     list.add(1, 2, 3);
     list.add(4);
     expect(list.size).toEqual(4) ;
   });
-  it("checks addFirst items", async () => {
+  it("checks addFirst items", () => {
     expect.assertions(1);
     const list = new LinkedList<number>([1, 2, 3]);
     list.addFirst(9);
     expect(list.size).toEqual(4) ;
   });
-  it("checks addLast items", async () => {
+  it("checks addLast items", () => {
     expect.assertions(1);
     const list = new LinkedList<number>([1, 2, 3]);
     list.addLast(9);
     expect(list.size).toEqual(4) ;
   });
-  it("checks insert item", async () => {
+  it("checks insert item", () => {
     expect.assertions(1);
     const list = new LinkedList<number>();
     list.add(1, 2, 3);
@@ -44,20 +44,20 @@ describe("Collections LinkedList tests", async () => {
     list.insert(2, 8);
     expect(list.size).toEqual(5) ;
   });
-  it("checks get item", async () => {
+  it("checks get item", () => {
     expect.assertions(1);
     const list = new LinkedList<number>();
     list.add(1, 2, 3);
     expect(list.get(2)).toEqual(3) ;
   });
-  it("checks get item after insert", async () => {
+  it("checks get item after insert", () => {
     expect.assertions(1);
     const list = new LinkedList<number>();
     list.add(1, 2, 3);
     list.insert(1, 8);
     expect(list.get(1)).toEqual(8) ;
   });
-  it("checks remove items", async () => {
+  it("checks remove items", () => {
     expect.assertions(1);
     const list = new LinkedList<number>();
     list.add(1, 2, 3);
@@ -65,14 +65,14 @@ describe("Collections LinkedList tests", async () => {
     list.remove(2);
     expect(list.size).toEqual(2) ;
   });
-  it("checks removeLast", async () => {
+  it("checks removeLast", () => {
     expect.assertions(1);
     const list = new LinkedList<number>();
     list.add(1, 2, 3);
     list.removeLast();
     expect(list.size).toEqual(2) ;
   });
-  it("checks removeFirst", async () => {
+  it("checks removeFirst", () => {
     expect.assertions(1);
     const list = new LinkedList<number>();
     list.add(1, 2, 3);
@@ -80,33 +80,33 @@ describe("Collections LinkedList tests", async () => {
     expect(list.size).toEqual(2) ;
   });
 
-  it("checks clear", async () => {
+  it("checks clear", () => {
     expect.assertions(2);
     const list = new LinkedList<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;
     list.clear();
     expect(list.size).toEqual(0) ;
   });
-  it("checks linq", async () => {
+  it("checks linq", () => {
     expect.assertions(2);
     const list = new LinkedList<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;
     expect(list.linq().count()).toEqual(4) ;
   });
-  it("checks lastIndexOf", async () => {
+  it("checks lastIndexOf", () => {
     expect.assertions(2);
     const list = new LinkedList<number>([1 , 2 , 3 , 4, 3 , 4, 2]);
     expect(list.size).toEqual(7) ;
     expect(list.lastIndexOf(3)).toEqual(4) ;
   });
-  it("checks indexOf", async () => {
+  it("checks indexOf", () => {
     expect.assertions(3);
     const list = new LinkedList<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;
     expect(list.indexOf(3)).toEqual(2) ;
     expect(list.indexOf(9)).toEqual(-1) ;
   });
-  it("checks itreation", async () => {
+  it("checks itreation", () => {
     expect.assertions(2);
     const list = new LinkedList<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;
@@ -116,27 +116,27 @@ describe("Collections LinkedList tests", async () => {
     }
     expect(list2.size).toEqual(list.size) ;
   });
-  it("checks clone", async () => {
+  it("checks clone", () => {
     expect.assertions(2);
     const list = new LinkedList<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;
     const listclone =  list.clone();
     expect(listclone.size).toEqual(list.size) ;
   });
-  it("checks contains", async () => {
+  it("checks contains", () => {
     expect.assertions(2);
     const list = new LinkedList<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;
     expect(list.contains(3)).toEqual(true) ;
   });
-  it("checks contains not contains", async () => {
+  it("checks contains not contains", () => {
     expect.assertions(2);
     const list = new LinkedList<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;
     expect(list.contains(8)).toEqual(false) ;
   });
 
-  it("checks getFirst & getLast", async () => {
+  it("checks getFirst & getLast", () => {
     expect.assertions(3);
     const list = new LinkedList<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;
@@ -144,31 +144,31 @@ describe("Collections LinkedList tests", async () => {
     expect(list.getLast()).toEqual(4) ;
   });
 
-  it("checks toCollection", async () => {
+  it("checks toCollection", () => {
     expect.assertions(2);
     const list = new LinkedList<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;
     expect(list.toCollection().size).toEqual(list.size) ;
   });
-  it("checks toList", async () => {
+  it("checks toList", () => {
     expect.assertions(2);
     const list = new LinkedList<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;
     expect(list.toList().size).toEqual(list.size) ;
   });
-  it("checks toArray", async () => {
+  it("checks toArray", () => {
     expect.assertions(2);
     const list = new LinkedList<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;
     expect(list.toArray().length).toEqual(list.size) ;
   });
-  it("toSet", async () => {
+  it("toSet", () => {
     expect.assertions(2);
     const list = new LinkedList<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;
     expect(list.toSet().size).toEqual(list.size) ;
   });
-  it("isEmpty", async () => {
+  it("isEmpty", () => {
     expect.assertions(3);
     const list = new LinkedList<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;

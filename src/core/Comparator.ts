@@ -1,6 +1,11 @@
 export type Comparator<T, U> = (a: T, b: U) => number;
 export type EqualityComparator<T, U> = (a: T, b: U) => boolean;
 
+/**
+ * Number comparator
+ * @param a
+ * @param b
+ */
 const numberComparator: Comparator<number, number> = (a, b) => {
     if (a > b) {
         return 1;
@@ -11,10 +16,20 @@ const numberComparator: Comparator<number, number> = (a, b) => {
     }
 };
 
+/**
+ * String comparator
+ * @param a
+ * @param b
+ */
 const stringComparator: Comparator<string, string> = (a, b) => {
     return a.localeCompare(b);
 };
 
+/**
+ * Boolean comparator
+ * @param a
+ * @param b
+ */
 const booleanComparator: Comparator<boolean, boolean> = (a, b) => {
     if (a === b) {
         return 0;
@@ -23,22 +38,31 @@ const booleanComparator: Comparator<boolean, boolean> = (a, b) => {
     }
 };
 
+/**
+ * Object comprator
+ * @param a
+ * @param b
+ */
 // tslint:disable-next-line:ban-types
 const objectComparator: Comparator<Object, Object> = (a, b) => {
     if (a > b) {
         return 1;
-    } else if (a === 1) {
+    } else if (a === b) {
         return 0;
     } else {
         return -1;
     }
 };
 
-// tslint:disable-next-line:ban-types
-const deepObjectComparator: Comparator<Object, Object> = (a, b) => {
+/**
+ * Deep object comparator
+ * @param a
+ * @param b
+ */
+const deepObjectComparator: Comparator<object, object> = (a, b) => {
     if (a > b) {
         return 1;
-    } else if (a === 1) {
+    } else if (a === b) {
         return 0;
     } else {
         return -1;

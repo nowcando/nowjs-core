@@ -10,11 +10,12 @@
     "removeComments": false,
     "preserveConstEnums": true,
     "allowSyntheticDefaultImports": true,
+    "downlevelIteration": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "noUnusedLocals": false,
     "module": "commonjs",
-    "target": "es2018",
+    "target": "es5",
     "moduleResolution": "node",
     "lib": [
       "es6",

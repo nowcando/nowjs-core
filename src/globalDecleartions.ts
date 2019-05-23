@@ -50,6 +50,7 @@ declare global {
             T & U & V & W & X & Y & Z;
         deepAssign<T>(target: T, ...sources: any[]): T & any;
         cloneObject<T>(target: T): T;
+        createInstance<T>(c: new() => T): T;
     }
 
     interface Array<T> {

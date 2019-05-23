@@ -15,16 +15,16 @@ afterAll(() => { });
 
 afterEach(() => { });
 
-describe("Collections Stack tests", async () => {
+describe("Collections Stack tests",  () => {
 
-  it("push items", async () => {
+  it("push items",  () => {
     expect.assertions(1);
     const list = new Stack<number>();
     list.push(1, 2, 3);
     list.push(4);
     expect(list.size).toEqual(4) ;
   });
-  it("pop items", async () => {
+  it("pop items",  () => {
     expect.assertions(5);
     const list = new Stack<number>();
     list.push(1, 2, 3);
@@ -38,7 +38,7 @@ describe("Collections Stack tests", async () => {
     expect(item4).toEqual(undefined) ;
     expect(list.size).toEqual(0) ;
   });
-  it("peek item", async () => {
+  it("peek item",  () => {
     expect.assertions(2);
     const list = new Stack<number>();
     list.push(1, 2, 3);
@@ -46,20 +46,20 @@ describe("Collections Stack tests", async () => {
     expect(item).toEqual(1) ;
     expect(list.size).toEqual(3) ;
   });
-  it("clear", async () => {
+  it("clear",  () => {
     expect.assertions(2);
     const list = new Stack<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;
     list.clear();
     expect(list.size).toEqual(0) ;
   });
-  it("linq", async () => {
+  it("linq",  () => {
     expect.assertions(2);
     const list = new Stack<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;
     expect(list.linq().count()).toEqual(4) ;
   });
-  it("itreation", async () => {
+  it("itreation",  () => {
     expect.assertions(2);
     const list = new Stack<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;
@@ -70,37 +70,37 @@ describe("Collections Stack tests", async () => {
     expect(list2.size).toEqual(2) ;
   });
 
-  it("contains", async () => {
+  it("contains",  () => {
     expect.assertions(2);
     const list = new Stack<number>([1, 2, 3, 4]);
     expect(list.size).toEqual(4);
     expect(list.contains(3)).toEqual(true);
   });
-  it("toCollection", async () => {
+  it("toCollection",  () => {
     expect.assertions(2);
     const list = new Stack<number>([1, 2, 3, 4]);
     expect(list.size).toEqual(4);
     expect(list.toCollection().size).toEqual(list.size);
   });
-  it("toList", async () => {
+  it("toList",  () => {
     expect.assertions(2);
     const list = new Stack<number>([1, 2, 3, 4]);
     expect(list.size).toEqual(4);
     expect(list.toList().size).toEqual(list.size);
   });
-  it("toArray", async () => {
+  it("toArray",  () => {
     expect.assertions(2);
     const list = new Stack<number>([1, 2, 3, 4]);
     expect(list.size).toEqual(4);
     expect(list.toArray().length).toEqual(list.size);
   });
-  it("toSet", async () => {
+  it("toSet",  () => {
     expect.assertions(2);
     const list = new Stack<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;
     expect(list.toSet().size).toEqual(list.size) ;
   });
-  it("isEmpty", async () => {
+  it("isEmpty",  () => {
     expect.assertions(3);
     const list = new Stack<number>([1 , 2 , 3 , 4]);
     expect(list.size).toEqual(4) ;

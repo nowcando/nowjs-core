@@ -15,10 +15,10 @@ afterAll(() => { });
 
 afterEach(() => { });
 
-describe("Computation", async () => {
-    describe("Math", async () => {
-        describe("Matrix", async () => {
-            it("checks transpose matrix", async () => {
+describe("Computation",  () => {
+    describe("Math",  () => {
+        describe("Matrix",  () => {
+            it("checks transpose matrix",  () => {
                 expect.assertions(6);
                 const matrix1 = new Matrix<number>(2, 3, [1, 2, 3], [4, 5, 6]);
                 const matrix3 = matrix1.transpose();

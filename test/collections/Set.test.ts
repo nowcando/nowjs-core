@@ -15,9 +15,9 @@ afterAll(() => { });
 
 afterEach(() => { });
 
-describe("Set", async () => {
+describe("Set",  () => {
 
-    it("union", async () => {
+    it("union",  () => {
         expect.assertions(2);
         const setA = new Set<number>([1, 2, 3, 4, 5]);
         const setB = new Set<number>([3, 4, 2, 6, 7]);
@@ -26,7 +26,7 @@ describe("Set", async () => {
         expect(actual1).toEqual([1, 2, 3, 4, 5, 6, 7]);
     });
 
-    it("intersect", async () => {
+    it("intersect",  () => {
         expect.assertions(2);
         const setA = new Set<number>([1, 2, 3, 4, 5]);
         const setB = new Set<number>([3, 4, 2, 6, 7]);
@@ -35,7 +35,7 @@ describe("Set", async () => {
         expect(actual1).toEqual([3, 4, 2]);
     });
 
-    it("except", async () => {
+    it("except",  () => {
         expect.assertions(2);
         const setA = new Set<number>([1, 2, 3, 4, 5]);
         const setB = new Set<number>([3, 4, 2, 6, 7]);
@@ -44,7 +44,7 @@ describe("Set", async () => {
         expect(actual1).toEqual([1 , 5]);
     });
 
-    it("xor", async () => {
+    it("xor",  () => {
         expect.assertions(2);
         const setA = new Set<number>([1, 2, 3, 4, 5]);
         const setB = new Set<number>([3, 4, 2, 6, 7]);
@@ -53,7 +53,7 @@ describe("Set", async () => {
         expect(actual1).toEqual([1 , 5 , 6, 7]);
     });
 
-    it("isSubSetOf", async () => {
+    it("isSubSetOf",  () => {
         expect.assertions(3);
         const setA = new Set<number>([1, 2, 3, 4, 5]);
         const setB = new Set<number>([3, 4, 2, 6, 7]);
@@ -67,7 +67,7 @@ describe("Set", async () => {
         expect(actual3).toEqual(true);
     });
 
-    it("isSuperSetOf", async () => {
+    it("isSuperSetOf",  () => {
         expect.assertions(3);
         const setA = new Set<number>([1, 2, 3, 4, 5]);
         const setB = new Set<number>([3, 4, 2, 6, 7]);
@@ -81,7 +81,7 @@ describe("Set", async () => {
         expect(actual3).toEqual(false);
     });
 
-    it("join", async () => {
+    it("join",  () => {
         expect.assertions(2);
         const setA = new Set<number>([1, 2, 3, 4, 5]);
         const setB = new Set<number>([3, 4, 2, 6, 7]);
@@ -91,7 +91,7 @@ describe("Set", async () => {
         expect(actual2).toEqual("34267");
     });
 
-    it("isEmpty", async () => {
+    it("isEmpty",  () => {
         expect.assertions(2);
         const setA = new Set<number>([1, 2, 3, 4, 5]);
         const setB = new Set<number>();
@@ -101,7 +101,7 @@ describe("Set", async () => {
         expect(actual2).toEqual(true);
     });
 
-    it("filter", async () => {
+    it("filter",  () => {
         expect.assertions(2);
         const setA = new Set<number>([1, 2, 3, 4, 5]);
         const setB = new Set<number>();
@@ -109,21 +109,21 @@ describe("Set", async () => {
         expect(actual1.length).toEqual(3);
         expect(actual1).toEqual([3, 4, 5]);
     });
-    it("find", async () => {
+    it("find",  () => {
         expect.assertions(1);
         const setA = new Set<number>([1, 2, 3, 4, 5]);
         const setB = new Set<number>();
         const actual1 = setA.find((xx) => xx === 3);
         expect(actual1).toEqual(3);
     });
-    it("every", async () => {
+    it("every",  () => {
         expect.assertions(1);
         const setA = new Set<number>([1, 2, 3, 4, 5]);
         const setB = new Set<number>();
         const actual1 = setA.every((xx) => xx >= 1 );
         expect(actual1).toEqual(true);
     });
-    it("some", async () => {
+    it("some",  () => {
         expect.assertions(1);
         const setA = new Set<number>([1, 2, 3, 4, 5]);
         const setB = new Set<number>();

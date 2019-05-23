@@ -15,9 +15,9 @@ afterAll(() => { });
 
 afterEach(() => { });
 
-describe("Map", async () => {
+describe("Map",  () => {
 
-    it("toObject", async () => {
+    it("toObject",  () => {
         expect.assertions(4);
         const mp = new Map();
         mp.set("name", "saeed");
@@ -29,7 +29,7 @@ describe("Map", async () => {
         expect(actual.family).toEqual(mp.get("family"));
         expect(actual.gender).toEqual(mp.get("gender"));
     });
-    it("toArray", async () => {
+    it("toArray",  () => {
         expect.assertions(4);
         const mp = new Map();
         mp.set("name", "saeed");
@@ -41,7 +41,7 @@ describe("Map", async () => {
         expect(actual[1][1]).toEqual(mp.get("family"));
         expect(actual[2][1]).toEqual(mp.get("gender"));
     });
-    it("toList", async () => {
+    it("toList",  () => {
         expect.assertions(4);
         const mp = new Map();
         mp.set("name", "saeed");
@@ -53,7 +53,7 @@ describe("Map", async () => {
         expect(actual.get(1)[1]).toEqual(mp.get("family"));
         expect(actual.get(2)[1]).toEqual(mp.get("gender"));
     });
-    it("containsKey", async () => {
+    it("containsKey",  () => {
         expect.assertions(2);
         const mp = new Map();
         mp.set("name", "saeed");
@@ -63,7 +63,7 @@ describe("Map", async () => {
         expect(3).toEqual(mp.size);
         expect(actual).toEqual(true);
     });
-    it("containsValue", async () => {
+    it("containsValue",  () => {
         expect.assertions(2);
         const mp = new Map();
         mp.set("name", "saeed");
@@ -73,7 +73,7 @@ describe("Map", async () => {
         expect(3).toEqual(mp.size);
         expect(actual).toEqual(true);
     });
-    it("toKeyList", async () => {
+    it("toKeyList",  () => {
         expect.assertions(2);
         const mp = new Map();
         mp.set("name", "saeed");
@@ -83,7 +83,7 @@ describe("Map", async () => {
         expect(3).toEqual(mp.size);
         expect(actual).toEqual(["name", "family", "gender"]);
     });
-    it("toValueList", async () => {
+    it("toValueList",  () => {
         expect.assertions(2);
         const mp = new Map();
         mp.set("name", "saeed");
