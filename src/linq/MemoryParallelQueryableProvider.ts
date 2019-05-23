@@ -10,7 +10,7 @@ import { IParallelQueryableProvider } from "./IParallelQueryableProvider";
 export class MemoryParallelQueryableProvider<T> implements
                  IParallelQueryableProvider<T> {
     // tslint:disable:no-empty
-    public get Name(): string {
+    public get name(): string {
         return "Memory";
     }
     // tslint:disable:max-line-length
