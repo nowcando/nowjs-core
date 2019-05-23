@@ -3,13 +3,13 @@
 // import * as crypto from "crypto";
 const randomBytes = (length: number) => {
 
-  if(window.crypto || (window as any).msCrypto){
+  if (window.crypto || (window as any).msCrypto) {
     const r = new Uint32Array(length);
     window.crypto.getRandomValues(r);
     return r;
-  }  else {
+  } else {
     if (process && process.env) {
-      const crypto =  require("crypto");
+      const crypto = require("crypto");
       return crypto.randomBytes(length);
     } else {
       const r: number[] = [];
@@ -43,7 +43,7 @@ function sha1(bytes: any) {
     const msg = decodeURIComponent(encodeURIComponent(bytes)); // UTF8 escape
     bytes = new Array(msg.length);
     // tslint:disable-next-line:no-shadowed-variable
-    for (let i = 0; i < msg.length; i++)  {
+    for (let i = 0; i < msg.length; i++) {
       bytes[i] = msg.charCodeAt(i);
     }
   }
@@ -256,7 +256,7 @@ function v4(options?: any, buf?: any, offset?: number) {
 function uuidToBytes(uuid: any) {
   // Note: We assume we're being passed a valid uuid string
   const bytes: any = [];
-  uuid.replace(/[a-fA-F0-9]{2}/g,  (hex: any) => {
+  uuid.replace(/[a-fA-F0-9]{2}/g, (hex: any) => {
     bytes.push(parseInt(hex, 16));
   });
 

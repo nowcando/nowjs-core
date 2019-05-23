@@ -13,15 +13,15 @@ export interface IJsonSchemaDefinitionValidator {
 
 // tslint:disable:interface-name
 export interface JsonSchemaDefinitionDisplay {
-    DisplayName?: StringFormatType;
-    DisplayShortName?: StringFormatType;
-    DisplayHintName?: StringFormatType;
-    DisplayOrder?: number;
+    displayName?: StringFormatType;
+    displayShortName?: StringFormatType;
+    displayHintName?: StringFormatType;
+    displayOrder?: number;
 }
 
 export interface JsonSchemaDefinitionItem {
-    Display?: JsonSchemaDefinitionDisplay;
-    Validators?: IJsonSchemaDefinitionValidator;
+    display?: JsonSchemaDefinitionDisplay;
+    validators?: IJsonSchemaDefinitionValidator;
 }
 
 export interface JsonSchemaDefinition {

@@ -11,6 +11,7 @@
             "stopOnEntry": false,
             "sourceMaps": true,
             "runtimeExecutable": null,
+            "showAsyncStacks": true,
             "runtimeArgs": [
                 "--inspect-brk=5858",
                // "--icu-data-dir=./node_modules/full-icu",

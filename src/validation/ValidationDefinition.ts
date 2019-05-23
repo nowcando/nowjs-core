@@ -64,7 +64,7 @@ export class ValidationDefinition {
     public isRequired(arg0: any): ValidationDefinition {
         let message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
+            message = arg0.message;
         } else {
             message = arg0;
         }
@@ -78,8 +78,8 @@ export class ValidationDefinition {
         let schema, message;
 
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
-            schema = arg0.Schema;
+            message = arg0.message;
+            schema = arg0.schema;
         } else {
             message = errorMessage;
             schema = arg0;
@@ -94,8 +94,8 @@ export class ValidationDefinition {
         let max, message;
 
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
-            max = arg0.Max;
+            message = arg0.message;
+            max = arg0.max;
         } else {
             message = errorMessage;
             max = arg0;
@@ -108,13 +108,13 @@ export class ValidationDefinition {
     public isMin(arg0: any, errorMessage?: StringFormatType): ValidationDefinition {
         let min, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
-            min = arg0.Min;
+            message = arg0.message;
+            min = arg0.min;
         } else {
             message = errorMessage;
             min = arg0;
         }
-        this.definitions.get(this.currentName).push(new MinValidator(min, errorMessage));
+        this.definitions.get(this.currentName).push(new MinValidator(min, message));
         return this;
     }
 
@@ -123,15 +123,15 @@ export class ValidationDefinition {
     public isInRange(arg0: any, arg1?: number | Date, errorMessage?: StringFormatType): ValidationDefinition {
         let min, max, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
-            min = arg0.Min;
-            max = arg0.Max;
+            message = arg0.message;
+            min = arg0.min;
+            max = arg0.max;
         } else {
             message = errorMessage;
             min = arg0;
             max = arg1;
         }
-        this.definitions.get(this.currentName).push(new InRangeValidator(min, max, errorMessage));
+        this.definitions.get(this.currentName).push(new InRangeValidator(min, max, message));
         return this;
     }
 
@@ -140,9 +140,9 @@ export class ValidationDefinition {
     public isInLength(arg0: any, arg1?: number | Date, errorMessage?: StringFormatType): ValidationDefinition {
         let min, max, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
-            min = arg0.Min;
-            max = arg0.Max;
+            message = arg0.message;
+            min = arg0.min;
+            max = arg0.max;
         } else {
             message = errorMessage;
             min = arg0;
@@ -157,8 +157,8 @@ export class ValidationDefinition {
     public isPattern(arg0: any, errorMessage?: StringFormatType): ValidationDefinition {
         let pattern, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
-            pattern = arg0.Pattern;
+            message = arg0.message;
+            pattern = arg0.pattern;
         } else {
             message = errorMessage;
             pattern = arg0;
@@ -172,13 +172,13 @@ export class ValidationDefinition {
     public isIP(arg0: any, errorMessage?: StringFormatType): ValidationDefinition {
         let options, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
-            options = arg0.Options;
+            message = arg0.message;
+            options = arg0.options;
         } else {
             message = errorMessage;
             options = arg0;
         }
-        this.definitions.get(this.currentName).push(new IPValidator(options, errorMessage));
+        this.definitions.get(this.currentName).push(new IPValidator(options, message));
         return this;
     }
 
@@ -187,7 +187,7 @@ export class ValidationDefinition {
     public isEmail(arg0?: any): ValidationDefinition {
         let message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
+            message = arg0.message;
         } else {
             message = arg0;
         }
@@ -200,13 +200,13 @@ export class ValidationDefinition {
 
         let style, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
-            style = arg0.Style;
+            message = arg0.message;
+            style = arg0.style;
         } else {
             message = errorMessage;
             style = arg0;
         }
-        this.definitions.get(this.currentName).push(new MobileValidator(style, errorMessage));
+        this.definitions.get(this.currentName).push(new MobileValidator(style, message));
         return this;
     }
 
@@ -216,13 +216,13 @@ export class ValidationDefinition {
 
         let style, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
-            style = arg0.Style;
+            message = arg0.message;
+            style = arg0.style;
         } else {
             message = errorMessage;
             style = arg0;
         }
-        this.definitions.get(this.currentName).push(new PhoneValidator(style, errorMessage));
+        this.definitions.get(this.currentName).push(new PhoneValidator(style, message));
         return this;
     }
 
@@ -231,13 +231,13 @@ export class ValidationDefinition {
     public isNumeric(arg0: any, errorMessage?: StringFormatType): ValidationDefinition {
         let style, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
-            style = arg0.Style;
+            message = arg0.message;
+            style = arg0.style;
         } else {
             message = errorMessage;
             style = arg0;
         }
-        this.definitions.get(this.currentName).push(new NumericValidator(style, errorMessage));
+        this.definitions.get(this.currentName).push(new NumericValidator(style, message));
         return this;
     }
 
@@ -247,13 +247,13 @@ export class ValidationDefinition {
         let options, message;
 
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
-            options = arg0.Options;
+            message = arg0.message;
+            options = arg0.options;
         } else {
             message = errorMessage;
             options = arg0;
         }
-        this.definitions.get(this.currentName).push(new UrlValidator(options, errorMessage));
+        this.definitions.get(this.currentName).push(new UrlValidator(options, message));
         return this;
     }
 
@@ -262,7 +262,7 @@ export class ValidationDefinition {
     public isNegative(arg0: any): ValidationDefinition {
         let message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
+            message = arg0.message;
         } else {
             message = arg0;
         }
@@ -275,7 +275,7 @@ export class ValidationDefinition {
     public isPositive(arg0: any): ValidationDefinition {
         let message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
+            message = arg0.message;
         } else {
             message = arg0;
         }
@@ -289,13 +289,13 @@ export class ValidationDefinition {
 
         let styles, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
-            styles = arg0.Style;
+            message = arg0.message;
+            styles = arg0.style;
         } else {
             message = errorMessage;
             styles = arg0;
         }
-        this.definitions.get(this.currentName).push(new AlphabetValidator(styles, errorMessage));
+        this.definitions.get(this.currentName).push(new AlphabetValidator(styles, message));
         return this;
     }
 
@@ -305,13 +305,13 @@ export class ValidationDefinition {
         let styles, message;
 
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
-            styles = arg0.Style;
+            message = arg0.message;
+            styles = arg0.style;
         } else {
             message = errorMessage;
             styles = arg0;
         }
-        this.definitions.get(this.currentName).push(new AlphaNumericValidator(styles, errorMessage));
+        this.definitions.get(this.currentName).push(new AlphaNumericValidator(styles, message));
         return this;
     }
 
@@ -321,13 +321,13 @@ export class ValidationDefinition {
 
         let valueType, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
-            valueType = arg0.ValueType;
+            message = arg0.message;
+            valueType = arg0.valueType;
         } else {
             message = errorMessage;
             valueType = arg0;
         }
-        this.definitions.get(this.currentName).push(new ValueTypeValidator(valueType, errorMessage));
+        this.definitions.get(this.currentName).push(new ValueTypeValidator(valueType, message));
         return this;
     }
 
@@ -338,10 +338,10 @@ export class ValidationDefinition {
 
         let style, anotherTarget, anotherPropertyName, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
-            style = arg0.Style;
-            anotherTarget = arg0.Target;
-            anotherPropertyName = arg0.PropertyName;
+            message = arg0.message;
+            style = arg0.style;
+            anotherTarget = arg0.target;
+            anotherPropertyName = arg0.propertyName;
         } else {
             message = errorMessage;
             style = arg0;
@@ -349,7 +349,7 @@ export class ValidationDefinition {
             anotherPropertyName = arg2;
         }
         this.definitions.get(this.currentName)
-            .push(new CompareToValidator(style, anotherTarget, anotherPropertyName, errorMessage));
+            .push(new CompareToValidator(style, anotherTarget, anotherPropertyName, message));
         return this;
     }
 
@@ -360,16 +360,16 @@ export class ValidationDefinition {
     public isEqualTo(arg0: any, arg1?: any, errorMessage?: StringFormatType): ValidationDefinition {
         let anotherTarget, anotherPropertyName, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
-            anotherTarget = arg0.Target;
-            anotherPropertyName = arg0.PropertyName;
+            message = arg0.message;
+            anotherTarget = arg0.target;
+            anotherPropertyName = arg0.propertyName;
         } else {
             message = errorMessage;
             anotherTarget = arg0;
             anotherPropertyName = arg1;
         }
         this.definitions.get(this.currentName)
-            .push(new EqualToValidator(anotherTarget, anotherPropertyName, errorMessage));
+            .push(new EqualToValidator(anotherTarget, anotherPropertyName, message));
         return this;
     }
     public isNotEqualTo(json: any): ValidationDefinition;
@@ -379,16 +379,16 @@ export class ValidationDefinition {
     public isNotEqualTo(arg0: any, arg1?: any, errorMessage?: StringFormatType): ValidationDefinition {
         let anotherTarget, anotherPropertyName, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
-            anotherTarget = arg0.Target;
-            anotherPropertyName = arg0.PropertyName;
+            message = arg0.message;
+            anotherTarget = arg0.target;
+            anotherPropertyName = arg0.propertyName;
         } else {
             message = errorMessage;
             anotherTarget = arg0;
             anotherPropertyName = arg1;
         }
         this.definitions.get(this.currentName)
-        .push(new NotEqualToValidator(anotherTarget, anotherPropertyName, errorMessage));
+        .push(new NotEqualToValidator(anotherTarget, anotherPropertyName, message));
         return this;
     }
 
@@ -400,16 +400,16 @@ export class ValidationDefinition {
     public isGreaterTo(arg0: any, arg1?: any, errorMessage?: StringFormatType): ValidationDefinition {
         let anotherTarget, anotherPropertyName, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
-            anotherTarget = arg0.Target;
-            anotherPropertyName = arg0.PropertyName;
+            message = arg0.message;
+            anotherTarget = arg0.target;
+            anotherPropertyName = arg0.propertyName;
         } else {
             message = errorMessage;
             anotherTarget = arg0;
             anotherPropertyName = arg1;
         }
         this.definitions.get(this.currentName)
-        .push(new GreaterToValidator(anotherTarget, anotherPropertyName, errorMessage));
+        .push(new GreaterToValidator(anotherTarget, anotherPropertyName, message));
         return this;
     }
 
@@ -422,17 +422,16 @@ export class ValidationDefinition {
 
         let anotherTarget, anotherPropertyName, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
-            anotherTarget = arg0.Target;
-            anotherPropertyName = arg0.PropertyName;
+            message = arg0.message;
+            anotherTarget = arg0.target;
+            anotherPropertyName = arg0.propertyName;
         } else {
             message = errorMessage;
             anotherTarget = arg0;
             anotherPropertyName = arg1;
         }
         this.definitions.get(this.currentName)
-        .push(new GreatOrEqualToValidator(anotherTarget, anotherPropertyName,
-             errorMessage));
+        .push(new GreatOrEqualToValidator(anotherTarget, anotherPropertyName, message));
         return this;
     }
 
@@ -443,16 +442,16 @@ export class ValidationDefinition {
     public isLesserTo(arg0: any, arg1?: any, errorMessage?: StringFormatType): ValidationDefinition {
         let anotherTarget, anotherPropertyName, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
-            anotherTarget = arg0.Target;
-            anotherPropertyName = arg0.PropertyName;
+            message = arg0.message;
+            anotherTarget = arg0.target;
+            anotherPropertyName = arg0.propertyName;
         } else {
             message = errorMessage;
             anotherTarget = arg0;
             anotherPropertyName = arg1;
         }
         // tslint:disable-next-line:max-line-length
-        this.definitions.get(this.currentName).push(new LesserToValidator(anotherTarget, anotherPropertyName, errorMessage));
+        this.definitions.get(this.currentName).push(new LesserToValidator(anotherTarget, anotherPropertyName, message));
         return this;
     }
 
@@ -463,17 +462,16 @@ export class ValidationDefinition {
     public isLessOrEqualTo(arg0: any, arg1?: any, errorMessage?: StringFormatType): ValidationDefinition {
         let anotherTarget, anotherPropertyName, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
-            anotherTarget = arg0.Target;
-            anotherPropertyName = arg0.PropertyName;
+            message = arg0.message;
+            anotherTarget = arg0.target;
+            anotherPropertyName = arg0.propertyName;
         } else {
             message = errorMessage;
             anotherTarget = arg0;
             anotherPropertyName = arg1;
         }
         this.definitions.get(this.currentName)
-        .push(new LessOrEqualToValidator(anotherTarget, anotherPropertyName,
-            errorMessage));
+        .push(new LessOrEqualToValidator(anotherTarget, anotherPropertyName, message));
         return this;
     }
 
@@ -482,13 +480,13 @@ export class ValidationDefinition {
     public isIn(arg0: any, errorMessage?: StringFormatType): ValidationDefinition {
         let values, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
-            values = arg0.Values;
+            message = arg0.message;
+            values = arg0.values;
         } else {
             message = errorMessage;
             values = arg0;
         }
-        this.definitions.get(this.currentName).push(new InValidator(values, errorMessage));
+        this.definitions.get(this.currentName).push(new InValidator(values, message));
         return this;
     }
 
@@ -497,13 +495,13 @@ export class ValidationDefinition {
     public isNotIn(arg0: any, errorMessage?: StringFormatType): ValidationDefinition {
         let values, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
-            values = arg0.Values;
+            message = arg0.message;
+            values = arg0.values;
         } else {
             message = errorMessage;
             values = arg0;
         }
-        this.definitions.get(this.currentName).push(new NotInValidator(values, errorMessage));
+        this.definitions.get(this.currentName).push(new NotInValidator(values, message));
         return this;
     }
 
@@ -512,13 +510,13 @@ export class ValidationDefinition {
     public isContains(arg0: any, errorMessage?: StringFormatType): ValidationDefinition {
         let value: string, message: StringFormatType;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
-            value = arg0.Values;
+            message = arg0.message;
+            value = arg0.values;
         } else {
             message = errorMessage;
             value = arg0;
         }
-        this.definitions.get(this.currentName).push(new ContainsValidator(value, errorMessage));
+        this.definitions.get(this.currentName).push(new ContainsValidator(value, message));
         return this;
     }
 
@@ -527,13 +525,13 @@ export class ValidationDefinition {
     public isNotContains(arg0: any, errorMessage?: StringFormatType): ValidationDefinition {
         let value, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
-            value = arg0.Values;
+            message = arg0.message;
+            value = arg0.values;
         } else {
             message = errorMessage;
             value = arg0;
         }
-        this.definitions.get(this.currentName).push(new NotContainsValidator(value, errorMessage));
+        this.definitions.get(this.currentName).push(new NotContainsValidator(value, message));
         return this;
     }
 
@@ -542,7 +540,7 @@ export class ValidationDefinition {
     public isObject(arg0: any): ValidationDefinition {
         let message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
+            message = arg0.message;
         } else {
             message = arg0;
         }
@@ -555,7 +553,7 @@ export class ValidationDefinition {
     public isString(arg0: any): ValidationDefinition {
         let message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
+            message = arg0.message;
         } else {
             message = arg0;
         }
@@ -568,7 +566,7 @@ export class ValidationDefinition {
     public isFunction(arg0: any): ValidationDefinition {
         let message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
+            message = arg0.message;
         } else {
             message = arg0;
         }
@@ -581,7 +579,7 @@ export class ValidationDefinition {
     public isDate(arg0: any): ValidationDefinition {
         let message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
+            message = arg0.message;
         } else {
             message = arg0;
         }
@@ -594,7 +592,7 @@ export class ValidationDefinition {
     public isNumber(arg0: any): ValidationDefinition {
         let message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
+            message = arg0.message;
         } else {
             message = arg0;
         }
@@ -607,13 +605,13 @@ export class ValidationDefinition {
     public isPostalCode(arg0: any, errorMessage?: StringFormatType): ValidationDefinition {
         let style, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
-            style = arg0.Style;
+            message = arg0.message;
+            style = arg0.style;
         } else {
             message = errorMessage;
             style = arg0;
         }
-        this.definitions.get(this.currentName).push(new PostalCodeValidator(style, errorMessage));
+        this.definitions.get(this.currentName).push(new PostalCodeValidator(style, message));
         return this;
     }
 
@@ -622,13 +620,13 @@ export class ValidationDefinition {
     public isNSID(arg0: any, errorMessage?: StringFormatType): ValidationDefinition {
         let style, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
-            style = arg0.Style;
+            message = arg0.message;
+            style = arg0.style;
         } else {
             message = errorMessage;
             style = arg0;
         }
-        this.definitions.get(this.currentName).push(new NSIDValidator(style, errorMessage));
+        this.definitions.get(this.currentName).push(new NSIDValidator(style, message));
         return this;
     }
     public isJson(json: any): ValidationDefinition;
@@ -637,7 +635,7 @@ export class ValidationDefinition {
 
         let message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
-            message = arg0.Message;
+            message = arg0.message;
         } else {
             message = arg0;
         }
