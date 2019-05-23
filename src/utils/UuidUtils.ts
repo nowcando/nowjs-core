@@ -1,19 +1,27 @@
 // tslint:disable:no-bitwise
 // tslint:disable:variable-name
 // import * as crypto from "crypto";
-let crypto = { randomBytes: (length: number) => {
-  const r: number[] = [];
-  for (let ix = 0; ix < length; ix++) {
-    r.push(Math.floor(Math.random() * 255));
+const randomBytes = (length: number) => {
+
+  if(window.crypto || (window as any).msCrypto){
+    const r = new Uint32Array(length);
+    window.crypto.getRandomValues(r);
+    return r;
+  }  else {
+    if (process && process.env) {
+      const crypto =  require("crypto");
+      return crypto.randomBytes(length);
+    } else {
+      const r: number[] = [];
+      for (let ix = 0; ix < length; ix++) {
+        r.push(Math.floor(Math.random() * 255));
+      }
+      return r;
+    }
   }
-  return r;
-} };
-if (window.crypto || (window as any).msCrypto) {
-  crypto = window.crypto || (window as any).msCrypto;
-} else {
-  // tslint:disable-next-line:no-var-requires
-  crypto =  require("crypto");
-}
+
+};
+
 function f(s: any, x: any, y: any, z: any) {
   switch (s) {
     case 0: return (x & y) ^ (~x & z);
@@ -103,7 +111,7 @@ function sha1(bytes: any) {
 }
 
 function rng() {
-  return crypto.randomBytes(16);
+  return randomBytes(16);
 }
 
 const byteToHex: any = [];
