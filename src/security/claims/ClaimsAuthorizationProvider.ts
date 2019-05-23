@@ -15,7 +15,7 @@ export class ClaimsAuthorizationProvider implements IAuthorizationProvider {
 
     }
 
-    public get Name(): string {
+    public get name(): string {
         return "ClaimsAuthorizationProvider";
     }
 

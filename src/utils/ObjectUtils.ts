@@ -41,7 +41,7 @@ function deprecated(message: StringFormatType = 'The {type} "{name}" is deprecat
             localMessage = message("DeprecatedMessage", target, propertyName, original);
         }
 
-        descriptor.value = (...args:any[] ) => {
+        descriptor.value = (...args: any[] ) => {
             // tslint:disable-next-line:no-console
             console.warn(localMessage);
 
