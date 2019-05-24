@@ -7,6 +7,26 @@
 
 ##### Bug Fixes
 
+*  remove ILogger dependency ([551506e8](https://github.com/nowcando/nowjs-core/commit/551506e8dd77aeb416373bb5abbe688229a929af))
+*  lint problems ([46c9ec40](https://github.com/nowcando/nowjs-core/commit/46c9ec4039d3ce0d55d833b81bbde1b3939726b6))
+*  lowercase property names fixed . ([596682e0](https://github.com/nowcando/nowjs-core/commit/596682e09bf47612b804916890591d22d94522f8))
+*  validation definition to lower keys ([ee424d67](https://github.com/nowcando/nowjs-core/commit/ee424d6714414106424f0140c221f9f4007be6a9))
+*  randombyte ([2801ec55](https://github.com/nowcando/nowjs-core/commit/2801ec55ca3806aa6b9de1dbd2e2103c907ea8df))
+*  crypto dependency ; ([19eb3c89](https://github.com/nowcando/nowjs-core/commit/19eb3c8909141f8806ed55b7d795bddb4980cba2))
+*  correct global declarations ([4351d8f2](https://github.com/nowcando/nowjs-core/commit/4351d8f2a79311a787767b35ee69920a32beff50))
+*  some test issue fixed ([5cea9f5d](https://github.com/nowcando/nowjs-core/commit/5cea9f5dec8e660522f10e538cb3a2536fbf7643))
+*  some lint and typescript new sytanx checking errors ([512ff67d](https://github.com/nowcando/nowjs-core/commit/512ff67d8a64a6c1739f08edf8af3078817a98fd))
+*  update dependencies and fix lint problems . ([cc63b9d8](https://github.com/nowcando/nowjs-core/commit/cc63b9d8abbcef6e693965e8257f95357df17693))
+
+### 0.24.0 (2019-05-24)
+
+##### Chores
+
+*  change vscode ([91f5e716](https://github.com/nowcando/nowjs-core/commit/91f5e716c6cc0d3c75fc45773f3a0a57c5fcd1ea))
+*  remove security , logging , configuration features. ([2e4b8e1b](https://github.com/nowcando/nowjs-core/commit/2e4b8e1be2bf89d9660b4bbfa212413b31e0f900))
+
+##### Bug Fixes
+
 *  lint problems ([46c9ec40](https://github.com/nowcando/nowjs-core/commit/46c9ec4039d3ce0d55d833b81bbde1b3939726b6))
 *  lowercase property names fixed . ([596682e0](https://github.com/nowcando/nowjs-core/commit/596682e09bf47612b804916890591d22d94522f8))
 *  validation definition to lower keys ([ee424d67](https://github.com/nowcando/nowjs-core/commit/ee424d6714414106424f0140c221f9f4007be6a9))
