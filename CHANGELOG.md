@@ -1,3 +1,9 @@
+### 0.25.0 (2019-05-24)
+
+##### Chores
+
+*  update travis node version to 12 ([2b90464b](https://github.com/nowcando/nowjs-core/commit/2b90464b96af65669b20435ad954c3c47eccfda8))
+
 ### 0.24.0 (2019-05-24)
 
 ##### Chores
