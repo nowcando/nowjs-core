@@ -9,7 +9,7 @@ export function negate<U, T extends Predicate<U>>(p: T): T {
 
 export function union<U, T extends Predicate<U>>(
     p: T,
-    ...rest: T[],
+    ...rest: T[]
 ): T {
     if (rest.length > 0) {
         return function() {

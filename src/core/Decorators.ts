@@ -10,11 +10,11 @@ export function deprecated(message: string = "Function {name} is deprecated.") {
         const original = descriptor.value;
         const localMessage = message.replace("{name}", name);
 
-        descriptor.value = () => {
+        descriptor.value = (...args: any[]) => {
 
             console.warn(localMessage);
 
-            return original.apply(instance, arguments);
+            return original.apply(instance, args);
         };
 
         return descriptor;
@@ -26,11 +26,11 @@ export function deprecateInNextVersion(message: string = "Function {name} is dep
         const original = descriptor.value;
         const localMessage = message.replace("{name}", name);
 
-        descriptor.value = () => {
+        descriptor.value = (...args: any[]) => {
             // tslint:disable-next-line:no-console
             console.warn(localMessage);
 
-            return original.apply(instance, arguments);
+            return original.apply(instance, args);
         };
 
         return descriptor;
@@ -53,9 +53,9 @@ export function timeout( milliseconds: number = 0 ) {
     return ( target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
       const originalMethod = descriptor.value;
 
-      descriptor.value =  () => {
+      descriptor.value =  (...args: any[]) => {
         setTimeout(() => {
-          originalMethod.apply(this, arguments);
+          originalMethod.apply(this, args);
          }, milliseconds);
       };
       return descriptor;

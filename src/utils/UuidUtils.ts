@@ -1,6 +1,26 @@
 // tslint:disable:no-bitwise
 // tslint:disable:variable-name
-import * as crypto from "crypto";
+// import * as crypto from "crypto";
+const randomBytes = (length: number) => {
+
+  if (window.crypto || (window as any).msCrypto) {
+    const r = new Uint32Array(length);
+    window.crypto.getRandomValues(r);
+    return r;
+  } else {
+    if (process && process.env) {
+      const crypto = require("crypto");
+      return crypto.randomBytes(length);
+    } else {
+      const r: number[] = [];
+      for (let ix = 0; ix < length; ix++) {
+        r.push(Math.floor(Math.random() * 255));
+      }
+      return r;
+    }
+  }
+
+};
 
 function f(s: any, x: any, y: any, z: any) {
   switch (s) {
@@ -23,7 +43,7 @@ function sha1(bytes: any) {
     const msg = decodeURIComponent(encodeURIComponent(bytes)); // UTF8 escape
     bytes = new Array(msg.length);
     // tslint:disable-next-line:no-shadowed-variable
-    for (let i = 0; i < msg.length; i++)  {
+    for (let i = 0; i < msg.length; i++) {
       bytes[i] = msg.charCodeAt(i);
     }
   }
@@ -91,7 +111,7 @@ function sha1(bytes: any) {
 }
 
 function rng() {
-  return crypto.randomBytes(16);
+  return randomBytes(16);
 }
 
 const byteToHex: any = [];
@@ -236,7 +256,7 @@ function v4(options?: any, buf?: any, offset?: number) {
 function uuidToBytes(uuid: any) {
   // Note: We assume we're being passed a valid uuid string
   const bytes: any = [];
-  uuid.replace(/[a-fA-F0-9]{2}/g,  (hex: any) => {
+  uuid.replace(/[a-fA-F0-9]{2}/g, (hex: any) => {
     bytes.push(parseInt(hex, 16));
   });
 

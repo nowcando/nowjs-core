@@ -15,9 +15,9 @@ afterAll(() => { });
 
 afterEach(() => { });
 
-describe("UUID tests", async () => {
+describe("UUID tests",  () => {
 
-  it("checks generate uuid version 4", async () => {
+  it("checks generate uuid version 4",  () => {
     expect.assertions(1);
     const actual = uuid();
     expect(actual.length).toEqual(36) ;

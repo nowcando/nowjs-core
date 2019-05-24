@@ -1,6 +1,5 @@
 import "jest";
 import { HtmlSanitizer, Sanitization } from "../../src/sanitization/index";
-import { authorize } from "../../src/security/index";
 import { JsonSchemaDefinition } from "../../src/utils/index";
 import { isEmail, isMobile, isPhone, isRequired, isUrl } from "../../src/validation/index";
 

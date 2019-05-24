@@ -60,7 +60,7 @@ export class Matrix<T> implements Iterable<T> {
         let newRow;
         if (typeof fn === "function") {
             for (let i = 0, len = this.arr.length; i < len; i++) {
-                newRow = fn(i, this.arr[i], this.arr);
+                newRow = fn(i, this.arr[i], this.arr) as  any;
                 if (newRow && Array.isArray(newRow)) {
                     this.arr[i] = newRow;
                     newRow = null;

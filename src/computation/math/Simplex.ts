@@ -1142,7 +1142,7 @@ export class SimplexInput {
     }
     private anyConstraints(fn: (index: number, item: any, items: any[]) => void) {
         for (let i = 0, len = this.constraints.length; i < len; i++) {
-            if (fn(i, this.constraints[i], this.constraints)) {
+            if ((fn(i, this.constraints[i], this.constraints)) as any) {
                 return true;
             }
         }
@@ -1151,7 +1151,7 @@ export class SimplexInput {
     private allConstraints(fn: (index: number, item: any, items: any[]) => void) {
         let result = true;
         for (let i = 0, len = this.constraints.length; i < len; i++) {
-            result = result && !!fn(i, this.constraints[i], this.constraints);
+            result = result && !!(fn(i, this.constraints[i], this.constraints) as any);
         }
         return result;
     }

@@ -1,5 +1,5 @@
 import "jest";
-import "../../src/";
+import "../../src/linq";
 
 // jest.resetAllMocks();
 // jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
@@ -15,16 +15,16 @@ afterAll(() => { });
 
 afterEach(() => { });
 
-describe("Array", async () => {
+describe("Array",  () => {
 
-    it("contains", async () => {
+    it("contains",  () => {
         expect.assertions(2);
         const arr = [1, 2, 3, 4, 2, 5];
         expect(arr.contains(2)).toEqual(true);
         expect(arr.contains(8)).toEqual(false);
     });
 
-    it("hasDuplicate", async () => {
+    it("hasDuplicate",  () => {
         expect.assertions(3);
         const arr1 = [1, 2, 3, 4, 2, 5];
         const arr2 = [1, 2, 3, 4, 5, 6];
@@ -34,13 +34,13 @@ describe("Array", async () => {
         expect(arr3.hasDuplicate()).toEqual(true);
     });
 
-    it("itemCount", async () => {
+    it("itemCount",  () => {
         expect.assertions(1);
         const arr3 = [2, 2, 5, 2, 5];
         expect(arr3.itemCount()).toEqual([{ item: 2, count: 3 }, { item: 5, count: 2 }]);
     });
 
-    it("toUnique", async () => {
+    it("toUnique",  () => {
         expect.assertions(1);
         const arr3 = [1, 2, 3, 4, 2, 5];
         expect(arr3.toUnique()).toEqual([1, 2, 3, 4, 5]);

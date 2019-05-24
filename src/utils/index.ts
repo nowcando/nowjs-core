@@ -8,3 +8,4 @@ export * from "./TypeUtils";
 export * from "./UuidUtils";
 export * from "./SortUtils";
 export * from "./ColorUtils";
+export * from "./RandomUtils";

@@ -50,9 +50,9 @@ export class Validation {
             // tslint:disable:forin
             for (const itemName in json) {
                 const item  = json[itemName];
-                if (item && item.Validators) {
-                    for (const validatorName in item.Validators) {
-                        const validatorItem = item.Validators[validatorName];
+                if (item && item.validators) {
+                    for (const validatorName in item.validators) {
+                        const validatorItem = item.validators[validatorName];
                         if (validatorItem) {
                           // tslint:disable-next-line:ban-types
                           const validatorFn: Function =  (definition.on(itemName)as any)[`${validatorName}`];

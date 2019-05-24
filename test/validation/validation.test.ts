@@ -13,14 +13,14 @@ jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
 
 const schemaSample: JsonSchemaDefinition = {
   Name: {
-    Validators: {
+    validators: {
       isInRange: {
-        Min: 1,
-        Max: 30,
-        Message: "hello how are you",
+        min: 1,
+        max: 30,
+        message: "hello how are you",
       },
       isEmail: {
-        Message: "hello how are you",
+        message: "hello how are you",
       },
     },
   },
@@ -213,16 +213,16 @@ describe("Validation", async () => {
       const obj1 = SampleUser.getSample1();
       Validation.define("SampleUser1", {
         "Username": {
-          Validators: {
-            isRequired: { Message: "Username Field is Required." },
-            isInRange: { Max: 10, Min: 1 },
+          validators: {
+            isRequired: { message: "Username Field is Required." },
+            isInRange: { max: 10, min: 1 },
             // "isAlphabet": {  }
           },
         },
         "Profile.Firstname": {
-          Validators: {
-            isRequired: { Message: "Username Field is Required." },
-            isInRange: { Max: 10, Min: 1 },
+          validators: {
+            isRequired: { message: "Username Field is Required." },
+            isInRange: { max: 10, min: 1 },
             // "isAlphabet": {  }
           },
         },
@@ -237,20 +237,21 @@ describe("Validation", async () => {
     });
 
     it("checks defined schema for validation should reject error.", async () => {
-      expect.assertions(1);
+      expect.assertions(2);
       const obj1 = SampleUser.getSample1();
+      const expectedMessage = "Firstname is not in true range.";
       Validation.define("SampleUser2", {
         "Username": {
-          Validators: {
-            isRequired: { Message: "Username Field is Required." },
-            isInRange: { Max: 10, Min: 1 },
+          validators: {
+            isRequired: { message: "Username Field is Required." },
+            isInRange: { max: 10, min: 1 },
             // "isAlphabet": {  }
           },
         },
         "Profile.Firstname": {
-          Validators: {
-            isRequired: { Message: "Firstname Field is Required." },
-            isInRange: { Max: 3, Min: 1, Message: "Firstname is not in true range." },
+          validators: {
+            isRequired: { message: "Firstname Field is Required." },
+            isInRange: { max: 3, min: 1, message: expectedMessage },
             // "isAlphabet": {  }
           },
         },
@@ -261,6 +262,8 @@ describe("Validation", async () => {
         expect(actual).toEqual(expected);
       } catch (error) {
         expect(error).not.toBeNull();
+        const emessage = error.message;
+        expect(emessage).toBe(expectedMessage);
       }
     });
 

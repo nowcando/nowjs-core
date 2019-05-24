@@ -1,5 +1,6 @@
 import { IList } from "./collections";
 import { IObjectDictionary } from "./core";
+import "./linq/Declaration";
 import { IParallelQueryable, IQueryable } from "./linq/index";
 import { ExtendedPromiseOptions } from "./parallels/index";
 
@@ -50,6 +51,7 @@ declare global {
             T & U & V & W & X & Y & Z;
         deepAssign<T>(target: T, ...sources: any[]): T & any;
         cloneObject<T>(target: T): T;
+        createInstance<T>(c: new() => T): T;
     }
 
     interface Array<T> {

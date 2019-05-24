@@ -15,9 +15,9 @@ afterAll(() => { });
 
 afterEach(() => { });
 
-describe("PerformanceCounter tests", async () => {
+describe("PerformanceCounter tests",  () => {
 
-  it("checks start", async () => {
+  it("checks start",  () => {
     expect.assertions(1);
     PerformanceCounter.start("atest");
     const actual = PerformanceCounter.finish("atest");

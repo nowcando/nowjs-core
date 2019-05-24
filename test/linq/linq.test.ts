@@ -1,5 +1,6 @@
 import "jest";
 import { List } from "../../src/collections/List";
+import "../../src/index";
 import { Enumerable } from "../../src/linq/Enumerable";
 
 // jest.resetAllMocks();
@@ -28,29 +29,29 @@ afterAll(() => { });
 
 afterEach(() => { });
 
-describe("Linq", async () => {
+describe("Linq",  () => {
 
-    describe("Enumerable", async () => {
-        describe("Static methods", async () => {
-            it("checks range .", async () => {
+    describe("Enumerable",  () => {
+        describe("Static methods",  () => {
+            it("checks range .",  () => {
                 expect.assertions(1);
                 const array = Enumerable.range(1, 3).toArray();
                 const actual = array.linq().sum();
                 expect(actual).toEqual(6);
             });
-            it("checks repeat .", async () => {
+            it("checks repeat .",  () => {
                 expect.assertions(1);
                 const array = Enumerable.repeat(1, 3).toArray();
                 const actual = array.linq().sum();
                 expect(actual).toEqual(3);
             });
-            it("checks range percentile .", async () => {
+            it("checks range percentile .",  () => {
                 expect.assertions(1);
                 const array = Enumerable.range(1, 20).toArray();
                 const actual = array.linq().percentile(0.25);
                 expect(actual).toEqual(5);
             });
-            it("checks range satistical methods .", async () => {
+            it("checks range satistical methods .",  () => {
                 expect.assertions(5);
                 const array = Enumerable.range(1, 20).toArray();
                 array.push(5);
@@ -67,13 +68,13 @@ describe("Linq", async () => {
             });
         });
 
-        it("checks isEmpty .", async () => {
+        it("checks isEmpty .",  () => {
             expect.assertions(1);
             testNumberList.add(1, 2, 3, 4, 5);
             const actual = testNumberList.linq().isEmpty();
             expect(actual).toEqual(false);
         });
-        it("checks count .", async () => {
+        it("checks count .",  () => {
             expect.assertions(6);
             testList.add("A", "B", "C", "D", "A", "C", "A", "C", "B");
             const actualCount = testList.linq().count();
@@ -89,7 +90,7 @@ describe("Linq", async () => {
             expect(actualCountD).toEqual(1);
             expect(actualCountF).toEqual(0);
         });
-        it("checks any .", async () => {
+        it("checks any .",  () => {
             expect.assertions(2);
             testList.add("A", "B", "C", "D", "A", "C", "A", "C", "B");
             const actualTrue = testList.linq().any((x) => x === "A");
@@ -97,7 +98,7 @@ describe("Linq", async () => {
             expect(actualTrue).toEqual(true);
             expect(actualFalse).toEqual(false);
         });
-        it("checks all .", async () => {
+        it("checks all .",  () => {
             expect.assertions(2);
             testList.add("A", "B", "C", "D", "A", "C", "A", "C", "B");
             const actualFalse = testList.linq().all((x) => x === "F");
@@ -107,7 +108,7 @@ describe("Linq", async () => {
             expect(actualTrue).toEqual(true);
             expect(actualFalse).toEqual(false);
         });
-        it("checks contains .", async () => {
+        it("checks contains .",  () => {
             expect.assertions(2);
             testList.add("A", "B", "C", "D", "A", "C", "A", "C", "B");
             const actualFalse = testList.linq().contains("F");
@@ -115,7 +116,7 @@ describe("Linq", async () => {
             expect(actualTrue).toEqual(true);
             expect(actualFalse).toEqual(false);
         });
-        it("checks average .", async () => {
+        it("checks average .",  () => {
             expect.assertions(2);
             testNumberList.add(1, 2, 3, 4, 5);
             const actualAverage = testNumberList.linq().average();
@@ -124,7 +125,7 @@ describe("Linq", async () => {
             expect(actualAverage).toEqual(3);
             expect(actualConditionalAverage).toEqual(4);
         });
-        it("checks sum .", async () => {
+        it("checks sum .",  () => {
             expect.assertions(2);
             testNumberList.add(1, 2, 3, 4, 5);
             const actualSum = testNumberList.linq().sum();
@@ -133,7 +134,7 @@ describe("Linq", async () => {
             expect(actualSum).toEqual(15);
             expect(actualConditionalSum).toEqual(12);
         });
-        it("checks max .", async () => {
+        it("checks max .",  () => {
             expect.assertions(2);
             testNumberList.add(1, 2, 3, 4, 5);
             const actualMax = testNumberList.linq().max();
@@ -142,7 +143,7 @@ describe("Linq", async () => {
             expect(actualMax).toEqual(5);
             expect(actualConditionalMax).toEqual(3);
         });
-        it("checks min .", async () => {
+        it("checks min .",  () => {
             expect.assertions(2);
             testNumberList.add(1, 2, 3, 4, 5);
             const actualMin = testNumberList.linq().min();
@@ -152,7 +153,7 @@ describe("Linq", async () => {
             expect(actualConditionalMin).toEqual(3);
         });
 
-        it("checks aggregate .", async () => {
+        it("checks aggregate .",  () => {
             expect.assertions(2);
             testNumberList.add(1, 2, 3, 4, 5);
             const actualSum = testNumberList.linq()
@@ -163,14 +164,14 @@ describe("Linq", async () => {
             expect(actualFactorial).toEqual(120);
         });
 
-        it("checks reverse .", async () => {
+        it("checks reverse .",  () => {
             expect.assertions(1);
             testNumberList.add(1, 2, 3, 4, 5);
             const actualArray = testNumberList.linq().reverse().toArray();
             expect(actualArray).toEqual(testNumberList.toArray().reverse());
         });
 
-        it("checks first .", async () => {
+        it("checks first .",  () => {
             expect.assertions(2);
             testNumberList.add(1, 2, 3, 4, 5);
             const actualFirst = testNumberList.linq().first();
@@ -179,7 +180,7 @@ describe("Linq", async () => {
             expect(actualConditionalFirst).toEqual(4);
         });
 
-        it("checks last .", async () => {
+        it("checks last .",  () => {
             expect.assertions(2);
             testNumberList.add(1, 2, 3, 4, 5);
             const actualLast = testNumberList.linq().last();
@@ -188,7 +189,7 @@ describe("Linq", async () => {
             expect(actualConditionalLast).toEqual(3);
         });
 
-        it("checks take .", async () => {
+        it("checks take .",  () => {
             expect.assertions(2);
             testNumberList.add(1, 2, 3, 4, 5);
             const actualTake = testNumberList.linq().take(3).toArray();
@@ -196,14 +197,14 @@ describe("Linq", async () => {
             expect(actualTake).toEqual([1, 2, 3]);
         });
 
-        it("checks takeWhile .", async () => {
+        it("checks takeWhile .",  () => {
             expect.assertions(1);
             testNumberList.add(1, 2, 3, 4, 5);
             const actualTake = testNumberList.linq().takeWhile((x) => x > 3).toArray();
             expect(actualTake.length).toEqual(3);
         });
 
-        it("checks skip .", async () => {
+        it("checks skip .",  () => {
             expect.assertions(2);
             testNumberList.add(1, 2, 3, 4, 5);
             const actualSkip = testNumberList.linq().skip(3).toArray();
@@ -211,21 +212,21 @@ describe("Linq", async () => {
             expect(actualSkip).toEqual([4, 5]);
         });
 
-        it("checks skipWhile .", async () => {
+        it("checks skipWhile .",  () => {
             expect.assertions(1);
             testNumberList.add(1, 2, 3, 4, 5);
             const actualSkip = testNumberList.linq().skipWhile((x) => x > 2).toArray();
             expect(actualSkip.length).toEqual(3);
         });
 
-        it("checks distinct .", async () => {
+        it("checks distinct .",  () => {
             expect.assertions(1);
             testNumberList.add(1, 2, 3, 4, 5, 1, 8, 4);
             const actual = testNumberList.linq().distinct().toArray();
             expect(actual.length).toEqual(6);
         });
 
-        it("checks select .", async () => {
+        it("checks select .",  () => {
             expect.assertions(2);
             personList.add({ Name: "Saeed", Age: 35 }, { Name: "Amir", Age: 25 });
             const actual = personList.linq().select().toArray();
@@ -233,7 +234,7 @@ describe("Linq", async () => {
             expect(actual).toEqual(personList.toArray());
             expect(actualSelector).toEqual(["Saeed", "Amir"]);
         });
-        it("checks selectMany .", async () => {
+        it("checks selectMany .",  () => {
             expect.assertions(2);
             personList1.add({ Name: "Saeed", Age: 35 }, { Name: "Amir", Age: 25 });
             personList.add({ Name: "Ali", Age: 18 }, { Name: "Samad", Age: 12 });
@@ -244,69 +245,69 @@ describe("Linq", async () => {
             expect(actualSelectorSimple.length).toEqual(4);
         });
 
-        it("checks union .", async () => {
+        it("checks union .",  () => {
             expect.assertions(1);
             testNumberList.add(1, 2, 3, 4, 5);
             const actual = testNumberList.linq().union([1, 4, 7]).toArray();
             expect(actual).toEqual([1, 2, 3, 4, 5, 7]);
         });
-        it("checks intersect .", async () => {
+        it("checks intersect .",  () => {
             expect.assertions(1);
             testNumberList.add(1, 2, 3, 4, 5);
             const actual = testNumberList.linq().intersect([1, 4, 7]).toArray();
             expect(actual).toEqual([1, 4]);
         });
-        it("checks subtract .", async () => {
+        it("checks subtract .",  () => {
             expect.assertions(1);
             testNumberList.add(1, 2, 3, 4, 5);
             const actual = testNumberList.linq().subtract([1, 4, 7]).toArray();
             expect(actual).toEqual([2, 3, 5]);
         });
-        it("checks where .", async () => {
+        it("checks where .",  () => {
             expect.assertions(1);
             testNumberList.add(1, 2, 3, 4, 5);
             const actual = testNumberList.linq().where((x) => x > 2).toArray();
             expect(actual).toEqual([3, 4, 5]);
         });
-        it("checks covariance .", async () => {
+        it("checks covariance .",  () => {
             expect.assertions(1);
             testNumberList.add(5, 20, 40, 80, 100);
             testNumberList1.add(10, 24, 33, 54, 10);
             const actual = testNumberList.linq().covariance(testNumberList1.linq());
             expect(Math.round(actual * 100) / 100).toEqual(187.75);
         });
-        it("checks pearson .", async () => {
+        it("checks pearson .",  () => {
             expect.assertions(1);
             testNumberList.add(5, 20, 40, 80, 100);
             testNumberList1.add(10, 24, 33, 54, 10);
             const actual = testNumberList.linq().pearson(testNumberList1.linq());
             expect(Math.round(actual * 10000) / 10000).toEqual(0.2552);
         });
-        it("checks variance .", async () => {
+        it("checks variance .",  () => {
             expect.assertions(1);
             testNumberList.add(5, 20, 40, 80, 100);
             const actual = testNumberList.linq().variance();
             expect(actual).toEqual(1284);
         });
-        it("checks stdDev .", async () => {
+        it("checks stdDev .",  () => {
             expect.assertions(1);
             testNumberList.add(5, 20, 40, 80, 100);
             const actual = testNumberList.linq().stdDev();
             expect(Math.round(actual * 10000) / 10000).toEqual(35.8329);
         });
-        it("checks mean .", async () => {
+        it("checks mean .",  () => {
             expect.assertions(1);
             testNumberList.add(5, 20, 40, 80, 100);
             const actual = testNumberList.linq().mean();
             expect(actual).toEqual(49);
         });
-        it("checks range .", async () => {
+        it("checks range .",  () => {
             expect.assertions(1);
             testNumberList.add(5, 20, 40, 80, 100);
             const actual = testNumberList.linq().range();
             expect(actual).toEqual(95);
         });
-        it("checks percentile .", async () => {
+        it("checks percentile .",  () => {
             expect.assertions(6);
             testNumberList.add(1, 2, 3, 4, 5);
             const actual15 = testNumberList.linq().percentile(.15);
@@ -323,7 +324,7 @@ describe("Linq", async () => {
             expect(actual100).toEqual(5);
 
         });
-        it("checks percentRank .", async () => {
+        it("checks percentRank .",  () => {
             expect.assertions(1);
             testNumberList.add(1, 2, 3, 4, 5);
             const actual3 = testNumberList.linq().percentRank(3);

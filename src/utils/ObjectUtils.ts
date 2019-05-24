@@ -13,15 +13,15 @@ export interface IJsonSchemaDefinitionValidator {
 
 // tslint:disable:interface-name
 export interface JsonSchemaDefinitionDisplay {
-    DisplayName?: StringFormatType;
-    DisplayShortName?: StringFormatType;
-    DisplayHintName?: StringFormatType;
-    DisplayOrder?: number;
+    displayName?: StringFormatType;
+    displayShortName?: StringFormatType;
+    displayHintName?: StringFormatType;
+    displayOrder?: number;
 }
 
 export interface JsonSchemaDefinitionItem {
-    Display?: JsonSchemaDefinitionDisplay;
-    Validators?: IJsonSchemaDefinitionValidator;
+    display?: JsonSchemaDefinitionDisplay;
+    validators?: IJsonSchemaDefinitionValidator;
 }
 
 export interface JsonSchemaDefinition {
@@ -41,11 +41,11 @@ function deprecated(message: StringFormatType = 'The {type} "{name}" is deprecat
             localMessage = message("DeprecatedMessage", target, propertyName, original);
         }
 
-        descriptor.value = () => {
+        descriptor.value = (...args: any[] ) => {
             // tslint:disable-next-line:no-console
             console.warn(localMessage);
 
-            return original.apply(target, arguments);
+            return original.apply(target, args);
         };
 
         return descriptor;
@@ -126,7 +126,7 @@ export function sealed(constructor: Function) {
     Object.seal(constructor.prototype);
 }
 
-export function classDecorator<T extends { new(...args: any[]): {} }>(constructor: T) {
+export function classDecorator<T extends new(...args: any[]) => {}>(constructor: T) {
     return class extends constructor {
         // tslint:disable-next-line:member-access
         newProperty = "new property";
@@ -369,14 +369,22 @@ export function cloneObject<T>(obj: T): T {
     return deepAssign({}, obj);
 }
 
-function toCloneObject<T>(target: T): T {
+export function toCloneObject<T>(target: T): T {
     return cloneObject(target);
 }
 
-function toDeepAssign<T>(target: T, ...sources: any[]): T {
+export function toDeepAssign<T>(target: T, ...sources: any[]): T {
     return deepAssign(target, ...sources);
 }
 
+/**
+ * Create new instance of a instancable and return it .
+ * @param c
+ */
+export function createInstance<T>(c: new() => T): T {
+    return new c();
+}
+Object.createInstance  = createInstance;
 Object.deepAssign = toDeepAssign;
 Object.isObjectType = isObjectType;
 Object.cloneObject = toCloneObject;

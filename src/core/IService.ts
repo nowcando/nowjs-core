@@ -11,8 +11,8 @@ export interface IServiceOptions {
 }
 
 export interface IServiceStatus {
-    Status: ServiceStatus;
-    Timestamp: Date;
+    status: ServiceStatus;
+    timestamp: Date;
 }
 
 export interface IService<TOptions extends IServiceOptions, TResult extends IServiceStatus> extends IProvider {

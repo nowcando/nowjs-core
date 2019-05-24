@@ -1,3 +1,4 @@
+import "./Declaration";
 export * from "./Enumerable";
 export * from "./ParallelEnumerable";
 export * from "./IGroup";

@@ -1,8 +1,8 @@
 {
     "globals": {
         "ts-jest": {
-            "tsConfigFile": "./tsconfig.test.json",
-            "skipBabel": true
+            "tsConfig": "./tsconfig.test.json",
+            "babelConfig": true
         }
     },
     "collectCoverageFrom": [
@@ -11,7 +11,7 @@
     ],
     "verbose": true,
     "transform": {
-        ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+        ".(ts|tsx)": "ts-jest"
     },
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx)$",
     "moduleFileExtensions": [

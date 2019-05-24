@@ -15,10 +15,10 @@ afterAll(() => { });
 
 afterEach(() => { });
 
-describe("Computation", async () => {
-    describe("Math", async () => {
-        describe("NumericSquareMatrix", async () => {
-            it("checks addition matrix", async () => {
+describe("Computation",  () => {
+    describe("Math",  () => {
+        describe("NumericSquareMatrix",  () => {
+            it("checks addition matrix",  () => {
                 expect.assertions(9);
                 const matrix1 = new NumericSquareMatrix( 3, [1, 2, 3], [4, 5, 6], [7, 8, 9]);
                 const matrix2 = new NumericSquareMatrix( 3, [1, 2, 3], [4, 5, 6], [7, 8, 9]);
@@ -33,7 +33,7 @@ describe("Computation", async () => {
                 expect(matrix3.get(2, 1)).toEqual(16);
                 expect(matrix3.get(2, 2)).toEqual(18);
             });
-            it("checks subtract matrix", async () => {
+            it("checks subtract matrix",  () => {
                 expect.assertions(9);
                 const matrix1 = new NumericSquareMatrix(3, [1, 2, 3], [4, 5, 6], [7, 8, 9]);
                 const matrix2 = new NumericSquareMatrix(3, [1, 2, 3], [4, 5, 6], [7, 8, 9]);
@@ -48,7 +48,7 @@ describe("Computation", async () => {
                 expect(matrix3.get(2, 1)).toEqual(0);
                 expect(matrix3.get(2, 2)).toEqual(0);
             });
-            it("checks multiply matrix", async () => {
+            it("checks multiply matrix",  () => {
                 expect.assertions(9);
                 const matrix1 = new NumericSquareMatrix(3,  [1, 2, 3], [4, 5, 6], [7, 8, 9]);
                 const matrix2 = new NumericSquareMatrix(3,  [1, 2, 3], [4, 5, 6], [7, 8, 9]);
@@ -63,7 +63,7 @@ describe("Computation", async () => {
                 expect(matrix3.get(2, 1)).toEqual(64);
                 expect(matrix3.get(2, 2)).toEqual(81);
             });
-            it("checks division matrix", async () => {
+            it("checks division matrix",  () => {
                 expect.assertions(9);
                 const matrix1 = new NumericSquareMatrix(3, [1, 2, 3], [4, 5, 6], [7, 8, 9]);
                 const matrix2 = new NumericSquareMatrix(3, [1, 2, 3], [4, 5, 6], [7, 8, 9]);
@@ -78,7 +78,7 @@ describe("Computation", async () => {
                 expect(matrix3.get(2, 1)).toEqual(1);
                 expect(matrix3.get(2, 2)).toEqual(1);
             });
-            it("checks dotProduct matrix", async () => {
+            it("checks dotProduct matrix",  () => {
                 expect.assertions(9);
                 const matrix1 = new NumericSquareMatrix(3, [1, 2, 3], [4, 5, 6], [7, 8, 9]);
                 const matrix2 = new NumericSquareMatrix(3, [1, 2, 3], [4, 5, 6], [7, 8, 9]);
@@ -93,7 +93,7 @@ describe("Computation", async () => {
                 expect(matrix3.get(2, 1)).toEqual(126);
                 expect(matrix3.get(2, 2)).toEqual(150);
             });
-            it("checks transpose matrix", async () => {
+            it("checks transpose matrix",  () => {
                 expect.assertions(9);
                 const matrix1 = new NumericSquareMatrix(3, [1, 2, 3], [4, 5, 6], [7, 8, 9]);
                 const matrix3 = matrix1.transpose();
@@ -107,7 +107,7 @@ describe("Computation", async () => {
                 expect(matrix3.get(2, 1)).toEqual(6);
                 expect(matrix3.get(2, 2)).toEqual(9);
             });
-            it("checks diagonal matrix", async () => {
+            it("checks diagonal matrix",  () => {
                 expect.assertions(9);
                 const matrix1 = new NumericSquareMatrix(3, [1, 2, 3], [4, 5, 6], [7, 8, 9]);
                 const matrix3 = matrix1.diagonal();
@@ -121,7 +121,7 @@ describe("Computation", async () => {
                 expect(matrix3.get(2, 1)).toEqual(0);
                 expect(matrix3.get(2, 2)).toEqual(9);
             });
-            it("checks upperTriangular matrix", async () => {
+            it("checks upperTriangular matrix",  () => {
                 expect.assertions(9);
                 const matrix1 = new NumericSquareMatrix(3, [1, 2, 3], [4, 5, 6], [7, 8, 9]);
                 const matrix3 = matrix1.upperTriangular();
@@ -135,7 +135,7 @@ describe("Computation", async () => {
                 expect(matrix3.get(2, 1)).toEqual(0);
                 expect(matrix3.get(2, 2)).toEqual(9);
             });
-            it("checks lowerTriangular matrix", async () => {
+            it("checks lowerTriangular matrix",  () => {
                 expect.assertions(9);
                 const matrix1 = new NumericSquareMatrix(3, [1, 2, 3], [4, 5, 6], [7, 8, 9]);
                 const matrix3 = matrix1.lowerTriangular();
@@ -149,7 +149,7 @@ describe("Computation", async () => {
                 expect(matrix3.get(2, 1)).toEqual(8);
                 expect(matrix3.get(2, 2)).toEqual(9);
             });
-            it("checks negative matrix", async () => {
+            it("checks negative matrix",  () => {
                 expect.assertions(9);
                 const matrix1 = new NumericSquareMatrix(3, [1, 2, 3], [-4, 5, 6], [7, -8, 9]);
                 const matrix3 = matrix1.negative();
@@ -163,7 +163,7 @@ describe("Computation", async () => {
                 expect(matrix3.get(2, 1)).toEqual(8);
                 expect(matrix3.get(2, 2)).toEqual(-9);
             });
-            it("checks inverse matrix", async () => {
+            it("checks inverse matrix",  () => {
                 expect.assertions(9);
                 const matrix1 = new NumericSquareMatrix(3, [1, 2, 4], [9, 5, 6], [-5, 2, -3]);
                 const matrix3 = matrix1.inverse();
@@ -179,7 +179,7 @@ describe("Computation", async () => {
                 expect(matrix3.get(2, 1)).toEqual(-12 / 139);
                 expect(matrix3.get(2, 2)).toEqual(-13 / 139);
             });
-            it("checks inverse matrix should return error cause determinant is zero", async () => {
+            it("checks inverse matrix should return error cause determinant is zero",  () => {
                 expect.assertions(1);
                 const matrix1 = new NumericSquareMatrix(3, [1, 2, 3], [4, 5, 6], [7, 8, 9]);
                 try {
@@ -188,7 +188,7 @@ describe("Computation", async () => {
                     expect(error).not.toEqual(null);
                 }
             });
-            it("checks determinant matrix", async () => {
+            it("checks determinant matrix",  () => {
                 expect.assertions(1);
                 const matrix1 = new NumericSquareMatrix(3, [1, 2, 4], [9, 5, 6], [-5, 2, -3]);
                 const det = matrix1.determinant();
