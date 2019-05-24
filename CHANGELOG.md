@@ -1,3 +1,9 @@
+### 0.26.0 (2019-05-24)
+
+##### Chores
+
+*  update read me . ([938c5aca](https://github.com/nowcando/nowjs-core/commit/938c5aca491ed1c18b2ff720330d5e529e8a623b))
+
 ### 0.25.0 (2019-05-24)
 
 ##### Chores
