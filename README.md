@@ -2,9 +2,8 @@
 
 Nowjs-Core is a lightweight library for handle Line Of Business challenges.
 
-### Compatible with ES7(ES2016) and later .
 
-## Compiled and tested with Typescript 3.3.3 and Jest 24.1.0 .
+## Compiled and tested with Typescript 3.4.5 and Jest 24.8.0 .
  
  [![npm version](https://badge.fury.io/js/nowjs-core.svg)](https://www.npmjs.com/package/nowjs-core)
  [![Downloads](https://img.shields.io/npm/dm/nowjs-core.svg)](https://www.npmjs.com/package/nowjs-core)
@@ -20,16 +19,13 @@ Nowjs-Core is a lightweight library for handle Line Of Business challenges.
  - Data.
  - Exceptions.
  - Decorators.
- - Security.
  - Globalizations.
- - Utils (String , Object , Sort , Type , Promise , Color, Number utilities).
+ - Utils (String , Object , Sort , Type , Promise , Color, Number , Random utilities).
  - Validations
  - Sanitization (HtmlSanitizer).
- - Logging.
- - Configuration.
  - Providers and Services basic types .
 
-### Developed with love by [NowCanDo](http://www.nowcando.com)  .
+### Developed in [NowCanDo](http://www.nowcando.com)  .
 
 ### Notes for contributors
 
@@ -38,18 +34,6 @@ Please see [CONTRIBUTING](./CONTRIBUTING.md).
 ### Changes
 
 See [CHANGELOG](./CHANGELOG.md)
-
-### Releated Projects
-
-- [nowjs-node-core](https://github.com/nowcando/nowjs-node-core).
-- [nowjs-mapreduce](https://github.com/nowcando/nowjs-mapreduce).
-- [nowjs-bpms](https://github.com/nowcando/nowjs-bpms).
-- [nowjs-node-telegram-api](https://github.com/nowcando/nowjs-node-telegram-api).
-- [nowjs-web-express](https://github.com/nowcando/nowjs-web-express).
-- [nowjs-messaging](https://github.com/nowcando/nowjs-messaging).
-- [nowjs-financial](https://github.com/nowcando/nowjs-financial).
-- [nowjs-data-orientdb](https://github.com/nowcando/nowjs-data-orientdb).
-- [nowjs-data-redis](https://github.com/nowcando/nowjs-data-redis).
 
 ### License   
 This project maintains under Apache 2.0 licence , see [LICENSE](./LICENSE.md) 
