@@ -15,9 +15,9 @@ afterAll(() => { });
 
 afterEach(() => { });
 
-describe("ColorUtils", async () => {
+describe("ColorUtils",  () => {
 
-    it("checks isDark", async () => {
+    it("checks isDark",  () => {
         expect.assertions(2);
         const black = "#000";
         const white = "#fff";
@@ -27,7 +27,7 @@ describe("ColorUtils", async () => {
         expect(actual2).toEqual(false);
     });
 
-    it("checks isLight", async () => {
+    it("checks isLight",  () => {
         expect.assertions(2);
         const black = "#000";
         const white = "#fff";
@@ -36,7 +36,7 @@ describe("ColorUtils", async () => {
         expect(actual1).toEqual(false);
         expect(actual2).toEqual(true);
     });
-    it("checks complement", async () => {
+    it("checks complement",  () => {
         expect.assertions(2);
         const black = "#000";
         const white = "#fff";
@@ -45,7 +45,7 @@ describe("ColorUtils", async () => {
         expect(actual1.l).toEqual(0);
         expect(actual2.l).toEqual(1);
     });
-    it("checks overlayColor", async () => {
+    it("checks overlayColor",  () => {
         expect.assertions(12);
         const black = "#000";
         const white = "#fff";

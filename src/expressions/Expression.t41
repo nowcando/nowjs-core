@@ -1,0 +1,52 @@
+
+export enum ExpressionTypes {
+    add = 0, and = 2, call = 6, coalesce = 8, constant = 10, convert = 12,
+    divide = 14, equal = 16, greaterThan = 18, greaterThanOrEqual = 20,
+    lambda = 22, negate = 24, not = 26, notEqual = 28, or = 30,
+    orElse = 32, parameter = 34,
+}
+
+export abstract class Expression {
+
+    public static and(left: Expression, right: Expression): BinaryExpression { }
+    public static or(left: Expression, right: Expression): BinaryExpression { }
+    public static coalesce(left: Expression, right: Expression, conversion: LambdaExpression): BinaryExpression { }
+}
+
+export abstract class ExpressionVisitor {
+
+}
+export class UnaryExpression extends Expression {
+
+}
+
+export class BinaryExpression extends Expression {
+
+}
+
+export class BlockExpression extends Expression {
+
+}
+
+export class ConstantExpression extends Expression {
+
+}
+
+export class MemberExpression extends Expression {
+
+}
+
+export class ConditionalExpression extends Expression {
+
+}
+
+export class SwitchExpression extends Expression {
+
+}
+
+export class MethodCallExpression extends Expression {
+
+}
+export class LambdaExpression extends Expression {
+
+}
