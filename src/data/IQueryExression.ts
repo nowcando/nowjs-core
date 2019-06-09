@@ -1,3 +1,3 @@
-export interface IQueryExpression<TSource>{
-
+export interface IQueryExpression<TSource> {
+ // TODO: imeplement
 }
