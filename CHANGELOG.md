@@ -1,3 +1,15 @@
+### 0.28.0 (2019-06-09)
+
+##### New Features
+
+*  DbRepository enhancment ([81d328e3](https://github.com/nowcando/nowjs-core/commit/81d328e3a1905b59de691c1cd00a5d1cc003ba06))
+*  implement [#128](https://github.com/nowcando/nowjs-core/pull/128), [#129](https://github.com/nowcando/nowjs-core/pull/129) ([35bf0b8d](https://github.com/nowcando/nowjs-core/commit/35bf0b8d69d0756639ed2ee23e9877e60f7fe6cd))
+
+##### Bug Fixes
+
+*   lint problems ([a7dccec9](https://github.com/nowcando/nowjs-core/commit/a7dccec928a5d76e4148f32bdcec26a18f4a0d6f))
+*  repository documentation ([b51962b6](https://github.com/nowcando/nowjs-core/commit/b51962b600e930f55fb9e8e69dc8b2e8d05de30f))
+
 ### 0.27.0 (2019-05-24)
 
 ### 0.26.0 (2019-05-24)
