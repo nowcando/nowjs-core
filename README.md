@@ -2,15 +2,12 @@
 
 Nowjs-Core is a lightweight library for handle Line Of Business challenges.
 
-
-## Compiled and tested with Typescript 3.4.5 and Jest 24.8.0 .
- 
  [![npm version](https://badge.fury.io/js/nowjs-core.svg)](https://www.npmjs.com/package/nowjs-core)
  [![Downloads](https://img.shields.io/npm/dm/nowjs-core.svg)](https://www.npmjs.com/package/nowjs-core)
  [![Gitter](https://badges.gitter.im/nowcando/nowjs-core.svg)](https://gitter.im/nowcando/nowjs-core?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
   CI-Master: [![Build Status](https://travis-ci.org/nowcando/nowjs-core.svg?branch=master)](https://travis-ci.org/nowcando/nowjs-core) , CI-Develop: [![Build Status](https://travis-ci.org/nowcando/nowjs-core.svg?branch=develop)](https://travis-ci.org/nowcando/nowjs-core)
 
- # Features
+# Features
 
  - Parallels (Promise extention methods , delay , wait , cancelable , spread).
  - Collections (List , Colllection , LinkedList, Queue , Stack , SortedList , PriorityQueue , ...).
@@ -19,13 +16,13 @@ Nowjs-Core is a lightweight library for handle Line Of Business challenges.
  - Data.
  - Exceptions.
  - Decorators.
- - Globalizations.
+ - Base Types (Logging).
+ - Globalizations. (Translation)
  - Utils (String , Object , Sort , Type , Promise , Color, Number , Random utilities).
  - Validations
  - Sanitization (HtmlSanitizer).
- - Providers and Services basic types .
 
-### Developed in [NowCanDo](http://www.nowcando.com)  .
+### Developed in [NowCanDo](http://www.nowcando.com).
 
 ### Notes for contributors
 
