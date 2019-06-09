@@ -2,8 +2,8 @@
 import { IProvider } from "./IProvider";
 
 export enum ServiceStatus {
-    Stopped = 0, Stopping = 1, Starting = 2, Started = 4,
-    Running = 6, Pausing = 8, Paused = 10, Resuming = 12,
+    stopped = 0, stopping = 1, starting = 2, started = 4,
+    running = 6, pausing = 8, paused = 10, resuming = 12,
 }
 
 export interface IServiceOptions {

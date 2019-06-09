@@ -1,20 +1,22 @@
-import { IRepository } from "../../core/index";
+import { IRepository, Predicate, Selector } from "../../core/index";
+import { IQueryExpression } from "../IQueryExression";
+import { IDbCommandExecutePlan } from "./IDbCommandExecutePlan";
+import { IDbQueryPagedResult } from "./IDbQueryPagedResult";
 
+export interface DbQueryOptions<T, R> {
 
-export interface IDbRepository<TSource, TDb, TMigrationResult> extends IRepository {
-    HasMigrationFeature: boolean;
+    query: string | Predicate<T> | IQueryExpression<T>;
+    pageSize?: number;
+    pageIndex?: number;
+    selectBy?: string[] | Array<Selector<T>>;
+    groupBy?: string[] | Array<Selector<T>>;
+    sortBy: { [fieldname: string]: "asc" | "desc" };
+
+}
+export interface IDbRepository<T, TSource, TDb> extends IRepository<T> {
     getSource(dbName?: string): Promise<TSource>;
     getDb(dbName?: string): Promise<TDb>;
-    upgrade(dbName?: string, limit?: number): Promise<TMigrationResult>;
-    downgrade(dbName?: string, limit?: number): Promise<TMigrationResult>;
 
-    getById<R>(...id: Array<{[key: string]: string|number}>): Promise<R>;
-    getAll<R>(options?: {
-        query?: any;
-        pageSize?: number;
-        pageIndex?: number;
-        sortBy: string[] | Array<{[key: string]: "asc"|"desc"}>
-    }): Promise<R[]>;
-    getAny<R>(id: string | number): Promise<R[]>;
+    query<R, Q>(options: DbQueryOptions<T, R>): Promise<IDbQueryPagedResult<T, IDbCommandExecutePlan>>;
 
 }

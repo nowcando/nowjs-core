@@ -3,9 +3,8 @@ import {IParallelOrderedQueryable} from "./IParallelOrderedQueryable";
 import { ICollection } from "../collections/ICollection";
 import { IList } from "../collections/IList";
 import { Comparator } from "../core/Comparator";
-import { Func } from "../core/Func";
+import { Func, Predicate } from "../core/Func";
 import { IAsyncEnumerable } from "../core/IAsyncEnumerable";
-import { Predicate } from "../core/Predicate";
 import { IGroup } from "./IGroup";
 import { IOrderedQueryable } from "./IOrderedQueryable";
 

@@ -2,9 +2,8 @@
 import { ICollection } from "../collections/ICollection";
 import { IList } from "../collections/IList";
 import { Comparator } from "../core/Comparator";
-import { Func } from "../core/Func";
+import { Func, Predicate } from "../core/Func";
 import { IEnumerable } from "../core/IEnumerable";
-import { Predicate } from "../core/Predicate";
 import { IGroup } from "./IGroup";
 import { IOrderedQueryable } from "./IOrderedQueryable";
 

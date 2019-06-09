@@ -1,5 +1,5 @@
 
-export abstract class DbMigration<T, TResult> {
+export abstract class IDbMigration<T, TResult> {
 
     // tslint:disable:member-access
    public abstract up(db: T): Promise<TResult>;

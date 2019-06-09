@@ -1,5 +1,5 @@
+import { Predicate } from "../core";
 
-import { Predicate } from "../core/Predicate";
 
 export function negate<U, T extends Predicate<U>>(p: T): T {
     return function(): boolean {
