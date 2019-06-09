@@ -1,3 +1,13 @@
+### 0.30.0 (2019-06-09)
+
+##### Chores
+
+*  update dependencies ([5f79bb56](https://github.com/nowcando/nowjs-core/commit/5f79bb56e3823c935167641cc820758a98b759fe))
+
+##### Bug Fixes
+
+*  update readme ([18e0f1c0](https://github.com/nowcando/nowjs-core/commit/18e0f1c031bfd6f9f4a7a7fa743b1f9744aafea9))
+
 ### 0.29.0 (2019-06-09)
 
 ##### Bug Fixes
