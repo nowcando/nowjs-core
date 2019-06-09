@@ -9,5 +9,4 @@ export * from "./Comparator";
 export * from "./Func";
 export * from "./IAsyncEnumerable";
 export * from "./IEnumerable";
-export * from "./Predicate";
 export * from "./ProviderManager";
