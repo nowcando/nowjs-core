@@ -3,7 +3,7 @@ import { IQueryExpression } from "../IQueryExression";
 import { IDbCommandExecutePlan } from "./IDbCommandExecutePlan";
 import { IDbQueryPagedResult } from "./IDbQueryPagedResult";
 
-export interface DbQueryOptions<T, R> {
+export interface DbQueryOptions<T> {
 
     query: string | Predicate<T> | IQueryExpression<T>;
     pageSize?: number;
@@ -17,6 +17,6 @@ export interface IDbRepository<T, TSource, TDb> extends IRepository<T> {
     getSource(dbName?: string): Promise<TSource>;
     getDb(dbName?: string): Promise<TDb>;
 
-    query<R, Q>(options: DbQueryOptions<T, R>): Promise<IDbQueryPagedResult<T, IDbCommandExecutePlan>>;
+    query(options: DbQueryOptions<T>): Promise<IDbQueryPagedResult<T, IDbCommandExecutePlan>>;
 
 }
