@@ -1,3 +1,9 @@
+### 0.29.0 (2019-06-09)
+
+##### Bug Fixes
+
+*  remove repository generic ([76ef6b91](https://github.com/nowcando/nowjs-core/commit/76ef6b913e38bd4eb6413d2ae8c779a5c061d27f))
+
 ### 0.28.0 (2019-06-09)
 
 ##### New Features
