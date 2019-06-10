@@ -1,3 +1,13 @@
+### 0.31.0 (2019-06-10)
+
+##### Chores
+
+*  remove full-icu dependency ([502c6885](https://github.com/nowcando/nowjs-core/commit/502c68853236a26f90ca216ffa64acbb6fe532a2))
+
+##### New Features
+
+*  security provider ([275d34c4](https://github.com/nowcando/nowjs-core/commit/275d34c471e023b0235e8a2d3bf337042bb679b3))
+
 ### 0.30.0 (2019-06-09)
 
 ##### Chores
