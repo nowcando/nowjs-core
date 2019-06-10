@@ -10,6 +10,7 @@ import * as diagnostics from "./diagnostics";
 import * as patterns from "./patterns";
 import * as parallels from "./parallels";
 import * as sanitization from "./sanitization";
+import * as security from "./security";
 import * as utils from "./utils";
 import * as validation from "./validation";
 import * as globalization from "./globalization";
@@ -20,7 +21,7 @@ export {
     collections,  diagnostics ,
     linq, computation,
     data, exceptions,
-     patterns,
+     patterns, security,
     utils, validation,
     sanitization ,
 };
