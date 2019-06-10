@@ -1,3 +1,29 @@
+### 0.31.0 (2019-06-10)
+
+##### Chores
+
+*  remove full-icu dependency ([502c6885](https://github.com/nowcando/nowjs-core/commit/502c68853236a26f90ca216ffa64acbb6fe532a2))
+
+##### New Features
+
+*  security provider ([275d34c4](https://github.com/nowcando/nowjs-core/commit/275d34c471e023b0235e8a2d3bf337042bb679b3))
+
+### 0.30.0 (2019-06-09)
+
+##### Chores
+
+*  update dependencies ([5f79bb56](https://github.com/nowcando/nowjs-core/commit/5f79bb56e3823c935167641cc820758a98b759fe))
+
+##### Bug Fixes
+
+*  update readme ([18e0f1c0](https://github.com/nowcando/nowjs-core/commit/18e0f1c031bfd6f9f4a7a7fa743b1f9744aafea9))
+
+### 0.29.0 (2019-06-09)
+
+##### Bug Fixes
+
+*  remove repository generic ([76ef6b91](https://github.com/nowcando/nowjs-core/commit/76ef6b913e38bd4eb6413d2ae8c779a5c061d27f))
+
 ### 0.28.0 (2019-06-09)
 
 ##### New Features
