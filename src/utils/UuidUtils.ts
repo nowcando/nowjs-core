@@ -1,26 +1,7 @@
+import { randomBytes } from "./RandomUtils";
+
 // tslint:disable:no-bitwise
 // tslint:disable:variable-name
-// import * as crypto from "crypto";
-const randomBytes = (length: number) => {
-
-  if (window.crypto || (window as any).msCrypto) {
-    const r = new Uint32Array(length);
-    window.crypto.getRandomValues(r);
-    return r;
-  } else {
-    if (process && process.env) {
-      const crypto = require("crypto");
-      return crypto.randomBytes(length);
-    } else {
-      const r: number[] = [];
-      for (let ix = 0; ix < length; ix++) {
-        r.push(Math.floor(Math.random() * 255));
-      }
-      return r;
-    }
-  }
-
-};
 
 function f(s: any, x: any, y: any, z: any) {
   switch (s) {

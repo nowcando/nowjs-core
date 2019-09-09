@@ -33,4 +33,4 @@ Please see [CONTRIBUTING](./CONTRIBUTING.md).
 See [CHANGELOG](./CHANGELOG.md)
 
 ### License   
-This project maintains under Apache 2.0 licence , see [LICENSE](./LICENSE.md) 
+This project maintains under Apache 2.0 licence , see [LICENSE](./LICENSE) 

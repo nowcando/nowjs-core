@@ -1,3 +1,20 @@
+### 0.32.0 (2019-09-09)
+
+##### Chores
+
+*  Update GlobalDeclarations ([f5f8b247](https://github.com/nowcando/nowjs-core/commit/f5f8b247daa35b74f3c2e94b3616dee948b5df02))
+*  move Licence file ([689daf78](https://github.com/nowcando/nowjs-core/commit/689daf7864c3521b9633b73bed13c32569e93498))
+*  update license to MIT ([e949959d](https://github.com/nowcando/nowjs-core/commit/e949959d7d608a2f869cc051801d379b7790c225))
+
+##### New Features
+
+*  add some random functions ([738115b4](https://github.com/nowcando/nowjs-core/commit/738115b418b564ea7680f4eb8c1168f2c6baf384))
+
+##### Bug Fixes
+
+*  fix License path ([139c13f4](https://github.com/nowcando/nowjs-core/commit/139c13f4c1f94414f9c45454508cb35f86f02883))
+*  global declarations ([dfa5f234](https://github.com/nowcando/nowjs-core/commit/dfa5f23442123def96bdb3b306bd493369190f9d))
+
 ### 0.31.0 (2019-06-10)
 
 ##### Chores

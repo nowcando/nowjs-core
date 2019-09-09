@@ -1,8 +1,10 @@
 import { IList } from "./collections";
+import "./computation/math/Declaration";
 import { IObjectDictionary } from "./core";
 import "./linq/Declaration";
 import { IParallelQueryable, IQueryable } from "./linq/index";
-import { ExtendedPromiseOptions } from "./parallels/index";
+import "./parallels/Declaration";
+import { ExtendedPromiseOptions } from "./parallels/Declaration";
 
 // tslint:disable-next-line:no-namespace
 declare global {

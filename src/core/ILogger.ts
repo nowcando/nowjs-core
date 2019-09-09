@@ -1,7 +1,6 @@
-import { data } from "..";
 
 export enum LogLevel {
-    error = 0, warn = 1, info = 2, verbose = 3 , debug = 4, trace = 5,
+    silent= Infinity, fatal = 60, error = 50, warn = 40, info = 30, verbose = 25 , debug = 20, trace = 10,
 }
 
 export interface LogOptions {
@@ -16,6 +15,7 @@ export interface IGenericLogger<R> {
     warn( message: string, ...args: any[]): R;
     error( message: string, ...args: any[]): R;
     debug( message: string, ...args: any[]): R;
+    verbose( message: string, ...args: any[]): R;
     trace( message: string, ...args: any[]): R;
 }
 export interface ILogger extends IGenericLogger<void> {

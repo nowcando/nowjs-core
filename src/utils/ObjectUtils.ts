@@ -95,7 +95,7 @@ export function displayHint(hint: StringFormatType) {
         let localName = ""; // message.replace('{type}', (typeof target).toUpperCase());
         if (typeof hint === "string") {
             localName = hint;
-        } else if (typeof name === "function") {
+        } else if (typeof hint === "function") {
             localName = hint(propertyName, target, propertyName, original);
         } else {
             localName = "";
