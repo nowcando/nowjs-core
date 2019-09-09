@@ -1,3 +1,4 @@
+import "./Declaration";
 export * from "./BigNumber";
 export * from "./ComplexNumber";
 export * from "./Matrix";

@@ -3,8 +3,8 @@
  * Generate random bytes by special length
  * @param length random bytes
  */
-const randomBytes = (length: number) => {
-
+export const randomBytes = (length: number) => {
+    const window = (globalThis as any) || {};
     if (window.crypto || (window as any).msCrypto) {
       const r = new Uint32Array(length);
       window.crypto.getRandomValues(r);

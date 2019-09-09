@@ -1,1 +1,1 @@
-export * from "./ExtraPromiseActions";
+export * from "./Declaration";
