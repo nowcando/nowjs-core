@@ -1,3 +1,9 @@
+### 0.34.0 (2019-09-12)
+
+##### Other Changes
+
+*  remove  changelog.md ([395f5e8e](https://github.com/nowcando/nowjs-core/commit/395f5e8e456e6ec2bbecb823009cbc6e3f10f229))
+
 ### 0.33.0 (2019-09-12)
 
 ##### Chores
