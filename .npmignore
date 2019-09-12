@@ -9,6 +9,8 @@ test/
 *.log
 *.tgz
 .npmignore
+CHANGELOG.md
+CONTRIBUTING.md
 nowjs-core.iml
 tsconfig.json
 tslint.json
