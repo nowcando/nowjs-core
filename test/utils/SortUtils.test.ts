@@ -19,8 +19,8 @@ afterAll(() => { });
 
 afterEach(() => { });
 
-describe("SortUtils Tests", async () => {
-    describe("HepSort", async () => {
+describe("SortUtils Tests",  () => {
+    describe("HepSort",  () => {
         it("should return a sorted array", async () => {
             expect.assertions(1);
             const array = [1, 5, 6, 8, 4, 2, 7, 3];
@@ -29,7 +29,7 @@ describe("SortUtils Tests", async () => {
         });
 
     });
-    describe("QuickSort", async () => {
+    describe("QuickSort",  () => {
 
         it("should return a sorted array", async () => {
             expect.assertions(1);
@@ -39,7 +39,7 @@ describe("SortUtils Tests", async () => {
         });
 
     });
-    describe("InsertionSort", async () => {
+    describe("InsertionSort",  () => {
 
         it("should return a sorted array", async () => {
             expect.assertions(1);
@@ -49,7 +49,7 @@ describe("SortUtils Tests", async () => {
         });
 
     });
-    describe("MergeSort", async () => {
+    describe("MergeSort",  () => {
 
         it("should return a sorted array", async () => {
             expect.assertions(1);
@@ -59,7 +59,7 @@ describe("SortUtils Tests", async () => {
         });
 
     });
-    describe("BucketSort", async () => {
+    describe("BucketSort",  () => {
 
         it("should return a sorted array", async () => {
             expect.assertions(1);
@@ -69,7 +69,7 @@ describe("SortUtils Tests", async () => {
         });
 
     });
-    describe("CountingSort", async () => {
+    describe("CountingSort",  () => {
 
         it("should return a sorted array", async () => {
             expect.assertions(1);

@@ -15,9 +15,9 @@ afterAll(() => { });
 
 afterEach(() => { });
 
-describe("Computation", async () => {
-    describe("Math", async () => {
-        describe("Simplex", async () => {
+describe("Computation",  () => {
+    describe("Math",  () => {
+        describe("Simplex",  () => {
             it("checks simplex should return z = 13", async () => {
                 expect.assertions(4);
                 const sdef = {
