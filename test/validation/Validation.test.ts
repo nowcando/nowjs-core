@@ -171,9 +171,9 @@ afterAll(() => { });
 
 afterEach(() => { });
 
-describe("Validation", async () => {
+describe("Validation",  () => {
 
-  describe("JsonSchemaValidator", async () => {
+  describe("JsonSchemaValidator",  () => {
     it("checks json schema validator schema for validation.", async () => {
       expect.assertions(1);
       const jvs = {
@@ -207,7 +207,7 @@ describe("Validation", async () => {
       }
     });
   });
-  describe("Define", async () => {
+  describe("Define",  () => {
     it("checks defined schema for validation.", async () => {
       expect.assertions(1);
       const obj1 = SampleUser.getSample1();
@@ -269,7 +269,7 @@ describe("Validation", async () => {
 
   });
 
-  describe("RequiredValidator.", async () => {
+  describe("RequiredValidator.",  () => {
 
     it("checks null value should be reject error.", async () => {
       const obj1: any = null;
@@ -325,7 +325,7 @@ describe("Validation", async () => {
 
   });
 
-  describe("MaxValidator.", async () => {
+  describe("MaxValidator.",  () => {
 
     it("checks null value should be true.", async () => {
       const obj1: any = null;
@@ -405,7 +405,7 @@ describe("Validation", async () => {
 
   });
 
-  describe("JsonSchemaValidator.", async () => {
+  describe("JsonSchemaValidator.",  () => {
 
     it("checks null value should be true.", async () => {
       const obj1 = {
@@ -439,7 +439,7 @@ describe("Validation", async () => {
     });
 
   });
-  describe("ValueTypeValidator.", async () => {
+  describe("ValueTypeValidator.",  () => {
 
     it("checks null value should be true.", async () => {
       const obj1: any = null;

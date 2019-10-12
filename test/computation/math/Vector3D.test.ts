@@ -15,9 +15,9 @@ afterAll(() => { });
 
 afterEach(() => { });
 
-describe("Computation", async () => {
-    describe("Math", async () => {
-        describe("Vector3D", async () => {
+describe("Computation",  () => {
+    describe("Math",  () => {
+        describe("Vector3D", () => {
             it("checks add", async () => {
                 expect.assertions(3);
                 const vec1 = new Vector3D(1, 2, 3);

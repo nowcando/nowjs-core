@@ -18,8 +18,8 @@ afterAll(() => { });
 
 afterEach(() => { });
 
-describe("Sanitization", async () => {
-    describe("HtmlSanitizer", async () => {
+describe("Sanitization",  () => {
+    describe("HtmlSanitizer",  () => {
         it("checks html sanitization return passed string.", async () => {
             expect.assertions(1);
             const value = "<ul><li>hel<span>ddd</span>lo</li></ul>";

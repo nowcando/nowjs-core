@@ -16,7 +16,7 @@ afterAll(() => { });
 
 afterEach(() => { });
 
-describe("ErrorBase", async () => {
+describe("ErrorBase",  () => {
 
     it("checks dummy exception to handle node 10", async () => {
         expect.assertions(1);

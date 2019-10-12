@@ -27,8 +27,8 @@ declare global {
 
     // tslint:disable-next-line:interface-name
     interface Math {
-         DEG_PER_RAD: number;
-         RAD_PER_DEG: number;
+        DEG_PER_RAD: number;
+        RAD_PER_DEG: number;
         clamp(x: number, min: number, max: number): number;
         degrees(degree: number): number;
         radians(radian: number): number;
@@ -53,8 +53,42 @@ declare global {
             T & U & V & W & X & Y & Z;
         deepAssign<T>(target: T, ...sources: any[]): T & any;
         cloneObject<T>(target: T): T;
-        createInstance<T>(c: new() => T): T;
+        createInstance<T>(c: new () => T): T;
     }
+
+    interface IterableIterator<T> {
+        //  map<R>(mapper: (item: T, index?: number) => R): IterableIterator<R>;
+        // filter(filterer: (item: T, index?: number) => boolean): IterableIterator<T>;
+
+        // find(prediction: (item: T, index?: number) => boolean): T;
+        // some(prediction: (item: T, index?: number) => boolean): boolean;
+        // every(prediction: (item: T, index?: number) => boolean): boolean;
+        // forEach(action: (item: T, index?: number) => void): void;
+        // reduce(action: (item: T, index?: number) => void): void;
+        // take(count: number): IterableIterator<T>;
+        // skip(count: number): IterableIterator<T>;
+        // skipWhile(prediction: (item: T, index?: number) => boolean): IterableIterator<T>;
+
+        // toMap<K, R = T>(mapper: (item: T, index?: number) => [K, R]): Map<K, R>;
+        // toSet(): Set<T>;
+        // toArray(): T[];
+
+        // groupBy<R, K extends keyof T, G = Omit<T, K>>(selector: (item: T,
+        //     index?: number) => R):
+        //     IterableIterator<[R, IterableIterator<G>]>;
+        // sum<K extends keyof T>(selector: (item: T, index?: number) => number): number;
+        // average<K extends keyof T>(selector: (item: T, index?: number) => number): number;
+        // max<K extends keyof T>(selector: (item: T, index?: number) => number): number;
+        // min<K extends keyof T>(selector: (item: T, index?: number) => number): number;
+
+    }
+
+    // interface IterableIterator<T> {
+    //     sum(): number;
+    //     average(): number;
+    //     max(): number;
+    //     min(): number;
+    // }
 
     interface Array<T> {
 
@@ -74,11 +108,11 @@ declare global {
         isSuperSetOf<P>(other: Set<P>): boolean;
         isSubSetOf<P>(other: Set<P>): boolean;
         isEmpty(): boolean;
-        intersect<P>(other: Set<P>): Set<T|P>;
-        union<P>(other: Set<P>): Set<T|P>;
+        intersect<P>(other: Set<P>): Set<T | P>;
+        union<P>(other: Set<P>): Set<T | P>;
 
-        except<P>(other: Set<P>): Set<T|P>;
-        xor<P>(other: Set<P>): Set<T|P>;
+        except<P>(other: Set<P>): Set<T | P>;
+        xor<P>(other: Set<P>): Set<T | P>;
 
         find(callbackfn: (value: T, index: number, set: Set<T>) => boolean, thisArg?: any): T;
         filter(callbackfn: (value: T, index: number, set: Set<T>) => boolean, thisArg?: any): Set<T>;
@@ -115,11 +149,11 @@ declare global {
         isSuperSetOf<P>(other: Set<P>): boolean;
         isSubSetOf<P>(other: Set<P>): boolean;
         isEmpty(): boolean;
-        intersect<P>(other: Set<P>): Set<T|P>;
-        union<P>(other: Set<P>): Set<T|P>;
+        intersect<P>(other: Set<P>): Set<T | P>;
+        union<P>(other: Set<P>): Set<T | P>;
 
-        except<P>(other: Set<P>): Set<T|P>;
-        xor<P>(other: Set<P>): Set<T|P>;
+        except<P>(other: Set<P>): Set<T | P>;
+        xor<P>(other: Set<P>): Set<T | P>;
 
         find(callbackfn: (value: T, index: number, set: WeakSet<T>) => boolean, thisArg?: any): T;
         filter(callbackfn: (value: T, index: number, set: WeakSet<T>) => boolean, thisArg?: any): WeakSet<T>;
@@ -147,7 +181,7 @@ declare global {
         linq(): IQueryable<[K, V]>;
         plinq(): IParallelQueryable<[K, V]>;
 
-         // tslint:disable-next-line:max-line-length
+        // tslint:disable-next-line:max-line-length
         map<T extends object, U extends object>(callbackfn: (value: [K, V], index: number, map: Map<K, V>) => [T, U], thisArg?: any): WeakMap<T, U>;
 
     }
@@ -172,3 +206,13 @@ declare global {
         progress(data: any): void;
     }
 }
+
+function getSyncIteratorDirect<T>(obj: T): IterableIterator<T> {
+    return (obj as any)[Symbol.iterator];
+}
+
+function getASyncIteratorDirect<T>(obj: T): AsyncIterableIterator<T> {
+    return (obj as any)[Symbol.asyncIterator];
+}
+
+

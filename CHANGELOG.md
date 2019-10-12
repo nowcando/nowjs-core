@@ -1,3 +1,17 @@
+### 0.35.0 (2019-10-12)
+
+##### Chores
+
+*  rename Some test files ([c05d1acf](https://github.com/nowcando/nowjs-core/commit/c05d1acf4208454be2a0c43755fe8e27d29fb9de))
+
+##### Bug Fixes
+
+*  linting problems ([ad488c76](https://github.com/nowcando/nowjs-core/commit/ad488c76e8046a8d03c783031b3a539739bd0935))
+
+##### Tests
+
+*  fix some jest issue in async describe ([1870f8b3](https://github.com/nowcando/nowjs-core/commit/1870f8b3fa7acb96b74bd958e80e17ba52628bd1))
+
 ### 0.34.0 (2019-09-12)
 
 ##### Other Changes

@@ -15,7 +15,7 @@ afterAll(() => { });
 
 afterEach(() => { });
 
-describe("ObjectUtils", async () => {
+describe("ObjectUtils",  () => {
 
     it("checks isObject", async () => {
         expect.assertions(4);
