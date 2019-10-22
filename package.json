@@ -11,9 +11,9 @@
     "clean": "npm run clean:dist",
     "clean:dist": "rm -rf ./dist/*",
     "clean:release": "rm -rf ./lib/*",
-    "test": "jest --runInBand  --no-cache --config ./jest.json",
-    "test:watch": "jest --runInBand  --watch --config ./jest.json",
-    "coverage": " jest --runInBand  --no-cache --coverage  --config ./jest.json ",
+    "test": "jest --runInBand  --no-cache --config ./jest.config.js",
+    "test:watch": "jest --runInBand  --watch --config ./jest.config.js",
+    "coverage": " jest --runInBand  --no-cache --coverage  --config ./jest.config.js ",
     "lint": "tslint -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
     "lint:fix": "tslint --fix 'src/**/*.ts' 'test/**/*.ts' -t verbose",
     "prepublishOnly": "npm run lint && npm run test && npm run build:release",
@@ -65,8 +65,8 @@
     "reflect-metadata": ">=0.1.13"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.18",
-    "@types/node": "^12.7.12",
+    "@types/jest": "^24.0.19",
+    "@types/node": "^12.11.2",
     "generate-changelog": "^1.8.0",
     "jest": ">=24.9.0",
     "jest-environment-node-debug": ">=2.0.0",

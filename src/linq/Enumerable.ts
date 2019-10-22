@@ -410,8 +410,9 @@ export class Enumerable<T> implements IQueryable<T> {
     public join<TOuter, TInner, TKey, TResult>(inner: IEnumerable<TInner>,
                                                outerSelector: Func< TKey, TOuter>,
                                                innerSelector: Func< TKey, TInner>,
-                                               resultSelector: (innerItem: TInner,
-                                                                outerItem: TOuter) => TResult): IQueryable<TResult> {
+                                               resultSelector: (outerItem: TOuter,
+                                                                innerItem: TInner,
+                                                                ) => TResult): IQueryable<TResult> {
         const itr = {
             [Symbol.iterator]: () => {
                 const enbOuter = this[Symbol.iterator]() as any;
@@ -423,7 +424,7 @@ export class Enumerable<T> implements IQueryable<T> {
                     while (true) {
                         const ixg = enbg.next();
                         if (ixg.done === false && ixg.value &&
-                            ixg.value.Key === key) {
+                            ixg.value.key === key) {
                             return ixg.value;
                         }
 
@@ -433,7 +434,7 @@ export class Enumerable<T> implements IQueryable<T> {
                     }
 
                 };
-                const ig = (inner as IQueryable<TInner>).groupBy<TKey>(innerSelector);
+                const ig = new Enumerable<TInner>(inner).groupBy<TKey>(innerSelector);
                 let oit: any;
                 let xOuter: any;
                 return {
@@ -443,7 +444,7 @@ export class Enumerable<T> implements IQueryable<T> {
                             if (g.done === false) {
                                 const xx = {
                                     done: false,
-                                    value: resultSelector(g.value, xOuter.value),
+                                    value: resultSelector( xOuter.value, g.value),
                                 };
                                 return xx;
                             } else {
@@ -454,13 +455,13 @@ export class Enumerable<T> implements IQueryable<T> {
                         if ((xOuter && xOuter.done === false)) {
                             const og = getGroup(ig, outerSelector(xOuter.value));
                             if (og) {
-                                oit = og.Values[Symbol.iterator]();
+                                oit = og.values[Symbol.iterator]();
                                 if (oit) {
                                     const g = oit.next();
                                     if (g.done === false) {
                                         const xx = {
                                             done: false,
-                                            value: resultSelector(g.value, xOuter.value),
+                                            value: resultSelector(xOuter.value, g.value),
                                         };
                                         return xx;
                                     } else {
@@ -570,7 +571,7 @@ export class Enumerable<T> implements IQueryable<T> {
         }
         const list: any[] = [];
         groups.forEach((v, k) => {
-            list.push({ Key: k, Values: v } as any);
+            list.push({ key: k, values: v } as any);
         });
 
         return new Enumerable(list);

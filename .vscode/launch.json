@@ -20,7 +20,7 @@
                 "--no-cache",
                 "--colors",
                 "--config",
-                "./jest.json",
+                "./jest.config.js",
             ],
             "cwd": "${workspaceRoot}",
             "console": "internalConsole",

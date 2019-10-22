@@ -1,19 +1,21 @@
-{
+module.exports = {
     "globals": {
         "ts-jest": {
-            "tsConfig": "./tsconfig.test.json",
-            "babelConfig": false
+            "tsConfig": "./tsconfig.test.json"
         }
     },
     "collectCoverageFrom": [
         "src/**/*.{ts,tsx}",
-        "!**/node_modules/**"
+        "!**/node_modules/**",
     ],
     "verbose": true,
     "transform": {
         ".(ts|tsx)": "ts-jest"
     },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx)$",
+    "testRegex": "(\\.(test|spec))\\.(ts|tsx)$",
+    "testPathIgnorePatterns":[
+        "test/bpms\\-old"],
+    "modulePathIgnorePatterns": ["test/bpms\\-old"],
     "moduleFileExtensions": [
         "ts",
         "tsx",
@@ -23,14 +25,14 @@
         "/node_modules/",
         "/test/",
         "/lib/",
-        "/dist/"
+        "/dist/",
     ],
     "coverageThreshold": {
         "global": {
-            "branches": 60,
-            "functions": 60,
-            "lines": 60,
-            "statements": 60
+            "branches": 90,
+            "functions": 90,
+            "lines": 90,
+            "statements": 90
         }
     }
 }
