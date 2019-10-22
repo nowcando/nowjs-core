@@ -1,3 +1,9 @@
+### 0.36.0 (2019-10-22)
+
+##### Bug Fixes
+
+*  update dependencies and fix for join in linq ([084d116a](https://github.com/nowcando/nowjs-core/commit/084d116a0e287c887d3e178419ef8539da18e4b3))
+
 ### 0.35.0 (2019-10-12)
 
 ##### Chores
