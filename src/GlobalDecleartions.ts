@@ -52,6 +52,7 @@ declare global {
                                         source4: X, source5: Y, source6: Z):
             T & U & V & W & X & Y & Z;
         deepAssign<T>(target: T, ...sources: any[]): T & any;
+        deepEqual(x: Record<string,any>, y: Record<string,any>): boolean;
         cloneObject<T>(target: T): T;
         createInstance<T>(c: new () => T): T;
     }

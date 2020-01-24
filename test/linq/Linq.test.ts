@@ -384,6 +384,49 @@ describe("Linq", () => {
         .toArray();
       expect(actual.length).toEqual(3);
     });
+    it("checks groupBy.", () => {
+      expect.assertions(5);
+      
+      const list2 = [
+        { name: "A", color: "red" },
+        { name: "B", color: "blue" },
+        { name: "C", color: "red" },
+        { name: "D", color: "black" },
+        { name: "A", color: "orange" },
+      ];
+      const actual = list2
+        .linq()
+          .groupBy((xx) => xx.name)
+        .toArray();
+      expect(actual.length).toEqual(4);
+      expect(actual[0].values.count()).toEqual(2);
+      expect(actual[1].values.count()).toEqual(1);
+      expect(actual[2].values.count()).toEqual(1);
+      expect(actual[3].values.count()).toEqual(1);
+    });
+    it("checks groupBy nested.", () => {
+      expect.assertions(1);
+      
+      const list2 = [
+        { name: "A", color: "red", category:"sport" },
+        { name: "B", color: "blue", category:"book" },
+        { name: "C", color: "red" , category:"sport"},
+        { name: "D", color: "black" , category:"book"},
+        { name: "A", color: "orange" , category:"sport"},
+        { name: "F", color: "black" , category:"book"},
+        { name: "G", color: "black" , category:"book"},
+      ];
+      const actual = list2
+        .linq()
+          .groupBy((xx) => ({color:xx.color, category :xx.category}))
+          .groupBy(xx => xx.key.category)
+        .toArray();
+      expect(actual.length).toEqual(2);
+      // expect(actual[0].values.count()).toEqual(2);
+      // expect(actual[1].values.count()).toEqual(1);
+      // expect(actual[2].values.count()).toEqual(1);
+      // expect(actual[3].values.count()).toEqual(1);
+    });
 
     it("checks join & groupBy .", () => {
         expect.assertions(1);
