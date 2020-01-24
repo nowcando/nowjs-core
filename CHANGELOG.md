@@ -1,3 +1,17 @@
+### 0.38.0 (2020-01-24)
+
+##### New Features
+
+*  groupby nested implemented ([2dcc43af](https://github.com/nowcando/nowjs-core/commit/2dcc43afb64cf774a2b678423b8852ec089c5ce8))
+*  implement collector and collect ([631ce908](https://github.com/nowcando/nowjs-core/commit/631ce9081c8e5e881087e2d3d0674315c0bab968))
+
+##### Bug Fixes
+
+*  linting problems ([b04ea48a](https://github.com/nowcando/nowjs-core/commit/b04ea48a4a05c811708b465e1e0050f011499dff))
+*  linting problems ([9c95b8f6](https://github.com/nowcando/nowjs-core/commit/9c95b8f6a447b11043ee1a88fcdf4e9c61507841))
+*  linting problems ([2f516f03](https://github.com/nowcando/nowjs-core/commit/2f516f03cd697bc155261a03350047715dd6f4c2))
+*  fix linting ([a28b8a76](https://github.com/nowcando/nowjs-core/commit/a28b8a766ab040efa4954d153283efa3aa820862))
+
 ### 0.37.0 (2020-01-24)
 
 ##### New Features
