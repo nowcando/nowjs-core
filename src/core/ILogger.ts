@@ -24,6 +24,10 @@ export interface IGenericLogger<R> {
     verbose(message: string, ...args: any[]): R;
     trace(message: string, ...args: any[]): R;
 }
-export type ILogger = IGenericLogger<void>;
+export interface ILogger extends IGenericLogger<void> {
+    // implement
+}
 
-export type IAsyncLogger = IGenericLogger<Promise<T>>;
+export interface IAsyncLogger<T> extends IGenericLogger<Promise<T>> {
+    // implement
+}
