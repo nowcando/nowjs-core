@@ -2,4 +2,4 @@
 import { IReadonlyCollection } from './IReadonlyCollection';
 
 // tslint:disable-next-line:no-empty-interface
-export type IReadonlyList = IReadonlyCollection<T>;
+export type IReadonlyList<T> = IReadonlyCollection<T>;
