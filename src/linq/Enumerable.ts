@@ -1,5 +1,5 @@
 
-import { Collection, ICollection, IList, List } from "../collections/index";
+
 import { Comparator } from "../core/Comparator";
 import { Func, Predicate } from "../core/Func";
 import { IEnumerable } from "../core/IEnumerable";
@@ -7,9 +7,18 @@ import { IllegalOperationException } from "../exceptions/index";
 import { IGroup } from "./IGroup";
 import { IOrderedQueryable } from "./IOrderedQueryable";
 import { IQueryable } from "./IQuerable";
+import { Collectors } from "../collections/Collectors";
+import { IList } from "../collections/IList";
+import { List } from "../collections/List";
+import { ICollection } from "../collections/ICollection";
+import { Collection } from "../collections/Collection";
 // import { OrderedEnumerable } from "./OrderedEnumerable";
 
 export class Enumerable<T> implements IQueryable<T> {
+    public collect<U>(factory?: (...args: any[]) => U): U {
+        factory =  factory || Collectors.toIEnumerable<T>() as any;
+        return factory(this.enumerable);
+    }
 
     public static from<TSource>(enumerable: IEnumerable<TSource> | Iterable<TSource>): IQueryable<TSource> {
         return new Enumerable(enumerable);

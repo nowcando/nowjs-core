@@ -110,6 +110,7 @@ export interface IQueryable<T> extends IEnumerable<T> {
   toArray(): T[];
   toList(): IList<T>;
   toCollection(): ICollection<T>;
+  collect<U>(factory?:(...args: any[])=>U): U;
   intersect(
     source: IEnumerable<T>,
     equalityComparator?: Comparator<T, T>,

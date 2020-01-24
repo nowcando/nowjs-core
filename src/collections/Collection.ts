@@ -1,12 +1,12 @@
 
 import { IEnumerable } from "../core/IEnumerable";
 import { Enumerable } from "../linq/Enumerable";
-import { ParallelEnumerable } from "../linq/index";
 import { IParallelQueryable } from "../linq/IParallelQueryable";
 import { IQueryable } from "../linq/IQuerable";
 import { ICollection } from "./ICollection";
 import { IList } from "./IList";
-import { List } from "./index";
+import { ParallelEnumerable } from "../linq/ParallelEnumerable";
+import { List } from "./List";
 
 export class Collection<T> implements ICollection<T> {
     private arr: T[] = [];
@@ -59,7 +59,7 @@ export class Collection<T> implements ICollection<T> {
         return this.arr.lastIndexOf(item);
     }
     public clone(): ICollection<T> {
-        return new Collection(this);
+        return  new Collection(this);
     }
     public join(seperator?: string) {
         let res = "";
@@ -89,7 +89,7 @@ export class Collection<T> implements ICollection<T> {
         return new Collection(this);
     }
     public toList(): IList<T> {
-        return new List(this);
+        return new List<T>(this);
     }
 
     public toSet(): Set<T> {

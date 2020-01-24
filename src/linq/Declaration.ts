@@ -1,11 +1,11 @@
 import { MemoryParallelQueryableProvider } from "./MemoryParallelQueryableProvider";
 
 // tslint:disable-next-line:no-namespace
-import { IList, List } from "../collections";
 import { IObjectDictionary } from "../core";
 import { Enumerable } from "./Enumerable";
-import { IParallelQueryable, IQueryable } from "./index";
 import { ParallelEnumerable } from "./ParallelEnumerable";
+import { IList } from "../collections/IList";
+import { List } from "../collections/List";
 
 function getEunmerable(): Enumerable<any> {
     return new Enumerable<any>(this);

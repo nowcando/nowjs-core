@@ -6,8 +6,9 @@ import { IParallelQueryable } from "../linq/IParallelQueryable";
 import { IQueryable } from "../linq/IQuerable";
 import { ICollection } from "./ICollection";
 import { IList } from "./IList";
-import { Collection, List } from "./index";
 import { IPriorityQueue } from "./IPriorityQueue";
+import { Collection } from "./Collection";
+import { List } from "./List";
 
 export class PriorityQueue<T> implements IPriorityQueue<T> {
     private arr: T[] = [];

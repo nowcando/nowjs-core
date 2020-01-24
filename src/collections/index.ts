@@ -23,3 +23,5 @@ export * from "./SortedCollection";
 export * from "./SortedList";
 export * from "./SortedMap";
 export * from "./SortedSet";
+
+export * from "./Collectors";

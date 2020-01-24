@@ -2,6 +2,9 @@ import "jest";
 import { List } from "../../src/collections/List";
 import "../../src/index";
 import { Enumerable } from "../../src/linq/Enumerable";
+import { Collectors } from "../../src/collections/Collectors";
+import { Stack, Queue, PriorityQueue } from "../../src/collections";
+import { numberComparator } from "../../src/core";
 
 // jest.resetAllMocks();
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
@@ -66,7 +69,50 @@ describe("Linq", () => {
         expect(percentRank).toEqual(0.23809523809523808);
       });
     });
-
+    describe("Collector methods", () => {
+      it("checks toList", ()=>{
+        expect.assertions(2);
+        testNumberList.add(1, 2, 3, 4, 5);
+        const actual = testNumberList.linq().collect(Collectors.toList<number>());
+        expect(actual instanceof List).toEqual(true);
+        expect(actual.size).toEqual(5);
+      }),
+      it("checks toArray", ()=>{
+        expect.assertions(2);
+        testNumberList.add(1, 2, 3, 4, 5);
+        const actual = testNumberList.linq().collect(Collectors.toArray<number>());
+        expect(actual instanceof Array).toEqual(true);
+        expect(actual.length).toEqual(5);
+      }),
+      it("checks toSet", ()=>{
+        expect.assertions(2);
+        testNumberList.add(1, 2, 3, 4, 5);
+        const actual = testNumberList.linq().collect(Collectors.toSet<number>());
+        expect(actual instanceof Set).toEqual(true);
+        expect(actual.size).toEqual(5);
+      }),
+      it("checks toStack", ()=>{
+        expect.assertions(2);
+        testNumberList.add(1, 2, 3, 4, 5);
+        const actual = testNumberList.linq().collect(Collectors.toStack<number>());
+        expect(actual instanceof Stack).toEqual(true);
+        expect(actual.size).toEqual(5);
+      }),
+      it("checks toQueue", ()=>{
+        expect.assertions(2);
+        testNumberList.add(1, 2, 3, 4, 5);
+        const actual = testNumberList.linq().collect(Collectors.toQueue<number>());
+        expect(actual instanceof Queue).toEqual(true);
+        expect(actual.size).toEqual(5);
+      }),
+      it("checks toPriorityQueue", ()=>{
+        expect.assertions(2);
+        testNumberList.add(1, 2, 3, 4, 5);
+        const actual = testNumberList.linq().collect(Collectors.toPriorityQueue<number>(numberComparator));
+        expect(actual instanceof PriorityQueue).toEqual(true);
+        expect(actual.size).toEqual(5);
+      })
+    })
     it("checks isEmpty .", () => {
       expect.assertions(1);
       testNumberList.add(1, 2, 3, 4, 5);
