@@ -1,7 +1,6 @@
-
 // tslint:disable:variable-name
-import { getObjectLastKeyOfPath, getObjetctNestedPath, getReflectdDisplayName } from "../utils/index";
-import { VALIDATION_PROPERTYPATH_SEPRATOR } from "./index";
+import { getObjectLastKeyOfPath, getObjetctNestedPath, getReflectdDisplayName } from '../utils/index';
+import { VALIDATION_PROPERTYPATH_SEPRATOR } from './index';
 
 export class ValidationContext<T, TValue> {
     private _value: any;
@@ -19,12 +18,12 @@ export class ValidationContext<T, TValue> {
     // tslint:disable:no-shadowed-variable
     public setOwnProperty<T>(name: string, value: T) {
         // tslint:disable:curly
-        if (!name || typeof name !== "string" || name === "") return;
+        if (!name || typeof name !== 'string' || name === '') return;
         (this as any)[name] = value;
     }
 
     public getOwnProperty<T>(name: string): T {
-        if (!name || typeof name !== "string" || name === "") return;
+        if (!name || typeof name !== 'string' || name === '') return;
         return (this as any)[name];
     }
 
@@ -42,8 +41,7 @@ export class ValidationContext<T, TValue> {
 
     public get Value(): TValue {
         if (!this.target) return this.target as any;
-        if (!this.propertyName || typeof this.propertyName !== "string") return this.target as any;
+        if (!this.propertyName || typeof this.propertyName !== 'string') return this.target as any;
         return this._value;
     }
-
 }

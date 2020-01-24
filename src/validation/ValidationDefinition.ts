@@ -1,31 +1,57 @@
-
-import { StringFormatType } from "../utils/index";
+import { StringFormatType } from '../utils/index';
 import {
-    AlphabetValidator, AlphaNumericValidator, CompareToValidator,
-    CompareToValidatorStyle, ContainsValidator, DateValidator,
-    EmailValidator, EqualToValidator, FunctionValidator,
-    GreaterToValidator, GreatOrEqualToValidator, InLengthValidator,
-    InRangeValidator, InValidator, IPValidator,
-    IPValidatorOptions, JsonSchemaValidator,
-    JsonValidator, LesserToValidator,
-    LessOrEqualToValidator, MaxValidator,
-    MinValidator, MobileValidator, NegativeValidator,
-    NotContainsValidator, NotEqualToValidator, NotInValidator,
-    NSIDValidator, NumberValidator, NumericValidator,
-    NumericValidatorStyle, ObjectValidator, PatternValidator,
-    PhoneValidator, PositiveValidator, PostalCodeValidator,
-    RequiredValidator, StrictValidator,
-    StringValidator, UrlValidator, UrlValidatorOptions,
-    Validation, VALIDATION_DEFINIIONITEM_KEY,
-    ValidatorBase, ValueTypeValidator,
-} from "./index";
+    AlphabetValidator,
+    AlphaNumericValidator,
+    CompareToValidator,
+    CompareToValidatorStyle,
+    ContainsValidator,
+    DateValidator,
+    EmailValidator,
+    EqualToValidator,
+    FunctionValidator,
+    GreaterToValidator,
+    GreatOrEqualToValidator,
+    InLengthValidator,
+    InRangeValidator,
+    InValidator,
+    IPValidator,
+    IPValidatorOptions,
+    JsonSchemaValidator,
+    JsonValidator,
+    LesserToValidator,
+    LessOrEqualToValidator,
+    MaxValidator,
+    MinValidator,
+    MobileValidator,
+    NegativeValidator,
+    NotContainsValidator,
+    NotEqualToValidator,
+    NotInValidator,
+    NSIDValidator,
+    NumberValidator,
+    NumericValidator,
+    NumericValidatorStyle,
+    ObjectValidator,
+    PatternValidator,
+    PhoneValidator,
+    PositiveValidator,
+    PostalCodeValidator,
+    RequiredValidator,
+    StrictValidator,
+    StringValidator,
+    UrlValidator,
+    UrlValidatorOptions,
+    Validation,
+    VALIDATION_DEFINIIONITEM_KEY,
+    ValidatorBase,
+    ValueTypeValidator,
+} from './index';
 // tslint:disable:one-variable-per-declaration
 // tslint:disable:no-empty
 export class ValidationDefinition {
-
     private definitions = new Map<string, ValidatorBase[]>();
-    private currentName = "";
-    constructor() { }
+    private currentName = '';
+    constructor() {}
 
     public get Definitions(): Map<string, ValidatorBase[]> {
         return this.definitions;
@@ -73,7 +99,7 @@ export class ValidationDefinition {
     }
 
     public isJsonSchema(json: any): ValidationDefinition;
-    public isJsonSchema(schema: object|string, errorMessage?: StringFormatType): ValidationDefinition;
+    public isJsonSchema(schema: object | string, errorMessage?: StringFormatType): ValidationDefinition;
     public isJsonSchema(arg0: any, errorMessage?: StringFormatType): ValidationDefinition {
         let schema, message;
 
@@ -197,7 +223,6 @@ export class ValidationDefinition {
     public isMobile(json: any): ValidationDefinition;
     public isMobile(style: string, errorMessage?: StringFormatType): ValidationDefinition;
     public isMobile(arg0: any, errorMessage?: StringFormatType): ValidationDefinition {
-
         let style, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
             message = arg0.message;
@@ -213,7 +238,6 @@ export class ValidationDefinition {
     public isPhone(json: any): ValidationDefinition;
     public isPhone(style: string, errorMessage?: StringFormatType): ValidationDefinition;
     public isPhone(arg0: any, errorMessage?: StringFormatType): ValidationDefinition {
-
         let style, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
             message = arg0.message;
@@ -286,7 +310,6 @@ export class ValidationDefinition {
     public isAlphabet(json: any): ValidationDefinition;
     public isAlphabet(styles: string[], errorMessage?: StringFormatType): ValidationDefinition;
     public isAlphabet(arg0: any, errorMessage?: StringFormatType): ValidationDefinition {
-
         let styles, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
             message = arg0.message;
@@ -318,7 +341,6 @@ export class ValidationDefinition {
     public isValueType(json: any): ValidationDefinition;
     public isValueType(valueType: string, errorMessage?: StringFormatType): ValidationDefinition;
     public isValueType(arg0: any, errorMessage?: StringFormatType): ValidationDefinition {
-
         let valueType, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
             message = arg0.message;
@@ -332,10 +354,13 @@ export class ValidationDefinition {
     }
 
     public compareTo(json: any): ValidationDefinition;
-    public compareTo(style: CompareToValidatorStyle, anotherTarget: any,
-                     anotherPropertyName: string, errorMessage?: StringFormatType): ValidationDefinition;
+    public compareTo(
+        style: CompareToValidatorStyle,
+        anotherTarget: any,
+        anotherPropertyName: string,
+        errorMessage?: StringFormatType,
+    ): ValidationDefinition;
     public compareTo(arg0: any, arg1?: any, arg2?: string, errorMessage?: StringFormatType): ValidationDefinition {
-
         let style, anotherTarget, anotherPropertyName, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
             message = arg0.message;
@@ -348,15 +373,19 @@ export class ValidationDefinition {
             anotherTarget = arg1;
             anotherPropertyName = arg2;
         }
-        this.definitions.get(this.currentName)
+        this.definitions
+            .get(this.currentName)
             .push(new CompareToValidator(style, anotherTarget, anotherPropertyName, message));
         return this;
     }
 
     public isEqualTo(json: any): ValidationDefinition;
-    public isEqualTo(anotherTarget: any, anotherPropertyName: string,
-                     // tslint:disable-next-line:unified-signatures
-                     errorMessage?: StringFormatType): ValidationDefinition;
+    public isEqualTo(
+        anotherTarget: any,
+        anotherPropertyName: string,
+        // tslint:disable-next-line:unified-signatures
+        errorMessage?: StringFormatType,
+    ): ValidationDefinition;
     public isEqualTo(arg0: any, arg1?: any, errorMessage?: StringFormatType): ValidationDefinition {
         let anotherTarget, anotherPropertyName, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
@@ -368,14 +397,16 @@ export class ValidationDefinition {
             anotherTarget = arg0;
             anotherPropertyName = arg1;
         }
-        this.definitions.get(this.currentName)
-            .push(new EqualToValidator(anotherTarget, anotherPropertyName, message));
+        this.definitions.get(this.currentName).push(new EqualToValidator(anotherTarget, anotherPropertyName, message));
         return this;
     }
     public isNotEqualTo(json: any): ValidationDefinition;
-    public isNotEqualTo(anotherTarget: any,
-                        // tslint:disable-next-line:unified-signatures
-                        anotherPropertyName: string, errorMessage?: StringFormatType): ValidationDefinition;
+    public isNotEqualTo(
+        anotherTarget: any,
+        // tslint:disable-next-line:unified-signatures
+        anotherPropertyName: string,
+        errorMessage?: StringFormatType,
+    ): ValidationDefinition;
     public isNotEqualTo(arg0: any, arg1?: any, errorMessage?: StringFormatType): ValidationDefinition {
         let anotherTarget, anotherPropertyName, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
@@ -387,16 +418,20 @@ export class ValidationDefinition {
             anotherTarget = arg0;
             anotherPropertyName = arg1;
         }
-        this.definitions.get(this.currentName)
-        .push(new NotEqualToValidator(anotherTarget, anotherPropertyName, message));
+        this.definitions
+            .get(this.currentName)
+            .push(new NotEqualToValidator(anotherTarget, anotherPropertyName, message));
         return this;
     }
 
     public isGreaterTo(json: any): ValidationDefinition;
     // tslint:disable-next-line:unified-signatures
-    public isGreaterTo(anotherTarget: any, anotherPropertyName: string,
-                       // tslint:disable-next-line:unified-signatures
-                       errorMessage?: StringFormatType): ValidationDefinition;
+    public isGreaterTo(
+        anotherTarget: any,
+        anotherPropertyName: string,
+        // tslint:disable-next-line:unified-signatures
+        errorMessage?: StringFormatType,
+    ): ValidationDefinition;
     public isGreaterTo(arg0: any, arg1?: any, errorMessage?: StringFormatType): ValidationDefinition {
         let anotherTarget, anotherPropertyName, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
@@ -408,18 +443,21 @@ export class ValidationDefinition {
             anotherTarget = arg0;
             anotherPropertyName = arg1;
         }
-        this.definitions.get(this.currentName)
-        .push(new GreaterToValidator(anotherTarget, anotherPropertyName, message));
+        this.definitions
+            .get(this.currentName)
+            .push(new GreaterToValidator(anotherTarget, anotherPropertyName, message));
         return this;
     }
 
     public isGreatOrEqualTo(json: any): ValidationDefinition;
     // tslint:disable-next-line:unified-signatures
-    public isGreatOrEqualTo(anotherTarget: any, anotherPropertyName: string,
-                            // tslint:disable-next-line:unified-signatures
-                            errorMessage?: StringFormatType): ValidationDefinition;
+    public isGreatOrEqualTo(
+        anotherTarget: any,
+        anotherPropertyName: string,
+        // tslint:disable-next-line:unified-signatures
+        errorMessage?: StringFormatType,
+    ): ValidationDefinition;
     public isGreatOrEqualTo(arg0: any, arg1?: any, errorMessage?: StringFormatType): ValidationDefinition {
-
         let anotherTarget, anotherPropertyName, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
             message = arg0.message;
@@ -430,15 +468,19 @@ export class ValidationDefinition {
             anotherTarget = arg0;
             anotherPropertyName = arg1;
         }
-        this.definitions.get(this.currentName)
-        .push(new GreatOrEqualToValidator(anotherTarget, anotherPropertyName, message));
+        this.definitions
+            .get(this.currentName)
+            .push(new GreatOrEqualToValidator(anotherTarget, anotherPropertyName, message));
         return this;
     }
 
     public isLesserTo(json: any): ValidationDefinition;
-    public isLesserTo(anotherTarget: any, anotherPropertyName: string,
-                      // tslint:disable-next-line:unified-signatures
-                      errorMessage?: StringFormatType): ValidationDefinition;
+    public isLesserTo(
+        anotherTarget: any,
+        anotherPropertyName: string,
+        // tslint:disable-next-line:unified-signatures
+        errorMessage?: StringFormatType,
+    ): ValidationDefinition;
     public isLesserTo(arg0: any, arg1?: any, errorMessage?: StringFormatType): ValidationDefinition {
         let anotherTarget, anotherPropertyName, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
@@ -456,9 +498,12 @@ export class ValidationDefinition {
     }
 
     public isLessOrEqualTo(json: any): ValidationDefinition;
-    public isLessOrEqualTo(anotherTarget: any, anotherPropertyName: string,
-                           // tslint:disable-next-line:unified-signatures
-                           errorMessage?: StringFormatType): ValidationDefinition;
+    public isLessOrEqualTo(
+        anotherTarget: any,
+        anotherPropertyName: string,
+        // tslint:disable-next-line:unified-signatures
+        errorMessage?: StringFormatType,
+    ): ValidationDefinition;
     public isLessOrEqualTo(arg0: any, arg1?: any, errorMessage?: StringFormatType): ValidationDefinition {
         let anotherTarget, anotherPropertyName, message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
@@ -470,8 +515,9 @@ export class ValidationDefinition {
             anotherTarget = arg0;
             anotherPropertyName = arg1;
         }
-        this.definitions.get(this.currentName)
-        .push(new LessOrEqualToValidator(anotherTarget, anotherPropertyName, message));
+        this.definitions
+            .get(this.currentName)
+            .push(new LessOrEqualToValidator(anotherTarget, anotherPropertyName, message));
         return this;
     }
 
@@ -632,7 +678,6 @@ export class ValidationDefinition {
     public isJson(json: any): ValidationDefinition;
     public isJson(errorMessage?: StringFormatType): ValidationDefinition;
     public isJson(arg0: any): ValidationDefinition {
-
         let message;
         if (arg0 && arg0[VALIDATION_DEFINIIONITEM_KEY] === VALIDATION_DEFINIIONITEM_KEY) {
             message = arg0.message;
@@ -643,5 +688,4 @@ export class ValidationDefinition {
         this.definitions.get(this.currentName).push(new JsonValidator(message));
         return this;
     }
-
 }

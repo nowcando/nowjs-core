@@ -1,11 +1,11 @@
-import { MemoryParallelQueryableProvider } from "./MemoryParallelQueryableProvider";
+import { MemoryParallelQueryableProvider } from './MemoryParallelQueryableProvider';
 
 // tslint:disable-next-line:no-namespace
-import { IObjectDictionary } from "../core";
-import { Enumerable } from "./Enumerable";
-import { ParallelEnumerable } from "./ParallelEnumerable";
-import { IList } from "../collections/IList";
-import { List } from "../collections/List";
+import { IObjectDictionary } from '../core';
+import { Enumerable } from './Enumerable';
+import { ParallelEnumerable } from './ParallelEnumerable';
+import { IList } from '../collections/IList';
+import { List } from '../collections/List';
 
 function getEunmerable(): Enumerable<any> {
     return new Enumerable<any>(this);
@@ -19,50 +19,52 @@ function contains(item: any): boolean {
 function hasDuplicate(): boolean {
     // tslint:disable:one-variable-per-declaration
     // tslint:disable:prefer-const
-    let len = this.length,
-        out: Array<{ item: any, count: number }> = [],
-        counts: Array<{ item: any, count: number }> = [];
+    const len = this.length,
+        out: Array<{ item: any; count: number }> = [],
+        counts: Array<{ item: any; count: number }> = [];
 
     for (let i = 0; i < len; i++) {
-        let item1 = this[i];
-        let found = counts.find((xx) => xx.item === item1);
+        const item1 = this[i];
+        let found = counts.find(xx => xx.item === item1);
         if (!found) {
             found = { item: item1, count: 0 };
             counts.push(found);
         }
         found.count++;
-        if (found.count > 1) { return true; }
+        if (found.count > 1) {
+            return true;
+        }
     }
 
     return false;
 }
 function findDuplicates(): any[] {
-
-    let len = this.length,
-        out: Array<{ item: any, count: number }> = [],
-        counts: Array<{ item: any, count: number }> = [];
+    const len = this.length,
+        out: Array<{ item: any; count: number }> = [],
+        counts: Array<{ item: any; count: number }> = [];
 
     for (let i = 0; i < len; i++) {
-        let item1 = this[i];
-        let found = counts.find((xx) => xx.item === item1);
+        const item1 = this[i];
+        let found = counts.find(xx => xx.item === item1);
         if (!found) {
             found = { item: item1, count: 0 };
             counts.push(found);
         }
         found.count++;
-        if (found.count === 2) { out.push(item1); }
+        if (found.count === 2) {
+            out.push(item1);
+        }
     }
 
     return out;
 }
-function itemCount(): Array<{ item: any, count: number }> {
-
-    let len = this.length,
-        counts: Array<{ item: any, count: number }> = [];
+function itemCount(): Array<{ item: any; count: number }> {
+    const len = this.length,
+        counts: Array<{ item: any; count: number }> = [];
 
     for (let i = 0; i < len; i++) {
-        let item1 = this[i];
-        let found = counts.find((xx) => xx.item === item1);
+        const item1 = this[i];
+        let found = counts.find(xx => xx.item === item1);
         if (!found) {
             found = { item: item1, count: 0 };
             counts.push(found);
@@ -75,11 +77,9 @@ function itemCount(): Array<{ item: any, count: number }> {
 function toUnique(): any[] {
     // tslint:disable:one-variable-per-declaration
     // tslint:disable:prefer-const
-    let a = [];
+    const a = [];
     // tslint:disable:curly
-    for (let i = 0, l = this.length; i < l; i++)
-        if (a.indexOf(this[i]) === -1)
-            a.push(this[i]);
+    for (let i = 0, l = this.length; i < l; i++) if (a.indexOf(this[i]) === -1) a.push(this[i]);
     return a;
 }
 
@@ -105,7 +105,7 @@ function toArray<T>(): T[] {
 }
 
 function toList<T>(): IList<T> {
-    const arr =  new List<T>();
+    const arr = new List<T>();
     for (const item of this[Symbol.iterator]()) {
         arr.add(item);
     }
@@ -113,7 +113,7 @@ function toList<T>(): IList<T> {
 }
 
 function mapKeyToList<T>(): IList<T> {
-    const arr =  new List<T>();
+    const arr = new List<T>();
     for (const [key, value] of this[Symbol.iterator]()) {
         arr.add(key);
     }
@@ -121,7 +121,7 @@ function mapKeyToList<T>(): IList<T> {
 }
 
 function mapValueToList<T>(): IList<T> {
-    const arr =  new List<T>();
+    const arr = new List<T>();
     for (const [key, value] of this[Symbol.iterator]()) {
         arr.add(value);
     }
@@ -145,38 +145,44 @@ function mapPutAll<K, V>(...entries: Array<[K, V]>): any {
 }
 
 // tslint:disable-next-line:max-line-length
-function  mapMap<T, U extends object>(callbackfn: (value: [any, any], index: number, map: Map<any, any>) => [T, U], thisArg?: any): Map<T, U> {
+function mapMap<T, U extends object>(
+    callbackfn: (value: [any, any], index: number, map: Map<any, any>) => [T, U],
+    thisArg?: any,
+): Map<T, U> {
     const res = new Map<T, U>();
     let counter = 0;
     for (const [key, value] of this) {
-            const fc = callbackfn([key, value], counter, thisArg || this);
-            res.set(fc[0], fc[1]);
-            counter++;
+        const fc = callbackfn([key, value], counter, thisArg || this);
+        res.set(fc[0], fc[1]);
+        counter++;
     }
     return res;
 }
 
 // tslint:disable-next-line:max-line-length
-function  mapWeakMap<T extends object, U extends object>(callbackfn: (value: [any, any], index: number, map: Map<any, any>) => [T, U], thisArg?: any): WeakMap<T, U> {
+function mapWeakMap<T extends object, U extends object>(
+    callbackfn: (value: [any, any], index: number, map: Map<any, any>) => [T, U],
+    thisArg?: any,
+): WeakMap<T, U> {
     const res = new WeakMap<T, U>();
     let counter = 0;
     for (const [key, value] of this) {
-            const fc = callbackfn([key, value], counter, thisArg || this);
-            res.set(fc[0], fc[1]);
-            counter++;
+        const fc = callbackfn([key, value], counter, thisArg || this);
+        res.set(fc[0], fc[1]);
+        counter++;
     }
     return res;
 }
 
 function mapEntriesToObjectDictionary<T>(): IObjectDictionary<T> {
-    const arr: any =  {};
+    const arr: any = {};
     for (const [key, value] of this[Symbol.iterator]()) {
         arr[key] = value;
     }
     return arr;
 }
 
-function  setFilter<T>(callbackfn: (value: T, index: number, set: any) => boolean, thisArg?: any): Set<T> {
+function setFilter<T>(callbackfn: (value: T, index: number, set: any) => boolean, thisArg?: any): Set<T> {
     const res = new Set<T>();
     let counter = 0;
     for (const item of this) {
@@ -187,8 +193,10 @@ function  setFilter<T>(callbackfn: (value: T, index: number, set: any) => boolea
     }
     return res;
 }
-function  setWeakFilter<T extends object>(callbackfn: (value: T, index: number, set: any) => boolean,
-                                          thisArg?: any): WeakSet<T> {
+function setWeakFilter<T extends object>(
+    callbackfn: (value: T, index: number, set: any) => boolean,
+    thisArg?: any,
+): WeakSet<T> {
     const res = new WeakSet<T>();
     let counter = 0;
     for (const item of this) {
@@ -199,7 +207,7 @@ function  setWeakFilter<T extends object>(callbackfn: (value: T, index: number, 
     }
     return res;
 }
-function  setFind<T>(callbackfn: (value: T, index: number, set: any) => boolean, thisArg?: any): T {
+function setFind<T>(callbackfn: (value: T, index: number, set: any) => boolean, thisArg?: any): T {
     let counter = 0;
     for (const item of this) {
         if (callbackfn(item, counter, thisArg || this)) {
@@ -210,8 +218,8 @@ function  setFind<T>(callbackfn: (value: T, index: number, set: any) => boolean,
     return null;
 }
 
-function  setEvery<T>(callbackfn: (value: T, index: number, set: any) => boolean, thisArg?: any): boolean {
-    let res = true;
+function setEvery<T>(callbackfn: (value: T, index: number, set: any) => boolean, thisArg?: any): boolean {
+    const res = true;
     let counter = 0;
     for (const item of this) {
         if (!callbackfn(item, counter, thisArg || this)) {
@@ -222,8 +230,8 @@ function  setEvery<T>(callbackfn: (value: T, index: number, set: any) => boolean
     return res;
 }
 
-function  setSome<T>(callbackfn: (value: T, index: number, set: any) => boolean, thisArg?: any): boolean {
-    let res = false;
+function setSome<T>(callbackfn: (value: T, index: number, set: any) => boolean, thisArg?: any): boolean {
+    const res = false;
     let counter = 0;
     for (const item of this) {
         if (callbackfn(item, counter, thisArg || this)) {
@@ -234,34 +242,33 @@ function  setSome<T>(callbackfn: (value: T, index: number, set: any) => boolean,
     return res;
 }
 
-function  setMap<T, U extends object>(callbackfn: (value: T, index: number, set: any) => U, thisArg?: any): Set<U> {
+function setMap<T, U extends object>(callbackfn: (value: T, index: number, set: any) => U, thisArg?: any): Set<U> {
     const res = new Set<U>();
     let counter = 0;
     for (const item of this) {
+        res.add(callbackfn(item, counter, thisArg || this));
 
-            res.add(callbackfn(item, counter, thisArg || this));
-
-            counter++;
+        counter++;
     }
     return res;
 }
 
-function  setWeakMap<T, U extends object>(callbackfn: (value: T, index: number,
-                                                       set: any) => U,
-                                          thisArg?: any): WeakSet<U> {
-            const res = new WeakSet<U>();
-            let counter = 0;
-            for (const item of this) {
+function setWeakMap<T, U extends object>(
+    callbackfn: (value: T, index: number, set: any) => U,
+    thisArg?: any,
+): WeakSet<U> {
+    const res = new WeakSet<U>();
+    let counter = 0;
+    for (const item of this) {
+        res.add(callbackfn(item, counter, thisArg || this));
 
-                res.add(callbackfn(item, counter,  thisArg || this));
-
-                counter++;
-                }
-            return res;
+        counter++;
+    }
+    return res;
 }
 
-function setUnion<T, P>(other: Set<P>): Set<T|P> {
-    let result = new Set<T|P>(this);
+function setUnion<T, P>(other: Set<P>): Set<T | P> {
+    const result = new Set<T | P>(this);
     for (const item of other) {
         if (!result.has(item)) {
             result.add(item);
@@ -269,8 +276,8 @@ function setUnion<T, P>(other: Set<P>): Set<T|P> {
     }
     return result;
 }
-function setIntersect<T, P>(other: Set<P>): Set<T|P> {
-    let result = new Set<T|P>();
+function setIntersect<T, P>(other: Set<P>): Set<T | P> {
+    const result = new Set<T | P>();
     for (const item of other) {
         if (this.has(item)) {
             result.add(item);
@@ -279,8 +286,8 @@ function setIntersect<T, P>(other: Set<P>): Set<T|P> {
     return result;
 }
 
-function setExcept<T, P>(other: Set<P>): Set<T|P> {
-    let result = new Set<T|P>(this);
+function setExcept<T, P>(other: Set<P>): Set<T | P> {
+    const result = new Set<T | P>(this);
     for (const item of other) {
         if (result.has(item)) {
             result.delete(item);
@@ -289,14 +296,14 @@ function setExcept<T, P>(other: Set<P>): Set<T|P> {
     return result;
 }
 
-function setXor<T, P>(other: Set<P>): Set<T|P> {
+function setXor<T, P>(other: Set<P>): Set<T | P> {
     const unioned = this.union(other);
     const intersected = this.intersect(other);
     return unioned.except(intersected);
 }
 
 function setIsSuperSetOf<T, P>(other: Set<P>): boolean {
-    let result = true;
+    const result = true;
     for (const item of other) {
         if (!this.has(item)) {
             return false;
@@ -305,7 +312,7 @@ function setIsSuperSetOf<T, P>(other: Set<P>): boolean {
     return result;
 }
 function setIsSubSetOf<T, P>(other: Set<P>): boolean {
-    let result = true;
+    const result = true;
     for (const item of this) {
         if (!other.has(item)) {
             return false;
@@ -319,23 +326,22 @@ function setIsEmpty(): boolean {
 }
 
 function setJoin(seperator?: string): string {
-    let res = "";
-    let that: Set<any> = this;
-    seperator = seperator !== undefined ? seperator : " , ";
-    if (that.size === 0 ) {
-           return "";
-        } else if (that.size === 1) {
-            return (that.values().next().value as any).toString();
-        } else {
-         const itr = that.values();
-         res = (itr.next().value as any).toString();
-         for (let item of itr) {
-             res = res + seperator + (item as any).toString();
-         }
-       }
+    let res = '';
+    const that: Set<any> = this;
+    seperator = seperator !== undefined ? seperator : ' , ';
+    if (that.size === 0) {
+        return '';
+    } else if (that.size === 1) {
+        return (that.values().next().value as any).toString();
+    } else {
+        const itr = that.values();
+        res = (itr.next().value as any).toString();
+        for (const item of itr) {
+            res = res + seperator + (item as any).toString();
+        }
+    }
     return res;
 }
-
 
 Array.prototype.toUnique = toUnique;
 Array.prototype.itemCount = itemCount;

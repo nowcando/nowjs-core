@@ -1,5 +1,5 @@
-import { Vector3D } from "./index";
-import { NumericSquareMatrix } from "./NumericSquareMatrix";
+import { Vector3D } from './index';
+import { NumericSquareMatrix } from './NumericSquareMatrix';
 
 export class Matrix4x4 extends NumericSquareMatrix {
     constructor(...rows: number[][]) {
@@ -20,20 +20,20 @@ export class Matrix4x4 extends NumericSquareMatrix {
      */
     public frustum(l: number, r: number, b: number, t: number, n: number, f: number): Matrix4x4 {
         const m = this.arr;
-        m[0][0] = 2 * n / (r - l);
+        m[0][0] = (2 * n) / (r - l);
         m[0][1] = 0;
         m[0][2] = (r + l) / (r - l);
         m[0][3] = 0;
 
         m[1][0] = 0;
-        m[1][1] = 2 * n / (t - b);
+        m[1][1] = (2 * n) / (t - b);
         m[1][2] = (t + b) / (t - b);
         m[1][3] = 0;
 
         m[2][0] = 0;
         m[2][1] = 0;
         m[2][2] = -(f + n) / (f - n);
-        m[2][3] = -2 * f * n / (f - n);
+        m[2][3] = (-2 * f * n) / (f - n);
 
         m[3][0] = 0;
         m[3][1] = 0;
@@ -72,7 +72,9 @@ export class Matrix4x4 extends NumericSquareMatrix {
     public scale(arg1: number | Vector3D, arg2?: number, arg3?: number) {
         const m = this.arr;
         // tslint:disable-next-line:one-variable-per-declaration
-        let x = 0, y = 0, z = 0;
+        let x = 0,
+            y = 0,
+            z = 0;
         if (arg1 instanceof Vector3D) {
             x = arg1.X;
             y = arg1.Y;
@@ -109,7 +111,9 @@ export class Matrix4x4 extends NumericSquareMatrix {
     public translate(arg1: number | Vector3D, arg2?: number, arg3?: number) {
         const m = this.arr;
         // tslint:disable-next-line:one-variable-per-declaration
-        let x = 0, y = 0, z = 0;
+        let x = 0,
+            y = 0,
+            z = 0;
         if (arg1 instanceof Vector3D) {
             x = arg1.X;
             y = arg1.Y;
@@ -146,7 +150,9 @@ export class Matrix4x4 extends NumericSquareMatrix {
     public rotate(a: number, arg1: number | Vector3D, arg2?: number, arg3?: number) {
         const m = this.arr;
         // tslint:disable-next-line:one-variable-per-declaration
-        let x = 0, y = 0, z = 0;
+        let x = 0,
+            y = 0,
+            z = 0;
         if (arg1 instanceof Vector3D) {
             x = arg1.X;
             y = arg1.Y;
@@ -157,9 +163,14 @@ export class Matrix4x4 extends NumericSquareMatrix {
             z = arg3;
         }
         const d = Math.sqrt(x * x + y * y + z * z);
-        a *= Math.PI / 180; x /= d; y /= d; z /= d;
+        a *= Math.PI / 180;
+        x /= d;
+        y /= d;
+        z /= d;
         // tslint:disable-next-line:one-variable-per-declaration
-        const c = Math.cos(a), s = Math.sin(a), t = 1 - c;
+        const c = Math.cos(a),
+            s = Math.sin(a),
+            t = 1 - c;
         m[0][0] = x * x * t + c;
         m[0][1] = x * y * t - z * s;
         m[0][2] = x * z * t + y * s;
@@ -211,7 +222,7 @@ export class Matrix4x4 extends NumericSquareMatrix {
     }
     public perspective(fov: number, aspect: number, near: number, far: number) {
         const result = new Matrix4x4();
-        const y = Math.tan(fov * Math.PI / 360) * near;
+        const y = Math.tan((fov * Math.PI) / 360) * near;
         const x = y * aspect;
         return this.frustum(-x, x, -y, y, near, far);
     }
@@ -242,10 +253,22 @@ export class Matrix4x4 extends NumericSquareMatrix {
         const result = new Matrix4x4();
         const m = this.arr;
         const r = result.arr;
-        r[0][0] = m[0][0]; r[0][1] = m[1][0]; r[0][2] = m[2][0]; r[0][3] = m[3][0];
-        r[1][0] = m[0][1]; r[1][1] = m[1][1]; r[1][2] = m[2][1]; r[1][3] = m[3][1];
-        r[2][0] = m[0][2]; r[2][1] = m[1][2]; r[2][2] = m[2][2]; r[2][3] = m[3][2];
-        r[3][0] = m[0][3]; r[3][1] = m[1][3]; r[3][2] = m[2][3]; r[3][3] = m[3][3];
+        r[0][0] = m[0][0];
+        r[0][1] = m[1][0];
+        r[0][2] = m[2][0];
+        r[0][3] = m[3][0];
+        r[1][0] = m[0][1];
+        r[1][1] = m[1][1];
+        r[1][2] = m[2][1];
+        r[1][3] = m[3][1];
+        r[2][0] = m[0][2];
+        r[2][1] = m[1][2];
+        r[2][2] = m[2][2];
+        r[2][3] = m[3][2];
+        r[3][0] = m[0][3];
+        r[3][1] = m[1][3];
+        r[3][2] = m[2][3];
+        r[3][3] = m[3][3];
         return result;
     }
 }

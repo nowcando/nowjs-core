@@ -1,9 +1,14 @@
-
-import { IProvider } from "./IProvider";
+import { IProvider } from './IProvider';
 
 export enum ServiceStatus {
-    stopped = 0, stopping = 1, starting = 2, started = 4,
-    running = 6, pausing = 8, paused = 10, resuming = 12,
+    stopped = 0,
+    stopping = 1,
+    starting = 2,
+    started = 4,
+    running = 6,
+    pausing = 8,
+    paused = 10,
+    resuming = 12,
 }
 
 export interface IServiceOptions {

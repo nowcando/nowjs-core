@@ -1,6 +1,4 @@
-import { IDbCommandExecutePlan } from "./IDbCommandExecutePlan";
-import { IDbCommandResult } from "./IDbCommandResult";
+import { IDbCommandExecutePlan } from './IDbCommandExecutePlan';
+import { IDbCommandResult } from './IDbCommandResult';
 
-export interface IDbQueryPagedResult<T, P extends IDbCommandExecutePlan> extends IDbCommandResult<T[], P> {
-
-}
+export type IDbQueryPagedResult = IDbCommandResult<T[], P>;

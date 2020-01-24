@@ -1,5 +1,4 @@
-
-import { IReadonlyCollection } from "./IReadonlyCollection";
+import { IReadonlyCollection } from './IReadonlyCollection';
 
 // tslint:disable-next-line:no-empty-interface
 export interface ICollection<T> extends IReadonlyCollection<T> {

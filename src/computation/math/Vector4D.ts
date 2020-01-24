@@ -1,43 +1,76 @@
-
-import { Point4D } from "./Point4D";
+import { Point4D } from './Point4D';
 
 export class Vector4D extends Point4D {
-    constructor(x?: number, y?: number, z?: number,  w?: number) {
+    constructor(x?: number, y?: number, z?: number, w?: number) {
         super(x, y, z, w);
     }
     // tslint:disable:member-ordering
     public static negative(a: Vector4D, b: Vector4D) {
-        b.X = -a.X; b.Y = -a.Y; b.Z = -a.Z; b.W = -a.W;
+        b.X = -a.X;
+        b.Y = -a.Y;
+        b.Z = -a.Z;
+        b.W = -a.W;
         return b;
     }
     public static add(a: Vector4D, b: Vector4D | number, c?: Vector4D) {
         c = c || new Vector4D();
         // tslint:disable-next-line:max-line-length
         if (b instanceof Vector4D) {
-            c.X = a.X + b.X; c.Y = a.Y + b.Y; c.Z = a.Z + b.Z;
+            c.X = a.X + b.X;
+            c.Y = a.Y + b.Y;
+            c.Z = a.Z + b.Z;
             c.W = a.W + b.W;
-          } else { c.X = a.X + b; c.Y = a.Y + b; c.Z = a.Z + b; c.W = a.W + b; }
+        } else {
+            c.X = a.X + b;
+            c.Y = a.Y + b;
+            c.Z = a.Z + b;
+            c.W = a.W + b;
+        }
         return c;
     }
     public static subtract(a: Vector4D, b: Vector4D | number, c?: Vector4D) {
         c = c || new Vector4D();
         if (b instanceof Vector4D) {
-            c.X = a.X - b.X; c.Y = a.Y - b.Y; c.Z = a.Z - b.Z; c.W = a.W - b.W;
-        }        else { c.X = a.X - b; c.Y = a.Y - b; c.Z = a.Z - b; c.W = a.W - b; }
+            c.X = a.X - b.X;
+            c.Y = a.Y - b.Y;
+            c.Z = a.Z - b.Z;
+            c.W = a.W - b.W;
+        } else {
+            c.X = a.X - b;
+            c.Y = a.Y - b;
+            c.Z = a.Z - b;
+            c.W = a.W - b;
+        }
         return c;
     }
     public static multiply(a: Vector4D, b: Vector4D | number, c?: Vector4D) {
         c = c || new Vector4D();
         if (b instanceof Vector4D) {
-            c.X = a.X * b.X; c.Y = a.Y * b.Y; c.Z = a.Z * b.Z; c.W = a.W * b.W;
-        }  else { c.X = a.X * b; c.Y = a.Y * b; c.Z = a.Z * b; c.W = a.W * b; }
+            c.X = a.X * b.X;
+            c.Y = a.Y * b.Y;
+            c.Z = a.Z * b.Z;
+            c.W = a.W * b.W;
+        } else {
+            c.X = a.X * b;
+            c.Y = a.Y * b;
+            c.Z = a.Z * b;
+            c.W = a.W * b;
+        }
         return c;
     }
     public static divide(a: Vector4D, b: Vector4D | number, c?: Vector4D) {
         c = c || new Vector4D();
         if (b instanceof Vector4D) {
-            c.X = a.X / b.X; c.Y = a.Y / b.Y; c.Z = a.Z / b.Z; c.W = a.W / b.W;
-        }        else { c.X = a.X / b; c.Y = a.Y / b; c.Z = a.Z / b; c.W = a.W / b; }
+            c.X = a.X / b.X;
+            c.Y = a.Y / b.Y;
+            c.Z = a.Z / b.Z;
+            c.W = a.W / b.W;
+        } else {
+            c.X = a.X / b;
+            c.Y = a.Y / b;
+            c.Z = a.Z / b;
+            c.W = a.W / b;
+        }
         return c;
     }
     public static cross(a: Vector4D, b: Vector4D, c?: Vector4D) {
@@ -57,10 +90,7 @@ export class Vector4D extends Point4D {
         return b;
     }
     public static fromBearing(angle: number, length: number) {
-        return new Vector4D(
-            length * Math.cos(angle),
-            length * Math.sin(angle),
-        );
+        return new Vector4D(length * Math.cos(angle), length * Math.sin(angle));
     }
     public static fromAngles(theta: number, phi: number) {
         return new Vector4D(Math.cos(theta) * Math.cos(phi), Math.sin(phi), Math.sin(theta) * Math.cos(phi));
@@ -75,7 +105,10 @@ export class Vector4D extends Point4D {
         return new Vector4D(Math.max(a.X, b.X), Math.max(a.Y, b.Y), Math.max(a.Z, b.Z));
     }
     public static lerp(a: Vector4D, b: Vector4D, fraction: number) {
-        return b.subtract(a).multiply(fraction).add(a);
+        return b
+            .subtract(a)
+            .multiply(fraction)
+            .add(a);
     }
     public static fromArray(a: number[]) {
         return new Vector4D(a[0], a[1], a[2]);
@@ -118,11 +151,7 @@ export class Vector4D extends Point4D {
         return this.X * v.X + this.Y * v.Y + this.Z * v.Z + this.W * v.W;
     }
     public cross(v: Vector4D): Vector4D {
-        return new Vector4D(
-            this.Y * v.Z - this.Z * v.Y,
-            this.Z * v.X - this.X * v.Z,
-            this.X * v.Y - this.Y * v.X,
-        );
+        return new Vector4D(this.Y * v.Z - this.Z * v.Y, this.Z * v.X - this.X * v.Z, this.X * v.Y - this.Y * v.X);
     }
     public magnitude() {
         return this.length();
@@ -163,8 +192,11 @@ export class Vector4D extends Point4D {
     public clone() {
         return new Vector4D(this.X, this.Y, this.Z, this.W);
     }
-    private init(x: number, y: number, z: number , w: number) {
-        this.X = x; this.Y = y; this.Z = z; this.W = w;
+    private init(x: number, y: number, z: number, w: number) {
+        this.X = x;
+        this.Y = y;
+        this.Z = z;
+        this.W = w;
         return this;
     }
 }

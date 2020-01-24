@@ -14,8 +14,8 @@
     "test": "jest --runInBand  --no-cache --config ./jest.config.js",
     "test:watch": "jest --runInBand  --watch --config ./jest.config.js",
     "coverage": " jest --runInBand  --no-cache --coverage  --config ./jest.config.js ",
-    "lint": "tslint -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
-    "lint:fix": "tslint --fix 'src/**/*.ts' 'test/**/*.ts' -t verbose",
+    "lint": "eslint  'src/**/*.ts' 'test/**/*.ts'",
+    "lint:fix": "eslint --fix 'src/**/*.ts' 'test/**/*.ts'",
     "prepublishOnly": "npm run lint && npm run test && npm run build:release",
     "preversion": "npm test",
     "version": "npm run build:release ",
@@ -62,6 +62,12 @@
     "url": "https://github.com/nowcando/nowjs-core.git"
   },
   "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.17.0",
+    "@typescript-eslint/parser": "^2.17.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "prettier": "^1.19.1",
     "reflect-metadata": ">=0.1.13"
   },
   "devDependencies": {

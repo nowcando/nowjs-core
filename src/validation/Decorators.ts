@@ -1,12 +1,12 @@
-import "reflect-metadata";
+import 'reflect-metadata';
 
 export type ValidateIfFunc = (...args: any[]) => boolean;
 
-export const VALIDATION_VALIDATEIF_METADATA_KEY = Symbol("validation:validateIf");
+export const VALIDATION_VALIDATEIF_METADATA_KEY = Symbol('validation:validateIf');
 
 export function validateIf(fn: ValidateIfFunc) {
     // tslint:disable-next-line:ban-types
-    return (target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<any>) => {
+    return (target: Record<string, any>, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<any>) => {
         const original = descriptor.value;
         Reflect.defineMetadata(VALIDATION_VALIDATEIF_METADATA_KEY, fn, target, propertyKey);
     };

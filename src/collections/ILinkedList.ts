@@ -1,9 +1,9 @@
-import {IEnumerable} from "../core/IEnumerable";
-import {IParallelQueryable} from "../linq/IParallelQueryable";
-import {IQueryable} from "../linq/IQuerable";
-import {ICollection} from "./ICollection";
-import { IList} from "./IList";
-export interface  ILinkedList<E> extends IEnumerable<E> {
+import { IEnumerable } from '../core/IEnumerable';
+import { IParallelQueryable } from '../linq/IParallelQueryable';
+import { IQueryable } from '../linq/IQuerable';
+import { ICollection } from './ICollection';
+import { IList } from './IList';
+export interface ILinkedList<E> extends IEnumerable<E> {
     contains(item: E): boolean;
     // tslint:disable-next-line:member-ordering
     size: number;

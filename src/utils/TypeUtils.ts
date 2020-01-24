@@ -1,31 +1,30 @@
-
-const ATTRIBUTE_METADATA_KEY = Symbol("type.attribute");
-const TYPENAME_METADATA_KEY = Symbol("type.typeName");
-const TYPEMETA_METADATA_KEY = Symbol("type.typeMeta");
+const ATTRIBUTE_METADATA_KEY = Symbol('type.attribute');
+const TYPENAME_METADATA_KEY = Symbol('type.typeName');
+const TYPEMETA_METADATA_KEY = Symbol('type.typeMeta');
 /// decorators
 export function attribute() {
-    return Reflect.metadata(ATTRIBUTE_METADATA_KEY, "attribute");
+    return Reflect.metadata(ATTRIBUTE_METADATA_KEY, 'attribute');
 }
 
-export  function getAttribute(target: any, propertyKey: string) {
+export function getAttribute(target: any, propertyKey: string) {
     return Reflect.getMetadata(ATTRIBUTE_METADATA_KEY, target, propertyKey);
 }
 
 // tslint:disable-next-line:no-shadowed-variable
 export function typeName(typeName: string) {
-        return Reflect.metadata(TYPENAME_METADATA_KEY, typeName);
+    return Reflect.metadata(TYPENAME_METADATA_KEY, typeName);
 }
 
-export  function getTypeName(target: any, propertyKey: string) {
+export function getTypeName(target: any, propertyKey: string) {
     return Reflect.getMetadata(TYPENAME_METADATA_KEY, target, propertyKey);
 }
 
 // tslint:disable-next-line:no-shadowed-variable
 export function typeMeta(typeMeta: any) {
-        return Reflect.metadata(TYPEMETA_METADATA_KEY, typeMeta);
+    return Reflect.metadata(TYPEMETA_METADATA_KEY, typeMeta);
 }
 
-export  function getTypeMeta(target: any, propertyKey: string) {
+export function getTypeMeta(target: any, propertyKey: string) {
     return Reflect.getMetadata(TYPEMETA_METADATA_KEY, target, propertyKey);
 }
 
@@ -43,7 +42,7 @@ export type Deferred<T> = {
 
 // Wrap proxies around properties of T
 export type Proxify<T> = {
-    [P in keyof T]: { get(): T[P]; set(v: T[P]): void }
+    [P in keyof T]: { get(): T[P]; set(v: T[P]): void };
 };
 export type Nullable<T> = { [P in keyof T]: T[P] | null };
 export type Partial<T> = { [P in keyof T]?: T[P] };
@@ -77,4 +76,4 @@ export type Tree<T> = {
     Right: Tree<T>;
 };
 
-export type LinkedList<T> = T & { Next: LinkedList<T> , Previous?: LinkedList<T> };
+export type LinkedList<T> = T & { Next: LinkedList<T>; Previous?: LinkedList<T> };

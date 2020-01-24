@@ -1,5 +1,4 @@
-
-import { SanitizerBase } from "../index";
+import { SanitizerBase } from '../index';
 
 export interface IAllowedHtmlAttribute {
     [key: string]: string[];
@@ -25,31 +24,56 @@ export interface IHtmlSanitizerOptions {
     SelfClosingTags?: string[];
     TransformTags?: ITransformHtmlTag;
     FilterTags?: IFilterHtmlTag | string[];
-
 }
 
-const DEFAULT_ALLOWED_TAGS = ["h3", "h4", "h5", "h6", "blockquote", "p", "a", "ul", "ol",
-    "nl", "li", "b", "i", "strong", "em", "strike", "code", "hr", "br", "div",
-    "table", "thead", "caption", "tbody", "tr", "th", "td", "pre"];
+const DEFAULT_ALLOWED_TAGS = [
+    'h3',
+    'h4',
+    'h5',
+    'h6',
+    'blockquote',
+    'p',
+    'a',
+    'ul',
+    'ol',
+    'nl',
+    'li',
+    'b',
+    'i',
+    'strong',
+    'em',
+    'strike',
+    'code',
+    'hr',
+    'br',
+    'div',
+    'table',
+    'thead',
+    'caption',
+    'tbody',
+    'tr',
+    'th',
+    'td',
+    'pre',
+];
 const DEFAULT_ALLOWED_ATTRIBUTES = {
-    a: ["href", "name", "target"],
+    a: ['href', 'name', 'target'],
     // We don't currently allow img itself by default, but this
     // would make sense if we did
-    img: ["src"],
+    img: ['src'],
 };
-const DEFAULT_SELFCLOSING = ["img", "br", "hr", "area", "base", "basefont", "input", "link", "meta"];
+const DEFAULT_SELFCLOSING = ['img', 'br', 'hr', 'area', 'base', 'basefont', 'input', 'link', 'meta'];
 
-const DEFAULT_ALLOWED_SCHEMAS = ["http", "https", "ftp", "mailto"];
+const DEFAULT_ALLOWED_SCHEMAS = ['http', 'https', 'ftp', 'mailto'];
 
-const HTML_TAG_REGEX = /^\<.+\>/igm;
-const HTML_TAG_ATTRIBUTE_REGEX = /(([a-zA-Z0-9]+)\=\"([a-zA-Z0-9]+)\")+/igm;
+const HTML_TAG_REGEX = /^\<.+\>/gim;
+const HTML_TAG_ATTRIBUTE_REGEX = /(([a-zA-Z0-9]+)\=\"([a-zA-Z0-9]+)\")+/gim;
 
 export class HtmlSanitizer extends SanitizerBase<IHtmlSanitizerOptions> {
-
     private tagRegex: RegExp;
     private tagAttrRegex: any;
     constructor(private options?: IHtmlSanitizerOptions) {
-        super("HtmlSanitizer");
+        super('HtmlSanitizer');
         this.options = this.options || {};
         this.options.AllowedAttributes = this.options.AllowedAttributes || DEFAULT_ALLOWED_ATTRIBUTES;
         this.options.AllowedTags = this.options.AllowedTags || DEFAULT_ALLOWED_TAGS;
@@ -57,13 +81,16 @@ export class HtmlSanitizer extends SanitizerBase<IHtmlSanitizerOptions> {
         // options.AllowedAttributes =options.AllowedAttributes || DEFAULT_ALLOWED_ATTRIBUTES;
     }
     public sanitize(value: string): Promise<string> {
-        if (!value) { return Promise.resolve(value); }
+        if (!value) {
+            return Promise.resolve(value);
+        }
 
-        const allowedTags = (this.options.AllowedTags || DEFAULT_ALLOWED_TAGS).join("|");
-        const selfcloseTags = (this.options.SelfClosingTags || DEFAULT_SELFCLOSING).join("|");
-        this.tagRegex = new RegExp(`^((\<(${allowedTags
-            })\\s*([a-zA-Z0-9\"\=\\s]*\\s*)\>)(.*)\<\/(${allowedTags
-            })\\s*\>)|(<!--[\\s\\S]*?-->)|((\<(${selfcloseTags})\\s*\/\>))$`, "gmi");
+        const allowedTags = (this.options.AllowedTags || DEFAULT_ALLOWED_TAGS).join('|');
+        const selfcloseTags = (this.options.SelfClosingTags || DEFAULT_SELFCLOSING).join('|');
+        this.tagRegex = new RegExp(
+            `^((\<(${allowedTags})\\s*([a-zA-Z0-9\"\=\\s]*\\s*)\>)(.*)\<\/(${allowedTags})\\s*\>)|(<!--[\\s\\S]*?-->)|((\<(${selfcloseTags})\\s*\/\>))$`,
+            'gmi',
+        );
         if (this.options.AllowedAttributes) {
             this.tagAttrRegex = {};
         }
@@ -72,15 +99,17 @@ export class HtmlSanitizer extends SanitizerBase<IHtmlSanitizerOptions> {
             const attrs = this.options.AllowedAttributes[item];
             this.tagAttrRegex[item] = [];
         }
-        return Promise.resolve(this.sanitizeInnerText(value, ""));
+        return Promise.resolve(this.sanitizeInnerText(value, ''));
     }
 
     private sanitizeInnerText(value: string, parentValue?: string) {
         const results: string[] = [];
         const tags = this.getTagParts(value);
-        if (!tags) { return (this.hasTag(value) ? "" : value); } // (parentValue!=="" ? value : "");
+        if (!tags) {
+            return this.hasTag(value) ? '' : value;
+        } // (parentValue!=="" ? value : "");
         if (tags[3] && tags[3] === tags[6]) {
-            let tagst = "";
+            let tagst = '';
             if (tags[4]) {
                 tagst = `<${tags[3]} ${this.sanitizeTagAttributes(tags[3], tags[4])} >`;
             } else {
@@ -90,7 +119,7 @@ export class HtmlSanitizer extends SanitizerBase<IHtmlSanitizerOptions> {
             const tagText = `${tagst}${innerText}</${tags[6]}>`;
             results.push(tagText);
         }
-        return results.join("");
+        return results.join('');
     }
 
     private hasTag(value: string): boolean {
@@ -102,10 +131,10 @@ export class HtmlSanitizer extends SanitizerBase<IHtmlSanitizerOptions> {
         HTML_TAG_ATTRIBUTE_REGEX.lastIndex = 0;
         let attrs: any;
         // tslint:disable-next-line:no-conditional-assignment
-        while (attrs = this.getTagAttributeParts(value, tag)) {
+        while ((attrs = this.getTagAttributeParts(value, tag))) {
             results.push(attrs[1]);
         }
-        return results.join(" ");
+        return results.join(' ');
     }
 
     private getTagAttributeParts(tag: string, value: string) {
@@ -124,13 +153,13 @@ export class HtmlSanitizer extends SanitizerBase<IHtmlSanitizerOptions> {
     }
 
     private escapeHtml(s: string): string {
-        if (typeof (s) !== "string") {
-            s = s + "";
+        if (typeof s !== 'string') {
+            s = s + '';
         }
-        return s.replace(/\&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/\>/g, "&gt;")
-        .replace(/\"/g, "&quot;");
+        return s
+            .replace(/\&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/\>/g, '&gt;')
+            .replace(/\"/g, '&quot;');
     }
-
 }

@@ -1,9 +1,7 @@
-
 export class ErrorBase extends Error {
-
     constructor(message: string, private innerError?: Error) {
         super(message);
-        this.name = "Error";
+        this.name = 'Error';
     }
 
     public get Message(): string {
@@ -31,5 +29,4 @@ export class ErrorBase extends Error {
         }
         return `Message = ${this.message} , Stack = ${this.stack}`;
     }
-
 }

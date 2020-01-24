@@ -1,30 +1,24 @@
-import "jest";
-import { Matrix4x4 } from "../../../src/computation/index";
+import 'jest';
+import { Matrix4x4 } from '../../../src/computation/index';
 
 // jest.resetAllMocks();
 // jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
 
 // tslint:disable:no-empty
-beforeAll(() => { });
+beforeAll(() => {});
 
-beforeEach(() => {
+beforeEach(() => {});
 
-});
+afterAll(() => {});
 
-afterAll(() => { });
+afterEach(() => {});
 
-afterEach(() => { });
-
-describe("Computation",  () => {
-    describe("Math",  () => {
-        describe("Matrix4x4",  () => {
-            it("checks transpose matrix",  () => {
+describe('Computation', () => {
+    describe('Math', () => {
+        describe('Matrix4x4', () => {
+            it('checks transpose matrix', () => {
                 expect.assertions(16);
-                const matrix1 = new Matrix4x4(
-                    [1, 2, 3, 4],
-                    [5, 6, 7, 8],
-                    [9, 10, 11, 12],
-                    [13, 14, 15, 16]);
+                const matrix1 = new Matrix4x4([1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]);
                 const matrix3 = matrix1.transpose();
                 expect(matrix3.get(0, 0)).toEqual(1);
                 expect(matrix3.get(0, 1)).toEqual(5);
@@ -43,7 +37,6 @@ describe("Computation",  () => {
                 expect(matrix3.get(3, 2)).toEqual(12);
                 expect(matrix3.get(3, 3)).toEqual(16);
             });
-
         });
     });
 });

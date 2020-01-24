@@ -1,11 +1,10 @@
-
-import {  Exception } from "./index";
+import { Exception } from './index';
 
 export class CodedException extends Exception {
     private code: number;
     constructor(code: number, message: string, innerError?: Error) {
         super(message, innerError);
-        this.name = "CodedException";
+        this.name = 'CodedException';
         this.code = code;
     }
 
@@ -22,11 +21,8 @@ export class CodedException extends Exception {
     }
     public toString() {
         if (this.InnerError) {
-            return `Code = ${this.code
-                } , Message = ${this.message} , Stack = ${this.stack
-                } , InnerError = ${this.InnerError} .`;
+            return `Code = ${this.code} , Message = ${this.message} , Stack = ${this.stack} , InnerError = ${this.InnerError} .`;
         }
         return `Code = ${this.code} , Message = ${this.message} , Stack = ${this.stack}`;
     }
-
 }

@@ -1,5 +1,4 @@
-
-export type Action<T> =  (item: T) => void;
+export type Action<T> = (item: T) => void;
 
 /**
  * Function for accept T type arg and return R type value

@@ -1,10 +1,10 @@
-import { IList } from "./collections";
-import "./computation/math/Declaration";
-import { IObjectDictionary } from "./core";
-import "./linq/Declaration";
-import { IParallelQueryable, IQueryable } from "./linq/index";
-import "./parallels/Declaration";
-import { ExtendedPromiseOptions } from "./parallels/Declaration";
+import { IList } from './collections';
+import './computation/math/Declaration';
+import { IObjectDictionary } from './core';
+import './linq/Declaration';
+import { IParallelQueryable, IQueryable } from './linq/index';
+import './parallels/Declaration';
+import { ExtendedPromiseOptions } from './parallels/Declaration';
 
 // tslint:disable-next-line:no-namespace
 declare global {
@@ -41,18 +41,26 @@ declare global {
         deepAssign<T, U>(target: T, source1: U): T & U;
         deepAssign<T, U, V>(target: T, source1: U, source2: V): T & U & V;
         deepAssign<T, U, V, W>(target: T, source1: U, source2: V, source3: W): T & U & V & W;
-        deepAssign<T, U, V, W, X>(target: T, source1: U,
-                                  source2: V, source3: W, source4: X): T & U & V & W & X;
-        deepAssign<T, U, V, W, X, Y>(target: T, source1: U,
-                                     source2: V, source3: W,
-                                     source4: X, source5: Y):
-            T & U & V & W & X & Y;
-        deepAssign<T, U, V, W, X, Y, Z>(target: T, source1: U,
-                                        source2: V, source3: W,
-                                        source4: X, source5: Y, source6: Z):
-            T & U & V & W & X & Y & Z;
+        deepAssign<T, U, V, W, X>(target: T, source1: U, source2: V, source3: W, source4: X): T & U & V & W & X;
+        deepAssign<T, U, V, W, X, Y>(
+            target: T,
+            source1: U,
+            source2: V,
+            source3: W,
+            source4: X,
+            source5: Y,
+        ): T & U & V & W & X & Y;
+        deepAssign<T, U, V, W, X, Y, Z>(
+            target: T,
+            source1: U,
+            source2: V,
+            source3: W,
+            source4: X,
+            source5: Y,
+            source6: Z,
+        ): T & U & V & W & X & Y & Z;
         deepAssign<T>(target: T, ...sources: any[]): T & any;
-        deepEqual(x: Record<string,any>, y: Record<string,any>): boolean;
+        deepEqual(x: Record<string, any>, y: Record<string, any>): boolean;
         cloneObject<T>(target: T): T;
         createInstance<T>(c: new () => T): T;
     }
@@ -60,7 +68,6 @@ declare global {
     interface IterableIterator<T> {
         //  map<R>(mapper: (item: T, index?: number) => R): IterableIterator<R>;
         // filter(filterer: (item: T, index?: number) => boolean): IterableIterator<T>;
-
         // find(prediction: (item: T, index?: number) => boolean): T;
         // some(prediction: (item: T, index?: number) => boolean): boolean;
         // every(prediction: (item: T, index?: number) => boolean): boolean;
@@ -69,11 +76,9 @@ declare global {
         // take(count: number): IterableIterator<T>;
         // skip(count: number): IterableIterator<T>;
         // skipWhile(prediction: (item: T, index?: number) => boolean): IterableIterator<T>;
-
         // toMap<K, R = T>(mapper: (item: T, index?: number) => [K, R]): Map<K, R>;
         // toSet(): Set<T>;
         // toArray(): T[];
-
         // groupBy<R, K extends keyof T, G = Omit<T, K>>(selector: (item: T,
         //     index?: number) => R):
         //     IterableIterator<[R, IterableIterator<G>]>;
@@ -81,7 +86,6 @@ declare global {
         // average<K extends keyof T>(selector: (item: T, index?: number) => number): number;
         // max<K extends keyof T>(selector: (item: T, index?: number) => number): number;
         // min<K extends keyof T>(selector: (item: T, index?: number) => number): number;
-
     }
 
     // interface IterableIterator<T> {
@@ -92,10 +96,9 @@ declare global {
     // }
 
     interface Array<T> {
-
         contains(obj: T): boolean;
         findDuplicates(): T[];
-        itemCount(): Array<{ item: T, count: number }>;
+        itemCount(): Array<{ item: T; count: number }>;
         toUnique(): T[];
         hasDuplicate(): boolean;
         linq(): IQueryable<T>;
@@ -105,7 +108,6 @@ declare global {
         toList(): IList<T>;
     }
     interface Set<T> {
-
         isSuperSetOf<P>(other: Set<P>): boolean;
         isSubSetOf<P>(other: Set<P>): boolean;
         isEmpty(): boolean;
@@ -127,7 +129,6 @@ declare global {
         plinq(): IParallelQueryable<T>;
     }
     interface Map<K, V> {
-
         put(key: K, value: V): this;
         putAll(...entries: Array<[K, V]>): this;
         isEmpty(): boolean;
@@ -142,11 +143,12 @@ declare global {
         plinq(): IParallelQueryable<[K, V]>;
 
         // tslint:disable-next-line:max-line-length
-        map<T, U extends object>(callbackfn: (value: [K, V], index: number, map: Map<K, V>) => [T, U], thisArg?: any): Map<T, U>;
-
+        map<T, U extends object>(
+            callbackfn: (value: [K, V], index: number, map: Map<K, V>) => [T, U],
+            thisArg?: any,
+        ): Map<T, U>;
     }
     interface WeakSet<T> {
-
         isSuperSetOf<P>(other: Set<P>): boolean;
         isSubSetOf<P>(other: Set<P>): boolean;
         isEmpty(): boolean;
@@ -183,15 +185,16 @@ declare global {
         plinq(): IParallelQueryable<[K, V]>;
 
         // tslint:disable-next-line:max-line-length
-        map<T extends object, U extends object>(callbackfn: (value: [K, V], index: number, map: Map<K, V>) => [T, U], thisArg?: any): WeakMap<T, U>;
-
+        map<T extends object, U extends object>(
+            callbackfn: (value: [K, V], index: number, map: Map<K, V>) => [T, U],
+            thisArg?: any,
+        ): WeakMap<T, U>;
     }
 
     export interface PromiseConstructor {
         delay<T>(ms: number, defaulValue?: T): Promise<T>;
         wait<T>(ms: number): Promise<T>;
-        extendedPromise<T>(promise: Promise<T>,
-                           options?: ExtendedPromiseOptions): ExtendedPromise<T>;
+        extendedPromise<T>(promise: Promise<T>, options?: ExtendedPromiseOptions): ExtendedPromise<T>;
     }
     // tslint:disable-next-line:interface-name
     export interface Promise<T> {
@@ -215,5 +218,3 @@ function getSyncIteratorDirect<T>(obj: T): IterableIterator<T> {
 function getASyncIteratorDirect<T>(obj: T): AsyncIterableIterator<T> {
     return (obj as any)[Symbol.asyncIterator];
 }
-
-

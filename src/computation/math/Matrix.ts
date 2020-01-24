@@ -1,5 +1,4 @@
-
-import { Exception } from "../../exceptions/index";
+import { Exception } from '../../exceptions/index';
 
 export class Matrix<T> implements Iterable<T> {
     protected arr: T[][];
@@ -49,7 +48,7 @@ export class Matrix<T> implements Iterable<T> {
         return this.arr[row];
     }
     public forEachRow(fn: (index: number, item: T[], items: T[][]) => void) {
-        if (typeof fn === "function") {
+        if (typeof fn === 'function') {
             for (let i = 0, len = this.arr.length; i < len; i++) {
                 fn(i, this.arr[i], this.arr);
             }
@@ -58,9 +57,9 @@ export class Matrix<T> implements Iterable<T> {
     }
     public replaceEachRow(fn: (index: number, item: T[], items: T[][]) => void) {
         let newRow;
-        if (typeof fn === "function") {
+        if (typeof fn === 'function') {
             for (let i = 0, len = this.arr.length; i < len; i++) {
-                newRow = fn(i, this.arr[i], this.arr) as  any;
+                newRow = fn(i, this.arr[i], this.arr) as any;
                 if (newRow && Array.isArray(newRow)) {
                     this.arr[i] = newRow;
                     newRow = null;
@@ -74,11 +73,11 @@ export class Matrix<T> implements Iterable<T> {
         const itr = {
             [Symbol.iterator]: () => {
                 // tslint:disable-next-line:one-variable-per-declaration
-                let row = 0, col = -1;
+                let row = 0,
+                    col = -1;
                 return {
                     // tslint:disable-next-line:no-empty
                     next: () => {
-
                         if (col > this.colSize) {
                             row++;
                             col = -1;
@@ -89,7 +88,6 @@ export class Matrix<T> implements Iterable<T> {
                         }
                         return { value: this.arr[row][col], done: false };
                     },
-
                 };
             },
         };
@@ -105,10 +103,14 @@ export class Matrix<T> implements Iterable<T> {
         return this;
     }
     public transpose(): Matrix<T> {
-        const arr2 = this.arr && this.arr.length && this.arr[0].map &&
-            Object.keys(this.arr[0]).map((_, c) => {
-                return this.arr.map((r) => r[c]);
-            }) || [];
+        const arr2 =
+            (this.arr &&
+                this.arr.length &&
+                this.arr[0].map &&
+                Object.keys(this.arr[0]).map((_, c) => {
+                    return this.arr.map(r => r[c]);
+                })) ||
+            [];
         return new Matrix(this.colSize, this.rowSize, ...arr2);
     }
     public toArray(): T[][] {
@@ -131,12 +133,12 @@ export class Matrix<T> implements Iterable<T> {
     }
     protected checkColumnIndex(col: number): void {
         if (col >= this.colSize || col < 0) {
-            throw new Exception("Col index is out of range.");
+            throw new Exception('Col index is out of range.');
         }
     }
     protected checkRowIndex(row: number): void {
         if (row >= this.rowSize || row < 0) {
-            throw new Exception("Row index is out of range.");
+            throw new Exception('Row index is out of range.');
         }
     }
     protected checkIndexes(row: number, col: number): void {

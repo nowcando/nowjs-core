@@ -1,3 +1,2 @@
-import "reflect-metadata";
-import "./GlobalDecleartions";
-
+import 'reflect-metadata';
+import './GlobalDecleartions';

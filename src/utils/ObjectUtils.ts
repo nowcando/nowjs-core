@@ -1,10 +1,9 @@
-
-export const PROPERTY_METADATA_KEY = Symbol("object.property.metadata.key");
-export const PROPERTY_PRESENTATION_KEY = Symbol("object.property.presentation.key");
-export const OBJECT_DISPLAYNAME_METADATA_KEY = Symbol("object.displayName.key");
-export const OBJECT_DISPLAYSHORTNAME_METADATA_KEY = Symbol("object.displayShortName.key");
-export const OBJECT_DISPLAYHINT_METADATA_KEY = Symbol("object.displayHint.key");
-export const OBJECT_DISPLAYORDER_METADATA_KEY = Symbol("object.displayOrder.key");
+export const PROPERTY_METADATA_KEY = Symbol('object.property.metadata.key');
+export const PROPERTY_PRESENTATION_KEY = Symbol('object.property.presentation.key');
+export const OBJECT_DISPLAYNAME_METADATA_KEY = Symbol('object.displayName.key');
+export const OBJECT_DISPLAYSHORTNAME_METADATA_KEY = Symbol('object.displayShortName.key');
+export const OBJECT_DISPLAYHINT_METADATA_KEY = Symbol('object.displayHint.key');
+export const OBJECT_DISPLAYORDER_METADATA_KEY = Symbol('object.displayOrder.key');
 export type StringFormatType = ((name: string, ...args: any[]) => string) | string;
 
 export interface IJsonSchemaDefinitionValidator {
@@ -33,15 +32,15 @@ export interface JsonSchemaDefinition {
 function deprecated(message: StringFormatType = 'The {type} "{name}" is deprecated.') {
     return (target: any, propertyName: string, descriptor: TypedPropertyDescriptor<any>) => {
         const original = descriptor.value;
-        let localMessage = "";
-        if (typeof message === "string") {
-            localMessage = message.replace("{type}", (typeof target).toUpperCase());
-            localMessage = message.replace("{name}", propertyName);
-        } else if (typeof message === "function") {
-            localMessage = message("DeprecatedMessage", target, propertyName, original);
+        let localMessage = '';
+        if (typeof message === 'string') {
+            localMessage = message.replace('{type}', (typeof target).toUpperCase());
+            localMessage = message.replace('{name}', propertyName);
+        } else if (typeof message === 'function') {
+            localMessage = message('DeprecatedMessage', target, propertyName, original);
         }
 
-        descriptor.value = (...args: any[] ) => {
+        descriptor.value = (...args: any[]) => {
             // tslint:disable-next-line:no-console
             console.warn(localMessage);
 
@@ -60,13 +59,13 @@ export function getReflectdDisplayName(target: any, propertyName: string, defaul
 export function displayName(name: StringFormatType) {
     return (target: any, propertyName: string, descriptor: TypedPropertyDescriptor<any>) => {
         const original = descriptor.value;
-        let localName = ""; // message.replace('{type}', (typeof target).toUpperCase());
-        if (typeof name === "string") {
+        let localName = ''; // message.replace('{type}', (typeof target).toUpperCase());
+        if (typeof name === 'string') {
             localName = name;
-        } else if (typeof name === "function") {
+        } else if (typeof name === 'function') {
             localName = name(propertyName, target, propertyName, original);
         } else {
-            localName = "";
+            localName = '';
         }
 
         Reflect.defineMetadata(OBJECT_DISPLAYNAME_METADATA_KEY, localName, target, propertyName);
@@ -76,13 +75,13 @@ export function displayName(name: StringFormatType) {
 export function displayShortName(name: StringFormatType) {
     return (target: any, propertyName: string, descriptor: TypedPropertyDescriptor<any>) => {
         const original = descriptor.value;
-        let localName = ""; // message.replace('{type}', (typeof target).toUpperCase());
-        if (typeof name === "string") {
+        let localName = ''; // message.replace('{type}', (typeof target).toUpperCase());
+        if (typeof name === 'string') {
             localName = name;
-        } else if (typeof name === "function") {
+        } else if (typeof name === 'function') {
             localName = name(propertyName, target, propertyName, original);
         } else {
-            localName = "";
+            localName = '';
         }
 
         Reflect.defineMetadata(OBJECT_DISPLAYSHORTNAME_METADATA_KEY, localName, target, propertyName);
@@ -92,13 +91,13 @@ export function displayShortName(name: StringFormatType) {
 export function displayHint(hint: StringFormatType) {
     return (target: any, propertyName: string, descriptor: TypedPropertyDescriptor<any>) => {
         const original = descriptor.value;
-        let localName = ""; // message.replace('{type}', (typeof target).toUpperCase());
-        if (typeof hint === "string") {
+        let localName = ''; // message.replace('{type}', (typeof target).toUpperCase());
+        if (typeof hint === 'string') {
             localName = hint;
-        } else if (typeof hint === "function") {
+        } else if (typeof hint === 'function') {
             localName = hint(propertyName, target, propertyName, original);
         } else {
-            localName = "";
+            localName = '';
         }
 
         Reflect.defineMetadata(OBJECT_DISPLAYHINT_METADATA_KEY, localName, target, propertyName);
@@ -126,12 +125,12 @@ export function sealed(constructor: Function) {
     Object.seal(constructor.prototype);
 }
 
-export function classDecorator<T extends new(...args: any[]) => {}>(constructor: T) {
+export function classDecorator<T extends new (...args: any[]) => {}>(constructor: T) {
     return class extends constructor {
         // tslint:disable-next-line:member-access
-        newProperty = "new property";
+        newProperty = 'new property';
         // tslint:disable-next-line:member-access
-        hello = "override";
+        hello = 'override';
     };
 }
 
@@ -150,9 +149,9 @@ export function configurable(value: boolean) {
 export function propertySet<T>(target: any, propertyKey: string, descriptor: TypedPropertyDescriptor<T>) {
     const set = descriptor.set;
     descriptor.set = (value: T) => {
-        const type = Reflect.getMetadata("design:type", target, propertyKey);
+        const type = Reflect.getMetadata('design:type', target, propertyKey);
         if (!(value instanceof type)) {
-            throw new TypeError("Invalid type.");
+            throw new TypeError('Invalid type.');
         }
         set(value);
     };
@@ -213,18 +212,17 @@ export function setProperty<T, K extends keyof T>(obj: T, key: K, value: T[K]) {
     obj[key] = value;
 }
 
-export function getObjetctNestedPath(theObject: any, path: string, separator: string= "."): any {
+export function getObjetctNestedPath(theObject: any, path: string, separator = '.'): any {
     try {
-        separator = separator || ".";
+        separator = separator || '.';
 
-        return path.
-            replace("[", separator).replace("]", "").
-            split(separator).
-            reduce((obj, mproperty) => {
+        return path
+            .replace('[', separator)
+            .replace(']', '')
+            .split(separator)
+            .reduce((obj, mproperty) => {
                 return obj[mproperty];
-            }, theObject,
-        );
-
+            }, theObject);
     } catch (err) {
         return undefined;
     }
@@ -232,17 +230,16 @@ export function getObjetctNestedPath(theObject: any, path: string, separator: st
 
 export function getObjectLastParentOfPath(theObject: any, path: string, separator: string): any {
     try {
-        separator = separator || ".";
+        separator = separator || '.';
 
-        const objPath = path.
-            replace("[", separator).replace("]", "")
+        const objPath = path
+            .replace('[', separator)
+            .replace(']', '')
             .split(separator);
         const lastPath = objPath.splice(objPath.length - 1, 1);
         return objPath.reduce((obj, mproperty) => {
             return obj[mproperty];
-        }, theObject,
-        );
-
+        }, theObject);
     } catch (err) {
         return undefined;
     }
@@ -250,10 +247,11 @@ export function getObjectLastParentOfPath(theObject: any, path: string, separato
 
 export function getObjectLastKeyOfPath(theObject: any, path: string, separator: string): string {
     try {
-        separator = separator || ".";
+        separator = separator || '.';
 
-        const objPath = path.
-            replace("[", separator).replace("]", "")
+        const objPath = path
+            .replace('[', separator)
+            .replace(']', '')
             .split(separator);
         return objPath[objPath.length - 1];
     } catch (err) {
@@ -269,7 +267,7 @@ export function getObjectLastKeyOfPath(theObject: any, path: string, separator: 
  * @returns {boolean}
  */
 export function isObjectType(item: any): boolean {
-    return (item && typeof item === "object" && !Array.isArray(item));
+    return item && typeof item === 'object' && !Array.isArray(item);
 }
 
 /**
@@ -297,16 +295,24 @@ export function deepAssign<T, U>(target: T, source1: U): T & U;
  */
 export function deepAssign<T, U, V>(target: T, source1: U, source2: V): T & U & V;
 export function deepAssign<T, U, V, W>(target: T, source1: U, source2: V, source3: W): T & U & V & W;
-export function deepAssign<T, U, V, W, X>(target: T, source1: U,
-                                          source2: V, source3: W, source4: X): T & U & V & W & X;
-export function deepAssign<T, U, V, W, X, Y>(target: T, source1: U,
-                                             source2: V, source3: W,
-                                             source4: X, source5: Y):
-                                             T & U & V & W & X & Y;
-export function deepAssign<T, U, V, W, X, Y , Z>(target: T, source1: U,
-                                                 source2: V, source3: W,
-                                                 source4: X, source5: Y, source6: Z):
-                                             T & U & V & W & X & Y & Z;
+export function deepAssign<T, U, V, W, X>(target: T, source1: U, source2: V, source3: W, source4: X): T & U & V & W & X;
+export function deepAssign<T, U, V, W, X, Y>(
+    target: T,
+    source1: U,
+    source2: V,
+    source3: W,
+    source4: X,
+    source5: Y,
+): T & U & V & W & X & Y;
+export function deepAssign<T, U, V, W, X, Y, Z>(
+    target: T,
+    source1: U,
+    source2: V,
+    source3: W,
+    source4: X,
+    source5: Y,
+    source6: Z,
+): T & U & V & W & X & Y & Z;
 export function deepAssign<T>(target: T, ...sources: any[]): T & any;
 /**
  * Deep shallow object merging properties .
@@ -329,7 +335,7 @@ export function deepAssign<T>(target: T, ...sources: any[]): T & any {
             if (isObjectType(source[key]) && Object.keys(source[key]).length > 0) {
                 // tslint:disable-next-line:curly
                 if (!(target as any)[key]) {
-                    Object.assign(target, { [key]: {} }) ;
+                    Object.assign(target, { [key]: {} });
                 }
                 deepAssign((target as any)[key], (source as any)[key]);
             } else {
@@ -377,38 +383,30 @@ export function toDeepAssign<T>(target: T, ...sources: any[]): T {
     return deepAssign(target, ...sources);
 }
 
-export function deepEqual(x: Record<string,any>, y: Record<string,any>) {
+export function deepEqual(x: Record<string, any>, y: Record<string, any>) {
     if (x === y) {
-      return true;
-    }
-    else if ((typeof x == "object" && x != null) && (typeof y == "object" && y != null)) {
-      if (Object.keys(x).length != Object.keys(y).length)
-        return false;
-  
-      for (var prop in x) {
-        if (y.hasOwnProperty(prop))
-        {  
-          if (! deepEqual(x[prop], y[prop]))
-            return false;
+        return true;
+    } else if (typeof x == 'object' && x != null && typeof y == 'object' && y != null) {
+        if (Object.keys(x).length != Object.keys(y).length) return false;
+
+        for (const prop in x) {
+            if (y.hasOwnProperty(prop)) {
+                if (!deepEqual(x[prop], y[prop])) return false;
+            } else return false;
         }
-        else
-          return false;
-      }
-  
-      return true;
-    }
-    else 
-      return false;
-  }
+
+        return true;
+    } else return false;
+}
 
 /**
  * Create new instance of a instancable and return it .
  * @param c
  */
-export function createInstance<T>(c: new() => T): T {
+export function createInstance<T>(c: new () => T): T {
     return new c();
 }
-Object.createInstance  = createInstance;
+Object.createInstance = createInstance;
 Object.deepAssign = toDeepAssign;
 Object.isObjectType = isObjectType;
 Object.cloneObject = toCloneObject;

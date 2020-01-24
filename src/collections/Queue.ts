@@ -1,12 +1,12 @@
-import { IEnumerable } from "../core/IEnumerable";
-import { Enumerable, ParallelEnumerable } from "../linq/index";
-import { IParallelQueryable } from "../linq/IParallelQueryable";
-import { IQueryable } from "../linq/IQuerable";
-import { Collection } from "./Collection";
-import { ICollection } from "./ICollection";
-import { IList } from "./IList";
-import { IQueue } from "./IQueue";
-import { List } from "./List";
+import { IEnumerable } from '../core/IEnumerable';
+import { Enumerable, ParallelEnumerable } from '../linq/index';
+import { IParallelQueryable } from '../linq/IParallelQueryable';
+import { IQueryable } from '../linq/IQuerable';
+import { Collection } from './Collection';
+import { ICollection } from './ICollection';
+import { IList } from './IList';
+import { IQueue } from './IQueue';
+import { List } from './List';
 export class Queue<T> implements IQueue<T> {
     private arr: T[] = [];
     constructor(enumerable?: IEnumerable<T> | Iterable<T>) {
@@ -21,15 +21,17 @@ export class Queue<T> implements IQueue<T> {
         return this.size === 0;
     }
     public contains(item: T): boolean {
-       return this.arr.findIndex((xx) => {
-           return xx === item ;
-        }) >= 0;
+        return (
+            this.arr.findIndex(xx => {
+                return xx === item;
+            }) >= 0
+        );
     }
     public get size(): number {
         return this.arr.length;
     }
     public clear(): boolean {
-        this.arr = [] ;
+        this.arr = [];
         return true;
     }
     public enqueue(item: T): boolean;
@@ -49,9 +51,8 @@ export class Queue<T> implements IQueue<T> {
         return this.arr.shift();
     }
     public peek(): T {
-         // tslint:disable-next-line:curly
-         if (this.arr.length > 0)
-             return this.arr[0];
+        // tslint:disable-next-line:curly
+        if (this.arr.length > 0) return this.arr[0];
         // tslint:disable-next-line:curly
         else return null;
     }

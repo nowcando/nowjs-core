@@ -1,5 +1,4 @@
-
-import { Point2D } from "./Point2D";
+import { Point2D } from './Point2D';
 
 export class Point3D extends Point2D {
     constructor(x?: number, y?: number, private z?: number) {
@@ -7,6 +6,10 @@ export class Point3D extends Point2D {
         // tslint:disable:curly
         if (!z) this.z = 0;
     }
-    public get Z(): number { return this.z; }
-    public set Z(value: number) { this.z = value; }
+    public get Z(): number {
+        return this.z;
+    }
+    public set Z(value: number) {
+        this.z = value;
+    }
 }

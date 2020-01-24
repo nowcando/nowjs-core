@@ -1,24 +1,22 @@
-import "jest";
-import { Matrix } from "../../../src/computation/index";
+import 'jest';
+import { Matrix } from '../../../src/computation/index';
 
 // jest.resetAllMocks();
 // jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
 
 // tslint:disable:no-empty
-beforeAll(() => { });
+beforeAll(() => {});
 
-beforeEach(() => {
+beforeEach(() => {});
 
-});
+afterAll(() => {});
 
-afterAll(() => { });
+afterEach(() => {});
 
-afterEach(() => { });
-
-describe("Computation",  () => {
-    describe("Math",  () => {
-        describe("Matrix",  () => {
-            it("checks transpose matrix",  () => {
+describe('Computation', () => {
+    describe('Math', () => {
+        describe('Matrix', () => {
+            it('checks transpose matrix', () => {
                 expect.assertions(6);
                 const matrix1 = new Matrix<number>(2, 3, [1, 2, 3], [4, 5, 6]);
                 const matrix3 = matrix1.transpose();

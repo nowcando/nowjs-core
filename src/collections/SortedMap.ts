@@ -1,10 +1,10 @@
-import { Func } from "../core/Func";
-import { IEnumerable } from "../core/IEnumerable";
-import { Comparator } from "../core/index";
-import { Enumerable, ParallelEnumerable } from "../linq/index";
-import { IParallelQueryable } from "../linq/IParallelQueryable";
-import { IQueryable } from "../linq/IQuerable";
-import { ISortedMap } from "./ISortedMap";
+import { Func } from '../core/Func';
+import { IEnumerable } from '../core/IEnumerable';
+import { Comparator } from '../core/index';
+import { Enumerable, ParallelEnumerable } from '../linq/index';
+import { IParallelQueryable } from '../linq/IParallelQueryable';
+import { IQueryable } from '../linq/IQuerable';
+import { ISortedMap } from './ISortedMap';
 
 export class SortedMap<K, V> implements ISortedMap<K, V> {
     private arr: Array<[K, V]> = [];
@@ -16,7 +16,7 @@ export class SortedMap<K, V> implements ISortedMap<K, V> {
         }
     }
     // tslint:disable-next-line:member-ordering
-    public [Symbol.toStringTag]: "SortedMap";
+    public [Symbol.toStringTag]: 'SortedMap';
     public [Symbol.iterator](): IterableIterator<[K, V]> {
         return this.arr[Symbol.iterator]();
     }
@@ -29,10 +29,10 @@ export class SortedMap<K, V> implements ISortedMap<K, V> {
             [Symbol.iterator]: () => {
                 const enb = that[Symbol.iterator]();
                 return {
-                        next: () => {
+                    next: () => {
                         const item = enb.next();
                         return { value: item.value[0], done: item.done };
-                     },
+                    },
                 };
             },
         };
@@ -45,10 +45,10 @@ export class SortedMap<K, V> implements ISortedMap<K, V> {
             [Symbol.iterator]: () => {
                 const enb = that[Symbol.iterator]();
                 return {
-                        next: () => {
+                    next: () => {
                         const item = enb.next();
                         return { value: item.value[1], done: item.done };
-                     },
+                    },
                 };
             },
         };
@@ -63,7 +63,7 @@ export class SortedMap<K, V> implements ISortedMap<K, V> {
         this.arr.splice(0, this.arr.length);
     }
     public delete(key: K): boolean {
-        const foundedIndex = this.arr.findIndex((item) => key === item[0]);
+        const foundedIndex = this.arr.findIndex(item => key === item[0]);
         if (foundedIndex > -1) {
             this.arr.splice(foundedIndex, 1);
             this.arr = this.arr.sort(this.comparator);
@@ -72,20 +72,22 @@ export class SortedMap<K, V> implements ISortedMap<K, V> {
         return false;
     }
     public forEach(callbackfn: (value: V, key: K, map: ISortedMap<K, V>) => void, thisArg?: any): void {
-         this.arr.forEach((item, index, col) => { callbackfn(item[1], item[0], this); });
+        this.arr.forEach((item, index, col) => {
+            callbackfn(item[1], item[0], this);
+        });
     }
     public get(key: K): V {
-       const founded = this.arr.find((item) => key === item[0]);
-       // tslint:disable-next-line:curly
-       if (founded) return founded[1];
-       return null;
+        const founded = this.arr.find(item => key === item[0]);
+        // tslint:disable-next-line:curly
+        if (founded) return founded[1];
+        return null;
     }
     public has(key: K): boolean {
-        return this.arr.findIndex((item) => key === item[0]) > -1;
+        return this.arr.findIndex(item => key === item[0]) > -1;
     }
     public set(key: K, value: V): ISortedMap<K, V> {
         if (this.has(key)) {
-            const founded = this.arr.find((item) => key === item[0]);
+            const founded = this.arr.find(item => key === item[0]);
             // tslint:disable-next-line:curly
             if (founded) {
                 founded[0] = key;

@@ -1,14 +1,14 @@
-import { Comparator } from "../core/Comparator";
-import { Func } from "../core/Func";
-import { IEnumerable } from "../core/IEnumerable";
-import { Enumerable, ParallelEnumerable } from "../linq/index";
-import { IParallelQueryable } from "../linq/IParallelQueryable";
-import { IQueryable } from "../linq/IQuerable";
-import { ICollection } from "./ICollection";
-import { IList } from "./IList";
-import { IPriorityQueue } from "./IPriorityQueue";
-import { Collection } from "./Collection";
-import { List } from "./List";
+import { Comparator } from '../core/Comparator';
+import { Func } from '../core/Func';
+import { IEnumerable } from '../core/IEnumerable';
+import { Enumerable, ParallelEnumerable } from '../linq/index';
+import { IParallelQueryable } from '../linq/IParallelQueryable';
+import { IQueryable } from '../linq/IQuerable';
+import { ICollection } from './ICollection';
+import { IList } from './IList';
+import { IPriorityQueue } from './IPriorityQueue';
+import { Collection } from './Collection';
+import { List } from './List';
 
 export class PriorityQueue<T> implements IPriorityQueue<T> {
     private arr: T[] = [];
@@ -25,9 +25,11 @@ export class PriorityQueue<T> implements IPriorityQueue<T> {
         return this.size === 0;
     }
     public contains(item: T): boolean {
-        return this.arr.findIndex((xx) => {
-            return xx === item;
-        }) >= 0;
+        return (
+            this.arr.findIndex(xx => {
+                return xx === item;
+            }) >= 0
+        );
     }
     public get size(): number {
         return this.arr.length;
@@ -67,8 +69,7 @@ export class PriorityQueue<T> implements IPriorityQueue<T> {
     }
     public peek(): T {
         // tslint:disable:curly
-        if (this.arr.length > 0)
-            return this.arr[0];
+        if (this.arr.length > 0) return this.arr[0];
         else return null;
     }
     public toArray(): T[] {
@@ -79,7 +80,7 @@ export class PriorityQueue<T> implements IPriorityQueue<T> {
         return array;
     }
     public toCollection(): ICollection<T> {
-         return new Collection(this);
+        return new Collection(this);
     }
     public toList(): IList<T> {
         return new List(this);
@@ -122,33 +123,30 @@ export class PriorityQueue<T> implements IPriorityQueue<T> {
         this.arr[b] = aux;
     }
 
-    private up(pos: number, full: boolean = false): void {
-
+    private up(pos: number, full = false): void {
         let posCurrent = pos;
 
         while (posCurrent > 0) {
             // tslint:disable-next-line:no-bitwise
-            const posParent =  full ? (posCurrent - 1) : Math.floor((posCurrent - 1) / 2) ;
+            const posParent = full ? posCurrent - 1 : Math.floor((posCurrent - 1) / 2);
             if (this.compare(posParent, posCurrent) <= 0) break;
             this.swap(posParent, posCurrent);
             posCurrent = posParent;
         }
-
     }
 
     private halfUp(): void {
         if (this.size < 2) return;
         let posCurrent = this.size - 1;
-        const half =  Math.floor((posCurrent - 1) / 2);
+        const half = Math.floor((posCurrent - 1) / 2);
 
         while (posCurrent > half) {
             // tslint:disable-next-line:no-bitwise
-             const posParent =  posCurrent - 1;
-             if (this.compare(posParent, posCurrent) <= 0) break;
-             this.swap(posParent, posCurrent);
-             posCurrent = posParent;
+            const posParent = posCurrent - 1;
+            if (this.compare(posParent, posCurrent) <= 0) break;
+            this.swap(posParent, posCurrent);
+            posCurrent = posParent;
         }
-
     }
 
     private down(pos: number): void {

@@ -1,14 +1,14 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
+import { Exception } from '../../exceptions/index';
+import { getObjetctNestedPath, StringFormatType } from '../../utils/index';
+import { ValidationContext, VALIDATOR_METADATA_KEY, ValidatorBase, ValidatorException } from '../index';
+import { ValueTypeValidatorBase } from './index';
 
-import { Exception } from "../../exceptions/index";
-import { getObjetctNestedPath, StringFormatType } from "../../utils/index";
-import { ValidationContext, VALIDATOR_METADATA_KEY, ValidatorBase, ValidatorException } from "../index";
-import { ValueTypeValidatorBase } from "./index";
-
-export const VALIDATOR_JSON_SCHEMA_METADATA_KEY = Symbol("validation:validator:isJsonSchema");
+export const VALIDATOR_JSON_SCHEMA_METADATA_KEY = Symbol('validation:validator:isJsonSchema');
 
 export function isJsonSchema(errorMessage?: StringFormatType) {
     // tslint:disable-next-line:ban-types
-    return (target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<any>) => {
+    return (target: Record<string, any>, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<any>) => {
         const original = descriptor.value;
         Reflect.defineMetadata(VALIDATOR_JSON_SCHEMA_METADATA_KEY, null, target, propertyKey);
         Reflect.defineMetadata(VALIDATOR_METADATA_KEY, new JsonSchemaValidator(errorMessage), target, propertyKey);
@@ -17,18 +17,20 @@ export function isJsonSchema(errorMessage?: StringFormatType) {
 
 export class JsonSchemaValidator extends ValidatorBase {
     private schema: any;
-    constructor(schema: object | string,
-                errorMessage: StringFormatType = "The value of ${DisplayName} must have value type: ${ValueType} .") {
-        super("JsonSchema", errorMessage);
+    constructor(
+        schema: object | string,
+        errorMessage: StringFormatType = 'The value of ${DisplayName} must have value type: ${ValueType} .',
+    ) {
+        super('JsonSchema', errorMessage);
         this.schema = this.getSchema(schema);
     }
 
     // see schema : https://trac.tools.ietf.org/html/draft-wright-json-schema-validation-01
 
     private getSchema(schemaName: string | object): object {
-        if (typeof schemaName === "string") {
+        if (typeof schemaName === 'string') {
             return {}; // TODO: implement the schema repository access .
-        } else if (typeof schemaName === "object") {
+        } else if (typeof schemaName === 'object') {
             return schemaName;
         }
     }
@@ -36,7 +38,7 @@ export class JsonSchemaValidator extends ValidatorBase {
     private isMatch(value: any) {
         // https://en.wikipedia.org/wiki/JSON#JSON_Schema
         try {
-            this.traverseProperties(this.schema, value, "");
+            this.traverseProperties(this.schema, value, '');
             return true;
         } catch (error) {
             return false;
@@ -44,21 +46,20 @@ export class JsonSchemaValidator extends ValidatorBase {
     }
 
     private traverseProperties(schema: any, target: any, path: string) {
-
-        const typeName = schema.type || "any";
-        const actualValue = path === "" ? target : getObjetctNestedPath(target, path);
+        const typeName = schema.type || 'any';
+        const actualValue = path === '' ? target : getObjetctNestedPath(target, path);
         let actualType: string = typeof actualValue;
-        if (actualType === "object" && Array.isArray(actualValue)) {
-            actualType = "array";
+        if (actualType === 'object' && Array.isArray(actualValue)) {
+            actualType = 'array';
         }
-        if (actualType === "undefined") {
+        if (actualType === 'undefined') {
             throw new Exception(`Property "${path} is not defined"`);
-        } else if (typeName !== "any") {
+        } else if (typeName !== 'any') {
             if (actualType !== typeName) {
                 throw new Exception(`Property "${path} is not defined type"`);
             }
         }
-        if (actualType === "string") {
+        if (actualType === 'string') {
             const format = schema.format;
             if (format) {
                 const meetFormat = 1 !== 1; // format;
@@ -87,7 +88,7 @@ export class JsonSchemaValidator extends ValidatorBase {
                     throw new Exception(`Property "${path}" does not meet pattern rule.`);
                 }
             }
-        } else if (actualType === "number") {
+        } else if (actualType === 'number') {
             const maximum = schema.maximum;
             const minimum = schema.minimum;
             if (maximum) {
@@ -102,7 +103,7 @@ export class JsonSchemaValidator extends ValidatorBase {
                     throw new Exception(`Property "${path}" does not meet minimum rule.`);
                 }
             }
-        } else if (actualType === "array") {
+        } else if (actualType === 'array') {
             const maxItems = schema.maxItems;
             if (maxItems) {
                 const meetMaxItems = (actualValue as any[]).length <= maxItems;
@@ -119,24 +120,23 @@ export class JsonSchemaValidator extends ValidatorBase {
             }
             const uniqueItems = schema.uniqueItems;
             if (uniqueItems) {
-                const meetUniqueItems = !((actualValue as any[]).hasDuplicate());
+                const meetUniqueItems = !(actualValue as any[]).hasDuplicate();
                 if (meetUniqueItems === false) {
                     throw new Exception(`Property "${path}" does not meet unique items rule.`);
                 }
             }
-            const itemsTypeName = schema.items ? schema.items.type || "any" : "any";
-            if (itemsTypeName !== "any") {
-                const meetItemsType = (actualValue as any[]).every((item) => typeof item === itemsTypeName);
+            const itemsTypeName = schema.items ? schema.items.type || 'any' : 'any';
+            if (itemsTypeName !== 'any') {
+                const meetItemsType = (actualValue as any[]).every(item => typeof item === itemsTypeName);
                 if (meetItemsType === false) {
                     throw new Exception(`Property "${path}" does not meet array item types rule.`);
                 }
             }
-
-        } else if (actualType === "object") {
+        } else if (actualType === 'object') {
             const definitions: any = schema.definitions || {};
             const properties = schema.properties || {};
             const requiredProperties: string[] = schema.required || [];
-            const targetKeys = Object.keys(actualValue );
+            const targetKeys = Object.keys(actualValue);
             const propertyNames = schema.propertyNames || Object.keys(schema.properties);
 
             const maxProperties = schema.maxProperties;
@@ -159,7 +159,7 @@ export class JsonSchemaValidator extends ValidatorBase {
                 if (targetKeys.length < requiredProperties.length) {
                     throw new Exception(`Property "${path}" does not meet required properties count rule.`);
                 }
-                const meetRequired = requiredProperties.every((item) => targetKeys.includes(item));
+                const meetRequired = requiredProperties.every(item => targetKeys.includes(item));
                 if (meetRequired === false) {
                     throw new Exception(`Property "${path}" does not meet required properties rule.`);
                 }
@@ -169,35 +169,34 @@ export class JsonSchemaValidator extends ValidatorBase {
             } else {
                 // tslint:disable-next-line:forin
                 for (const property in properties) {
-                    const sc = "$ref" === property ?
-                        // tslint:disable-next-line:no-string-literal
-                        definitions[schema.properties["$ref"]] : schema.properties[property];
+                    const sc =
+                        '$ref' === property
+                            ? // tslint:disable-next-line:no-string-literal
+                              definitions[schema.properties['$ref']]
+                            : schema.properties[property];
                     if (!sc) {
                         throw new Exception(`Schema does not exists.`);
                     }
-                    this.traverseProperties(sc,
-                        target, path === "" ? property : `${path}.${property}`);
+                    this.traverseProperties(sc, target, path === '' ? property : `${path}.${property}`);
                 }
             }
-
         }
     }
 
     // tslint:disable-next-line:member-ordering
     public validate(context: ValidationContext<any, any>): Promise<boolean> {
-        if ((context.Value === undefined || context.Value === null)) {
+        if (context.Value === undefined || context.Value === null) {
             return Promise.resolve(true);
         }
         try {
-            this.traverseProperties(this.schema, context.Value, "");
+            this.traverseProperties(this.schema, context.Value, '');
             return Promise.resolve(true);
         } catch (error) {
             // tslint:disable-next-line:no-console
             console.log(error.message);
-            return Promise.reject(new ValidatorException(this.Name,
-                context.Target,
-                context.PropertyName,
-                error.message )); // ? this.formatErrorMessage(context)
+            return Promise.reject(
+                new ValidatorException(this.Name, context.Target, context.PropertyName, error.message),
+            ); // ? this.formatErrorMessage(context)
         }
         // if (!this.isMatch(context.Value)) {
 

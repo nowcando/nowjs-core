@@ -1,2 +1,1 @@
-
-export * from "./HtmlSanitizer";
+export * from './HtmlSanitizer';

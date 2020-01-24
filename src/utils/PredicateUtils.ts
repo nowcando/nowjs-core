@@ -1,5 +1,5 @@
-import { Predicate } from "../core";
-
+/* eslint-disable prefer-rest-params */
+import { Predicate } from '../core';
 
 export function negate<U, T extends Predicate<U>>(p: T): T {
     return function(): boolean {
@@ -7,15 +7,12 @@ export function negate<U, T extends Predicate<U>>(p: T): T {
     } as any;
 }
 
-export function union<U, T extends Predicate<U>>(
-    p: T,
-    ...rest: T[]
-): T {
+export function union<U, T extends Predicate<U>>(p: T, ...rest: T[]): T {
     if (rest.length > 0) {
         return function() {
             return p.apply(this, arguments) || union.apply(this, rest).apply(this, arguments);
         } as any;
-    }    else {
+    } else {
         return p;
     }
 }

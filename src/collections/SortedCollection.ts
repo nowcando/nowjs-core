@@ -1,15 +1,15 @@
-import { IQueryable } from "../linq/IQuerable";
-import { ICollection } from "./ICollection";
-import { IList } from "./IList";
+import { IQueryable } from '../linq/IQuerable';
+import { ICollection } from './ICollection';
+import { IList } from './IList';
 
-import { Func } from "../core/Func";
-import { IEnumerable } from "../core/IEnumerable";
-import { Comparator } from "../core/index";
-import { Enumerable, ParallelEnumerable } from "../linq/index";
-import { IParallelQueryable } from "../linq/IParallelQueryable";
-import { Collection } from "./Collection";
-import { ISortedCollection } from "./ISortedCollection";
-import { List } from "./List";
+import { Func } from '../core/Func';
+import { IEnumerable } from '../core/IEnumerable';
+import { Comparator } from '../core/index';
+import { Enumerable, ParallelEnumerable } from '../linq/index';
+import { IParallelQueryable } from '../linq/IParallelQueryable';
+import { Collection } from './Collection';
+import { ISortedCollection } from './ISortedCollection';
+import { List } from './List';
 export class SortedCollection<T> implements ISortedCollection<T> {
     private arr: T[] = [];
     constructor(private comparator: Comparator<T, T>, enumerable?: IEnumerable<T> | Iterable<T>) {
@@ -58,20 +58,20 @@ export class SortedCollection<T> implements ISortedCollection<T> {
     }
 
     public join(seperator?: string) {
-        let res = "";
+        let res = '';
         const that = this;
-        seperator = seperator !== undefined ? seperator : " , ";
-        if (that.size === 0 ) {
-               return "";
-            } else if (that.size === 1) {
-                return (that[Symbol.iterator]().next().value as any).toString();
-            } else {
-             const itr: any = that[Symbol.iterator]();
-             res = (itr.next().value as any).toString();
-             for (const item of itr) {
-                 res = res + seperator + (item as any).toString();
-             }
-           }
+        seperator = seperator !== undefined ? seperator : ' , ';
+        if (that.size === 0) {
+            return '';
+        } else if (that.size === 1) {
+            return (that[Symbol.iterator]().next().value as any).toString();
+        } else {
+            const itr: any = that[Symbol.iterator]();
+            res = (itr.next().value as any).toString();
+            for (const item of itr) {
+                res = res + seperator + (item as any).toString();
+            }
+        }
         return res;
     }
     public toArray(): T[] {

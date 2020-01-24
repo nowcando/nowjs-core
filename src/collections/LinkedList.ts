@@ -1,11 +1,11 @@
-import { IEnumerable } from "../core/IEnumerable";
-import { Enumerable, ParallelEnumerable } from "../linq/index";
-import { IParallelQueryable } from "../linq/IParallelQueryable";
-import { IQueryable } from "../linq/IQuerable";
-import { ICollection } from "./ICollection";
-import { ILinkedList } from "./ILinkedList";
-import { IList } from "./IList";
-import { Collection, List } from "./index";
+import { IEnumerable } from '../core/IEnumerable';
+import { Enumerable, ParallelEnumerable } from '../linq/index';
+import { IParallelQueryable } from '../linq/IParallelQueryable';
+import { IQueryable } from '../linq/IQuerable';
+import { ICollection } from './ICollection';
+import { ILinkedList } from './ILinkedList';
+import { IList } from './IList';
+import { Collection, List } from './index';
 
 // tslint:disable-next-line:interface-name
 export interface LinkedListNode<E> {
@@ -61,7 +61,9 @@ export class LinkedList<E> implements ILinkedList<E> {
 
     public contains(item: E): boolean {
         for (const xx of this) {
-            if (item === xx) { return true; }
+            if (item === xx) {
+                return true;
+            }
         }
         return false;
     }
@@ -139,26 +141,26 @@ export class LinkedList<E> implements ILinkedList<E> {
         return -1;
     }
     public lastIndexOf(item: E): number {
-       let ix = -1;
-       let lastIndex = -1;
-       for (const xx of this.nodeIterator(this)) {
+        let ix = -1;
+        let lastIndex = -1;
+        for (const xx of this.nodeIterator(this)) {
             ix++;
             // tslint:disable-next-line:curly
             if (xx.Current === item) {
                 lastIndex = ix;
             }
         }
-       return lastIndex;
+        return lastIndex;
     }
     public remove(item: E): boolean;
     public remove(item: any): boolean {
         return this.removeInternal(item);
     }
     public removeFirst(): boolean {
-       return this.removeInternal(this.getFirst(), this.firstNode);
+        return this.removeInternal(this.getFirst(), this.firstNode);
     }
     public removeLast(): boolean {
-       return this.removeInternal(this.getLast(), this.lastNode);
+        return this.removeInternal(this.getLast(), this.lastNode);
     }
     public clone(): ILinkedList<E> {
         return new LinkedList<E>(this);
@@ -216,18 +218,18 @@ export class LinkedList<E> implements ILinkedList<E> {
             if (tprev) {
                 tprev.Next = tnext;
             } else {
-             this.firstNode = tnext;
-             // tslint:disable-next-line:curly
-             if (this.firstNode && this.firstNode.Previous) {
-                 this.firstNode.Previous = null;
+                this.firstNode = tnext;
+                // tslint:disable-next-line:curly
+                if (this.firstNode && this.firstNode.Previous) {
+                    this.firstNode.Previous = null;
                 }
             }
             if (tnext) {
                 tnext.Previous = tprev;
             } else {
-             this.lastNode = tprev;
-             if (this.lastNode && this.lastNode.Next) {
-                 this.lastNode.Next = null;
+                this.lastNode = tprev;
+                if (this.lastNode && this.lastNode.Next) {
+                    this.lastNode.Next = null;
                 }
             }
             this.length--;
@@ -269,11 +271,9 @@ export class LinkedList<E> implements ILinkedList<E> {
                     tprev.Next = current;
                     tnext.Previous = current;
                 }
-
             }
         }
         this.length++;
         return true;
     }
-
 }

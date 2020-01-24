@@ -1,13 +1,19 @@
-export * from "./db";
+export * from './db';
 
 export enum RowStatus {
-    Normal = 1, Temp = 2, Locked = 4, Deleted = 8, Purge = 16,
+    Normal = 1,
+    Temp = 2,
+    Locked = 4,
+    Deleted = 8,
+    Purge = 16,
 }
 
 export type IDType = number | string;
 
 // tslint:disable-next-line:interface-name
-export interface NameVariationType {[name: string]: string; }
+export interface NameVariationType {
+    [name: string]: string;
+}
 
 export interface IRowMeta {
     CreatedAt?: Date;
@@ -24,10 +30,14 @@ export interface IGeoCoordinate {
 }
 
 export interface IDataField {
-    Field: string; Title: string; Alias?: string;
+    Field: string;
+    Title: string;
+    Alias?: string;
     Type?: string;
-    Order?: number; Dir?: "asc" | "desc" | "";
-    Default?: any; Validators?: string[];
+    Order?: number;
+    Dir?: 'asc' | 'desc' | '';
+    Default?: any;
+    Validators?: string[];
     Formatters?: string[];
 }
 
@@ -39,22 +49,42 @@ export interface IQueryOptions {
     AllowOrdering?: boolean;
     AllowExtras?: boolean;
     Fields?: IDataField[];
-    Paging?: { Index?: number, Size?: number };
+    Paging?: { Index?: number; Size?: number };
     Grouping?: Array<{ Field: string }>;
     Filtering?: Array<{
-        Op: "and" | "or" | "", Conditions: Array<{
-            Field: string, Op: "equals"| "is"| "type" |
-            "notequals"|"great"|"greatorequal"|"less"|"lessorequal"| "null"| "notnull"|
-            "startswith"|"endswith"|"containsany"|"containsall"|"containsfuzzy"|
-            "notcontainsany"|"notcontainsall"|"haspattern"|"hasnotpattern"|"between"
-            Value: any, Default?: any,
-        }>,
+        Op: 'and' | 'or' | '';
+        Conditions: Array<{
+            Field: string;
+            Op:
+                | 'equals'
+                | 'is'
+                | 'type'
+                | 'notequals'
+                | 'great'
+                | 'greatorequal'
+                | 'less'
+                | 'lessorequal'
+                | 'null'
+                | 'notnull'
+                | 'startswith'
+                | 'endswith'
+                | 'containsany'
+                | 'containsall'
+                | 'containsfuzzy'
+                | 'notcontainsany'
+                | 'notcontainsall'
+                | 'haspattern'
+                | 'hasnotpattern'
+                | 'between';
+            Value: any;
+            Default?: any;
+        }>;
     }>;
-    Ordering?: Array<{ Field: string, Dir: "asc" | "desc" }>;
+    Ordering?: Array<{ Field: string; Dir: 'asc' | 'desc' }>;
     Extras?: {
-        Parallel?: boolean,
-        Timeout?: number,
-        Fetchplan?: string,
+        Parallel?: boolean;
+        Timeout?: number;
+        Fetchplan?: string;
     };
 }
 

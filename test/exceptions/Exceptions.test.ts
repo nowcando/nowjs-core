@@ -1,48 +1,43 @@
-import "jest";
-import { CodedException, ErrorBase, IllegalOperationException,
-     ValidationException } from "../../src/exceptions/index";
+import 'jest';
+import { CodedException, ErrorBase, IllegalOperationException, ValidationException } from '../../src/exceptions/index';
 
 // jest.resetAllMocks();
 // jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
 
 // tslint:disable:no-empty
-beforeAll(() => { });
+beforeAll(() => {});
 
-beforeEach(() => {
+beforeEach(() => {});
 
-});
+afterAll(() => {});
 
-afterAll(() => { });
+afterEach(() => {});
 
-afterEach(() => { });
-
-describe("ErrorBase",  () => {
-
-    it("checks dummy exception to handle node 10", async () => {
+describe('ErrorBase', () => {
+    it('checks dummy exception to handle node 10', async () => {
         expect.assertions(1);
         expect(1).toEqual(1);
-      });
-//   it("checks errorbase", async () => {
-//     expect.assertions(2);
-//     try {
-//         throw new ErrorBase("a sample error message");
-//     } catch (error) {
-//         expect(error.toString()).not.toEqual(null) ;
-//         expect(error.toJSON()).not.toEqual(null) ;
-//     }
-//   });
+    });
+    //   it("checks errorbase", async () => {
+    //     expect.assertions(2);
+    //     try {
+    //         throw new ErrorBase("a sample error message");
+    //     } catch (error) {
+    //         expect(error.toString()).not.toEqual(null) ;
+    //         expect(error.toJSON()).not.toEqual(null) ;
+    //     }
+    //   });
 
-//   it("checks errorbase with inner", async () => {
-//     expect.assertions(3);
-//     try {
-//         throw new ErrorBase("a sample error message", new Error("an inner error"));
-//     } catch (error) {
-//         expect(error.Stack).not.toEqual(null) ;
-//         expect(error.toString()).not.toEqual(null) ;
-//         expect(error.toJSON()).not.toEqual(null) ;
-//     }
-//   });
-
+    //   it("checks errorbase with inner", async () => {
+    //     expect.assertions(3);
+    //     try {
+    //         throw new ErrorBase("a sample error message", new Error("an inner error"));
+    //     } catch (error) {
+    //         expect(error.Stack).not.toEqual(null) ;
+    //         expect(error.toString()).not.toEqual(null) ;
+    //         expect(error.toJSON()).not.toEqual(null) ;
+    //     }
+    //   });
 });
 
 // describe("CodedException", async () => {

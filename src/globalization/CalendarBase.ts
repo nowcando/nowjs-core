@@ -33,7 +33,6 @@ export enum DayOfWeek {
 }
 
 export abstract class CalendarBase {
-
     protected static epochTicks = 62135596800000; // 1970-01-01 means
     protected static ticksPerMilisecond = 1;
     protected static ticksPerSecond = CalendarBase.ticksPerMilisecond * 1000;
@@ -68,7 +67,7 @@ export abstract class CalendarBase {
         return dateTime.getTime();
     }
     protected getDays(dateTime: Date): number {
-        return Math.floor((this.getTicks(dateTime)) / CalendarBase.ticksPerDay);
+        return Math.floor(this.getTicks(dateTime) / CalendarBase.ticksPerDay);
     }
 
     protected abstract getTickPart(ticks: number, part: number): number;
@@ -76,7 +75,7 @@ export abstract class CalendarBase {
     // tslint:disable:member-ordering
     public abstract getAlgorithm(): string;
     public abstract getEras(): string[];
-    public abstract getEra(dateTime: Date ): string;
+    public abstract getEra(dateTime: Date): string;
     public abstract isLeapYear(year: number, era?: string): boolean;
     public abstract isLeapMonth(year: number, month: number, era?: string): boolean;
     public abstract isLeapDay(year: number, month: number, day: number, era?: string): boolean;
@@ -86,32 +85,46 @@ export abstract class CalendarBase {
     public abstract getDaysInYear(year: number, era?: string): number;
     public abstract getDaysInMonth(year: number, month: number, era?: string): number;
     public abstract getWeeksInYear(year: number, era?: string): number;
-    public abstract getWeekOfYear(dateTime: Date , firstDayOfWeek: DayOfWeek, era?: string): number;
-    public abstract getYear(dateTime: Date , era?: string): number;
-    public abstract getMonth(dateTime: Date ): number;
-    public abstract getDayOfMonth(dateTime: Date ): number;
-    public abstract getDayOfYear(dateTime: Date ): number;
-    public abstract getHour(dateTime: Date ): number;
-    public abstract getMinute(dateTime: Date ): number;
-    public abstract getSecond(dateTime: Date ): number;
-    public abstract getDayOfWeek(dateTime: Date ): DayOfWeek;
-    public abstract getFirstDayOfWeek(dateTime: Date ): DayOfWeek;
-    public abstract addMiliSeconds(dateTime: Date , value: number): Date;
-    public abstract addSeconds(dateTime: Date , value: number): Date;
-    public abstract addMinutes(dateTime: Date , value: number): Date;
-    public abstract addHours(dateTime: Date , value: number): Date;
-    public abstract addDays(dateTime: Date , value: number): Date;
-    public abstract addWeeks(dateTime: Date , value: number): Date;
-    public abstract addMonths(dateTime: Date , value: number): Date;
-    public abstract addYears(dateTime: Date , value: number): Date;
+    public abstract getWeekOfYear(dateTime: Date, firstDayOfWeek: DayOfWeek, era?: string): number;
+    public abstract getYear(dateTime: Date, era?: string): number;
+    public abstract getMonth(dateTime: Date): number;
+    public abstract getDayOfMonth(dateTime: Date): number;
+    public abstract getDayOfYear(dateTime: Date): number;
+    public abstract getHour(dateTime: Date): number;
+    public abstract getMinute(dateTime: Date): number;
+    public abstract getSecond(dateTime: Date): number;
+    public abstract getDayOfWeek(dateTime: Date): DayOfWeek;
+    public abstract getFirstDayOfWeek(dateTime: Date): DayOfWeek;
+    public abstract addMiliSeconds(dateTime: Date, value: number): Date;
+    public abstract addSeconds(dateTime: Date, value: number): Date;
+    public abstract addMinutes(dateTime: Date, value: number): Date;
+    public abstract addHours(dateTime: Date, value: number): Date;
+    public abstract addDays(dateTime: Date, value: number): Date;
+    public abstract addWeeks(dateTime: Date, value: number): Date;
+    public abstract addMonths(dateTime: Date, value: number): Date;
+    public abstract addYears(dateTime: Date, value: number): Date;
 
     public abstract isValidYear(year: number, era?: string): boolean;
     public abstract isValidMonth(year: number, month: number, era?: string): boolean;
     public abstract isValidDay(year: number, month: number, day: number, era?: string): boolean;
-    public abstract toTicks(year: number, month: number, day: number, hour?: number,
-                            minute?: number, second?: number, millisecond?: number): number;
-    public toDate(year: number, month: number, day: number, hour?: number,
-                  minute?: number, second?: number, millisecond?: number): Date {
+    public abstract toTicks(
+        year: number,
+        month: number,
+        day: number,
+        hour?: number,
+        minute?: number,
+        second?: number,
+        millisecond?: number,
+    ): number;
+    public toDate(
+        year: number,
+        month: number,
+        day: number,
+        hour?: number,
+        minute?: number,
+        second?: number,
+        millisecond?: number,
+    ): Date {
         const ticks = this.toTicks(year, month, day, hour, minute, second, millisecond);
         return new Date(ticks);
     }

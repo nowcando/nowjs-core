@@ -1,9 +1,8 @@
-
-import { Exception } from "../../exceptions/index";
-import { Matrix } from "./Matrix";
+import { Exception } from '../../exceptions/index';
+import { Matrix } from './Matrix';
 
 export class NumericMatrix extends Matrix<number> {
-    constructor(rowSize: number = 2, colSize: number = 2, ...rows: number[][]) {
+    constructor(rowSize = 2, colSize = 2, ...rows: number[][]) {
         super(rowSize, colSize, ...rows);
     }
 
@@ -12,14 +11,14 @@ export class NumericMatrix extends Matrix<number> {
         for (let i = 0; i < this.RowSize; i++) {
             arr2.push([]);
             for (let j = 0; j < this.ColSize; j++) {
-                arr2[i][j] = -this.arr[i][j] ;
+                arr2[i][j] = -this.arr[i][j];
             }
         }
-        return new NumericMatrix(this.RowSize , this.ColSize, ...arr2);
+        return new NumericMatrix(this.RowSize, this.ColSize, ...arr2);
     }
     public add(other: NumericMatrix | number): NumericMatrix {
         const arr2: number[][] = [];
-        if (typeof other === "number") {
+        if (typeof other === 'number') {
             for (let i = 0; i < this.RowSize; i++) {
                 arr2.push([]);
                 for (let j = 0; j < this.ColSize; j++) {
@@ -36,11 +35,11 @@ export class NumericMatrix extends Matrix<number> {
             }
         }
 
-        return new NumericMatrix(this.RowSize , this.ColSize, ...arr2);
+        return new NumericMatrix(this.RowSize, this.ColSize, ...arr2);
     }
     public subtract(other: NumericMatrix | number): NumericMatrix {
         const arr2: number[][] = [];
-        if (typeof other === "number") {
+        if (typeof other === 'number') {
             for (let i = 0; i < this.RowSize; i++) {
                 arr2.push([]);
                 for (let j = 0; j < this.ColSize; j++) {
@@ -57,11 +56,11 @@ export class NumericMatrix extends Matrix<number> {
             }
         }
 
-        return new NumericMatrix(this.RowSize , this.ColSize, ...arr2);
+        return new NumericMatrix(this.RowSize, this.ColSize, ...arr2);
     }
     public multiply(other: NumericMatrix | number): NumericMatrix {
         const arr2: number[][] = [];
-        if (typeof other === "number") {
+        if (typeof other === 'number') {
             for (let i = 0; i < this.RowSize; i++) {
                 arr2.push([]);
                 for (let j = 0; j < this.ColSize; j++) {
@@ -78,11 +77,11 @@ export class NumericMatrix extends Matrix<number> {
             }
         }
 
-        return new NumericMatrix(this.RowSize , this.ColSize, ...arr2);
+        return new NumericMatrix(this.RowSize, this.ColSize, ...arr2);
     }
     public divide(other: NumericMatrix | number): NumericMatrix {
         const arr2: number[][] = [];
-        if (typeof other === "number") {
+        if (typeof other === 'number') {
             for (let i = 0; i < this.RowSize; i++) {
                 arr2.push([]);
                 for (let j = 0; j < this.ColSize; j++) {
@@ -99,11 +98,11 @@ export class NumericMatrix extends Matrix<number> {
             }
         }
 
-        return new NumericMatrix(this.RowSize , this.ColSize, ...arr2);
+        return new NumericMatrix(this.RowSize, this.ColSize, ...arr2);
     }
     public power(other: NumericMatrix | number): NumericMatrix {
         const arr2: number[][] = [];
-        if (typeof other === "number") {
+        if (typeof other === 'number') {
             for (let i = 0; i < this.RowSize; i++) {
                 arr2.push([]);
                 for (let j = 0; j < this.ColSize; j++) {
@@ -120,7 +119,7 @@ export class NumericMatrix extends Matrix<number> {
             }
         }
 
-        return new NumericMatrix(this.RowSize , this.ColSize, ...arr2);
+        return new NumericMatrix(this.RowSize, this.ColSize, ...arr2);
     }
     public dotProduct(other: NumericMatrix): NumericMatrix {
         this.checkDotProduct(other);
@@ -128,10 +127,10 @@ export class NumericMatrix extends Matrix<number> {
         for (let srow = 0; srow < this.RowSize; srow++) {
             arr2.push([]);
             for (let ocol = 0; ocol < other.ColSize; ocol++) {
-                    arr2[srow][ocol] = 0;
-                    for (let orow = 0; orow < other.RowSize; orow++) {
-                        arr2[srow][ocol] += this.arr[srow][orow] * other.arr[orow][ocol];
-                    }
+                arr2[srow][ocol] = 0;
+                for (let orow = 0; orow < other.RowSize; orow++) {
+                    arr2[srow][ocol] += this.arr[srow][orow] * other.arr[orow][ocol];
+                }
             }
         }
 
@@ -140,12 +139,12 @@ export class NumericMatrix extends Matrix<number> {
 
     protected checkSchemaEqual(other: NumericMatrix): void {
         if (this.RowSize !== other.RowSize || this.ColSize !== other.ColSize) {
-            throw new Exception("The matrixes schema is not equals");
+            throw new Exception('The matrixes schema is not equals');
         }
     }
     protected checkDotProduct(other: NumericMatrix): void {
         if (this.RowSize !== other.ColSize || this.ColSize !== other.RowSize) {
-            throw new Exception("The matrixes schema is not equals");
+            throw new Exception('The matrixes schema is not equals');
         }
     }
 }

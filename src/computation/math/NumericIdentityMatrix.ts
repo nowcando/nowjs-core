@@ -1,9 +1,8 @@
-
-import { Exception } from "../../exceptions/index";
-import { NumericMatrix } from "./index";
+import { Exception } from '../../exceptions/index';
+import { NumericMatrix } from './index';
 
 export class NumericIdentityMatrix extends NumericMatrix {
-    constructor(size: number = 2) {
+    constructor(size = 2) {
         super(size, size);
         this.arr = [];
         for (let i = 0; i < size; i++) {
@@ -14,25 +13,24 @@ export class NumericIdentityMatrix extends NumericMatrix {
         }
     }
     public add(other: NumericMatrix | number): NumericMatrix {
-        throw new Exception("Operation is not permitted.");
+        throw new Exception('Operation is not permitted.');
     }
     public subtract(other: NumericMatrix | number): NumericMatrix {
-        throw new Exception("Operation is not permitted.");
+        throw new Exception('Operation is not permitted.');
     }
     public multiply(other: NumericMatrix | number): NumericMatrix {
-        throw new Exception("Operation is not permitted.");
+        throw new Exception('Operation is not permitted.');
     }
     public divide(other: NumericMatrix | number): NumericMatrix {
-        throw new Exception("Operation is not permitted.");
+        throw new Exception('Operation is not permitted.');
     }
     public power(other: NumericMatrix | number): NumericMatrix {
-        throw new Exception("Operation is not permitted.");
+        throw new Exception('Operation is not permitted.');
     }
     public dotProduct(other: NumericMatrix): NumericMatrix {
-        throw new Exception("Operation is not permitted.");
+        throw new Exception('Operation is not permitted.');
     }
     public set(value: number, row: number, col: number) {
-        throw new Exception("Operation is not permitted.");
+        throw new Exception('Operation is not permitted.');
     }
-
 }

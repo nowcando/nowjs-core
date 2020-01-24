@@ -1,1 +1,1 @@
-export * from "./PerformanceCounter";
+export * from './PerformanceCounter';

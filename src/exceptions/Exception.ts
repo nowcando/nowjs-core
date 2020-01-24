@@ -1,9 +1,8 @@
-
-import { ErrorBase } from "./ErrorBase";
+import { ErrorBase } from './ErrorBase';
 
 export class Exception extends ErrorBase {
-     constructor(message: string, innerError?: Error) {
+    constructor(message: string, innerError?: Error) {
         super(message, innerError);
-        this.name = "Exception";
+        this.name = 'Exception';
     }
 }

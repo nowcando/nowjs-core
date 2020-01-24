@@ -1,30 +1,27 @@
-import "jest";
-import "../../src/linq";
+import 'jest';
+import '../../src/linq';
 
 // jest.resetAllMocks();
 // jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
 
 // tslint:disable:no-empty
-beforeAll(() => { });
+beforeAll(() => {});
 
-beforeEach(() => {
+beforeEach(() => {});
 
-});
+afterAll(() => {});
 
-afterAll(() => { });
+afterEach(() => {});
 
-afterEach(() => { });
-
-describe("Array",  () => {
-
-    it("contains",  () => {
+describe('Array', () => {
+    it('contains', () => {
         expect.assertions(2);
         const arr = [1, 2, 3, 4, 2, 5];
         expect(arr.contains(2)).toEqual(true);
         expect(arr.contains(8)).toEqual(false);
     });
 
-    it("hasDuplicate",  () => {
+    it('hasDuplicate', () => {
         expect.assertions(3);
         const arr1 = [1, 2, 3, 4, 2, 5];
         const arr2 = [1, 2, 3, 4, 5, 6];
@@ -34,16 +31,18 @@ describe("Array",  () => {
         expect(arr3.hasDuplicate()).toEqual(true);
     });
 
-    it("itemCount",  () => {
+    it('itemCount', () => {
         expect.assertions(1);
         const arr3 = [2, 2, 5, 2, 5];
-        expect(arr3.itemCount()).toEqual([{ item: 2, count: 3 }, { item: 5, count: 2 }]);
+        expect(arr3.itemCount()).toEqual([
+            { item: 2, count: 3 },
+            { item: 5, count: 2 },
+        ]);
     });
 
-    it("toUnique",  () => {
+    it('toUnique', () => {
         expect.assertions(1);
         const arr3 = [1, 2, 3, 4, 2, 5];
         expect(arr3.toUnique()).toEqual([1, 2, 3, 4, 5]);
     });
-
 });

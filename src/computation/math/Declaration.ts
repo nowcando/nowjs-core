@@ -6,15 +6,19 @@ function mathFscale(x: number, inLow: number, inHigh: number, outLow: number, ou
 }
 function mathScale(x: number, inLow: number, inHigh: number, outLow: number, outHigh: number): number {
     if (
-        arguments.length === 0
-        || x !== x
-        || inLow !== inLow
-        || inHigh !== inHigh
-        || outLow !== outLow
-        || outHigh !== outHigh
-    ) { return NaN; }
-    if (x === Infinity || x === -Infinity) { return x; }
-    return (x - inLow) * (outHigh - outLow) / (inHigh - inLow) + outLow;
+        arguments.length === 0 ||
+        x !== x ||
+        inLow !== inLow ||
+        inHigh !== inHigh ||
+        outLow !== outLow ||
+        outHigh !== outHigh
+    ) {
+        return NaN;
+    }
+    if (x === Infinity || x === -Infinity) {
+        return x;
+    }
+    return ((x - inLow) * (outHigh - outLow)) / (inHigh - inLow) + outLow;
 }
 function mathRadians(degrees: number): number {
     return degrees * Math.DEG_PER_RAD;

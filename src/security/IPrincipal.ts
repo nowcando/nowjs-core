@@ -1,8 +1,8 @@
-import { IIdentity } from "./IIdentity";
-import { ISecurityClaim } from "./ISecurityClaim";
-import { AuthorizePermissionOptions } from "./ISecurityProvider";
+import { IIdentity } from './IIdentity';
+import { ISecurityClaim } from './ISecurityClaim';
+import { AuthorizePermissionOptions } from './ISecurityProvider';
 
-export interface IPrincipal<T>  extends IIdentity<T> {
+export interface IPrincipal<T> extends IIdentity<T> {
     hasAllRoles(...roles: string[]): Promise<boolean>;
     hasAnyRoles(...roles: string[]): Promise<boolean>;
     exceptRoles(...roles: string[]): Promise<boolean>;

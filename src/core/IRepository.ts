@@ -1,4 +1,4 @@
-import { Predicate, Selector } from "./Func";
+import { Predicate, Selector } from './Func';
 
 export type EntityKey = number | string | object;
 
@@ -61,10 +61,10 @@ export interface IRepository<T> {
      */
     find(id: EntityKey): Promise<T>;
 
-   /**
-    * Load entity form repository.
-    * @param id entity id.
-    */
+    /**
+     * Load entity form repository.
+     * @param id entity id.
+     */
     load(id: EntityKey): Promise<T>;
 
     /**
@@ -73,4 +73,3 @@ export interface IRepository<T> {
      */
     save(entity: T): Promise<T>;
 }
-

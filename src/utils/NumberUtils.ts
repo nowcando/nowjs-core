@@ -1,8 +1,8 @@
-import {  BigDecimal, BigDecimalOptions, ComplexNumber } from "../computation/index";
+import { BigDecimal, BigDecimalOptions, ComplexNumber } from '../computation/index';
 // import {BigNumber} from "../computation/math/index";
 
 export function isNumberType(x: any): x is number {
-    return typeof x === "number";
+    return typeof x === 'number';
 }
 
 // export function bigNumber(value?: BigNumberType, options?: BigNumberOptions): BigNumber {

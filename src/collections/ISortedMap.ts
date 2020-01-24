@@ -1,7 +1,6 @@
-
 // tslint:disable-next-line:no-empty-interface
-import { IEnumerable } from "../core/index";
-import { IParallelQueryable, IQueryable } from "../linq/index";
+import { IEnumerable } from '../core/index';
+import { IParallelQueryable, IQueryable } from '../linq/index';
 
 export interface ISortedMap<K, V> extends IEnumerable<[K, V]> {
     entries(): IterableIterator<[K, V]>;
@@ -19,5 +18,4 @@ export interface ISortedMap<K, V> extends IEnumerable<[K, V]> {
     size: number;
 
     isEmpty(): boolean;
-
 }

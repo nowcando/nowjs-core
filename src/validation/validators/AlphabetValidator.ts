@@ -1,38 +1,42 @@
-
 // tslint:disable:max-line-length
 // tslint:disable:ban-types
-import { StringFormatType } from "../../utils/index";
-import { ValidationContext, VALIDATOR_METADATA_KEY, ValidatorBase, ValidatorException } from "../index";
-import { PatternValidator, PatternValidatorBase } from "./index";
+import { StringFormatType } from '../../utils/index';
+import { ValidationContext, VALIDATOR_METADATA_KEY, ValidatorBase, ValidatorException } from '../index';
+import { PatternValidator, PatternValidatorBase } from './index';
 
-export const VALIDATOR_ALPHABET_METADATA_KEY = Symbol("validation:validator:isAlphabet");
+export const VALIDATOR_ALPHABET_METADATA_KEY = Symbol('validation:validator:isAlphabet');
 
-export function isAlphabet(styles: string[]= ["universal"], errorMessage?: StringFormatType) {
-    return (target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<any>) => {
+export function isAlphabet(styles: string[] = ['universal'], errorMessage?: StringFormatType) {
+    return (target: Record<string, any>, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<any>) => {
         const original = descriptor.value;
         Reflect.defineMetadata(VALIDATOR_ALPHABET_METADATA_KEY, null, target, propertyKey);
-        Reflect.defineMetadata(VALIDATOR_METADATA_KEY, new AlphabetValidator(styles, errorMessage), target, propertyKey);
+        Reflect.defineMetadata(
+            VALIDATOR_METADATA_KEY,
+            new AlphabetValidator(styles, errorMessage),
+            target,
+            propertyKey,
+        );
     };
 }
 
-export const PATTERN_ALPHABET_UNIVERSAL = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/ig;
-export const PATTERN_ALPHABET_US = /((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}/ig;
-export const PATTERN_ALPHABET_IR = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/ig;
-export const PATTERN_ALPHABET_EN = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/ig;
-export const PATTERN_ALPHABET_UE = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/ig;
-export const PATTERN_ALPHABET_SA = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/ig;
+export const PATTERN_ALPHABET_UNIVERSAL = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/gi;
+export const PATTERN_ALPHABET_US = /((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}/gi;
+export const PATTERN_ALPHABET_IR = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/gi;
+export const PATTERN_ALPHABET_EN = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/gi;
+export const PATTERN_ALPHABET_UE = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/gi;
+export const PATTERN_ALPHABET_SA = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/gi;
 
-export const PATTERN_ALPHABET_IQ = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/ig;
-export const PATTERN_ALPHABET_AF = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/ig;
+export const PATTERN_ALPHABET_IQ = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/gi;
+export const PATTERN_ALPHABET_AF = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/gi;
 
 export class AlphabetValidator extends PatternValidatorBase {
-
-    constructor(private styles = ["universal"],
-                errorMessage: StringFormatType = "The value of ${DisplayName} must have alphabet pattern : ${Pattern} .") {
-        super("Alphabet", /^/, errorMessage);
+    constructor(
+        private styles = ['universal'],
+        errorMessage: StringFormatType = 'The value of ${DisplayName} must have alphabet pattern : ${Pattern} .',
+    ) {
+        super('Alphabet', /^/, errorMessage);
 
         this.setPattern(this.buildPattern());
-
     }
 
     private buildPattern(): RegExp {
@@ -52,5 +56,4 @@ export class AlphabetValidator extends PatternValidatorBase {
     public get Styles(): string[] {
         return this.styles;
     }
-
 }

@@ -1,11 +1,12 @@
+/* eslint-disable prefer-const */
 // Based on https://github.com/LarryBattle/YASMIJ.js project under MIT licence .
 // Thanks to https://github.com/LarryBattle
-import { NumericMatrix } from "./index";
+import { NumericMatrix } from './index';
 
 function getUniqueArray(arr: string[]) {
     const result: any = [];
     const hash: any = {};
-    if (typeof arr !== "object" || !arr.length) {
+    if (typeof arr !== 'object' || !arr.length) {
         return result;
     }
     for (let i = 0, len = arr.length; i < len; i++) {
@@ -18,7 +19,7 @@ function getUniqueArray(arr: string[]) {
 }
 
 function convertArrayValuesToHashMap(arr: string[]) {
-    if (!arr || typeof arr !== "object") {
+    if (!arr || typeof arr !== 'object') {
         return {};
     }
     const obj: any = {};
@@ -29,7 +30,7 @@ function convertArrayValuesToHashMap(arr: string[]) {
 }
 
 function sortArrayWithSubsetAtEnd(arr: string[], subset: string[]) {
-    if (!arr || typeof arr !== "object" || !subset || typeof subset !== "object") {
+    if (!arr || typeof arr !== 'object' || !subset || typeof subset !== 'object') {
         return [];
     }
     const list = [];
@@ -57,7 +58,7 @@ function areObjectsSame(obj1: any, obj2: any) {
         }
         a = obj1[prop];
         b = obj2[prop];
-        if (typeof a === "object") {
+        if (typeof a === 'object') {
             if (typeof a !== typeof b) {
                 return false;
             }
@@ -73,13 +74,13 @@ function areObjectsSame(obj1: any, obj2: any) {
     return true;
 }
 
-const STANDARD_MAX = "standardMax";
-const STANDARD_MIN = "standardMin";
-const NONSTANDARD_MIN = "nonstandardMin";
-const NONSTANDARD_MAX = "nonstandardMax";
+const STANDARD_MAX = 'standardMax';
+const STANDARD_MIN = 'standardMin';
+const NONSTANDARD_MIN = 'nonstandardMin';
+const NONSTANDARD_MAX = 'nonstandardMax';
 
-export type SimpleExpressionSideType = "left" | "right";
-export type SimplexSolveType = "maximize" | "minimize" | string;
+export type SimpleExpressionSideType = 'left' | 'right';
+export type SimplexSolveType = 'maximize' | 'minimize' | string;
 
 // tslint:disable-next-line:interface-name
 export interface SimplexDefinition {
@@ -94,9 +95,9 @@ export class Simplex {
     private tableau: SimplexTableau;
     private state: any;
     constructor(private problem: SimplexDefinition) {
-         this.checkForErrors(problem);
+        this.checkForErrors(problem);
         // SimplexInput.checkForInputError(type, z, constraints);
-         this.input = new SimplexInput(problem.Type, problem.Objective, problem.Constraints);
+        this.input = new SimplexInput(problem.Type, problem.Objective, problem.Constraints);
     }
     public get Definition(): SimplexDefinition {
         return this.Definition;
@@ -118,11 +119,11 @@ export class Simplex {
     }
     // tslint:disable-next-line:member-ordering
     public static getErrors(obj: SimplexDefinition) {
-        if (typeof obj !== "object") {
-            return "An object must be passed to Simplex.solve()";
+        if (typeof obj !== 'object') {
+            return 'An object must be passed to Simplex.solve()';
         }
         if (!obj.Type || !obj.Objective || !obj.Constraints) {
-            return "The object must have the properties `type`, `objective` and `constraints`.";
+            return 'The object must have the properties `type`, `objective` and `constraints`.';
         }
     }
 
@@ -131,7 +132,6 @@ export class Simplex {
         this.output = this.tableau.solve().getOutput();
         return this.output;
     }
-
 }
 
 // tslint:disable:max-classes-per-file
@@ -159,7 +159,7 @@ export class SimplexMatrix extends NumericMatrix {
             x = this.arr[i].length;
             columns = columns < x ? x : columns;
         }
-        return [ rows, columns];
+        return [rows, columns];
     }
     // tslint:disable:member-ordering
     public static scaleRow(scale: number, row: number[]) {
@@ -177,11 +177,11 @@ export class SimplexMatrix extends NumericMatrix {
     }
     // tslint:disable:member-ordering
     public static scaleThenAddRows(scaleA: number, rowA: number[], scaleB: number, rowB: number[]) {
-        rowA = (Array.isArray(rowA)) ? rowA.concat() : [];
-        rowB = (Array.isArray(rowB)) ? rowB.concat() : [];
+        rowA = Array.isArray(rowA) ? rowA.concat() : [];
+        rowB = Array.isArray(rowB) ? rowB.concat() : [];
         const len = Math.max(rowA.length, rowB.length);
         for (let i = 0; i < len; i++) {
-            rowA[i] = (scaleA * (rowA[i] || 0)) + (scaleB * (rowB[i] || 0));
+            rowA[i] = scaleA * (rowA[i] || 0) + scaleB * (rowB[i] || 0);
         }
         return rowA;
     }
@@ -197,14 +197,14 @@ export class SimplexMatrix extends NumericMatrix {
     }
 
     public toString() {
-        let str = "";
+        let str = '';
         this.forEachRow((i, row) => {
             if (i) {
-                str += ",";
+                str += ',';
             }
-            str += "[" + row.toString() + "]";
+            str += '[' + row.toString() + ']';
         });
-        str = "[" + str + "]";
+        str = '[' + str + ']';
         return str;
     }
 
@@ -265,7 +265,7 @@ export class SimplexMatrix extends NumericMatrix {
                 nonZeroValues++;
             }
         });
-        val = (nonZeroValues === 1) ? val : 0;
+        val = nonZeroValues === 1 ? val : 0;
         return val;
     }
 
@@ -367,7 +367,7 @@ export class SimplexExpression {
     private terms: any = null;
     constructor(str: string) {
         this.terms = {};
-        if (typeof str !== "string" || !str.length) {
+        if (typeof str !== 'string' || !str.length) {
             return;
         }
         SimplexExpression.checkString(str);
@@ -381,37 +381,37 @@ export class SimplexExpression {
 
     // tslint:disable:member-ordering
     public static encodeE(str: string) {
-        str = (str || "").toString();
-        str = str.replace(/(\de)([+])(\d)/gi, "$1_plus_$3");
-        str = str.replace(/(\de)([\-])(\d)/gi, "$1_sub_$3");
+        str = (str || '').toString();
+        str = str.replace(/(\de)([+])(\d)/gi, '$1_plus_$3');
+        str = str.replace(/(\de)([\-])(\d)/gi, '$1_sub_$3');
         return str;
     }
     public static decodeE(str: string) {
-        str = (str || "").toString();
-        str = str.replace(/_plus_/g, "+");
-        str = str.replace(/_sub_/g, "-");
+        str = (str || '').toString();
+        str = str.replace(/_plus_/g, '+');
+        str = str.replace(/_sub_/g, '-');
         return str;
     }
     public static hasManyCompares(str: string) {
         // tslint:disable-next-line:variable-name
         const RE_compares = /[<>]=?|=/g;
-        const matches = ("" + str).replace(/\s/g, "").match(RE_compares) || [];
+        const matches = ('' + str).replace(/\s/g, '').match(RE_compares) || [];
         return 1 < matches.length;
     }
     public static addSpaceBetweenTerms(str: string) {
         str = SimplexExpression.encodeE(str);
-        str = str.replace(/([\+\-])/g, " $1 ");
-        str = str.replace(/\s{2,}/g, " ");
+        str = str.replace(/([\+\-])/g, ' $1 ');
+        str = str.replace(/\s{2,}/g, ' ');
         str = str.trim();
         str = SimplexExpression.decodeE(str);
         return str;
     }
     public static hasExcludedOperations(str: string) {
-        return (/[\*\/%]/).test(str);
+        return /[\*\/%]/.test(str);
     }
     public static hasIncompleteBinaryOperator(str: string) {
         let hasError;
-        const noSpaceStr = ("" + str).replace(/\s/g, "");
+        const noSpaceStr = ('' + str).replace(/\s/g, '');
         // tslint:disable-next-line:variable-name
         const RE_hasNoPlusOrMinus = /^[^\+\-]+$/;
         // tslint:disable-next-line:variable-name
@@ -422,21 +422,21 @@ export class SimplexExpression {
         return hasError;
     }
     public static hasComparison(str: string) {
-        return (/[><=]/).test(str);
+        return /[><=]/.test(str);
     }
     public static getErrorMessage(str: string) {
         let errMsg;
         if (SimplexExpression.hasComparison(str)) {
-            errMsg = "Comparison are not allowed within an expression.";
+            errMsg = 'Comparison are not allowed within an expression.';
         }
         if (!errMsg && SimplexExpression.hasExcludedOperations(str)) {
-            errMsg = "Addition and subtraction are only supported.";
+            errMsg = 'Addition and subtraction are only supported.';
         }
         if (!errMsg && SimplexExpression.hasIncompleteBinaryOperator(str)) {
-            errMsg = "Exactly one math operators must be between terms.\n Good:(a+b). Bad:(a++ b+).";
+            errMsg = 'Exactly one math operators must be between terms.\n Good:(a+b). Bad:(a++ b+).';
         }
         if (errMsg) {
-            errMsg += "\n Input: `" + str + "`";
+            errMsg += '\n Input: `' + str + '`';
         }
         return errMsg;
     }
@@ -448,16 +448,16 @@ export class SimplexExpression {
     }
 
     public static extractComponentsFromVariable(str: string) {
-        str = "" + str;
+        str = '' + str;
         const re = /^[\+\-]?\d+(\.\d+)?(e[\+\-]?\d+)?/i;
-        let coeff: any = "" + (str.match(re) || [""])[0];
-        let term = str.replace(re, "") || "1";
+        let coeff: any = '' + (str.match(re) || [''])[0];
+        let term = str.replace(re, '') || '1';
         if (+str === 0) {
             coeff = 0;
         }
-        if (coeff === "") {
+        if (coeff === '') {
             coeff = /^\-/.test(term) ? -1 : 1;
-            term = term.replace(/^[\+\-]/, "");
+            term = term.replace(/^[\+\-]/, '');
         }
         return [+coeff, term];
     }
@@ -465,36 +465,39 @@ export class SimplexExpression {
         // tslint:disable:variable-name
         const RE_findSignForTerm = /([\+\-])\s+/g;
         const RE_spaceOrPlus = /\s+[\+]?/;
-        return ("" + str).replace(/^\s*\+/, "").replace(RE_findSignForTerm, "$1").split(RE_spaceOrPlus);
+        return ('' + str)
+            .replace(/^\s*\+/, '')
+            .replace(RE_findSignForTerm, '$1')
+            .split(RE_spaceOrPlus);
     }
     public static convertExpressionToObject(str: string) {
         let term;
         const obj: any = {};
-        const matches = SimplexExpression.splitStrByTerms((str || "").trim());
+        const matches = SimplexExpression.splitStrByTerms((str || '').trim());
         let i = matches.length;
         while (i--) {
             term = SimplexExpression.extractComponentsFromVariable(matches[i]);
             if (!term[0]) {
                 term = [0, 1];
             }
-            obj[term[1]] = (obj[term[1]]) ? (obj[term[1]]) + term[0] : term[0];
+            obj[term[1]] = obj[term[1]] ? obj[term[1]] + term[0] : term[0];
         }
         return obj;
     }
     public static termAtIndex(i: number, name: string, value: number) {
-        let result: any = "";
+        let result: any = '';
         if (value) {
             if (value < 0) {
-                result += value === -1 ? "-" : value;
+                result += value === -1 ? '-' : value;
             } else {
                 if (i) {
-                    result += "+";
+                    result += '+';
                 }
-                result += value === 1 ? "" : value;
+                result += value === 1 ? '' : value;
             }
             result += name;
         } else {
-            result += 0 < (name as any) && i ? "+" : "";
+            result += 0 < (name as any) && i ? '+' : '';
             result += name;
         }
         return result;
@@ -521,7 +524,7 @@ export class SimplexExpression {
     }
 
     public forEachTerm(fn: (prop: string, item: any, items: any) => void) {
-        if (typeof fn !== "function") {
+        if (typeof fn !== 'function') {
             return;
         }
         for (const prop in this.terms) {
@@ -532,21 +535,21 @@ export class SimplexExpression {
     }
 
     public forEachConstant(fn: (prop: string, item: string, items: any) => void) {
-        if (typeof fn !== "function") {
+        if (typeof fn !== 'function') {
             return;
         }
-        const prop = "1";
+        const prop = '1';
         if (this.terms[prop]) {
             fn(prop, this.terms[prop], this.terms);
         }
     }
 
     public forEachVariable(fn: (prop: string, item: string, items: any) => void) {
-        if (typeof fn !== "function") {
+        if (typeof fn !== 'function') {
             return;
         }
         for (const prop in this.terms) {
-            if (this.terms.hasOwnProperty(prop) && prop !== "1") {
+            if (this.terms.hasOwnProperty(prop) && prop !== '1') {
                 fn(prop, this.terms[prop], this.terms);
             }
         }
@@ -561,13 +564,13 @@ export class SimplexExpression {
         const func = SimplexExpression.termAtIndex;
 
         if (!names.length) {
-            return "0";
+            return '0';
         }
         for (i = 0, len = names.length; i < len; i++) {
             name = names[i];
             arr.push(func(i, name, this.terms[name]));
         }
-        return arr.join(" ").replace(/\s[\+\-]/g, "$& ");
+        return arr.join(' ').replace(/\s[\+\-]/g, '$& ');
     }
 
     public inverse() {
@@ -578,7 +581,7 @@ export class SimplexExpression {
     }
 
     public addTerm(name: string, value: any) {
-        if (typeof value !== "undefined") {
+        if (typeof value !== 'undefined') {
             value += this.terms[name] || 0;
             if (value) {
                 this.terms[name] = value;
@@ -618,11 +621,11 @@ export class SimplexExpression {
         return arr;
     }
     public addTerms(arr: any[]) {
-        if (!arr || typeof arr !== "object") {
+        if (!arr || typeof arr !== 'object') {
             return this;
         }
         for (let i = 0, len = arr.length; i < len; i++) {
-            if (arr[i] && typeof arr[i] === "object") {
+            if (arr[i] && typeof arr[i] === 'object') {
                 this.addTerm(arr[i][0], arr[i][1]);
             }
         }
@@ -637,7 +640,7 @@ export class SimplexExpression {
     public scale(factor: number) {
         factor = +factor;
         this.forEachTerm((name, value, terms) => {
-            terms[name] = (factor * value);
+            terms[name] = factor * value;
         });
         return this;
     }
@@ -654,7 +657,7 @@ export class SimplexExpression {
         const arr = [];
         const names = this.getTermNames(excludeNumbers, excludeSlack);
         for (let i = 0, len = names.length; i < len; i++) {
-            arr.push(+ (this.terms[names[i]] || names[i]));
+            arr.push(+(this.terms[names[i]] || names[i]));
         }
         return arr;
     }
@@ -671,11 +674,10 @@ export class SimplexExpression {
     public clon() {
         return new SimplexExpression(this.toString());
     }
-
 }
 
 export class SimplexConstraint {
-    private comparison = "";
+    private comparison = '';
     private leftSide: SimplexExpression;
     private rightSide: SimplexExpression;
     private specialTerms: any = {};
@@ -703,13 +705,13 @@ export class SimplexConstraint {
     }
     public static hasManyCompares(str: string) {
         const RE_compares = /[<>]=?|=/g;
-        const matches = ("" + str).replace(/\s/g, "").match(RE_compares) || [];
+        const matches = ('' + str).replace(/\s/g, '').match(RE_compares) || [];
         return 1 < matches.length;
     }
     public static hasIncompleteBinaryOperator(str: string) {
-        str = str.replace(/\s{2,}/g, "");
-        const noSpaceStr = ("" + str).replace(/\s/g, "");
-        const hasNoOperatorBetweenValues = /[^+\-><=]\s+[^+\-><=]/.test(("" + str));
+        str = str.replace(/\s{2,}/g, '');
+        const noSpaceStr = ('' + str).replace(/\s/g, '');
+        const hasNoOperatorBetweenValues = /[^+\-><=]\s+[^+\-><=]/.test('' + str);
         const RE_noLeftAndRightTerms = /[+\-][><=+\-]|[><=+\-]$/;
         return RE_noLeftAndRightTerms.test(noSpaceStr) || hasNoOperatorBetweenValues;
     }
@@ -717,10 +719,10 @@ export class SimplexConstraint {
     public static getErrorMessage(str: string) {
         let errMsg;
         if (SimplexConstraint.hasManyCompares(str)) {
-            errMsg = "Only 1 comparision (<,>,=, >=, <=) is allow in a Constraint.";
+            errMsg = 'Only 1 comparision (<,>,=, >=, <=) is allow in a Constraint.';
         }
         if (!errMsg && SimplexConstraint.hasIncompleteBinaryOperator(str)) {
-            errMsg = "Math operators must be in between terms. Good:(a+b=c). Bad:(a b+=c)";
+            errMsg = 'Math operators must be in between terms. Good:(a+b=c). Bad:(a b+=c)';
         }
         return errMsg;
     }
@@ -743,21 +745,20 @@ export class SimplexConstraint {
         return getUniqueArray(arr);
     }
 
-    public static parseToObject(str: string):
-        { lhs: SimplexExpression, rhs: SimplexExpression, comparison: string } {
-        str = str.replace(/([><])(\s+)(=)/g, "$1$3");
+    public static parseToObject(str: string): { lhs: SimplexExpression; rhs: SimplexExpression; comparison: string } {
+        str = str.replace(/([><])(\s+)(=)/g, '$1$3');
         SimplexConstraint.checkInput(str);
         const RE_comparison = /[><]=?|=/;
-        const arr = ("" + str).split(RE_comparison);
+        const arr = ('' + str).split(RE_comparison);
         const obj: any = {
-            rhs: new SimplexExpression("0"),
+            rhs: new SimplexExpression('0'),
             // tslint:disable-next-line:object-literal-sort-keys
-            comparison: "=",
+            comparison: '=',
         };
         obj.lhs = new SimplexExpression(arr[0]);
         if (1 < arr.length) {
             obj.rhs = new SimplexExpression(arr[1]);
-            obj.comparison = "" + RE_comparison.exec(str);
+            obj.comparison = '' + RE_comparison.exec(str);
         }
         return obj;
     }
@@ -774,12 +775,12 @@ export class SimplexConstraint {
         return e;
     }
     public toString() {
-        return [this.leftSide, this.comparison, this.rightSide].join(" ");
+        return [this.leftSide, this.comparison, this.rightSide].join(' ');
     }
     public getSwappedSides(doSwap?: boolean) {
         return {
-            a: (!doSwap ? this.leftSide : this.rightSide),
-            b: (doSwap ? this.leftSide : this.rightSide),
+            a: !doSwap ? this.leftSide : this.rightSide,
+            b: doSwap ? this.leftSide : this.rightSide,
         };
     }
     public moveTypeToOneSide(varSide: SimpleExpressionSideType, numSide: SimpleExpressionSideType) {
@@ -799,12 +800,12 @@ export class SimplexConstraint {
     public inverse() {
         // @todo moves to outside to constants on the YASMIJ.Constraint.CONST
         const oppositeCompare: any = {
-            "=": "=",
-            ">=": "<",
+            '=': '=',
+            '>=': '<',
             // tslint:disable-next-line:object-literal-sort-keys
-            ">": "<=",
-            "<=": ">",
-            "<": ">=",
+            '>': '<=',
+            '<=': '>',
+            '<': '>=',
         };
         if (oppositeCompare[this.comparison]) {
             this.comparison = oppositeCompare[this.comparison];
@@ -816,35 +817,35 @@ export class SimplexConstraint {
     public removeStrictInequality() {
         let eps;
         if (/^[<>]$/.test(this.comparison)) {
-            eps = SimplexConstraint.EPSILON * (">" === this.comparison ? 1 : -1);
-            this.rightSide.addTerm("1", eps);
-            this.comparison += "=";
+            eps = SimplexConstraint.EPSILON * ('>' === this.comparison ? 1 : -1);
+            this.rightSide.addTerm('1', eps);
+            this.comparison += '=';
         }
         return this;
     }
     public normalize() {
-        this.moveTypeToOneSide("left", "right");
-        if (this.rightSide.getTermValue("1") < 0) {
+        this.moveTypeToOneSide('left', 'right');
+        if (this.rightSide.getTermValue('1') < 0) {
             this.inverse();
         }
         return this.removeStrictInequality();
     }
     public addSlack(val: any) {
         this.setSpecialTerm({
-            key: "slack",
-            name: "slack",
+            key: 'slack',
+            name: 'slack',
             value: val,
         });
         return this;
     }
     public setSpecialTerm(obj: any) {
-        if (!obj || typeof obj !== "object" || !obj.name || !obj.key) {
+        if (!obj || typeof obj !== 'object' || !obj.name || !obj.key) {
             return this;
         }
         this.specialTerms[obj.key] = this.specialTerms[obj.key] || {};
         const oldName = this.specialTerms[obj.key].name;
         if (oldName) {
-            if (typeof obj.value === "undefined") {
+            if (typeof obj.value === 'undefined') {
                 // get old value
                 obj.value = this.leftSide.getTermValue(oldName);
             }
@@ -857,8 +858,8 @@ export class SimplexConstraint {
     }
     public addArtificalVariable(val: any) {
         this.setSpecialTerm({
-            key: "artifical",
-            name: "artifical",
+            key: 'artifical',
+            name: 'artifical',
             value: val,
         });
         return this;
@@ -868,14 +869,14 @@ export class SimplexConstraint {
     }
     public renameSlack(name: string) {
         this.setSpecialTerm({
-            key: "slack",
+            key: 'slack',
             name,
         });
         return this;
     }
     public renameArtificial(name: string) {
         this.setSpecialTerm({
-            key: "artifical",
+            key: 'artifical',
             name,
         });
         return this;
@@ -883,15 +884,15 @@ export class SimplexConstraint {
     public convertToEquation() {
         this.normalize();
         switch (this.comparison) {
-            case "<=":
+            case '<=':
                 this.addSlack(1);
                 break;
-            case ">=":
+            case '>=':
                 this.addSlack(-1);
                 this.addArtificalVariable(1);
                 break;
         }
-        this.comparison = "=";
+        this.comparison = '=';
         return this;
     }
     public getSpecialTermNames() {
@@ -926,9 +927,9 @@ export class SimplexConstraint {
         if (!/left|right/.test(moveTo)) {
             return this;
         }
-        name = (isNaN(name as any)) ? name : "1";
-        const sideA = ("left" === moveTo) ? this.rightSide : this.leftSide;
-        const sideB = ("left" !== moveTo) ? this.rightSide : this.leftSide;
+        name = isNaN(name as any) ? name : '1';
+        const sideA = 'left' === moveTo ? this.rightSide : this.leftSide;
+        const sideB = 'left' !== moveTo ? this.rightSide : this.leftSide;
         if (sideA.hasTerm(name)) {
             sideB.addTerm(name, -sideA.getTermValue(name));
             sideA.removeTerm(name);
@@ -984,7 +985,7 @@ export class SimplexTableau {
 
     private static getErrorMessage(input: SimplexInput) {
         if (!(input instanceof SimplexInput)) {
-            return "Must pass an instance of the Input class.";
+            return 'Must pass an instance of the Input class.';
         }
     }
 
@@ -996,10 +997,10 @@ export class SimplexTableau {
     }
     // tslint:disable:member-ordering
     private addZToMatrix(termNames: string[]): void {
-        const b = new SimplexConstraint("0 = " + this.input.Z.toString());
-        b.moveTypeToOneSide("left", "right");
+        const b = new SimplexConstraint('0 = ' + this.input.Z.toString());
+        b.moveTypeToOneSide('left', 'right');
         let row = b.LeftSide.getCoefficients(termNames);
-        row = row.concat(b.RightSide.getTermValue("1") || 0);
+        row = row.concat(b.RightSide.getTermValue('1') || 0);
         this.matrix.addRow(row);
     }
     public addConstraintsToMatrix(termNames: string[]) {
@@ -1016,7 +1017,7 @@ export class SimplexTableau {
     private setMatrixFromInput() {
         this.matrix = new SimplexMatrix();
         this.colNames = this.getSortedTermNames();
-        this.addConstraintsToMatrix(this.colNames.concat("1"));
+        this.addConstraintsToMatrix(this.colNames.concat('1'));
         this.addZToMatrix(this.colNames);
     }
     public solve(isMin?: boolean): this {
@@ -1029,13 +1030,13 @@ export class SimplexTableau {
         }
         return this;
     }
-    public getPivotPoint(matrix: SimplexMatrix, isMin: boolean): { column: number, row: number } {
+    public getPivotPoint(matrix: SimplexMatrix, isMin: boolean): { column: number; row: number } {
         if (!(matrix instanceof SimplexMatrix)) {
             return null;
         }
         const point = { column: 0, row: 0 };
         point.column = matrix.getGreatestValueFromLastRow(!!isMin);
-        const obj = matrix.getRowIndexWithPosMinColumnRatio(point.column, true) || {rowIndex: -1, minValue: Infinity};
+        const obj = matrix.getRowIndexWithPosMinColumnRatio(point.column, true) || { rowIndex: -1, minValue: Infinity };
         point.row = obj.rowIndex;
         if (point.column < 0 || point.row < 0) {
             return null;
@@ -1052,9 +1053,9 @@ export class SimplexTableau {
         return new SimplexOutput(obj);
     }
     public toString(): string {
-        let result = "";
+        let result = '';
         if (this.matrix) {
-            result += "[" + this.colNames.concat("Constant").toString() + "],";
+            result += '[' + this.colNames.concat('Constant').toString() + '],';
             result += this.matrix.toString();
         }
         return result;
@@ -1075,7 +1076,7 @@ export class SimplexInput {
         this.checkConstraints();
     }
     private getZTermNotInAnyOfTheConstraints() {
-        let varMissing = "";
+        let varMissing = '';
         const terms = this.z.getTermNames();
         let term;
         let i = 0;
@@ -1100,13 +1101,14 @@ export class SimplexInput {
         const errMsg: string[] = [];
         const missingZVar = this.getZTermNotInAnyOfTheConstraints();
         if (missingZVar) {
-            errMsg.push("`" + missingZVar +
-                "`, from the objective function, should appear least once in a constraint.");
+            errMsg.push(
+                '`' + missingZVar + '`, from the objective function, should appear least once in a constraint.',
+            );
         }
         return errMsg;
     }
     private getArrOfConstraints(arr: any[]) {
-        arr = (Array.isArray(arr)) ? arr : [arr];
+        arr = Array.isArray(arr) ? arr : [arr];
         const constraints: SimplexConstraint[] = [];
         let i = arr.length;
         while (i--) {
@@ -1142,7 +1144,7 @@ export class SimplexInput {
     }
     private anyConstraints(fn: (index: number, item: any, items: any[]) => void) {
         for (let i = 0, len = this.constraints.length; i < len; i++) {
-            if ((fn(i, this.constraints[i], this.constraints)) as any) {
+            if (fn(i, this.constraints[i], this.constraints) as any) {
                 return true;
             }
         }
@@ -1175,12 +1177,12 @@ export class SimplexInput {
         let slackI = 1;
         let artificalI = 1;
         for (let i = 0, len = c.length; i < len; i++) {
-            if (c[i].hasSpecialTerm("slack")) {
-                c[i].renameSlack("slack" + slackI);
+            if (c[i].hasSpecialTerm('slack')) {
+                c[i].renameSlack('slack' + slackI);
                 slackI++;
             }
-            if (c[i].hasSpecialTerm("artifical")) {
-                c[i].renameArtificial("artifical" + artificalI);
+            if (c[i].hasSpecialTerm('artifical')) {
+                c[i].renameArtificial('artifical' + artificalI);
                 artificalI++;
             }
         }
@@ -1196,18 +1198,21 @@ export class SimplexInput {
     public getAllSpecialTermNames(): string[] {
         let names: string[] = [];
         this.forEachConstraint((i, constraint) => {
-            names = names.concat(
-                constraint.getSpecialTermNames());
+            names = names.concat(constraint.getSpecialTermNames());
         });
         return names;
     }
     private setTermNames() {
         this.terms = this.getTermNames();
     }
-    public get Constraints(): SimplexConstraint[] { return this.constraints; }
-    public get Z(): SimplexExpression { return this.z; }
+    public get Constraints(): SimplexConstraint[] {
+        return this.constraints;
+    }
+    public get Z(): SimplexExpression {
+        return this.z;
+    }
     public toString() {
-        return [this.type + " z = " + this.z, "where " + this.constraints.join(", ")].join(", ");
+        return [this.type + ' z = ' + this.z, 'where ' + this.constraints.join(', ')].join(', ');
     }
     public convertConstraintsToMaxForm() {
         const c = this.constraints;
@@ -1235,8 +1240,8 @@ export class SimplexOutput {
     }
     public static getErrorMessage(obj: any) {
         let errMsg;
-        if (typeof obj !== "object") {
-            errMsg = "An object must be passed.";
+        if (typeof obj !== 'object') {
+            errMsg = 'An object must be passed.';
         }
         return errMsg;
     }
@@ -1247,7 +1252,7 @@ export class SimplexOutput {
         }
     }
     public toString() {
-        return JSON.stringify({Result: this.result});
+        return JSON.stringify({ Result: this.result });
     }
     public get Result(): any {
         return this.result;

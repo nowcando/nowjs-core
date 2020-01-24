@@ -1,5 +1,4 @@
-
-import { Vector2D } from "./index";
+import { Vector2D } from './index';
 
 function cosh(x: number) {
     return (Math.exp(x) + Math.exp(-x)) * 0.5;
@@ -10,7 +9,6 @@ function sinh(x: number) {
 }
 
 function hypot(x: number, y: number) {
-
     let a = Math.abs(x);
     let b = Math.abs(y);
 
@@ -44,7 +42,7 @@ function logHypot(a: number, b: number) {
 }
 
 function parser_exit() {
-    throw SyntaxError("Invalid Param");
+    throw SyntaxError('Invalid Param');
 }
 
 export class ComplexNumber {
@@ -55,18 +53,17 @@ export class ComplexNumber {
     protected r = 0;
     protected phi = 0;
     constructor(a: number | string | ComplexNumber, b?: number) {
-        if (typeof a === "number") {
+        if (typeof a === 'number') {
             this.re = a;
             this.im = b;
         } else if (!(a instanceof ComplexNumber)) {
             const compl = ComplexNumber.parse(a, b);
             this.re = compl.re;
             this.im = compl.im;
-        } else if ((a instanceof ComplexNumber)) {
+        } else if (a instanceof ComplexNumber) {
             this.re = a.re;
             this.im = a.im;
         }
-
     }
 
     // tslint:disable:member-ordering
@@ -83,7 +80,7 @@ export class ComplexNumber {
         if (a === undefined || a === null) {
             result.re = 0;
             result.im = 0;
-        } else if (b !== undefined && typeof a === "number") {
+        } else if (b !== undefined && typeof a === 'number') {
             result.re = a;
             result.im = b;
         } else {
@@ -91,25 +88,25 @@ export class ComplexNumber {
                 if (a.re && a.im) {
                     result.re = a.re;
                     result.im = a.im;
-                } else if (a.abs !== undefined &&  a.arg !== undefined) {
+                } else if (a.abs !== undefined && a.arg !== undefined) {
                     result.re = a.abss * Math.cos(a.arg);
                     result.im = a.abss * Math.sin(a.arg);
-                } else if (a.r !== undefined &&  a.phi !== undefined) {
+                } else if (a.r !== undefined && a.phi !== undefined) {
                     result.re = a.r * Math.cos(a.phi);
                     result.im = a.r * Math.sin(a.phi);
-                } else if (Array.isArray(a) && a.length === 2) { // Quick array check
+                } else if (Array.isArray(a) && a.length === 2) {
+                    // Quick array check
                     result.re = a[0];
                     result.im = a[1];
                 } else {
                     parser_exit();
                 }
-            } else if (typeof a === "number") {
+            } else if (typeof a === 'number') {
                 result.im = 0;
                 result.re = a;
             }
-            if (typeof a === "string") {
-                result.im = /* void */
-                    result.re = 0;
+            if (typeof a === 'string') {
+                result.im /* void */ = result.re = 0;
 
                 const tokens = a.match(/\d+\.?\d*e[+-]?\d+|\d+\.?\d*|\.\d+|./g);
                 let plus = 1;
@@ -120,40 +117,36 @@ export class ComplexNumber {
                 }
 
                 for (let i = 0; i < tokens.length; i++) {
-
                     const c = tokens[i];
 
-                    if (c === " " || c === "\t" || c === "\n") {
+                    if (c === ' ' || c === '\t' || c === '\n') {
                         /* void */
-                    } else if (c === "+") {
+                    } else if (c === '+') {
                         plus++;
-                    } else if (c === "-") {
+                    } else if (c === '-') {
                         minus++;
-                    } else if (c === "i" || c === "I") {
-
+                    } else if (c === 'i' || c === 'I') {
                         if (plus + minus === 0) {
                             parser_exit();
                         }
 
-                        if (tokens[i + 1] !== " " && !isNaN(tokens[i + 1] as any)) {
-                            result.im += parseFloat((minus % 2 ? "-" : "") + tokens[i + 1]);
+                        if (tokens[i + 1] !== ' ' && !isNaN(tokens[i + 1] as any)) {
+                            result.im += parseFloat((minus % 2 ? '-' : '') + tokens[i + 1]);
                             i++;
                         } else {
-                            result.im += parseFloat((minus % 2 ? "-" : "") + "1");
+                            result.im += parseFloat((minus % 2 ? '-' : '') + '1');
                         }
                         plus = minus = 0;
-
                     } else {
-
                         if (plus + minus === 0 || isNaN(c as any)) {
                             parser_exit();
                         }
 
-                        if (tokens[i + 1] === "i" || tokens[i + 1] === "I") {
-                            result.im += parseFloat((minus % 2 ? "-" : "") + c);
+                        if (tokens[i + 1] === 'i' || tokens[i + 1] === 'I') {
+                            result.im += parseFloat((minus % 2 ? '-' : '') + c);
                             i++;
                         } else {
-                            result.re += parseFloat((minus % 2 ? "-" : "") + c);
+                            result.re += parseFloat((minus % 2 ? '-' : '') + c);
                         }
                         plus = minus = 0;
                     }
@@ -178,23 +171,17 @@ export class ComplexNumber {
     public sign(): ComplexNumber {
         const abs = this.magnitude();
 
-        return new ComplexNumber(
-            this.re / abs,
-            this.im / abs);
+        return new ComplexNumber(this.re / abs, this.im / abs);
     }
     public add(a: number | string | ComplexNumber, b?: number): ComplexNumber {
         const P = ComplexNumber.parse(a, b); // mutates P
 
-        return new ComplexNumber(
-            this.re + P.re,
-            this.im + P.im);
+        return new ComplexNumber(this.re + P.re, this.im + P.im);
     }
     public subtract(a: number | string | ComplexNumber, b?: number): ComplexNumber {
         const P = ComplexNumber.parse(a, b); // mutates P
 
-        return new ComplexNumber(
-            this.re - P.re,
-            this.im - P.im);
+        return new ComplexNumber(this.re - P.re, this.im - P.im);
     }
     public multiply(a: number | string | ComplexNumber, b?: number): ComplexNumber {
         const P = ComplexNumber.parse(a, b); // mutates P
@@ -202,9 +189,7 @@ export class ComplexNumber {
             return new ComplexNumber(this.re * P.re, 0);
         }
 
-        return new ComplexNumber(
-            this.re * P.re - this.im * P.im,
-            this.re * P.im + this.im * P.re);
+        return new ComplexNumber(this.re * P.re - this.im * P.im, this.re * P.im + this.im * P.re);
     }
     public divide(aa: number | string | ComplexNumber, bb?: number): ComplexNumber {
         const P = ComplexNumber.parse(aa, bb); // mutates P
@@ -219,9 +204,7 @@ export class ComplexNumber {
         if (0 === d) {
             if (0 === c) {
                 // Divisor is zero
-                return new ComplexNumber(
-                    (a !== 0) ? (a / 0) : 0,
-                    (b !== 0) ? (b / 0) : 0);
+                return new ComplexNumber(a !== 0 ? a / 0 : 0, b !== 0 ? b / 0 : 0);
             } else {
                 // Divisor is real
                 return new ComplexNumber(a / c, b / c);
@@ -229,24 +212,16 @@ export class ComplexNumber {
         }
 
         if (Math.abs(c) < Math.abs(d)) {
-
             x = c / d;
             t = c * x + d;
 
-            return new ComplexNumber(
-                (a * x + b) / t,
-                (b * x - a) / t);
-
+            return new ComplexNumber((a * x + b) / t, (b * x - a) / t);
         } else {
-
             x = d / c;
             t = d * x + c;
 
-            return new ComplexNumber(
-                (a + b * x) / t,
-                (b - a * x) / t);
+            return new ComplexNumber((a + b * x) / t, (b - a * x) / t);
         }
-
     }
     public pow(aa: number | string | ComplexNumber, bb?: number): ComplexNumber {
         const P = ComplexNumber.parse(aa, bb); // mutates P
@@ -258,14 +233,12 @@ export class ComplexNumber {
 
         // If the exponent is real
         if (P.im === 0) {
-
             if (b === 0 && a >= 0) {
-
                 return new ComplexNumber(Math.pow(a, P.re), 0);
+            } else if (a === 0) {
+                // If base is fully imaginary
 
-            } else if (a === 0) { // If base is fully imaginary
-
-                switch ((P.re % 4 + 4) % 4) {
+                switch (((P.re % 4) + 4) % 4) {
                     case 0:
                         return new ComplexNumber(Math.pow(b, P.re), 0);
                     case 1:
@@ -302,9 +275,7 @@ export class ComplexNumber {
 
         a = Math.exp(P.re * loh - P.im * arg);
         b = P.im * loh + P.re * arg;
-        return new ComplexNumber(
-            Math.floor(a * Math.cos(b)),
-            Math.floor(a * Math.sin(b)));
+        return new ComplexNumber(Math.floor(a * Math.cos(b)), Math.floor(a * Math.sin(b)));
     }
     public sqrt(): ComplexNumber {
         const a = this.re;
@@ -315,7 +286,6 @@ export class ComplexNumber {
         let re, im;
 
         if (a >= 0) {
-
             if (b === 0) {
                 return new ComplexNumber(Math.sqrt(a), 0);
             }
@@ -339,9 +309,7 @@ export class ComplexNumber {
         if (this.im === 0) {
             // return new Complex(tmp, 0);
         }
-        return new ComplexNumber(
-            tmp * Math.cos(this.im),
-            tmp * Math.sin(this.im));
+        return new ComplexNumber(tmp * Math.cos(this.im), tmp * Math.sin(this.im));
     }
     public log(): ComplexNumber {
         const a = this.re;
@@ -351,9 +319,7 @@ export class ComplexNumber {
             // return new Complex(Math.log(a), 0);
         }
 
-        return new ComplexNumber(
-            logHypot(a, b),
-            Math.atan2(b, a));
+        return new ComplexNumber(logHypot(a, b), Math.atan2(b, a));
     }
     public abs(): number {
         return hypot(this.re, this.im);
@@ -370,9 +336,7 @@ export class ComplexNumber {
         const a = this.re;
         const b = this.im;
 
-        return new ComplexNumber(
-            Math.sin(a) * cosh(b),
-            Math.cos(a) * sinh(b));
+        return new ComplexNumber(Math.sin(a) * cosh(b), Math.cos(a) * sinh(b));
     }
     public cos(): ComplexNumber {
         // cos(z) = (e^b + e^(-b)) / 2
@@ -380,9 +344,7 @@ export class ComplexNumber {
         const a = this.re;
         const b = this.im;
 
-        return new ComplexNumber(
-            Math.cos(a) * cosh(b),
-            -Math.sin(a) * sinh(b));
+        return new ComplexNumber(Math.cos(a) * cosh(b), -Math.sin(a) * sinh(b));
     }
     public tan(): ComplexNumber {
         // tan(c) = (e^(ci) - e^(-ci)) / (i(e^(ci) + e^(-ci)))
@@ -391,9 +353,7 @@ export class ComplexNumber {
         const b = 2 * this.im;
         const d = Math.cos(a) + cosh(b);
 
-        return new ComplexNumber(
-            Math.sin(a) / d,
-            sinh(b) / d);
+        return new ComplexNumber(Math.sin(a) / d, sinh(b) / d);
     }
     public cot(): ComplexNumber {
         // cot(c) = i(e^(ci) + e^(-ci)) / (e^(ci) - e^(-ci))
@@ -402,9 +362,7 @@ export class ComplexNumber {
         const b = 2 * this.im;
         const d = Math.cos(a) - cosh(b);
 
-        return new ComplexNumber(
-            -Math.sin(a) / d,
-            sinh(b) / d);
+        return new ComplexNumber(-Math.sin(a) / d, sinh(b) / d);
     }
     public sec(): ComplexNumber {
         // sec(c) = 2 / (e^(ci) + e^(-ci))
@@ -413,9 +371,7 @@ export class ComplexNumber {
         const b = this.im;
         const d = 0.5 * cosh(2 * b) + 0.5 * Math.cos(2 * a);
 
-        return new ComplexNumber(
-            Math.cos(a) * cosh(b) / d,
-            Math.sin(a) * sinh(b) / d);
+        return new ComplexNumber((Math.cos(a) * cosh(b)) / d, (Math.sin(a) * sinh(b)) / d);
     }
     public csc(): ComplexNumber {
         // csc(c) = 2i / (e^(ci) - e^(-ci))
@@ -424,9 +380,7 @@ export class ComplexNumber {
         const b = this.im;
         const d = 0.5 * cosh(2 * b) - 0.5 * Math.cos(2 * a);
 
-        return new ComplexNumber(
-            Math.sin(a) * cosh(b) / d,
-            -Math.cos(a) * sinh(b) / d);
+        return new ComplexNumber((Math.sin(a) * cosh(b)) / d, (-Math.cos(a) * sinh(b)) / d);
     }
     public asin(): ComplexNumber {
         // asin(c) = -i * log(ci + sqrt(1 - c^2))
@@ -434,13 +388,9 @@ export class ComplexNumber {
         const a = this.re;
         const b = this.im;
 
-        const t1 = new ComplexNumber(
-            b * b - a * a + 1,
-            -2 * a * b).sqrt();
+        const t1 = new ComplexNumber(b * b - a * a + 1, -2 * a * b).sqrt();
 
-        const t2 = new ComplexNumber(
-            t1.re - b,
-            t1.im + a).log();
+        const t2 = new ComplexNumber(t1.re - b, t1.im + a).log();
 
         return new ComplexNumber(t2.im, -t2.re);
     }
@@ -450,13 +400,9 @@ export class ComplexNumber {
         const a = this.re;
         const b = this.im;
 
-        const t1 = new ComplexNumber(
-            b * b - a * a + 1,
-            -2 * a * b).sqrt();
+        const t1 = new ComplexNumber(b * b - a * a + 1, -2 * a * b).sqrt();
 
-        const t2 = new ComplexNumber(
-            t1.re - b,
-            t1.im + a).log();
+        const t2 = new ComplexNumber(t1.re - b, t1.im + a).log();
 
         return new ComplexNumber(Math.PI / 2 - t2.im, t2.re);
     }
@@ -467,7 +413,6 @@ export class ComplexNumber {
         const b = this.im;
 
         if (a === 0) {
-
             if (b === 1) {
                 return new ComplexNumber(0, Infinity);
             }
@@ -479,9 +424,7 @@ export class ComplexNumber {
 
         const d = a * a + (1.0 - b) * (1.0 - b);
 
-        const t1 = new ComplexNumber(
-            (1 - b * b - a * a) / d,
-            -2 * a / d).log();
+        const t1 = new ComplexNumber((1 - b * b - a * a) / d, (-2 * a) / d).log();
 
         return new ComplexNumber(-0.5 * t1.im, 0.5 * t1.re);
     }
@@ -496,13 +439,9 @@ export class ComplexNumber {
         }
 
         const d = a * a + b * b;
-        return (d !== 0)
-            ? new ComplexNumber(
-                a / d,
-                -b / d).atan()
-            : new ComplexNumber(
-                (a !== 0) ? a / 0 : 0,
-                (b !== 0) ? -b / 0 : 0).atan();
+        return d !== 0
+            ? new ComplexNumber(a / d, -b / d).atan()
+            : new ComplexNumber(a !== 0 ? a / 0 : 0, b !== 0 ? -b / 0 : 0).atan();
     }
     public asec(): ComplexNumber {
         // asec(c) = -i * log(1 / c + sqrt(1 - i / c^2))
@@ -515,13 +454,9 @@ export class ComplexNumber {
         }
 
         const d = a * a + b * b;
-        return (d !== 0)
-            ? new ComplexNumber(
-                a / d,
-                -b / d).acos()
-            : new ComplexNumber(
-                (a !== 0) ? a / 0 : 0,
-                (b !== 0) ? -b / 0 : 0).acos();
+        return d !== 0
+            ? new ComplexNumber(a / d, -b / d).acos()
+            : new ComplexNumber(a !== 0 ? a / 0 : 0, b !== 0 ? -b / 0 : 0).acos();
     }
     public acsc(): ComplexNumber {
         // acsc(c) = -i * log(i / c + sqrt(1 - 1 / c^2))
@@ -534,13 +469,9 @@ export class ComplexNumber {
         }
 
         const d = a * a + b * b;
-        return (d !== 0)
-            ? new ComplexNumber(
-                a / d,
-                -b / d).asin()
-            : new ComplexNumber(
-                (a !== 0) ? a / 0 : 0,
-                (b !== 0) ? -b / 0 : 0).asin();
+        return d !== 0
+            ? new ComplexNumber(a / d, -b / d).asin()
+            : new ComplexNumber(a !== 0 ? a / 0 : 0, b !== 0 ? -b / 0 : 0).asin();
     }
     public sinh(): ComplexNumber {
         // sinh(c) = (e^c - e^-c) / 2
@@ -548,9 +479,7 @@ export class ComplexNumber {
         const a = this.re;
         const b = this.im;
 
-        return new ComplexNumber(
-            sinh(a) * Math.cos(b),
-            cosh(a) * Math.sin(b));
+        return new ComplexNumber(sinh(a) * Math.cos(b), cosh(a) * Math.sin(b));
     }
     public cosh(): ComplexNumber {
         // cosh(c) = (e^c + e^-c) / 2
@@ -558,9 +487,7 @@ export class ComplexNumber {
         const a = this.re;
         const b = this.im;
 
-        return new ComplexNumber(
-            cosh(a) * Math.cos(b),
-            sinh(a) * Math.sin(b));
+        return new ComplexNumber(cosh(a) * Math.cos(b), sinh(a) * Math.sin(b));
     }
     public tanh(): ComplexNumber {
         // tanh(c) = (e^c - e^-c) / (e^c + e^-c)
@@ -569,9 +496,7 @@ export class ComplexNumber {
         const b = 2 * this.im;
         const d = cosh(a) + Math.cos(b);
 
-        return new ComplexNumber(
-            sinh(a) / d,
-            Math.sin(b) / d);
+        return new ComplexNumber(sinh(a) / d, Math.sin(b) / d);
     }
     public coth(): ComplexNumber {
         // coth(c) = (e^c + e^-c) / (e^c - e^-c)
@@ -580,9 +505,7 @@ export class ComplexNumber {
         const b = 2 * this.im;
         const d = cosh(a) - Math.cos(b);
 
-        return new ComplexNumber(
-            sinh(a) / d,
-            -Math.sin(b) / d);
+        return new ComplexNumber(sinh(a) / d, -Math.sin(b) / d);
     }
     public sech(): ComplexNumber {
         // sech(c) = 2 / (e^c + e^-c)
@@ -591,9 +514,7 @@ export class ComplexNumber {
         const b = this.im;
         const d = Math.cos(2 * b) + cosh(2 * a);
 
-        return new ComplexNumber(
-            2 * cosh(a) * Math.cos(b) / d,
-            -2 * sinh(a) * Math.sin(b) / d);
+        return new ComplexNumber((2 * cosh(a) * Math.cos(b)) / d, (-2 * sinh(a) * Math.sin(b)) / d);
     }
     public csch(): ComplexNumber {
         // csch(c) = 2 / (e^c - e^-c)
@@ -602,9 +523,7 @@ export class ComplexNumber {
         const b = this.im;
         const d = Math.cos(2 * b) - cosh(2 * a);
 
-        return new ComplexNumber(
-            -2 * sinh(a) * Math.cos(b) / d,
-            2 * cosh(a) * Math.sin(b) / d);
+        return new ComplexNumber((-2 * sinh(a) * Math.cos(b)) / d, (2 * cosh(a) * Math.sin(b)) / d);
     }
     public asinh(): ComplexNumber {
         // asinh(c) = log(c + sqrt(c^2 + 1))
@@ -627,7 +546,7 @@ export class ComplexNumber {
 
         let tmp;
         // tslint:disable-next-line:prefer-const
-        let res = this.acos();
+        const res = this.acos();
         if (res.im <= 0) {
             tmp = res.re;
             res.re = -res.im;
@@ -650,13 +569,10 @@ export class ComplexNumber {
         const onePlus = 1 + a;
         const d = oneMinus * oneMinus + b * b;
 
-        const x = (d !== 0)
-            ? new ComplexNumber(
-                (onePlus * oneMinus - b * b) / d,
-                (b * oneMinus + onePlus * b) / d)
-            : new ComplexNumber(
-                (a !== -1) ? (a / 0) : 0,
-                (b !== 0) ? (b / 0) : 0);
+        const x =
+            d !== 0
+                ? new ComplexNumber((onePlus * oneMinus - b * b) / d, (b * oneMinus + onePlus * b) / d)
+                : new ComplexNumber(a !== -1 ? a / 0 : 0, b !== 0 ? b / 0 : 0);
 
         const temp = x.re;
         x.re = logHypot(x.re, x.im) / 2;
@@ -673,18 +589,13 @@ export class ComplexNumber {
         const b = this.im;
 
         if (a === 0 && b === 0) {
-
             return new ComplexNumber(0, Math.PI / 2);
         }
 
         const d = a * a + b * b;
-        return (d !== 0)
-            ? new ComplexNumber(
-                a / d,
-                -b / d).atanh()
-            : new ComplexNumber(
-                (a !== 0) ? a / 0 : 0,
-                (b !== 0) ? -b / 0 : 0).atanh();
+        return d !== 0
+            ? new ComplexNumber(a / d, -b / d).atanh()
+            : new ComplexNumber(a !== 0 ? a / 0 : 0, b !== 0 ? -b / 0 : 0).atanh();
     }
     public asech(): ComplexNumber {
         const a = this.re;
@@ -695,13 +606,9 @@ export class ComplexNumber {
         }
 
         const d = a * a + b * b;
-        return (d !== 0)
-            ? new ComplexNumber(
-                a / d,
-                -b / d).acosh()
-            : new ComplexNumber(
-                (a !== 0) ? a / 0 : 0,
-                (b !== 0) ? -b / 0 : 0).acosh();
+        return d !== 0
+            ? new ComplexNumber(a / d, -b / d).acosh()
+            : new ComplexNumber(a !== 0 ? a / 0 : 0, b !== 0 ? -b / 0 : 0).acosh();
     }
     public acsch(): ComplexNumber {
         // acsch(c) = log((1+sqrt(1+c^2))/c)
@@ -710,21 +617,13 @@ export class ComplexNumber {
         const b = this.im;
 
         if (b === 0) {
-
-            return new ComplexNumber(
-                (a !== 0)
-                    ? Math.log(a + Math.sqrt(a * a + 1))
-                    : Infinity, 0);
+            return new ComplexNumber(a !== 0 ? Math.log(a + Math.sqrt(a * a + 1)) : Infinity, 0);
         }
 
         const d = a * a + b * b;
-        return (d !== 0)
-            ? new ComplexNumber(
-                a / d,
-                -b / d).asinh()
-            : new ComplexNumber(
-                (a !== 0) ? a / 0 : 0,
-                (b !== 0) ? -b / 0 : 0).asinh();
+        return d !== 0
+            ? new ComplexNumber(a / d, -b / d).asinh()
+            : new ComplexNumber(a !== 0 ? a / 0 : 0, b !== 0 ? -b / 0 : 0).asinh();
     }
     public inverse(): ComplexNumber {
         const a = this.re;
@@ -732,9 +631,7 @@ export class ComplexNumber {
 
         const d = a * a + b * b;
 
-        return new ComplexNumber(
-            a !== 0 ? a / d : 0,
-            b !== 0 ? -b / d : 0);
+        return new ComplexNumber(a !== 0 ? a / d : 0, b !== 0 ? -b / d : 0);
     }
     public conjugate(): ComplexNumber {
         return new ComplexNumber(this.re, -this.im);
@@ -744,28 +641,21 @@ export class ComplexNumber {
     }
     public ceil(places?: number): ComplexNumber {
         places = Math.pow(10, places || 0);
-        return new ComplexNumber(
-            Math.ceil(this.re * places) / places,
-            Math.ceil(this.im * places) / places);
+        return new ComplexNumber(Math.ceil(this.re * places) / places, Math.ceil(this.im * places) / places);
     }
     public floor(places?: number): ComplexNumber {
         places = Math.pow(10, places || 0);
 
-        return new ComplexNumber(
-            Math.floor(this.re * places) / places,
-            Math.floor(this.im * places) / places);
+        return new ComplexNumber(Math.floor(this.re * places) / places, Math.floor(this.im * places) / places);
     }
     public round(places?: number): ComplexNumber {
         places = Math.pow(10, places || 0);
 
-        return new ComplexNumber(
-            Math.round(this.re * places) / places,
-            Math.round(this.im * places) / places);
+        return new ComplexNumber(Math.round(this.re * places) / places, Math.round(this.im * places) / places);
     }
     public equals(a: number | string | ComplexNumber, b?: number): boolean {
         const P = ComplexNumber.parse(a, b); // mutates P
-        return Math.abs(P.re - this.re) <= ComplexNumber.EPSILON &&
-            Math.abs(P.im - this.im) <= ComplexNumber.EPSILON;
+        return Math.abs(P.re - this.re) <= ComplexNumber.EPSILON && Math.abs(P.im - this.im) <= ComplexNumber.EPSILON;
     }
     public clone(): ComplexNumber {
         return new ComplexNumber(this.re, this.im);
@@ -785,10 +675,10 @@ export class ComplexNumber {
     public toString(): string {
         const a = this.re;
         let b = this.im;
-        let ret = "";
+        let ret = '';
 
         if (isNaN(a) || isNaN(b)) {
-            return "NaN";
+            return 'NaN';
         }
 
         if (a !== 0) {
@@ -796,11 +686,10 @@ export class ComplexNumber {
         }
 
         if (b !== 0) {
-
             if (a !== 0) {
-                ret += b < 0 ? " - " : " + ";
+                ret += b < 0 ? ' - ' : ' + ';
             } else if (b < 0) {
-                ret += "-";
+                ret += '-';
             }
 
             b = Math.abs(b);
@@ -808,12 +697,11 @@ export class ComplexNumber {
             if (1 !== b) {
                 ret += b;
             }
-            ret += "i";
+            ret += 'i';
         }
 
         // tslint:disable-next-line:curly
-        if (!ret)
-            return "0";
+        if (!ret) return '0';
 
         return ret;
     }

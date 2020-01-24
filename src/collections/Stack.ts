@@ -1,12 +1,12 @@
-import { IEnumerable } from "../core/IEnumerable";
-import { Enumerable, ParallelEnumerable } from "../linq/index";
-import { IParallelQueryable } from "../linq/IParallelQueryable";
-import { IQueryable } from "../linq/IQuerable";
-import { Collection } from "./Collection";
-import { ICollection } from "./ICollection";
-import { IList } from "./IList";
-import { IStack } from "./IStack";
-import { List } from "./List";
+import { IEnumerable } from '../core/IEnumerable';
+import { Enumerable, ParallelEnumerable } from '../linq/index';
+import { IParallelQueryable } from '../linq/IParallelQueryable';
+import { IQueryable } from '../linq/IQuerable';
+import { Collection } from './Collection';
+import { ICollection } from './ICollection';
+import { IList } from './IList';
+import { IStack } from './IStack';
+import { List } from './List';
 export class Stack<T> implements IStack<T> {
     private arr: T[] = [];
     constructor(enumerable?: IEnumerable<T> | Iterable<T>) {
@@ -17,9 +17,11 @@ export class Stack<T> implements IStack<T> {
         }
     }
     public contains(item: T): boolean {
-        return this.arr.findIndex((xx) => {
-            return xx === item;
-        }) >= 0;
+        return (
+            this.arr.findIndex(xx => {
+                return xx === item;
+            }) >= 0
+        );
     }
     public get size(): number {
         return this.arr.length;
@@ -46,8 +48,7 @@ export class Stack<T> implements IStack<T> {
     }
     public peek(): T {
         // tslint:disable-next-line:curly
-        if (this.arr.length > 0)
-            return this.arr[0];
+        if (this.arr.length > 0) return this.arr[0];
         // tslint:disable-next-line:curly
         else return null;
     }
@@ -84,5 +85,4 @@ export class Stack<T> implements IStack<T> {
     public isEmpty(): boolean {
         return this.size === 0;
     }
-
 }

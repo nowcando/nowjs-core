@@ -1,5 +1,4 @@
-
-import { IQueryable } from "./IQuerable";
+import { IQueryable } from './IQuerable';
 
 export interface ILookup<TKey, TValue> {
     key: TKey;

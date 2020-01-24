@@ -1,12 +1,10 @@
-
-import { SanitizerBase } from "./index";
+import { SanitizerBase } from './index';
 
 export class Sanitization {
     private static sanitizers = new Map<string, SanitizerBase<any>>();
 
     // tslint:disable-next-line:member-ordering
     public static define(sanitizerName: string, sanitizer: SanitizerBase<any>) {
-
         Sanitization.sanitizers.set(sanitizerName, sanitizer);
     }
 
@@ -33,5 +31,4 @@ export class Sanitization {
             return Promise.resolve(value);
         }
     }
-
 }

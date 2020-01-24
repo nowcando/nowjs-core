@@ -1,5 +1,4 @@
-
-import { Point3D } from "./Point3D";
+import { Point3D } from './Point3D';
 
 export class Vector3D extends Point3D {
     constructor(x?: number, y?: number, z?: number) {
@@ -8,31 +7,61 @@ export class Vector3D extends Point3D {
     // tslint:disable:one-line
     // tslint:disable:member-ordering
     public static negative(a: Vector3D, b: Vector3D) {
-        b.X = -a.X; b.Y = -a.Y; b.Z = -a.Z;
+        b.X = -a.X;
+        b.Y = -a.Y;
+        b.Z = -a.Z;
         return b;
     }
     public static add(a: Vector3D, b: Vector3D | number, c?: Vector3D) {
         c = c || new Vector3D();
-        if (b instanceof Vector3D) { c.X = a.X + b.X; c.Y = a.Y + b.Y; c.Z = a.Z + b.Z; }
-        else { c.X = a.X + b; c.Y = a.Y + b; c.Z = a.Z + b; }
+        if (b instanceof Vector3D) {
+            c.X = a.X + b.X;
+            c.Y = a.Y + b.Y;
+            c.Z = a.Z + b.Z;
+        } else {
+            c.X = a.X + b;
+            c.Y = a.Y + b;
+            c.Z = a.Z + b;
+        }
         return c;
     }
     public static subtract(a: Vector3D, b: Vector3D | number, c?: Vector3D) {
         c = c || new Vector3D();
-        if (b instanceof Vector3D) { c.X = a.X - b.X; c.Y = a.Y - b.Y; c.Z = a.Z - b.Z; }
-        else { c.X = a.X - b; c.Y = a.Y - b; c.Z = a.Z - b; }
+        if (b instanceof Vector3D) {
+            c.X = a.X - b.X;
+            c.Y = a.Y - b.Y;
+            c.Z = a.Z - b.Z;
+        } else {
+            c.X = a.X - b;
+            c.Y = a.Y - b;
+            c.Z = a.Z - b;
+        }
         return c;
     }
     public static multiply(a: Vector3D, b: Vector3D | number, c?: Vector3D) {
         c = c || new Vector3D();
-        if (b instanceof Vector3D) { c.X = a.X * b.X; c.Y = a.Y * b.Y; c.Z = a.Z * b.Z; }
-        else { c.X = a.X * b; c.Y = a.Y * b; c.Z = a.Z * b; }
+        if (b instanceof Vector3D) {
+            c.X = a.X * b.X;
+            c.Y = a.Y * b.Y;
+            c.Z = a.Z * b.Z;
+        } else {
+            c.X = a.X * b;
+            c.Y = a.Y * b;
+            c.Z = a.Z * b;
+        }
         return c;
     }
     public static divide(a: Vector3D, b: Vector3D | number, c?: Vector3D) {
         c = c || new Vector3D();
-        if (b instanceof Vector3D) { c.X = a.X / b.X; c.Y = a.Y / b.Y; c.Z = a.Z / b.Z; }
-        else { c.X = a.X / b; c.Y = a.Y / b; c.Z = a.Z / b; }
+        if (b instanceof Vector3D) {
+            c.X = a.X / b.X;
+            c.Y = a.Y / b.Y;
+            c.Z = a.Z / b.Z;
+        } else {
+            c.X = a.X / b;
+            c.Y = a.Y / b;
+            c.Z = a.Z / b;
+        }
         return c;
     }
     public static cross(a: Vector3D, b: Vector3D, c?: Vector3D) {
@@ -50,10 +79,7 @@ export class Vector3D extends Point3D {
         return b;
     }
     public static fromBearing(angle: number, length: number) {
-        return new Vector3D(
-            length * Math.cos(angle),
-            length * Math.sin(angle),
-        );
+        return new Vector3D(length * Math.cos(angle), length * Math.sin(angle));
     }
     public static fromAngles(theta: number, phi: number) {
         return new Vector3D(Math.cos(theta) * Math.cos(phi), Math.sin(phi), Math.sin(theta) * Math.cos(phi));
@@ -68,7 +94,10 @@ export class Vector3D extends Point3D {
         return new Vector3D(Math.max(a.X, b.X), Math.max(a.Y, b.Y), Math.max(a.Z, b.Z));
     }
     public static lerp(a: Vector3D, b: Vector3D, fraction: number) {
-        return b.subtract(a).multiply(fraction).add(a);
+        return b
+            .subtract(a)
+            .multiply(fraction)
+            .add(a);
     }
     public static fromArray(a: number[]) {
         return new Vector3D(a[0], a[1], a[2]);
@@ -111,13 +140,9 @@ export class Vector3D extends Point3D {
         return this.X * v.X + this.Y * v.Y + this.Z * v.Z;
     }
     public cross(v: Vector3D): Vector3D {
-        return new Vector3D(
-            this.Y * v.Z - this.Z * v.Y,
-            this.Z * v.X - this.X * v.Z,
-            this.X * v.Y - this.Y * v.X,
-        );
+        return new Vector3D(this.Y * v.Z - this.Z * v.Y, this.Z * v.X - this.X * v.Z, this.X * v.Y - this.Y * v.X);
     }
-    public magnitude(){
+    public magnitude() {
         return this.length();
     }
     public length() {
@@ -157,7 +182,9 @@ export class Vector3D extends Point3D {
         return new Vector3D(this.X, this.Y, this.Z);
     }
     private init(x: number, y: number, z: number) {
-        this.X = x; this.Y = y; this.Z = z;
+        this.X = x;
+        this.Y = y;
+        this.Z = z;
         return this;
     }
 }
