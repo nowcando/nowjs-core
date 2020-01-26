@@ -1,3 +1,9 @@
+### 0.39.0 (2020-01-26)
+
+##### New Features
+
+*  implement array clear groupby . ([649bc692](https://github.com/nowcando/nowjs-core/commit/649bc692b049face6a8fccc798af6efd37724115))
+
 ### 0.38.0 (2020-01-24)
 
 ##### New Features
