@@ -1,7 +1,7 @@
 import { IList } from './collections';
 import './computation/math/Declaration';
-import { IObjectDictionary } from './core';
-import './linq/Declaration';
+import { IObjectDictionary, Selector } from './core';
+import './GlobalDeclarationImpl';
 import { IParallelQueryable, IQueryable } from './linq/index';
 import './parallels/Declaration';
 import { ExtendedPromiseOptions } from './parallels/Declaration';
@@ -96,11 +96,13 @@ declare global {
     // }
 
     interface Array<T> {
+        clear(): void;
         contains(obj: T): boolean;
         findDuplicates(): T[];
         itemCount(): Array<{ item: T; count: number }>;
         toUnique(): T[];
         hasDuplicate(): boolean;
+        groupBy<R = Record<string, any>>(selector: Selector<T> | string | string[]): R;
         linq(): IQueryable<T>;
         plinq(): IParallelQueryable<T>;
 

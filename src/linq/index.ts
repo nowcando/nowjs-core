@@ -1,4 +1,4 @@
-import './Declaration';
+import '../GlobalDeclarationImpl';
 export * from './Enumerable';
 export * from './ParallelEnumerable';
 export * from './IGroup';
@@ -10,4 +10,3 @@ export * from './IParallelOrderedQueryable';
 export * from './IParallelQueryableProvider';
 export * from './MemoryParallelQueryableProvider';
 export * from './IQuerable';
-export * from './Declaration';

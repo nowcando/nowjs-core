@@ -1,11 +1,25 @@
-import { MemoryParallelQueryableProvider } from './MemoryParallelQueryableProvider';
+/* eslint-disable prefer-spread */
+import { MemoryParallelQueryableProvider } from './linq/MemoryParallelQueryableProvider';
 
 // tslint:disable-next-line:no-namespace
-import { IObjectDictionary } from '../core';
-import { Enumerable } from './Enumerable';
-import { ParallelEnumerable } from './ParallelEnumerable';
-import { IList } from '../collections/IList';
-import { List } from '../collections/List';
+import { IObjectDictionary, Selector } from './core';
+import { Enumerable } from './linq/Enumerable';
+import { ParallelEnumerable } from './linq/ParallelEnumerable';
+import { IList } from './collections/IList';
+import { List } from './collections/List';
+import { createInstance, toDeepAssign, isObjectType, toCloneObject, deepEqual } from './utils/ObjectUtils';
+import { toBigDecimal, toComplexNumber } from './utils/NumberUtils';
+import { delay, timeout, spread, wait, extendedPromise } from './parallels';
+import {
+    toPascalCaseWrapper,
+    toCamelCaseWrapper,
+    toTitleCaseWrapper,
+    toSentenceCaseWrapper,
+    toUpperFirstCaseWrapper,
+    toLowerFirstCaseWrapper,
+    toSnakeCaseWrapper,
+    toDotCaseWrapper,
+} from './utils/StringUtils';
 
 function getEunmerable(): Enumerable<any> {
     return new Enumerable<any>(this);
@@ -343,6 +357,57 @@ function setJoin(seperator?: string): string {
     return res;
 }
 
+function clearArray() {
+    this.length = 0;
+}
+
+function arrayGroupByImpl<T>(array: T[], fn: Selector<T>): any {
+    const groups: any = {};
+    array.forEach(function(o) {
+        const group = JSON.stringify(fn(o));
+        groups[group] = groups[group] || [];
+        groups[group].push(o);
+    });
+    return Object.keys(groups).map(function(group) {
+        return groups[group];
+    });
+}
+function arrayGroupBy<T, R = Record<string, any>>(selector: Selector<T> | string | string[]): R {
+    if (typeof selector === 'string') {
+        const s = selector.split(',');
+        const fn: any = (item: any) => {
+            return s.map((xx: any) => item[xx]);
+        };
+        return arrayGroupByImpl<T>(this, fn);
+    } else if (Array.isArray(selector)) {
+        const fn: any = (item: any) => {
+            return selector.map((xx: any) => item[xx]);
+        };
+        return arrayGroupByImpl<T>(this, fn);
+    } else {
+        return arrayGroupByImpl<T>(this, selector);
+    }
+}
+Object.createInstance = createInstance;
+Object.deepAssign = toDeepAssign;
+Object.isObjectType = isObjectType;
+Object.cloneObject = toCloneObject;
+Object.deepEqual = deepEqual;
+
+String.prototype.toPascalCase = toPascalCaseWrapper;
+String.prototype.toCamelCase = toCamelCaseWrapper;
+String.prototype.toTitleCase = toTitleCaseWrapper;
+String.prototype.toSentenceCase = toSentenceCaseWrapper;
+String.prototype.toUpperFirstCase = toUpperFirstCaseWrapper;
+String.prototype.toLowerFirstCase = toLowerFirstCaseWrapper;
+String.prototype.toSnakeCase = toSnakeCaseWrapper;
+String.prototype.toDotCase = toDotCaseWrapper;
+
+Number.prototype.toBigDecimal = toBigDecimal;
+Number.prototype.toComplexNumber = toComplexNumber;
+
+Array.prototype.clear = clearArray;
+Array.prototype.groupBy = arrayGroupBy;
 Array.prototype.toUnique = toUnique;
 Array.prototype.itemCount = itemCount;
 Array.prototype.findDuplicates = findDuplicates;
@@ -416,3 +481,12 @@ WeakSet.prototype.find = setFind;
 WeakSet.prototype.every = setEvery;
 WeakSet.prototype.some = setSome;
 WeakSet.prototype.map = setWeakMap;
+
+Promise.prototype.delay = delay;
+Promise.prototype.timeout = timeout;
+Promise.prototype.spread = spread;
+Promise.prototype.wait = wait;
+
+Promise.delay = delay;
+Promise.extendedPromise = extendedPromise;
+Promise.wait = wait;

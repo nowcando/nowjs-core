@@ -2,7 +2,7 @@
  * Created by saeed on 10/15/16.
  */
 
-function timeout<T>(ms: number, err?: string | Error): Promise<T> {
+export function timeout<T>(ms: number, err?: string | Error): Promise<T> {
     const pr = this;
     let err1 = new Error(`Timeout out in ${ms} miliseconds.`);
     if (err) {
@@ -26,7 +26,7 @@ function timeout<T>(ms: number, err?: string | Error): Promise<T> {
     }
 }
 
-function delay<T>(ms: number, defaulValue?: T): Promise<T> {
+export function delay<T>(ms: number, defaulValue?: T): Promise<T> {
     const pr = this;
     if (pr && pr.then) {
         const prs = new Promise<T>(resolve => {
@@ -49,7 +49,7 @@ function delay<T>(ms: number, defaulValue?: T): Promise<T> {
     }
 }
 
-function wait<T>(ms: number): Promise<T> {
+export function wait<T>(ms: number): Promise<T> {
     const pr = this;
     if (pr && pr.then) {
         const prs = new Promise<T>(resolve => {
@@ -72,7 +72,7 @@ function wait<T>(ms: number): Promise<T> {
     }
 }
 
-function spread<T>(fn: (...args: T[]) => void): Promise<T> {
+export function spread<T>(fn: (...args: T[]) => void): Promise<T> {
     const pr = this;
     return new Promise<any>(resolve => {
         pr.then((result: any) => {
@@ -121,11 +121,3 @@ export function extendedPromise<T>(promise: Promise<T>, options?: ExtendedPromis
 }
 
 // Promise.constructor.prototype.timeout = timeout;
-Promise.constructor.prototype.delay = delay;
-Promise.constructor.prototype.wait = wait;
-Promise.constructor.prototype.extendedPromise = extendedPromise;
-
-Promise.prototype.timeout = timeout;
-Promise.prototype.delay = delay;
-Promise.prototype.wait = wait;
-Promise.prototype.spread = spread;

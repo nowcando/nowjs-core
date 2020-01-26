@@ -28,6 +28,3 @@ export function toBigDecimal(options?: BigDecimalOptions): BigDecimal {
 export function toComplexNumber(b?: number): ComplexNumber {
     return new ComplexNumber(this, b);
 }
-
-Number.prototype.toBigDecimal = toBigDecimal;
-Number.prototype.toComplexNumber = toComplexNumber;

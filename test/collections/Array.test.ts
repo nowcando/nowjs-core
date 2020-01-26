@@ -31,6 +31,29 @@ describe('Array', () => {
         expect(arr3.hasDuplicate()).toEqual(true);
     });
 
+    it('clear', () => {
+        expect.assertions(2);
+        const arr1 = [1, 2, 3, 4, 2, 5];
+        const c = arr1.length;
+        arr1.clear();
+        expect(c).toEqual(6);
+        expect(arr1.length).toEqual(0);
+    });
+
+    it('groupBy', () => {
+        expect.assertions(1);
+        const arr1 = [
+            { name: 'A', age: 15 },
+            { name: 'B', age: 10 },
+            { name: 'D', age: 30 },
+            { name: 'A', age: 15 },
+            { name: 'D', age: 10 },
+            { name: 'D', age: 20 },
+        ];
+        const g = arr1.groupBy('name');
+        expect(g.length).toEqual(3);
+    });
+
     it('itemCount', () => {
         expect.assertions(1);
         const arr3 = [2, 2, 5, 2, 5];

@@ -89,40 +89,31 @@ export function toDotCase(str: string): string {
     });
 }
 
-function toPascalCaseWrapper(): string {
+export function toPascalCaseWrapper(): string {
     return toPascalCase(this);
 }
-function toCamelCaseWrapper(): string {
+export function toCamelCaseWrapper(): string {
     return toCamelCase(this);
 }
-function toTitleCaseWrapper(): string {
+export function toTitleCaseWrapper(): string {
     return toTitleCase(this);
 }
 
-function toSentenceCaseWrapper(): string {
+export function toSentenceCaseWrapper(): string {
     return toSentenceCase(this);
 }
 
-function toUpperFirstCaseWrapper(): string {
+export function toUpperFirstCaseWrapper(): string {
     return toUpperFirstCase(this);
 }
 
-function toLowerFirstCaseWrapper(): string {
+export function toLowerFirstCaseWrapper(): string {
     return toLowerFirstCase(this);
 }
 
-function toSnakeCaseWrapper(): string {
+export function toSnakeCaseWrapper(): string {
     return toSnakeCase(this);
 }
-function toDotCaseWrapper(): string {
+export function toDotCaseWrapper(): string {
     return toDotCase(this);
 }
-
-String.prototype.toPascalCase = toPascalCaseWrapper;
-String.prototype.toCamelCase = toCamelCaseWrapper;
-String.prototype.toTitleCase = toTitleCaseWrapper;
-String.prototype.toSentenceCase = toSentenceCaseWrapper;
-String.prototype.toUpperFirstCase = toUpperFirstCaseWrapper;
-String.prototype.toLowerFirstCase = toLowerFirstCaseWrapper;
-String.prototype.toSnakeCase = toSnakeCaseWrapper;
-String.prototype.toDotCase = toDotCaseWrapper;

@@ -1,3 +1,4 @@
+/* eslint-disable prefer-spread */
 export const PROPERTY_METADATA_KEY = Symbol('object.property.metadata.key');
 export const PROPERTY_PRESENTATION_KEY = Symbol('object.property.presentation.key');
 export const OBJECT_DISPLAYNAME_METADATA_KEY = Symbol('object.displayName.key');
@@ -406,8 +407,17 @@ export function deepEqual(x: Record<string, any>, y: Record<string, any>) {
 export function createInstance<T>(c: new () => T): T {
     return new c();
 }
-Object.createInstance = createInstance;
-Object.deepAssign = toDeepAssign;
-Object.isObjectType = isObjectType;
-Object.cloneObject = toCloneObject;
-Object.deepEqual = deepEqual;
+
+const groupBy = (fn: Function) => (list: any[]) =>
+    list.reduce((all, curr) => {
+        const key = fn(curr);
+        (all[key] || (all[key] = [])).push(curr);
+        return all;
+    }, {});
+const values = (obj: object) => Object.values(obj);
+const pipe = (f1: Function, ...fns: Function[]) => (...args: any[]) => {
+    return fns.reduce((res, fn) => fn(res), f1.apply(null, args));
+};
+const path = (nodes: any[]) => (obj: object) => nodes.reduce((o: any, node: any) => o[node], obj);
+
+export { groupBy, values, pipe, path };
